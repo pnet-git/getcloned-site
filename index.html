@@ -35,7 +35,7 @@
   .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
   @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.5); } }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  .hero h1 { font-size: clamp(42px, 7vw, 88px); font-weight: 800; max-width: 900px; margin-bottom: 24px; animation: fadeUp 0.6s ease 0.1s both; }
+  .hero h1 { font-size: clamp(32px, 4vw, 54px); font-weight: 800; max-width: 900px; margin-bottom: 24px; animation: fadeUp 0.6s ease 0.1s both; }
   .hero h1 em { font-style: normal; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .hero-sub { font-size: clamp(16px, 2vw, 20px); color: var(--muted); max-width: 680px; margin-bottom: 16px; font-weight: 300; animation: fadeUp 0.6s ease 0.2s both; }
   .hero-callout { font-size: 13px; color: var(--muted); margin-bottom: 40px; animation: fadeUp 0.6s ease 0.25s both; }
@@ -145,10 +145,12 @@
 
   .faq-inner { max-width: 800px; margin: 0 auto; }
   .faq-list { margin-top: 60px; }
-  .faq-item { border-bottom: 1px solid var(--border); padding: 28px 0; }
-  .faq-q { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 14px; color: var(--white); display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
-  .faq-q::after { content: '+'; color: var(--accent); font-size: 22px; flex-shrink: 0; line-height: 1.2; }
-  .faq-a { font-size: 15px; color: var(--muted); line-height: 1.8; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 28px 0; cursor: pointer; }
+  .faq-q { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; cursor: pointer; user-select: none; }
+  .faq-toggle { color: var(--accent); font-size: 22px; flex-shrink: 0; line-height: 1.2; transition: transform 0.3s; }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+  .faq-a { font-size: 15px; color: var(--muted); line-height: 1.8; margin-top: 14px; display: none; }
+  .faq-item.open .faq-a { display: block; }
 
   .dba-mention { background: var(--card); border: 1px solid var(--border); padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-top: 60px; }
   .dba-mention p { font-size: 15px; color: var(--muted); max-width: 600px; }
@@ -202,6 +204,9 @@
     .dba-mention { flex-direction: column; }
     footer { flex-direction: column; text-align: center; }
   }
+  @media (max-width: 600px) {
+    .before-after-grid { grid-template-columns: 1fr !important; }
+  }
 
   @media (max-width: 480px) {
     nav { padding: 12px 16px; }
@@ -227,14 +232,44 @@
 
 <section class="hero" style="max-width:100%;">
   <div class="hero-badge">India's First AI Clone Content Service for Experts</div>
-  <h1>Clone Yourself.<br>Publish Daily.<br><em>Own Your Category.</em></h1>
-  <p class="hero-sub">For doctors, therapists, coaches, consultants, astrologers, and expert service professionals — 10 done-for-you reels to start, then daily authority content without ever filming again.</p>
+  <h1>Scale Revenue With<br>Automated Content<br><em>From Your Clone.</em></h1>
+  <p class="hero-sub">We clone your on-camera presence, write in your voice, and produce done-for-you reels so you can publish consistently, build authority, and turn content into clients — without becoming a full-time creator.</p>
+  <p class="hero-callout" style="font-weight:700; color:var(--white); font-size:15px; margin-bottom:8px;">Clone yourself. Publish daily. Own your authority — and let content support your revenue instead of stealing your time.</p>
   <p class="hero-callout">Built for experts earning <strong>₹2L–₹1Cr/month</strong> who have the knowledge. Just not the time to create content.</p>
   <div class="hero-cta-single">
-    <a href="#optin" class="btn-primary">Book Your Free Clone Strategy Call →</a>
+    <a href="#optin" class="btn-primary">Book Your Clone Strategy Call →</a>
     <a href="#how-it-works" class="hero-scroll-hint">↓ See how it works</a>
   </div>
 </section>
+
+<!-- BEFORE / AFTER -->
+<div style="background:var(--dark); padding:80px 40px; border-bottom:1px solid var(--border);">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label" style="text-align:center; margin-bottom:40px;">The Transformation</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+      <div style="background:var(--card); border:1px solid rgba(255,68,68,0.15); padding:40px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--red); margin-bottom:24px;">❌ Before You're Cloned</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:16px;">
+          <li style="display:flex; gap:12px; font-size:15px; color:var(--muted);"><span style="color:var(--red); flex-shrink:0;">—</span>Content depends on your time, energy, and camera mood.</li>
+          <li style="display:flex; gap:12px; font-size:15px; color:var(--muted);"><span style="color:var(--red); flex-shrink:0;">—</span>You post inconsistently — or not at all — when client work gets busy.</li>
+          <li style="display:flex; gap:12px; font-size:15px; color:var(--muted);"><span style="color:var(--red); flex-shrink:0;">—</span>People with less expertise look more visible and authority-like than you online.</li>
+          <li style="display:flex; gap:12px; font-size:15px; color:var(--muted);"><span style="color:var(--red); flex-shrink:0;">—</span>Most revenue still comes from referrals, networking, or outbound effort.</li>
+          <li style="display:flex; gap:12px; font-size:15px; color:var(--muted);"><span style="color:var(--red); flex-shrink:0;">—</span>Every new video feels like starting from scratch.</li>
+        </ul>
+      </div>
+      <div style="background:rgba(200,255,0,0.03); border:1px solid rgba(200,255,0,0.2); padding:40px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:24px;">✅ After You're Cloned</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:16px;">
+          <li style="display:flex; gap:12px; font-size:15px; color:var(--white);"><span style="color:var(--accent); flex-shrink:0;">+</span>Your clone publishes regularly without you needing to film.</li>
+          <li style="display:flex; gap:12px; font-size:15px; color:var(--white);"><span style="color:var(--accent); flex-shrink:0;">+</span>Your best thinking turns into a steady flow of reels and short-form content.</li>
+          <li style="display:flex; gap:12px; font-size:15px; color:var(--white);"><span style="color:var(--accent); flex-shrink:0;">+</span>You start to look like the authority you already are in real life.</li>
+          <li style="display:flex; gap:12px; font-size:15px; color:var(--white);"><span style="color:var(--accent); flex-shrink:0;">+</span>More of the right people discover you, trust you, and enter your client funnel.</li>
+          <li style="display:flex; gap:12px; font-size:15px; color:var(--white);"><span style="color:var(--accent); flex-shrink:0;">+</span>Even one extra ₹50,000 client from this engine more than covers the GetCloned fee — and the system keeps working.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="trust-strip">
   <div class="trust-item"><span class="dot"></span> Doctors & Medical Experts</div>
@@ -261,20 +296,24 @@
     <h2 class="section-title" style="margin-bottom: 20px;">1 cloned reel.<br><em style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-style: normal;">1 Million+ views. 10M+ impressions.</em></h2>
     <p style="font-size: 16px; color: var(--muted); max-width: 600px; margin-bottom: 40px;">This is what happens when expert content meets the right clone system. One single reel — scripted, produced, and published using our exact process — generated over 1 million views and 10 million impressions. No paid ads. No boosting. Just authority content that compounds.</p>
     <div style="background: var(--card); border: 1px solid rgba(200,255,0,0.15); padding: 40px; display: flex; gap: 40px; align-items: center; justify-content: center; flex-wrap: wrap;">
-      <div style="display: flex; gap: 32px; flex-wrap: wrap;">
-        <div style="text-align: center;">
-          <div style="font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 8px;">1M+</div>
-          <div style="font-size: 13px; color: var(--muted);">Views on 1 Reel</div>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:center;">
+          <div style="text-align:center; min-width:70px;"><div style="font-family:'Syne',sans-serif; font-size:30px; font-weight:800; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:5px;">1M+</div><div style="font-size:11px; color:var(--muted);">Views</div></div>
+          <div style="width:1px; height:36px; background:var(--border);"></div>
+          <div style="text-align:center; min-width:70px;"><div style="font-family:'Syne',sans-serif; font-size:30px; font-weight:800; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:5px;">10M+</div><div style="font-size:11px; color:var(--muted);">Impressions</div></div>
+          <div style="width:1px; height:36px; background:var(--border);"></div>
+          <div style="text-align:center; min-width:70px;"><div style="font-family:'Syne',sans-serif; font-size:30px; font-weight:800; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:5px;">44K</div><div style="font-size:11px; color:var(--muted);">Likes</div></div>
+          <div style="width:1px; height:36px; background:var(--border);"></div>
+          <div style="text-align:center; min-width:70px;"><div style="font-family:'Syne',sans-serif; font-size:30px; font-weight:800; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:5px;">1.1K</div><div style="font-size:11px; color:var(--muted);">Comments</div></div>
+          <div style="width:1px; height:36px; background:var(--border);"></div>
+          <div style="text-align:center; min-width:70px;"><div style="font-family:'Syne',sans-serif; font-size:30px; font-weight:800; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:5px;">767</div><div style="font-size:11px; color:var(--muted);">Shares</div></div>
+          <div style="width:1px; height:36px; background:var(--border);"></div>
+          <div style="text-align:center; min-width:70px;"><div style="font-family:'Syne',sans-serif; font-size:30px; font-weight:800; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:5px;">361</div><div style="font-size:11px; color:var(--muted);">Saves</div></div>
+          <div style="width:1px; height:36px; background:var(--border);"></div>
+          <div style="text-align:center; min-width:70px;"><div style="font-family:'Syne',sans-serif; font-size:30px; font-weight:800; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:5px;">28s</div><div style="font-size:11px; color:var(--muted);">Avg Watch</div></div>
         </div>
-        <div style="width: 1px; background: var(--border);"></div>
-        <div style="text-align: center;">
-          <div style="font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 8px;">10M+</div>
-          <div style="font-size: 13px; color: var(--muted);">Total Impressions</div>
-        </div>
-        <div style="width: 1px; background: var(--border);"></div>
-        <div style="text-align: center;">
-          <div style="font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 8px;">₹0</div>
-          <div style="font-size: 13px; color: var(--muted);">Paid Promotion</div>
+        <div style="background:rgba(200,255,0,0.05); border:1px solid rgba(200,255,0,0.15); padding:14px 18px;">
+          <p style="font-size:13px; color:var(--white); line-height:1.7;">💡 <strong style="color:var(--accent);">Estimated 500–1,000 qualified leads</strong> from this single reel — leads that would otherwise cost <strong style="color:var(--accent);">₹2–3 Lakhs in ad spend</strong> over 3+ months. Zero paid promotion.</p>
         </div>
       </div>
       <div style="flex: 1; min-width: 200px;">
@@ -448,17 +487,17 @@
       <div class="section-label">Questions</div>
       <h2 class="section-title" style="margin-bottom:0;">We know what you're thinking.</h2>
       <div class="faq-list">
-        <div class="faq-item"><div class="faq-q">Will the clone actually sound and look like me?</div><div class="faq-a">Yes — that's the core promise. We use Professional Voice Cloning and a Digital Twin avatar trained specifically on your voice, face, and delivery. Our standard: if you listen to the output without knowing it's AI, it should pass as you. We test every clone before going live.</div></div>
-        <div class="faq-item"><div class="faq-q">Is this ethical? Will my patients or clients lose trust?</div><div class="faq-a">The knowledge, expertise, and messaging is 100% yours — we don't fabricate your views or make up information. You review and approve every script before it's produced. Think of it like a ghostwriter who writes in your voice. The substance is real. The bottleneck (filming) is removed.</div></div>
-        <div class="faq-item"><div class="faq-q">How much of my time does this actually require?</div><div class="faq-a">Minimal. Script approval: 15–20 minutes per batch. Monthly strategy review: 30 minutes. That's it. You don't film, edit, or upload. We handle everything else.</div></div>
-        <div class="faq-item"><div class="faq-q">I already have an editor. How is this different?</div><div class="faq-a">An editor needs raw footage — which means you still have to film. Get Cloned removes that dependency entirely. No filming means no shoot days, no setup, no camera anxiety. Your editor can't solve the shooting bottleneck. We can.</div></div>
-        <div class="faq-item"><div class="faq-q">How is this different from generic AI content tools?</div><div class="faq-a">Generic AI tools generate faceless, voiceless content that looks automated. Get Cloned creates content that looks, sounds, and feels like YOU — with your face, your voice, your expert positioning, your niche topics. It's a done-for-you service, not a tool you operate yourself.</div></div>
-        <div class="faq-item"><div class="faq-q">Do I retain full control of the content?</div><div class="faq-a">Completely. Every script is approved by you before production. Every video is reviewed before publishing. Nothing goes live without your explicit sign-off. You remain the expert, the authority, and the decision-maker at every step.</div></div>
+        <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Will the clone actually sound and look like me?<span class="faq-toggle">+</span></div><div class="faq-a">Yes — that's the core promise. We use Professional Voice Cloning and a Digital Twin avatar trained specifically on your voice, face, and delivery. Our standard: if you listen to the output without knowing it's AI, it should pass as you. We test every clone before going live.</div></div>
+        <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Is this ethical? Will my patients or clients lose trust?<span class="faq-toggle">+</span></div><div class="faq-a">The knowledge, expertise, and messaging is 100% yours — we don't fabricate your views or make up information. You review and approve every script before it's produced. Think of it like a ghostwriter who writes in your voice. The substance is real. The bottleneck (filming) is removed.</div></div>
+        <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">How much of my time does this actually require?<span class="faq-toggle">+</span></div><div class="faq-a">Minimal. Script approval: 15–20 minutes per batch. Monthly strategy review: 30 minutes. That's it. You don't film, edit, or upload. We handle everything else.</div></div>
+        <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">I already have an editor. How is this different?<span class="faq-toggle">+</span></div><div class="faq-a">An editor needs raw footage — which means you still have to film. Get Cloned removes that dependency entirely. No filming means no shoot days, no setup, no camera anxiety. Your editor can't solve the shooting bottleneck. We can.</div></div>
+        <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">How is this different from generic AI content tools?<span class="faq-toggle">+</span></div><div class="faq-a">Generic AI tools generate faceless, voiceless content that looks automated. Get Cloned creates content that looks, sounds, and feels like YOU — with your face, your voice, your expert positioning, your niche topics. It's a done-for-you service, not a tool you operate yourself.</div></div>
+        <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Do I retain full control of the content?<span class="faq-toggle">+</span></div><div class="faq-a">Completely. Every script is approved by you before production. Every video is reviewed before publishing. Nothing goes live without your explicit sign-off. You remain the expert, the authority, and the decision-maker at every step.</div></div>
       </div>
     </div>
     <div class="dba-mention">
       <p><strong>Want to go beyond content?</strong> For experts who want to build the full ecosystem — nurture, community, recurring revenue, and backend offers — we also offer the <strong>Digital Business Accelerator (DBA)</strong>. GetCloned is included free inside DBA.</p>
-      <a href="#optin" class="btn-secondary" style="white-space:nowrap;">Learn About DBA →</a>
+      <a href="https://www.getcloned.in/get-dba-engine" target="_blank" class="btn-secondary" style="white-space:nowrap;">Learn About DBA →</a>
     </div>
   </div>
 </div>
@@ -506,5 +545,37 @@
   </div>
 </footer>
 
+
+<!-- EXIT INTENT POPUP -->
+<div id="exit-popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.88); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+  <div style="background:var(--dark); border:1px solid rgba(200,255,0,0.3); max-width:540px; width:100%; padding:48px; position:relative; text-align:center;">
+    <button onclick="document.getElementById('exit-popup').style.display='none'" style="position:absolute; top:14px; right:18px; background:none; border:none; color:var(--muted); font-size:24px; cursor:pointer; line-height:1;">×</button>
+    <div style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:16px;">⚡ Wait — Special Offer</div>
+    <h3 style="font-family:'Syne',sans-serif; font-size:clamp(20px,3vw,28px); font-weight:700; margin-bottom:16px; line-height:1.15;">Get <em style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal;">30 Reels</em> instead of 10 — same price.</h3>
+    <p style="color:var(--muted); font-size:14px; margin-bottom:10px;">That's a full month of daily authority content — scripted, cloned, edited, and published for you.</p>
+    <p style="color:var(--white); font-size:14px; font-weight:600; margin-bottom:28px;">30 reels = 30 days of consistent presence = the kind of reach that would cost ₹2–3 Lakhs in ads. Yours free when you book today.</p>
+    <a href="#optin" onclick="document.getElementById('exit-popup').style.display='none'" class="btn-primary" style="display:block; text-align:center; margin-bottom:14px;">Claim 30 Free Reels — Book My Strategy Call →</a>
+    <p onclick="document.getElementById('exit-popup').style.display='none'" style="font-size:12px; color:var(--muted); cursor:pointer; text-decoration:underline;">No thanks, I'll stick with 10 reels</p>
+  </div>
+</div>
+
+<script>
+  let exitShown = false;
+  document.addEventListener('mouseleave', function(e) {
+    if (e.clientY < 10 && !exitShown) {
+      exitShown = true;
+      document.getElementById('exit-popup').style.display = 'flex';
+    }
+  });
+  let mobileTimer;
+  function resetMobileTimer() {
+    clearTimeout(mobileTimer);
+    mobileTimer = setTimeout(function() {
+      if (!exitShown) { exitShown = true; document.getElementById('exit-popup').style.display = 'flex'; }
+    }, 40000);
+  }
+  document.addEventListener('touchstart', resetMobileTimer);
+  resetMobileTimer();
+</script>
 </body>
 </html>
