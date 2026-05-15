@@ -43,7 +43,7 @@ body::before {
   inset: 0;
   background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
   pointer-events: none;
-  z-index: 1000;
+  z-index: 10;
 }
 
 body::after {
@@ -53,7 +53,7 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   opacity: 0.4;
   pointer-events: none;
-  z-index: 999;
+  z-index: 5;
 }
 
 .banner {
@@ -222,7 +222,7 @@ nav {
   border-top: 1px solid var(--line);
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--ink);
+  color: #ffffff !important;
   letter-spacing: 0.1em;
   animation: fadeUp 0.8s 0.6s ease both;
 }
@@ -233,7 +233,7 @@ nav {
 }
 
 .hero-proof-strip span {
-  color: var(--ink);
+  color: #ffffff !important;
 }
 
 .hero-proof-strip a {
@@ -244,7 +244,7 @@ nav {
 }
 
 .hero-proof-strip a:hover {
-  color: var(--ink);
+  color: #ffffff;
   text-decoration: underline;
 }
 
