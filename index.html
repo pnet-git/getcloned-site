@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GetCloned — Your Clone. Your Authority. Your Mission.</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -11,9 +12,9 @@
 :root {
   --bg: #080808;
   --bg-card: #0f0f10;
-  --ink: #e8e8e8;
-  --ink-dim: #7a7a82;
-  --ink-faint: #3a3a42;
+  --ink: #ffffff;
+  --ink-dim: #b0b0b8;
+  --ink-faint: #5a5a62;
   --line: #1e1e24;
   --cyan: #00ffd1;
   --cyan-glow: rgba(0,255,209,0.25);
@@ -237,7 +238,7 @@ nav {
 }
 
 .hero-proof-strip a:hover {
-  color: #fff;
+  color: var(--ink);
   text-decoration: underline;
 }
 
@@ -314,6 +315,30 @@ nav {
   animation: pulse-glow 2s infinite;
 }
 
+.calendly-section {
+  padding: 80px 48px;
+  border-top: 1px solid var(--line);
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.calendly-section h3 {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 40px;
+  color: var(--ink);
+}
+
+.calendly-embed-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  min-height: 700px;
+}
+
 footer {
   padding: 48px;
   border-top: 1px solid var(--line);
@@ -322,7 +347,7 @@ footer {
   align-items: center;
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--ink-faint);
+  color: var(--ink);
 }
 
 .footer-brand strong { color: var(--cyan); }
@@ -333,7 +358,7 @@ footer {
 }
 
 .footer-links a {
-  color: var(--ink-faint);
+  color: var(--ink);
   text-decoration: none;
   letter-spacing: 0.08em;
   transition: color 0.3s;
@@ -346,6 +371,7 @@ footer {
   .hero { padding: 60px 24px; }
   .truth-interrupt { padding: 60px 24px; }
   .final-cta { padding: 80px 24px; }
+  .calendly-section { padding: 60px 24px; }
   footer { flex-direction: column; gap: 24px; text-align: center; }
 }
 </style>
@@ -362,7 +388,7 @@ footer {
 
 <nav>
   <div class="nav-logo">GetCloned.in</div>
-  <button class="nav-cta" onclick="scrollToCTA()">Book Strategy Call →</button>
+  <button class="nav-cta" onclick="scrollToCalendly()">Book Strategy Call →</button>
 </nav>
 
 <div class="hero">
@@ -379,12 +405,12 @@ footer {
     AI cloning removes the camera bottleneck. <strong>30 reels a month. Zero hours filming. Your face. Your voice. Your frameworks.</strong>
   </p>
   
-  <button class="cta-primary" onclick="scrollToCTA()">→ Book Strategy Call</button>
+  <button class="cta-primary" onclick="scrollToCalendly()">→ Book Strategy Call</button>
   
   <div class="hero-proof-strip">
     <span class="label">Proof in motion:</span>
-    <a href="https://www.instagram.com/p/C6c2K8hVlD8/" target="_blank">Dr. Madhu Sudan (31K views)</a>
-    <a href="https://www.youtube.com/@peepoye/videos" target="_blank">Peepoye (1M+ views)</a>
+    <a href="https://www.instagram.com/p/C6c2K8hVlD8/" target="_blank">Dr. Madhu Sudan (0.5M views)</a>
+    <a href="https://www.youtube.com/@peepoye/videos" target="_blank">Peepoye (2M+ views)</a>
     <span>Zero filming</span>
   </div>
 </div>
@@ -395,7 +421,7 @@ footer {
   </div>
 </div>
 
-<div class="final-cta" id="cta-section">
+<div class="final-cta">
   <div class="final-cta-headline">
     Ready to stop<br>
     carrying your<br>
@@ -408,9 +434,16 @@ footer {
   
   <div class="scarcity-badge">⬀ 1 CLONE BUILD SPOT REMAINING THIS MONTH</div>
   
-  <a href="https://calendly.com/akassh/getcloned-strategy-call" class="cta-primary" style="font-size:14px; padding:22px 56px;">
+  <button class="cta-primary" onclick="scrollToCalendly()" style="font-size:14px; padding:22px 56px;">
     → Book Your Strategy Call
-  </a>
+  </button>
+</div>
+
+<div class="calendly-section" id="calendly-section">
+  <h3>Book Your Free Clone Strategy Call</h3>
+  <div class="calendly-embed-wrapper">
+    <iframe src="https://calendly.com/akassh/getcloned-strategy-call?embed_domain=getcloned.in&embed_type=Inline" width="100%" height="700" frameborder="0" title="Schedule a time with Akassh"></iframe>
+  </div>
 </div>
 
 <footer>
@@ -423,8 +456,8 @@ footer {
 </footer>
 
 <script>
-function scrollToCTA() {
-  document.getElementById('cta-section').scrollIntoView({ behavior: 'smooth' });
+function scrollToCalendly() {
+  document.getElementById('calendly-section').scrollIntoView({ behavior: 'smooth' });
 }
 
 const glitchWord = document.querySelector('.glitch-word');
