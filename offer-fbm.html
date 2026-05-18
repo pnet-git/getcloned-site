@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GetCloned × Fit Bharat Mission — Engagement Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --dark: #0E0D0A;
+    --cream: #F7F3EB;
+    --text-body: #3A3526;
+    --text-muted: #8A7F62;
+    --accent: #7A5C1E;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #16140F;
+    color: var(--text-body);
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+  .page {
+    width: 860px;
+    margin: 0 auto;
+    background: var(--cream);
+    box-shadow: 0 0 80px rgba(0,0,0,0.6);
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--dark);
+    padding: 64px 60px 52px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -160px; right: -160px;
+    width: 550px; height: 550px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 52px;
+  }
+  .brand-mark { font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 400; }
+  .cover-date { font-size: 10.5px; letter-spacing: 0.12em; color: #5A5240; font-weight: 300; }
+  .cover-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; font-weight: 400; }
+  .cover-title { font-family: 'Cormorant Garamond', serif; font-size: 62px; font-weight: 300; line-height: 1.02; color: #EEE8D6; margin-bottom: 22px; }
+  .cover-title em { font-style: italic; color: var(--gold-light); }
+  .cover-divider { width: 44px; height: 1px; background: var(--gold); margin: 24px 0; opacity: 0.55; }
+  .cover-subtitle { font-size: 13px; color: #6B6250; max-width: 460px; line-height: 1.85; font-weight: 300; }
+  .cover-footer {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-top: 1px solid rgba(201,168,76,0.13);
+    padding-top: 26px; margin-top: 52px; gap: 20px;
+  }
+  .cover-prepared { font-size: 11px; color: #5A5240; }
+  .cover-prepared strong { color: var(--gold-light); display: block; font-weight: 400; font-size: 12.5px; margin-top: 4px; }
+  .cover-confidential { font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(201,168,76,0.28); text-align: right; line-height: 1.8; flex-shrink: 0; }
+
+  /* ── SECTIONS ── */
+  .section { padding: 48px 60px 40px; border-top: 1px solid rgba(0,0,0,0.06); background: var(--cream); }
+  .section.white { background: #ffffff; }
+  .section-label { font-size: 9.5px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; font-weight: 500; }
+  .section-heading { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400; color: var(--dark); line-height: 1.2; margin-bottom: 20px; }
+  .section-heading em { font-style: italic; color: var(--accent); }
+
+  /* ── SITUATION ── */
+  .situation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .sit-card { background: white; border: 1px solid rgba(0,0,0,0.07); padding: 20px 22px; border-radius: 2px; }
+  .sit-card.desired { background: linear-gradient(135deg,#FFFDF7,#FBF5E4); border-color: rgba(201,168,76,0.28); }
+  .sit-card-label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+  .sit-card-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--dark); margin-bottom: 8px; line-height: 1.3; }
+  .sit-card p { font-size: 12.5px; color: var(--text-body); line-height: 1.75; font-weight: 300; }
+  .liberation-line { background: var(--dark); border-left: 3px solid var(--gold); padding: 18px 24px; margin: 18px 0; border-radius: 0 2px 2px 0; }
+  .liberation-line p { font-family: 'Cormorant Garamond', serif; font-size: 17.5px; font-style: italic; color: var(--gold-light); line-height: 1.55; font-weight: 300; }
+
+  /* ── PROCESS: BEFORE ── */
+  .process-label { font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
+  .label-red { color: #A83030; }
+  .label-green { color: #2A7A3A; }
+
+  /* BEFORE: vertical step list */
+  .before-wrap {
+    background: #FFF8F8;
+    border: 1px solid rgba(180,50,50,0.15);
+    border-radius: 3px;
+    padding: 16px 20px;
+    margin-bottom: 6px;
+  }
+  .before-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .before-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px dashed rgba(180,50,50,0.12);
+    position: relative;
+  }
+  .before-step:last-child { border-bottom: none; }
+  .bs-num {
+    min-width: 22px; height: 22px;
+    background: #C05050;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 600; color: white;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .bs-content { flex: 1; }
+  .bs-title { font-size: 12px; font-weight: 500; color: #5A2020; }
+  .bs-note { font-size: 10.5px; color: #8A5050; }
+  .bs-touch {
+    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    background: rgba(180,50,50,0.1); color: #A83030;
+    padding: 2px 7px; border-radius: 10px;
+    font-weight: 500; flex-shrink: 0; margin-top: 3px;
+  }
+
+  .before-summary {
+    font-size: 11px; color: #8A5050;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgba(180,50,50,0.07);
+    border-radius: 2px;
+    line-height: 1.6;
+  }
+  .before-summary strong { color: #A83030; }
+
+  /* AFTER: bot-driven bordered box */
+  .after-wrap {
+    background: #F3FAF4;
+    border: 2px solid rgba(40,130,60,0.2);
+    border-radius: 3px;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+  .after-header {
+    background: #1C3A22;
+    padding: 10px 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .after-header-label {
+    font-size: 9.5px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: #7DC88A; font-weight: 500;
+  }
+  .after-header-badge {
+    font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+    background: rgba(125,200,138,0.15); color: #7DC88A;
+    padding: 2px 10px; border-radius: 10px; border: 1px solid rgba(125,200,138,0.3);
+  }
+
+  .after-steps {
+    padding: 14px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .after-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(40,130,60,0.12);
+    position: relative;
+  }
+  .after-step:last-child { border-bottom: none; }
+
+  .as-icon {
+    min-width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .as-icon.bot { background: rgba(40,130,60,0.12); }
+  .as-icon.human { background: rgba(201,168,76,0.18); }
+
+  .as-content { flex: 1; }
+  .as-title { font-size: 12px; font-weight: 500; color: #1C3A22; }
+  .as-note { font-size: 10.5px; color: #4A7A54; line-height: 1.5; }
+
+  .as-badge {
+    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 10px; font-weight: 500; flex-shrink: 0; margin-top: 3px;
+    white-space: nowrap;
+  }
+  .badge-bot { background: rgba(40,130,60,0.1); color: #2A6A3A; border: 1px solid rgba(40,130,60,0.15); }
+  .badge-human { background: rgba(201,168,76,0.15); color: var(--accent); border: 1px solid rgba(201,168,76,0.25); }
+
+  .after-summary {
+    margin: 0 20px 14px;
+    font-size: 11px; color: #2A6A3A;
+    padding: 8px 12px;
+    background: rgba(40,130,60,0.07);
+    border-radius: 2px;
+    line-height: 1.6;
+  }
+  .after-summary strong { color: #1C5A2A; }
+
+  /* ── MONEY / ECOSYSTEM LAYER ── */
+  .eco-flow {
+    margin: 18px 0 8px;
+    background: var(--dark);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .eco-header {
+    padding: 10px 20px;
+    background: #1a1612;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    font-size: 9.5px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold);
+  }
+  .eco-body { padding: 16px 20px; }
+
+  .eco-chain {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
+  }
+  .eco-node {
+    font-size: 11px; font-weight: 500; color: #EEE8D6;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 6px 12px; border-radius: 2px; white-space: nowrap;
+  }
+  .eco-node.gold { background: var(--gold); color: var(--dark); border-color: var(--gold); font-weight: 600; }
+  .eco-node.green { background: rgba(50,180,70,0.15); border-color: rgba(50,180,70,0.25); color: #8ADA9A; }
+  .eco-arrow { font-size: 13px; color: #5A5240; flex-shrink: 0; }
+
+  .eco-leak {
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding-top: 12px;
+    font-size: 11.5px; color: #C8B88A; line-height: 1.75;
+  }
+  .eco-leak strong { color: var(--gold-light); }
+
+  /* ── MATH ── */
+  .math-block { background: var(--dark); padding: 26px 28px; border-radius: 2px; margin: 18px 0; }
+  .math-label-top { font-size: 9.5px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .math-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  .math-item { border-left: 1px solid rgba(201,168,76,0.2); padding-left: 14px; }
+  .math-lbl { font-size: 10px; color: #6B6453; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 3px; }
+  .math-num { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; color: var(--gold-light); line-height: 1; }
+  .math-sub { font-size: 10.5px; color: #6B6453; margin-top: 2px; }
+  .math-total { border-top: 1px solid rgba(201,168,76,0.15); margin-top: 16px; padding-top: 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .math-total-label { font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+  .math-total-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold-light); font-weight: 600; }
+  .math-total-note { font-size: 10.5px; color: #6B6453; }
+
+  .coaches-box { background: #F9F5EB; border: 1px solid rgba(201,168,76,0.25); padding: 18px 22px; border-radius: 2px; margin: 14px 0; }
+  .coaches-box-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--dark); font-weight: 400; margin-bottom: 8px; }
+  .coaches-box p { font-size: 12.5px; color: var(--text-body); line-height: 1.75; font-weight: 300; }
+  .coaches-box strong { color: var(--accent); font-weight: 500; }
+
+  /* ── PROOF ── */
+  .proof-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin: 16px 0; }
+  .proof-card { background: white; border: 1px solid rgba(0,0,0,0.07); padding: 16px 13px; border-radius: 2px; text-align: center; }
+  .proof-name { font-size: 11.5px; font-weight: 500; color: var(--dark); margin-bottom: 2px; }
+  .proof-role { font-size: 9.5px; color: var(--text-muted); line-height: 1.5; margin-bottom: 8px; }
+  .proof-result { font-family: 'Cormorant Garamond', serif; font-size: 12.5px; font-style: italic; color: var(--accent); line-height: 1.45; margin-bottom: 9px; }
+  .proof-link { display: inline-block; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 1px; text-decoration: none; margin: 0 2px; }
+
+  /* ── FOMO ── */
+  .fomo-box { background: var(--dark); border-left: 3px solid #B04040; padding: 16px 22px; border-radius: 0 2px 2px 0; margin: 16px 0; }
+  .fomo-box p { font-size: 12.5px; color: #E8D8C8; line-height: 1.75; }
+  .fomo-box strong { color: #E8A0A0; }
+
+  /* ── ROADMAP ── */
+  .roadmap { margin: 18px 0; position: relative; }
+  .roadmap::before { content: ''; position: absolute; left: 21px; top: 28px; bottom: 28px; width: 1px; background: linear-gradient(to bottom, var(--gold), transparent); }
+  .rm-step { display: flex; gap: 18px; padding: 10px 0; }
+  .rm-dot { width: 42px; height: 42px; min-width: 42px; border-radius: 50%; background: var(--dark); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--gold); position: relative; z-index: 1; }
+  .rm-dot.active { background: var(--gold); color: var(--dark); }
+  .rm-content { padding-top: 5px; flex: 1; }
+  .rm-phase { font-size: 11.5px; font-weight: 500; color: var(--dark); margin-bottom: 2px; }
+  .rm-detail { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+
+  /* ── PHASE TABLE ── */
+  .phase-table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 12.5px; }
+  .phase-table thead tr { background: var(--dark); }
+  .phase-table thead th { padding: 11px 14px; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 400; text-align: left; }
+  .phase-table tbody tr { border-bottom: 1px solid rgba(0,0,0,0.055); }
+  .phase-table tbody tr:last-child { border-bottom: none; }
+  .phase-table tbody td { padding: 13px 14px; vertical-align: top; color: var(--text-body); line-height: 1.65; }
+  .phase-table tbody tr:nth-child(even) { background: #FAFAF8; }
+  .phase-tag { display: inline-block; font-size: 8.5px; letter-spacing: 0.15em; text-transform: uppercase; padding: 2px 8px; border-radius: 20px; margin-bottom: 4px; font-weight: 500; }
+  .tag-build { background: rgba(201,168,76,0.13); color: var(--accent); }
+  .tag-scale { background: rgba(14,13,10,0.07); color: var(--dark); }
+  .tag-dba { background: rgba(122,92,30,0.1); color: var(--accent); }
+  .tag-ongoing { background: rgba(58,133,74,0.1); color: #3A854A; }
+  .price-big { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--dark); line-height: 1; }
+  .price-note { font-size: 10.5px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
+
+  .pricing-note { background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.22); padding: 14px 18px; border-radius: 2px; font-size: 12px; color: var(--text-body); line-height: 1.7; margin: 14px 0; }
+  .pricing-note strong { color: var(--accent); }
+
+  /* ── NEXT STEPS ── */
+  .next-steps { background: #F9F5EC; border: 1px solid rgba(201,168,76,0.22); padding: 22px 26px; border-radius: 2px; margin-top: 20px; }
+  .ns-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--dark); margin-bottom: 14px; }
+  .ns-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .ns-list li { display: flex; gap: 10px; font-size: 12.5px; color: var(--text-body); align-items: flex-start; }
+  .ns-num { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--gold); min-width: 18px; line-height: 1.4; }
+
+  /* ── FOOTER ── */
+  .footer { padding: 22px 60px 28px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; background: var(--cream); }
+  .footer-brand { font-size: 10.5px; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
+  .footer-right { font-size: 10.5px; color: var(--text-muted); text-align: right; font-weight: 300; line-height: 1.7; }
+  .footer-right em { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; }
+  .hr { border: none; border-top: 1px solid rgba(0,0,0,0.07); margin: 20px 0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-top">
+      <div class="brand-mark">GetCloned × Fit Bharat Mission</div>
+      <div class="cover-date">May 2026 · Confidential</div>
+    </div>
+    <div>
+      <div class="cover-eyebrow">Engagement Proposal — Shivangi Desai</div>
+      <div class="cover-title">The Mission.<br>The <em>Message.</em><br>The Engine.</div>
+      <div class="cover-divider"></div>
+      <div class="cover-subtitle">A phased engagement to build Shivangi's content twin, liberate her from production permanently, scale Fit Bharat Mission's authority on autopilot — and turn 1,800 trained health coaches into a white-label distribution force.</div>
+    </div>
+    <div class="cover-footer">
+      <div class="cover-prepared">Prepared for<strong>Shivangi Desai — Fit Bharat Mission</strong></div>
+      <div class="cover-prepared" style="text-align:center;">Prepared by<strong>Akassh Ashok Gupta — The Cloning Guy 🧬</strong></div>
+      <div class="cover-confidential">Confidential<br>GetCloned.in</div>
+    </div>
+  </div>
+
+  <!-- S1: SITUATION -->
+  <div class="section">
+    <div class="section-label">Section One</div>
+    <div class="section-heading">Where you are.<br><em>Where you need to be.</em></div>
+    <div class="situation-grid">
+      <div class="sit-card">
+        <div class="sit-card-label">Current State — The Hidden Cost</div>
+        <div class="sit-card-title">The Bottleneck No One Talks About</div>
+        <p>1.1M followers. 4M+ reached. 1,800 health coaches trained. A movement genuinely reshaping India's health. And yet — every reel, every campaign, every piece of authority FBM builds is contingent on Shivangi personally showing up to shoot. Vacation? Content pauses. Sick? The mission stops. Family time? She still has to perform. The mission is bigger than any camera. But the camera still needs her.</p>
+      </div>
+      <div class="sit-card desired">
+        <div class="sit-card-label">Desired State — The Liberation</div>
+        <div class="sit-card-title">The Mission Scales. The Leader Governs.</div>
+        <p>Shivangi ideates once a month. The twin produces daily. FBM's message reaches millions — whether she is on stage in South Africa, at home with family, or choosing to rest. Her 1,800 trained coaches get their own clones. FBM becomes the infrastructure behind India's largest health coaching network. Revenue compounds. The mission outlives the grind.</p>
+      </div>
+    </div>
+    <div class="liberation-line">
+      <p>"Between a leader and her mission is a message that needs to reach people. That message should never wait for her calendar to clear. Her twin makes sure it never has to."</p>
+    </div>
+  </div>
+
+  <!-- S2: HOW IT WORKS -->
+  <div class="section white">
+    <div class="section-label">Section Two</div>
+    <div class="section-heading">Before &amp; After — <em>The Process Transformation</em></div>
+
+    <!-- BEFORE -->
+    <div class="process-label label-red">⚠ Before GetCloned — Leader involved at every step. 9 touchpoints. Exhausting and inefficient.</div>
+    <div class="before-wrap">
+      <div class="before-steps">
+        <div class="before-step">
+          <div class="bs-num">1</div>
+          <div class="bs-content">
+            <div class="bs-title">Leader Ideates with Team</div>
+            <div class="bs-note">Shivangi must be present, engaged, and thinking — before a single word is written</div>
+          </div>
+          <div class="bs-touch">Leader Touch</div>
+        </div>
+        <div class="before-step">
+          <div class="bs-num">2</div>
+          <div class="bs-content">
+            <div class="bs-title">Team Scripts</div>
+            <div class="bs-note">Team writes drafts based on whatever direction was given in the ideation</div>
+          </div>
+          <div class="bs-touch">Team</div>
+        </div>
+        <div class="before-step">
+          <div class="bs-num">3</div>
+          <div class="bs-content">
+            <div class="bs-title">Leader Reviews Script</div>
+            <div class="bs-note">Shivangi reads, edits, and approves — before she's cleared to shoot</div>
+          </div>
+          <div class="bs-touch">Leader Touch</div>
+        </div>
+        <div class="before-step">
+          <div class="bs-num">4</div>
+          <div class="bs-content">
+            <div class="bs-title">Leader Shoots</div>
+            <div class="bs-note">Camera ready, setup, takes, retakes — her most time-consuming and energy-draining step</div>
+          </div>
+          <div class="bs-touch">Leader Touch</div>
+        </div>
+        <div class="before-step">
+          <div class="bs-num">5</div>
+          <div class="bs-content">
+            <div class="bs-title">Team Edits / Outsourced</div>
+            <div class="bs-note">Editing in-house or via freelancers — adds time, cost, and dependency</div>
+          </div>
+          <div class="bs-touch">Team</div>
+        </div>
+        <div class="before-step">
+          <div class="bs-num">6</div>
+          <div class="bs-content">
+            <div class="bs-title">If Outsourced — Team Reviews Quality</div>
+            <div class="bs-note">Internal team reviews external editor's output before it reaches Shivangi</div>
+          </div>
+          <div class="bs-touch">Team</div>
+        </div>
+        <div class="before-step">
+          <div class="bs-num">7</div>
+          <div class="bs-content">
+            <div class="bs-title">Leader Reviews Final Edit</div>
+            <div class="bs-note">Shivangi must view and approve — or the reel doesn't go out</div>
+          </div>
+          <div class="bs-touch">Leader Touch</div>
+        </div>
+        <div class="before-step">
+          <div class="bs-num">8</div>
+          <div class="bs-content">
+            <div class="bs-title">Team Publishes</div>
+            <div class="bs-note">Manual publishing — each platform separately, manually optimised or not at all</div>
+          </div>
+          <div class="bs-touch">Team</div>
+        </div>
+        <div class="before-step">
+          <div class="bs-num">9</div>
+          <div class="bs-content">
+            <div class="bs-title">Repeat. Every single day.</div>
+            <div class="bs-note">This cycle repeats — indefinitely, unsustainably, at the cost of the mission itself</div>
+          </div>
+          <div class="bs-touch">All Over Again</div>
+        </div>
+      </div>
+      <div class="before-summary">
+        <strong>4 direct leader touchpoints per reel. 9 steps total. Every day.</strong> For a mission leader with events, coaching, strategy, family — this is the silent tax that caps how far FBM can go.
+      </div>
+    </div>
+
+    <!-- AFTER -->
+    <div class="process-label label-green" style="margin-top:22px;">✓ After GetCloned — Fully bot-driven production engine. Leader touches only 2 points in the entire month.</div>
+    <div class="after-wrap">
+      <div class="after-header">
+        <div class="after-header-label">GetCloned Automated Production Engine</div>
+        <div class="after-header-badge">🤖 Bot-Driven · AI-Powered · Algorithm-Led</div>
+      </div>
+      <div class="after-steps">
+        <div class="after-step">
+          <div class="as-icon human">💡</div>
+          <div class="as-content">
+            <div class="as-title">Discovery Session with Leader</div>
+            <div class="as-note">One 60–90 min Zoom session per month. Shivangi shares vision, priorities, revenue goals. Fathom AI captures everything — this single session powers a full month of content.</div>
+          </div>
+          <div class="as-badge badge-human">Leader Touch ①<br>Once/Month</div>
+        </div>
+        <div class="after-step">
+          <div class="as-icon bot">🤖</div>
+          <div class="as-content">
+            <div class="as-title">AI Ideation Engine</div>
+            <div class="as-note">Ideas generated in alignment with FBM content pillars, active revenue streams, competitor landscape, and trending topics — automatically.</div>
+          </div>
+          <div class="as-badge badge-bot">Fully Automated</div>
+        </div>
+        <div class="after-step">
+          <div class="as-icon human">✅</div>
+          <div class="as-content">
+            <div class="as-title">Leader Selects Top Candidates</div>
+            <div class="as-note">Shivangi (or her assigned POC) reviews a curated list and selects the best ideas. One click. No writing. No briefing. Just approval.</div>
+          </div>
+          <div class="as-badge badge-human">Leader Touch ②<br>POC Can Own This</div>
+        </div>
+        <div class="after-step">
+          <div class="as-icon bot">📝</div>
+          <div class="as-content">
+            <div class="as-title">AI Scripting Framework</div>
+            <div class="as-note">Scripts written using proprietary AI frameworks calibrated to Instagram and YouTube algorithm metrics — hook strength, retention curves, CTA placement.</div>
+          </div>
+          <div class="as-badge badge-bot">Fully Automated</div>
+        </div>
+        <div class="after-step">
+          <div class="as-icon bot">🧬</div>
+          <div class="as-content">
+            <div class="as-title">Clone Production</div>
+            <div class="as-note">Shivangi's twin produces the reel — indistinguishable voice, face, energy, hand movement. No camera. No setup. No retakes.</div>
+          </div>
+          <div class="as-badge badge-bot">Fully Automated</div>
+        </div>
+        <div class="after-step">
+          <div class="as-icon bot">✂️</div>
+          <div class="as-content">
+            <div class="as-title">AI-Assisted Editing</div>
+            <div class="as-note">Editing aligned with key algorithmic metrics — pacing, caption emphasis, hook cuts, b-roll stitching. Platform-optimised output.</div>
+          </div>
+          <div class="as-badge badge-bot">Fully Automated</div>
+        </div>
+        <div class="after-step">
+          <div class="as-icon bot">📤</div>
+          <div class="as-content">
+            <div class="as-title">Cloned Reel Submitted for Approval</div>
+            <div class="as-note">Final reel submitted to Shivangi or her assigned POC via collaboration system. Review is fast — the quality benchmark is set, iterations are minimal.</div>
+          </div>
+          <div class="as-badge badge-bot">POC Can Own This</div>
+        </div>
+        <div class="after-step">
+          <div class="as-icon bot">📲</div>
+          <div class="as-content">
+            <div class="as-title">Published &amp; Cross-Distributed — Algorithmically</div>
+            <div class="as-note">Seamless publishing across Instagram, YouTube Shorts, Facebook, LinkedIn — with the right SEO tags, captions, hashtag strategy, and peak-hour timing baked in.</div>
+          </div>
+          <div class="as-badge badge-bot">Fully Automated</div>
+        </div>
+      </div>
+      <div class="after-summary">
+        <strong>2 leader touchpoints. Once a month. Everything else runs on autopilot</strong> — whether Shivangi is in a boardroom, on a stage abroad, or at home with her family. The mission never stops.
+      </div>
+    </div>
+
+    <!-- ECOSYSTEM MONEY LAYER -->
+    <div class="section-label" style="margin-top:30px;">When GetCloned Meets DBA — The Ecosystem Revenue Layer</div>
+    <div style="font-size:12.5px;color:var(--text-body);margin-bottom:12px;line-height:1.75;font-weight:300;">Cloned content builds visibility and authority daily. Plug in the Automated DBA Framework — and followers who would never buy a ₹1L program become paying ecosystem members automatically. This is the revenue that was always leaking. Now it compounds.</div>
+
+    <div class="eco-flow">
+      <div class="eco-header">Autopilot Ecosystem Revenue Engine — GetCloned + DBA Framework</div>
+      <div class="eco-body">
+        <div class="eco-chain">
+          <div class="eco-node gold">🧬 Clone Posts Daily</div>
+          <div class="eco-arrow">→</div>
+          <div class="eco-node">Followers Engage</div>
+          <div class="eco-arrow">→</div>
+          <div class="eco-node">CTA Triggers Lead Capture</div>
+          <div class="eco-arrow">→</div>
+          <div class="eco-node">DBA Nurture Engine Activates</div>
+          <div class="eco-arrow">→</div>
+          <div class="eco-node green">Followers Converted to Ecosystem Members</div>
+          <div class="eco-arrow">→</div>
+          <div class="eco-node gold">💰 Recurring Revenue — On Autopilot</div>
+        </div>
+        <div class="eco-leak">
+          <strong>The Revenue Leak GetCloned Fixes:</strong> Right now, thousands of FBM followers love Shivangi but will never invest ₹1L in a flagship program. They are not lost leads — they are an untapped ecosystem. At ₹499–₹4,999/month, they become paying members. The DBA framework converts them automatically: content → lead magnet → nurture sequence → ecosystem entry. <strong>Followers who were leaving become clients who stay and pay monthly.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: MATH -->
+  <div class="section">
+    <div class="section-label">Section Three — The Numbers</div>
+    <div class="section-heading">What this <em>ecosystem generates</em></div>
+
+    <div class="math-block">
+      <div class="math-label-top">FBM Ecosystem Revenue — Conservative Year 1 Projection (Automated DBA Framework)</div>
+      <div class="math-grid">
+        <div class="math-item">
+          <div class="math-lbl">Entry Tier · ₹499/month</div>
+          <div class="math-num">500</div>
+          <div class="math-sub">members → ₹2.5L/month</div>
+        </div>
+        <div class="math-item">
+          <div class="math-lbl">Core Tier · ₹1,999/month</div>
+          <div class="math-num">200</div>
+          <div class="math-sub">members → ₹4L/month</div>
+        </div>
+        <div class="math-item">
+          <div class="math-lbl">Inner Circle · ₹4,999/month</div>
+          <div class="math-num">50</div>
+          <div class="math-sub">members → ₹2.5L/month</div>
+        </div>
+      </div>
+      <div class="math-total">
+        <span class="math-total-label">Conservative Ecosystem ARR — Year 1</span>
+        <span class="math-total-num">₹1.08 Crore+</span>
+        <span class="math-total-note">running while Shivangi shows up once a week</span>
+      </div>
+    </div>
+
+    <div class="coaches-box">
+      <div class="coaches-box-title">The 1,800 Coaches Multiplier — The Real Disruptor</div>
+      <p>Shivangi's target: <strong>2,000 more coaches trained this year.</strong> That is 3,800 health coaches carrying the FBM brand. Right now, most struggle with content — camera shy, inconsistent, no production support. Imagine if every health coach who graduates from FBM gets a clone as part of their package. <strong>GetCloned becomes the differentiator that makes FBM's flagship coaching program completely irresistible.</strong> FBM earns on every coach engagement while we handle the backend for each. <strong>3,800 coaches × content automation = 3,800 FBM-branded authorities across India.</strong> That is not a content tool. That is movement infrastructure.</p>
+    </div>
+  </div>
+
+  <!-- S4: PROOF -->
+  <div class="section white">
+    <div class="section-label">Section Four — Already Proven</div>
+    <div class="section-heading">Not <em>theory.</em> Running right now.</div>
+
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-name">The Cloning Guy</div>
+        <div class="proof-role">Akassh · Peepoye<br>1.3M YouTube</div>
+        <div class="proof-result">1MN+ views on one cloned reel. 3MN+ total views in one month from cloned content. 5 brand collabs at ₹1L each. Did not shoot a single frame.</div>
+        <a class="proof-link" href="https://www.instagram.com/p/DXRkVw-D-DY/" target="_blank">View Reel →</a>
+      </div>
+      <div class="proof-card">
+        <div class="proof-name">Dr. Madhu Sudhan</div>
+        <div class="proof-role">Ayurvedic Expert<br>Gurugram</div>
+        <div class="proof-result">1MN+ views from cloned content. Clone outperformed every original. Consistency restored. Booked appointments and supplement sales followed directly.</div>
+        <a class="proof-link" href="https://www.instagram.com/dr._madhusudan_/" target="_blank">View Profile →</a>
+      </div>
+      <div class="proof-card">
+        <div class="proof-name">Arfeen Khan</div>
+        <div class="proof-role">India's No.1 Coach<br>Hrithik Roshan's Coach</div>
+        <div class="proof-result">Clone build in progress. White-label to 4,000+ coaches in pipeline. Signed and onboarded this quarter.</div>
+        <a class="proof-link" href="https://www.instagram.com/arfeen.khan/" target="_blank">Instagram →</a>
+        <a class="proof-link" href="https://arfeenkhan.com/web/" target="_blank">Website →</a>
+      </div>
+      <div class="proof-card">
+        <div class="proof-name">Dr. Arjun Sabharwal</div>
+        <div class="proof-role">Nephrologist · NHS UK<br>Kidney Mission, India</div>
+        <div class="proof-result">160+ paying ecosystem members in 90 days. Not just a doctor anymore — a man with a mission. DBA framework live and compounding.</div>
+        <a class="proof-link" href="https://www.instagram.com/drarjunsabharwal/" target="_blank">View Profile →</a>
+      </div>
+    </div>
+
+    <div class="fomo-box">
+      <p><strong>A note on availability:</strong> GetCloned runs a maximum of 4 major implementations per quarter to protect quality and dedicated resource allocation. This quarter (Q2 2026), <strong>clone builds are already in progress</strong> for Arfeen Khan (Incredible You Consultants LLC SOL, Dubai) and Nirmal Bansal (Founder, iVentures Capital). <strong>2 spots remain.</strong> Active discussions are underway with other leaders. FBM's spot is open today — it may not be in the next conversation.</p>
+    </div>
+  </div>
+
+  <!-- S5: ROADMAP -->
+  <div class="section">
+    <div class="section-label">Section Five — The Phased Roadmap</div>
+    <div class="section-heading">Build. Monetise. <em>Multiply.</em></div>
+    <div class="roadmap">
+      <div class="rm-step">
+        <div class="rm-dot active">1</div>
+        <div class="rm-content">
+          <div class="rm-phase">Phase 1 — Build the Proof (Month 1–3)</div>
+          <div class="rm-detail">A 90-minute Discovery Session with Shivangi kicks everything off. From there, our team collects video and audio inputs using proprietary frameworks — the building blocks that make the clone truly indistinguishable. 15 reels in Month 1. 30/month from Month 2. FBM posts daily. The twin is indistinguishable by Month 3.</div>
+        </div>
+      </div>
+      <div class="rm-step">
+        <div class="rm-dot">2</div>
+        <div class="rm-content">
+          <div class="rm-phase">Phase 2 — Activate the Ecosystem Revenue Layer (Month 2–4)</div>
+          <div class="rm-detail">Automated DBA Framework plugs in alongside production. Cloned content captures leads. Automated nurture engine converts followers into ecosystem members. FBM ecosystem launches with subscription tiers. Recurring revenue begins compounding — from people who loved FBM but could never afford the flagship program.</div>
+        </div>
+      </div>
+      <div class="rm-step">
+        <div class="rm-dot">3</div>
+        <div class="rm-content">
+          <div class="rm-phase">Phase 3 — White Label to 1,800 (and 2,000 more) Coaches (Month 4+)</div>
+          <div class="rm-detail">Shivangi stands on a stage. Shows the content. Says: "This was my twin." Her coaches lean forward. She offers them the same — as part of the FBM health coach package. We handle every coach's backend. FBM earns on each engagement. The mission scales itself.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6: INVESTMENT -->
+  <div class="section white">
+    <div class="section-label">Section Six — The Investment</div>
+    <div class="section-heading">What ships. <em>What it costs.</em></div>
+
+    <table class="phase-table">
+      <thead>
+        <tr>
+          <th>Phase</th>
+          <th>What's Included</th>
+          <th>Reels</th>
+          <th>Investment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="phase-tag tag-build">Build</span><br>
+            <strong>Month 1</strong><br>
+            <span style="font-size:10.5px;color:var(--text-muted);">0.5 Bubble</span>
+          </td>
+          <td>90-min Discovery Session · Video &amp; audio inputs collected per our proprietary frameworks · Clone build · AI scripting · Basic editing · Publishing. The foundation that powers everything.</td>
+          <td><strong>15 reels</strong><br><span style="font-size:11px;color:var(--text-muted);">live on FBM Instagram</span></td>
+          <td>
+            <div class="price-big">$2,000</div>
+            <div class="price-note">Pay Month 1 only.<br>Love it → Month 2 follows.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="phase-tag tag-scale">Scale</span><br>
+            <strong>Month 2</strong><br>
+            <span style="font-size:10.5px;color:var(--text-muted);">1 Bubble</span>
+          </td>
+          <td>Full production. 30 reels scripted, produced by twin, AI-edited, published. Weekly sync. Monthly Discovery Session. All tool costs included.</td>
+          <td><strong>30 reels</strong><br><span style="font-size:11px;color:var(--text-muted);">daily presence, all platforms</span></td>
+          <td>
+            <div class="price-big">$2,000</div>
+            <div class="price-note">Upfront at month start</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="phase-tag tag-scale">Scale</span><br>
+            <strong>Month 3</strong><br>
+            <span style="font-size:10.5px;color:var(--text-muted);">1 Bubble</span>
+          </td>
+          <td>Full production continues. Clone perfected — indistinguishable from original. Algorithm-led publishing. Cross-platform distribution. By Month 3, the proof is undeniable.</td>
+          <td><strong>30 reels</strong><br><span style="font-size:11px;color:var(--text-muted);">authority compounding</span></td>
+          <td>
+            <div class="price-big">$1,500</div>
+            <div class="price-note">Upfront at month start</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="phase-tag tag-dba">DBA Add-On</span><br>
+            <strong>Month 2–3</strong>
+          </td>
+          <td>Automated DBA Framework. Lead magnet · Email nurture sequences · Ecosystem setup with subscription tiers · Member onboarding flow · Akassh as embedded strategist. Add this to activate the follower-to-ecosystem-member conversion engine.</td>
+          <td><span style="font-size:11.5px;color:var(--text-muted);">Runs alongside production</span></td>
+          <td>
+            <div class="price-big">+$999<span style="font-size:14px;">/mo</span></div>
+            <div class="price-note">Optional. Recommended.</div>
+          </td>
+        </tr>
+        <tr style="background:#F8FBF8;">
+          <td>
+            <span class="phase-tag tag-ongoing">Ongoing</span><br>
+            <strong>Month 4+</strong>
+          </td>
+          <td><strong>Production:</strong> Sold in Bubbles. 1 Bubble = 30 reels = $1,000/month. Want 60 reels? 2 Bubbles. Minimum 1 Bubble/month.<br><br><strong>DBA Retainer:</strong> Ecosystem optimisation, member growth, recurring revenue scaling. + 10% of ecosystem revenue — we win when you win.</td>
+          <td><strong>30+ reels/month</strong><br><span style="font-size:11px;color:var(--text-muted);">min 1 Bubble</span></td>
+          <td>
+            <div class="price-big">$1,000<span style="font-size:14px;">/bubble</span></div>
+            <div class="price-note">+ $500/mo DBA retainer<br>+ 10% ecosystem rev share</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pricing-note">
+      <strong>On the 3-month structure:</strong> The total 3-month foundation is $5,500 paid as monthly EMIs above. If FBM prefers to simplify — the full 3-month block can be paid upfront at <strong>$5,000, saving $500.</strong> Either works. These fees reflect a deliberate margin reduction: the FBM ecosystem, the 1,800-coach white-label opportunity, and the mission-level proof of concept at this scale matter more than margin right now.
+    </div>
+
+    <div class="next-steps">
+      <div class="ns-title">How We Begin</div>
+      <ul class="ns-list">
+        <li><span class="ns-num">01</span><span><strong>Shivangi and the team review this proposal.</strong> Confirm the approach — GetCloned only, or GetCloned + Automated DBA ecosystem layer from Month 2.</span></li>
+        <li><span class="ns-num">02</span><span><strong>Agreement signed.</strong> Simple 2-page document. Month 1 investment clears — production team allocated within 48 hours.</span></li>
+        <li><span class="ns-num">03</span><span><strong>90-minute Discovery Session on Zoom.</strong> Shivangi shares her vision, content pillars, and goals. Our team captures everything. This single session powers the entire first month of content.</span></li>
+        <li><span class="ns-num">04</span><span><strong>Video &amp; audio inputs collected.</strong> Our team guides Shivangi through a structured recording process using our proprietary frameworks. This is what makes the clone truly indistinguishable.</span></li>
+        <li><span class="ns-num">05</span><span><strong>First 15 reels live within 30 days.</strong> FBM posts daily. The engine runs — whether Shivangi is on stage in South Africa, at home with family, or choosing to rest.</span></li>
+        <li><span class="ns-num">06</span><span><strong>By Month 3 — the moment.</strong> Shivangi stands on a stage. Shows the content. Says: "This was my twin." Her coaches lean forward. Phase 3 begins. FBM becomes the infrastructure.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">
+      GetCloned.in · Peepoye Network · Gurugram, India<br>
+      <span style="color:var(--gold);font-size:10px;">akassh@peepoye.com · +91 98710 09149</span>
+    </div>
+    <div class="footer-right">
+      <em>"Humans ideate. Clones produce. Missions win."</em><br>
+      — Akassh Ashok Gupta, The Cloning Guy 🧬
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
