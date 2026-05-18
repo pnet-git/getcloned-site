@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Dr. Madhusudan Went From Dead Instagram to 30 Daily Reels — GetCloned</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080808;
+  --bg-card: #0f0f10;
+  --ink: #ffffff;
+  --ink-dim: #b0b0b8;
+  --ink-faint: #5a5a62;
+  --line: #1e1e24;
+  --cyan: #00ffd1;
+  --cyan-glow: rgba(0,255,209,0.25);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+html::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.banner {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: var(--cyan);
+  padding: 10px 24px;
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: #080808;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+nav {
+  position: sticky;
+  top: 37px;
+  z-index: 490;
+  padding: 20px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(8,8,8,0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-logo {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.nav-cta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #080808;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  background: var(--cyan);
+  padding: 10px 20px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.nav-cta:hover {
+  box-shadow: 0 0 24px rgba(0,255,209,0.6);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 12px rgba(0,255,209,0.2); }
+  50% { box-shadow: 0 0 28px rgba(0,255,209,0.5); }
+}
+
+.case-study-section {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.case-study-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--cyan);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.case-study-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(40px, 6vw, 68px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 48px;
+  animation: fadeUp 0.8s 0.15s ease both;
+  color: var(--ink);
+}
+
+.case-study-headline em {
+  color: var(--cyan);
+  font-style: italic;
+}
+
+.case-study-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 56px;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.metric {
+  border-left: 2px solid var(--cyan);
+  padding-left: 24px;
+}
+
+.metric-number {
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--cyan);
+  margin-bottom: 8px;
+}
+
+.metric-label {
+  font-size: 14px;
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+
+.form-section {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 48px;
+  border-radius: 4px;
+  animation: fadeUp 0.8s 0.45s ease both;
+  max-width: 600px;
+}
+
+.form-headline {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+
+.form-subtext {
+  font-size: 14px;
+  color: var(--ink-dim);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.formkit-form {
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.formkit-form[data-uid="39e719395b"] [data-style="clean"] {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.formkit-form[data-uid="39e719395b"] .formkit-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formkit-form[data-uid="39e719395b"] .formkit-input {
+  background: var(--bg) !important;
+  border: 1px solid var(--line) !important;
+  color: var(--ink) !important;
+  padding: 14px 16px !important;
+  font-family: 'Fraunces', serif !important;
+  font-size: 15px !important;
+  border-radius: 2px !important;
+  transition: all 0.3s ease !important;
+}
+
+.formkit-form[data-uid="39e719395b"] .formkit-input:focus {
+  outline: none !important;
+  border-color: var(--cyan) !important;
+  box-shadow: 0 0 16px rgba(0,255,209,0.2) !important;
+}
+
+.formkit-form[data-uid="39e719395b"] .formkit-input::placeholder {
+  color: var(--ink-dim) !important;
+  opacity: 0.8 !important;
+}
+
+.formkit-form[data-uid="39e719395b"] .formkit-submit {
+  background: var(--cyan) !important;
+  color: #080808 !important;
+  border: none !important;
+  padding: 16px 32px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 13px !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  border-radius: 2px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  margin: 0 !important;
+  animation: pulse-glow 3s infinite;
+}
+
+.formkit-form[data-uid="39e719395b"] .formkit-submit:hover {
+  box-shadow: 0 0 32px rgba(0,255,209,0.6) !important;
+  transform: scale(1.02);
+}
+
+.formkit-form[data-uid="39e719395b"] .formkit-powered-by-convertkit-container {
+  display: none !important;
+}
+
+.formkit-form[data-uid="39e719395b"] .formkit-alert {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 16px 0 !important;
+  font-size: 14px !important;
+  color: var(--cyan) !important;
+}
+
+footer {
+  padding: 48px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--ink);
+}
+
+.footer-brand strong { color: var(--cyan); }
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+}
+
+.footer-links a {
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover { color: var(--cyan); }
+
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .case-study-section { padding: 60px 24px; }
+  .case-study-metrics { grid-template-columns: 1fr; }
+  .form-section { padding: 32px; }
+  footer { flex-direction: column; gap: 24px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="banner">
+  We take 3 new clone builds per month
+  <span>·</span>
+  2 spots filled — 1 remaining
+  <span>·</span>
+  Book before this month closes
+</div>
+
+<nav>
+  <div class="nav-logo">GetCloned.in</div>
+  <a href="/" class="nav-cta">← Back to Home</a>
+</nav>
+
+<div class="case-study-section">
+  <div class="case-study-label">Dr. Madhusudan — Ayurvedic Health Expert</div>
+  
+  <h1 class="case-study-headline">
+    How Dr. Madhusudan Went From Dead Instagram to 30 Daily Reels — and <em>Started Filling His Calendar & Selling Supplements</em>
+  </h1>
+  
+  <div class="case-study-metrics">
+    <div class="metric">
+      <div class="metric-number">0 hours</div>
+      <div class="metric-label">Filming. Zero camera time. Clone handles all production.</div>
+    </div>
+    <div class="metric">
+      <div class="metric-number">1 reel/day</div>
+      <div class="metric-label">Consistent. Predictable. Automated across Instagram, YouTube, TikTok.</div>
+    </div>
+    <div class="metric">
+      <div class="metric-number">20K–59K</div>
+      <div class="metric-label">Average views per reel. Thousands of shares and saves monthly.</div>
+    </div>
+    <div class="metric">
+      <div class="metric-number">$Lakhs</div>
+      <div class="metric-label">Revenue from cloned content driving supplement sales & bookings.</div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-headline">Get the Full Case Study</div>
+    <div class="form-subtext">See exactly how we built Dr. Madhusudan's AI clone, the content strategy that works, and the monetization layer that's now generating recurring revenue.</div>
+    
+    <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+    <form action="https://app.kit.com/forms/9457240/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="9457240" data-uid="39e719395b" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;redirect&quot;,&quot;success_message&quot;:&quot;Success!&quot;,&quot;redirect_url&quot;:&quot;/case-study/video&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;fathom&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:false,&quot;url&quot;:&quot;https://partners.kit.com/hn2twsdad2me?utm_campaign=poweredby&amp;utm_content=form&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}" min-width="400 500 600 700 800">
+      <div data-style="clean">
+        <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+        <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+          <div class="formkit-field">
+            <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Your email" required="" type="email">
+          </div>
+          <button data-element="submit" class="formkit-submit" type="submit">
+            <span>Get Case Study Video →</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <strong>GetCloned.in</strong> · Peepoye Network · Akassh Ashok Gupta
+  </div>
+  <div class="footer-links">
+    <a href="mailto:akassh@peepoye.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
