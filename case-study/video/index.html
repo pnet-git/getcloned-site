@@ -1,328 +1,612 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GetCloned Value Video — How AI Cloning Works</title>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Watch The Case Study — GetCloned</title>
+<meta name="description" content="Watch exactly how the Cloning Engine produces daily content for experts — without them ever touching a camera." />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root {
-  --bg: #080808;
+  --bg: #050505;
   --bg-card: #0f0f10;
-  --ink: #ffffff;
-  --ink-dim: #b0b0b8;
-  --ink-faint: #5a5a62;
-  --line: #1e1e24;
-  --cyan: #00ffd1;
-  --cyan-glow: rgba(0,255,209,0.25);
+  --border: rgba(0, 240, 200, 0.12);
+  --border-strong: rgba(0, 240, 200, 0.24);
+  --text: #e8e8e8;
+  --text-dim: #9a9a9a;
+  --text-muted: #5d5d5d;
+  --cyan: #00f0c8;
+  --cyan-bright: #5af5d5;
+  --cyan-glow: rgba(0, 240, 200, 0.25);
+  --cyan-soft: rgba(0, 240, 200, 0.08);
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
 }
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-
-html::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0,0,0,0.03) 2px,
-    rgba(0,0,0,0.03) 4px
-  );
-  pointer-events: none;
-  z-index: 9999;
-}
 
 body {
   background: var(--bg);
-  color: var(--ink);
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.55;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-.banner {
+/* SCANLINE */
+html::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 240, 200, 0.025) 0px,
+    rgba(0, 240, 200, 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -300px; left: 50%;
+  width: 1400px; height: 800px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(0, 240, 200, 0.07) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.wrap { position: relative; z-index: 1; }
+
+/* NAVBAR */
+.navbar {
   position: sticky;
   top: 0;
-  z-index: 500;
-  background: var(--cyan);
-  padding: 10px 24px;
-  text-align: center;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  color: #080808;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-}
-
-nav {
-  position: sticky;
-  top: 37px;
-  z-index: 490;
-  padding: 20px 48px;
+  z-index: 100;
+  padding: 18px 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(8,8,8,0.9);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--line);
+  background: rgba(5, 5, 5, 0.75);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
 }
 
-.nav-logo {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
-  color: var(--cyan);
-  letter-spacing: 0.15em;
+.logo {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-dot {
+  width: 8px; height: 8px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 14px var(--cyan-glow);
+}
+
+.logo em { font-style: italic; font-weight: 400; color: var(--cyan); }
+
+/* STEP INDICATOR */
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+.step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
 }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 12px rgba(0,255,209,0.2); }
-  50% { box-shadow: 0 0 28px rgba(0,255,209,0.5); }
+.step.active { color: var(--cyan); }
+.step.done { color: var(--text-dim); }
+
+.step-num {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
 }
 
-.video-section {
-  padding: 80px 48px;
-  max-width: 1200px;
+.step.active .step-num {
+  background: var(--cyan);
+  color: var(--bg);
+  border-color: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan-glow);
+}
+
+.step.done .step-num {
+  background: var(--text-dim);
+  color: var(--bg);
+  border-color: var(--text-dim);
+}
+
+.step-divider {
+  width: 20px; height: 1px;
+  background: var(--border-strong);
+}
+
+/* MAIN */
+.main {
+  padding: 60px 32px 100px;
+}
+
+.main-inner {
+  max-width: 860px;
   margin: 0 auto;
 }
 
+/* STEP LABEL */
+.step-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.step-label::before {
+  content: '01';
+  width: 28px; height: 28px;
+  background: var(--cyan);
+  color: var(--bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 0 12px var(--cyan-glow);
+}
+
 .video-headline {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-size: clamp(32px, 5vw, 52px);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin-bottom: 48px;
-  text-align: center;
-  color: var(--ink);
-  animation: fadeUp 0.8s ease both;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(28px, 3.8vw, 44px);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 32px;
 }
 
-.video-container {
+.video-headline em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cyan);
+}
+
+/* VIDEO WRAPPER */
+.video-wrap {
   position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
-  margin-bottom: 56px;
-  border-radius: 4px;
+  border-radius: 12px;
   overflow: hidden;
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  animation: fadeUp 0.8s 0.15s ease both;
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 0 80px -20px var(--cyan-glow), 0 32px 64px -16px rgba(0,0,0,0.8);
+  margin-bottom: 48px;
 }
 
-.video-container iframe {
+/* corner accents */
+.video-wrap::before {
+  content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: -1px; left: -1px;
+  width: 36px; height: 36px;
+  border-top: 2px solid var(--cyan);
+  border-left: 2px solid var(--cyan);
+  border-radius: 12px 0 0 0;
+  z-index: 2;
+  box-shadow: 0 0 14px var(--cyan-glow);
+}
+
+.video-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; right: -1px;
+  width: 36px; height: 36px;
+  border-bottom: 2px solid var(--cyan);
+  border-right: 2px solid var(--cyan);
+  border-radius: 0 0 12px 0;
+  z-index: 2;
+  box-shadow: 0 0 14px var(--cyan-glow);
+}
+
+.video-embed {
+  position: relative;
+  padding-bottom: 64.63%;
+  height: 0;
+  background: #000;
+}
+
+.video-embed iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   border: none;
 }
 
-.apply-section {
-  text-align: center;
-  padding: 56px 48px;
-  border-top: 1px solid var(--line);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  animation: fadeUp 0.8s 0.3s ease both;
-  margin-top: 80px;
-  pointer-events: none;
+/* VIDEO META */
+.video-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.apply-section.visible {
-  opacity: 1;
-  pointer-events: auto;
+.video-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.apply-headline {
-  font-size: 32px;
-  font-weight: 300;
-  margin-bottom: 24px;
-  color: var(--ink);
+.video-duration {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.apply-headline em {
-  color: var(--cyan);
+.video-duration::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--cyan-glow);
+}
+
+.video-hint {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text-muted);
   font-style: italic;
 }
 
-.apply-sub {
-  font-size: 16px;
-  color: var(--ink-dim);
-  max-width: 600px;
-  margin: 0 auto 40px;
-  line-height: 1.6;
+/* DIVIDER */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin: 0 0 48px;
 }
 
-.cta-apply {
-  display: inline-block;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #080808;
-  text-decoration: none;
-  border: none;
-  background: var(--cyan);
-  padding: 18px 48px;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 16px rgba(0,255,209,0.15);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  animation: pulse-glow 3s infinite;
-}
-
-.cta-apply:hover {
-  box-shadow: 0 0 32px rgba(0,255,209,0.6);
-  transform: scale(1.02);
-}
-
-.video-timer {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  color: var(--cyan);
-  letter-spacing: 0.1em;
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  padding: 12px 16px;
-  border-radius: 2px;
-  z-index: 100;
-}
-
-footer {
-  padding: 48px;
-  border-top: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
+/* STEP 2 */
+.step2-label {
+  display: inline-flex;
   align-items: center;
-  font-family: 'IBM Plex Mono', monospace;
+  gap: 10px;
+  font-family: var(--mono);
   font-size: 11px;
-  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 16px;
 }
 
-.footer-brand strong { color: var(--cyan); }
-
-.footer-links {
+.step2-label::before {
+  content: '02';
+  width: 28px; height: 28px;
+  background: var(--bg-card);
+  color: var(--text-dim);
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
   display: flex;
-  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
 }
 
-.footer-links a {
-  color: var(--ink);
+.cta-headline {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(26px, 3.5vw, 40px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.cta-headline em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cyan);
+}
+
+.cta-sub {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin-bottom: 32px;
+  max-width: 600px;
+}
+
+/* WHAT HAPPENS ON CALL */
+.call-points {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.call-point {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.call-point-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.call-point-text {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.call-point-text strong {
+  color: var(--text);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* CTA BUTTON */
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--cyan);
+  color: var(--bg);
+  border: none;
+  padding: 20px 40px;
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   text-decoration: none;
-  letter-spacing: 0.08em;
-  transition: color 0.3s;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s;
+  box-shadow: 0 0 40px var(--cyan-glow);
+  margin-bottom: 16px;
+  display: flex;
+  width: fit-content;
 }
 
-.footer-links a:hover { color: var(--cyan); }
+.cta-btn:hover {
+  background: var(--cyan-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 0 56px var(--cyan-glow);
+}
 
-@media (max-width: 900px) {
-  nav { padding: 16px 24px; }
-  .video-section { padding: 60px 24px; }
-  .apply-section { padding: 40px 24px; }
-  .video-timer { bottom: 16px; right: 16px; font-size: 11px; padding: 10px 14px; }
-  footer { flex-direction: column; gap: 24px; text-align: center; }
+.cta-btn .arrow {
+  font-family: var(--serif);
+  font-size: 22px;
+  transition: transform 0.2s;
+  line-height: 1;
+}
+
+.cta-btn:hover .arrow { transform: translateX(4px); }
+
+.cta-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cta-meta .dot { width: 3px; height: 3px; background: var(--text-muted); border-radius: 50%; }
+
+/* FOOTER */
+.footer {
+  padding: 40px 32px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .navbar { padding: 14px 20px; }
+  .steps { display: none; }
+  .main { padding: 40px 20px 70px; }
+  .call-points { grid-template-columns: 1fr; }
+  .cta-btn { width: 100%; justify-content: center; padding: 18px 28px; }
+  .footer { padding: 30px 20px; }
 }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<div class="banner">
-  Watch the full case study. No pressure. Just clarity on how AI cloning works.
-</div>
-
-<nav>
-  <div class="nav-logo">GetCloned.in</div>
-</nav>
-
-<div class="video-section">
-  <h1 class="video-headline">
-    Your Twin. Your Message. Zero Production.
-  </h1>
-
-  <div class="video-container" id="videoContainer">
-    <div style="position: relative; padding-bottom: 64.63195691202873%; height: 0;">
-      <iframe src="https://www.loom.com/embed/986b8de65d8244ba810faa4d861af85d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" id="loomVideo"></iframe>
-    </div>
-  </div>
-
-  <div class="apply-section" id="applySection">
-    <h2 class="apply-headline">
-      Ready to stop carrying your <em>message?</em>
-    </h2>
-    <p class="apply-sub">
-      30 minutes. No slides. No pressure. Just clarity on what your clone engine looks like.
-    </p>
-    <a href="https://calendly.com/akassh/getcloned-strategy-call?embed_domain=getcloned.in" class="cta-apply" target="_blank">
-      → Apply Now To See If You Qualify
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <span class="logo-dot"></span>
+      <span>Get<em>Cloned</em></span>
     </a>
-  </div>
+    <div class="steps">
+      <div class="step done">
+        <div class="step-num">✓</div>
+        <span>Opt In</span>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step active">
+        <div class="step-num">2</div>
+        <span>Watch</span>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <span>Apply</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-inner">
+
+      <!-- STEP 1 — VIDEO -->
+      <div class="step-label">Step One — Watch This Now</div>
+
+      <h1 class="video-headline">
+        How the <em>Cloning Engine</em> eliminates you from content production — completely.
+      </h1>
+
+      <!-- LOOM VIDEO EMBED -->
+      <div class="video-wrap">
+        <div class="video-embed">
+          <iframe
+            src="https://www.loom.com/embed/986b8de65d8244ba810faa4d861af85d"
+            frameborder="0"
+            webkitallowfullscreen
+            mozallowfullscreen
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <div class="video-meta">
+        <div class="video-meta-left">
+          <div class="video-duration">21 min · Full case study</div>
+          <div class="video-hint">Watch before applying — the call makes more sense after.</div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- STEP 2 — APPLY -->
+      <div class="step2-label">Step Two — Apply Now</div>
+
+      <h2 class="cta-headline">
+        See if your mission qualifies<br>for <em>The Cloning Engine.</em>
+      </h2>
+
+      <p class="cta-sub">
+        We work with a limited number of experts per quarter. Not for artificial scarcity — because each clone build requires dedicated resources and real time from our team. On the call, we'll map your specific opportunity and show you exactly how we'd build your Clone.
+      </p>
+
+      <!-- WHAT HAPPENS ON THE CALL -->
+      <div class="call-points">
+        <div class="call-point">
+          <div class="call-point-icon">🗺️</div>
+          <div class="call-point-text">
+            <strong>Map your opportunity</strong>
+            We identify exactly how the Cloning Engine fits your mission and your content goals
+          </div>
+        </div>
+        <div class="call-point">
+          <div class="call-point-icon">🧬</div>
+          <div class="call-point-text">
+            <strong>Show you the build plan</strong>
+            You'll see exactly how we'd build your Clone — timeline, process, what we need from you
+          </div>
+        </div>
+        <div class="call-point">
+          <div class="call-point-icon">❓</div>
+          <div class="call-point-text">
+            <strong>Answer every question</strong>
+            No pitch. No pressure. Just clarity on whether this is the right fit for you
+          </div>
+        </div>
+        <div class="call-point">
+          <div class="call-point-icon">⚡</div>
+          <div class="call-point-text">
+            <strong>30 minutes. Maximum clarity.</strong>
+            Even if we're not a fit, you'll walk away knowing your exact path forward
+          </div>
+        </div>
+      </div>
+
+      <a href="/apply/" class="cta-btn">
+        <span>Apply For A Strategy Call</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <div class="cta-meta">
+        <span>No Obligation</span>
+        <span class="dot"></span>
+        <span>No Pitch</span>
+        <span class="dot"></span>
+        <span>30 Minutes</span>
+        <span class="dot"></span>
+        <span>100% Confidential</span>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-meta">© 2026 GetCloned · Peepoye Network · Gurugram, India</div>
+  </footer>
+
 </div>
-
-<div class="video-timer" id="videoTimer">
-  Video time: <span id="timerText">0:00</span>
-</div>
-
-<footer>
-  <div class="footer-brand">
-    <strong>GetCloned.in</strong> · Peepoye Network · Akassh Ashok Gupta
-  </div>
-  <div class="footer-links">
-    <a href="mailto:akassh@peepoye.com">Contact</a>
-  </div>
-</footer>
-
-<script>
-const applySection = document.getElementById('applySection');
-const timerText = document.getElementById('timerText');
-
-let secondsElapsed = 0;
-let hasShownApply = false;
-
-const timerInterval = setInterval(() => {
-  secondsElapsed++;
-  
-  const minutes = Math.floor(secondsElapsed / 60);
-  const seconds = secondsElapsed % 60;
-  timerText.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  
-  if (secondsElapsed >= 420 && !hasShownApply) {
-    applySection.classList.add('visible');
-    hasShownApply = true;
-  }
-  
-  if (secondsElapsed > 900) {
-    clearInterval(timerInterval);
-  }
-}, 1000);
-
-window.addEventListener('beforeunload', () => {
-  clearInterval(timerInterval);
-});
-</script>
-
 </body>
 </html>
