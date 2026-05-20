@@ -1,384 +1,593 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How Dr. Madhusudan Went From Dead Instagram to 30 Daily Reels — GetCloned</title>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free Case Study — GetCloned</title>
+<meta name="description" content="What if a new reel posted to your Instagram every single day — building your authority, visibility and lead pipeline on autopilot. And you never shot it." />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root {
-  --bg: #080808;
+  --bg: #050505;
+  --bg-elevated: #0a0a0a;
   --bg-card: #0f0f10;
-  --ink: #ffffff;
-  --ink-dim: #b0b0b8;
-  --ink-faint: #5a5a62;
-  --line: #1e1e24;
-  --cyan: #00ffd1;
-  --cyan-glow: rgba(0,255,209,0.25);
+  --border: rgba(0, 240, 200, 0.12);
+  --border-strong: rgba(0, 240, 200, 0.24);
+  --text: #e8e8e8;
+  --text-dim: #9a9a9a;
+  --text-muted: #5d5d5d;
+  --cyan: #00f0c8;
+  --cyan-bright: #5af5d5;
+  --cyan-glow: rgba(0, 240, 200, 0.25);
+  --cyan-soft: rgba(0, 240, 200, 0.08);
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
 }
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
 html::before {
   content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0,0,0,0.03) 2px,
-    rgba(0,0,0,0.03) 4px
-  );
+  inset: 0;
   pointer-events: none;
   z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 240, 200, 0.025) 0px,
+    rgba(0, 240, 200, 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.6;
 }
 
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+body::before {
+  content: '';
+  position: fixed;
+  top: -300px; left: 50%;
+  width: 1400px; height: 800px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(0, 240, 200, 0.07) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.8;
 }
 
-.banner {
+.wrap { position: relative; z-index: 1; }
+
+.navbar {
   position: sticky;
   top: 0;
-  z-index: 500;
-  background: var(--cyan);
-  padding: 10px 24px;
-  text-align: center;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  color: #080808;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-}
-
-nav {
-  position: sticky;
-  top: 37px;
-  z-index: 490;
-  padding: 20px 48px;
+  z-index: 100;
+  padding: 18px 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(8,8,8,0.9);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--line);
+  background: rgba(5, 5, 5, 0.75);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
 }
 
-.nav-logo {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
-  color: var(--cyan);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.nav-cta {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: #080808;
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  background: var(--cyan);
-  padding: 10px 20px;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: none;
-}
-
-.nav-cta:hover {
-  box-shadow: 0 0 24px rgba(0,255,209,0.6);
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 12px rgba(0,255,209,0.2); }
-  50% { box-shadow: 0 0 28px rgba(0,255,209,0.5); }
-}
-
-.case-study-section {
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px 48px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.case-study-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--cyan);
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  margin-bottom: 32px;
-  animation: fadeUp 0.8s ease both;
-}
-
-.case-study-headline {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-size: clamp(40px, 6vw, 68px);
-  line-height: 1.1;
+.logo {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 22px;
   letter-spacing: -0.02em;
-  margin-bottom: 48px;
-  animation: fadeUp 0.8s 0.15s ease both;
-  color: var(--ink);
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.case-study-headline em {
+.logo-dot {
+  width: 8px; height: 8px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 14px var(--cyan-glow);
+}
+
+.logo em { font-style: italic; font-weight: 400; color: var(--cyan); }
+
+.main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 32px 100px;
+}
+
+.main-inner {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   color: var(--cyan);
-  font-style: italic;
+  text-transform: uppercase;
+  padding: 7px 16px 7px 14px;
+  background: var(--cyan-soft);
+  border: 1px solid var(--border-strong);
+  border-radius: 100px;
+  margin-bottom: 36px;
 }
 
-.case-study-metrics {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+.eyebrow::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--cyan-glow);
+  animation: pulse 2.4s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.headline {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(32px, 4.8vw, 60px);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: var(--text);
   margin-bottom: 56px;
-  animation: fadeUp 0.8s 0.3s ease both;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.metric {
-  border-left: 2px solid var(--cyan);
-  padding-left: 24px;
-}
-
-.metric-number {
-  font-size: 32px;
+.headline em {
+  font-style: italic;
   font-weight: 400;
   color: var(--cyan);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+  text-align: left;
+}
+
+.bullets-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bullets-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-strong);
+  max-width: 80px;
+}
+
+.bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bullet-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.bullet-icon {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  background: var(--cyan-soft);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.bullet-icon svg {
+  width: 14px; height: 14px;
+  stroke: var(--cyan);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bullet-text {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+.bullet-text strong {
+  color: var(--text);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  padding: 40px 36px 44px;
+  position: relative;
+}
+
+.form-card::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 30px; height: 30px;
+  border-top: 1px solid var(--cyan);
+  border-left: 1px solid var(--cyan);
+  border-radius: 14px 0 0 0;
+  box-shadow: 0 0 12px var(--cyan-glow);
+}
+
+.form-card::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; right: -1px;
+  width: 30px; height: 30px;
+  border-bottom: 1px solid var(--cyan);
+  border-right: 1px solid var(--cyan);
+  border-radius: 0 0 14px 0;
+  box-shadow: 0 0 12px var(--cyan-glow);
+}
+
+.form-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text);
   margin-bottom: 8px;
 }
 
-.metric-label {
+.form-title em { font-style: italic; font-weight: 400; color: var(--cyan); }
+
+.form-sub {
+  font-family: var(--sans);
   font-size: 14px;
-  color: var(--ink-dim);
+  color: var(--text-dim);
+  margin-bottom: 28px;
   line-height: 1.5;
 }
 
-.form-section {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  padding: 48px;
-  border-radius: 4px;
-  animation: fadeUp 0.8s 0.45s ease both;
-  max-width: 600px;
+.field { margin-bottom: 16px; }
+
+.field label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
 }
 
-.form-headline {
-  font-size: 22px;
-  font-weight: 400;
-  margin-bottom: 12px;
-  color: var(--ink);
+.field input {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--text);
+  outline: none;
+  transition: all 0.2s;
+  -webkit-appearance: none;
 }
 
-.form-subtext {
-  font-size: 14px;
-  color: var(--ink-dim);
-  margin-bottom: 32px;
-  line-height: 1.6;
+.field input::placeholder { color: var(--text-muted); }
+
+.field input:focus {
+  border-color: var(--cyan);
+  background: rgba(0, 240, 200, 0.04);
+  box-shadow: 0 0 0 3px rgba(0, 240, 200, 0.08);
 }
 
-.formkit-form {
-  background: transparent !important;
-  padding: 0 !important;
-  border: none !important;
+.submit-btn {
+  width: 100%;
+  background: var(--cyan);
+  color: var(--bg);
+  border: none;
+  padding: 18px 28px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 0 32px var(--cyan-glow);
 }
 
-.formkit-form[data-uid="39e719395b"] [data-style="clean"] {
-  background: transparent !important;
-  padding: 0 !important;
+.submit-btn:hover {
+  background: var(--cyan-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 0 48px var(--cyan-glow);
 }
 
-.formkit-form[data-uid="39e719395b"] .formkit-fields {
+.submit-btn .arrow {
+  font-family: var(--serif);
+  font-size: 20px;
+  transition: transform 0.2s;
+  line-height: 1;
+}
+
+.submit-btn:hover .arrow { transform: translateX(4px); }
+
+.form-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+
+.form-meta .dot { width: 3px; height: 3px; background: var(--text-muted); border-radius: 50%; }
+
+.proof-strip {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.proof-item {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-}
-
-.formkit-form[data-uid="39e719395b"] .formkit-input {
-  background: var(--bg) !important;
-  border: 1px solid var(--line) !important;
-  color: var(--ink) !important;
-  padding: 14px 16px !important;
-  font-family: 'Fraunces', serif !important;
-  font-size: 15px !important;
-  border-radius: 2px !important;
-  transition: all 0.3s ease !important;
-}
-
-.formkit-form[data-uid="39e719395b"] .formkit-input:focus {
-  outline: none !important;
-  border-color: var(--cyan) !important;
-  box-shadow: 0 0 16px rgba(0,255,209,0.2) !important;
-}
-
-.formkit-form[data-uid="39e719395b"] .formkit-input::placeholder {
-  color: var(--ink-dim) !important;
-  opacity: 0.8 !important;
-}
-
-.formkit-form[data-uid="39e719395b"] .formkit-submit {
-  background: var(--cyan) !important;
-  color: #080808 !important;
-  border: none !important;
-  padding: 16px 32px !important;
-  font-family: 'IBM Plex Mono', monospace !important;
-  font-size: 13px !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase !important;
-  border-radius: 2px !important;
-  font-weight: 500 !important;
-  cursor: pointer !important;
-  transition: all 0.3s ease !important;
-  margin: 0 !important;
-  animation: pulse-glow 3s infinite;
-}
-
-.formkit-form[data-uid="39e719395b"] .formkit-submit:hover {
-  box-shadow: 0 0 32px rgba(0,255,209,0.6) !important;
-  transform: scale(1.02);
-}
-
-.formkit-form[data-uid="39e719395b"] .formkit-powered-by-convertkit-container {
-  display: none !important;
-}
-
-.formkit-form[data-uid="39e719395b"] .formkit-alert {
-  background: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-  margin: 16px 0 !important;
-  font-size: 14px !important;
-  color: var(--cyan) !important;
-}
-
-footer {
-  padding: 48px;
-  border-top: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-family: 'IBM Plex Mono', monospace;
+  gap: 6px;
+}
+
+.proof-num {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--cyan);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.proof-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.proof-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border-strong);
+}
+
+.footer {
+  padding: 40px 32px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer-meta {
+  font-family: var(--mono);
   font-size: 11px;
-  color: var(--ink);
-}
-
-.footer-brand strong { color: var(--cyan); }
-
-.footer-links {
-  display: flex;
-  gap: 32px;
-}
-
-.footer-links a {
-  color: var(--ink);
-  text-decoration: none;
   letter-spacing: 0.08em;
-  transition: color 0.3s;
+  color: var(--text-muted);
+  text-transform: uppercase;
 }
 
-.footer-links a:hover { color: var(--cyan); }
-
-@media (max-width: 900px) {
-  nav { padding: 16px 24px; }
-  .case-study-section { padding: 60px 24px; }
-  .case-study-metrics { grid-template-columns: 1fr; }
-  .form-section { padding: 32px; }
-  footer { flex-direction: column; gap: 24px; text-align: center; }
+@media (max-width: 800px) {
+  .navbar { padding: 14px 20px; }
+  .main { padding: 50px 20px 70px; }
+  .split { grid-template-columns: 1fr; gap: 40px; }
+  .headline { font-size: clamp(28px, 7vw, 44px); margin-bottom: 40px; }
+  .form-card { padding: 32px 24px 36px; }
+  .proof-strip { gap: 24px; }
+  .proof-divider { display: none; }
 }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<div class="banner">
-  We take 3 new clone builds per month
-  <span>·</span>
-  2 spots filled — 1 remaining
-  <span>·</span>
-  Book before this month closes
-</div>
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <span class="logo-dot"></span>
+      <span>Get<em>Cloned</em></span>
+    </a>
+  </nav>
 
-<nav>
-  <div class="nav-logo">GetCloned.in</div>
-  <a href="/" class="nav-cta">← Back to Home</a>
-</nav>
+  <main class="main">
+    <div class="main-inner">
 
-<div class="case-study-section">
-  <div class="case-study-label">Dr. Madhusudan — Ayurvedic Health Expert</div>
-  
-  <h1 class="case-study-headline">
-    How Dr. Madhusudan Went From Dead Instagram to 30 Daily Reels — and <em>Started Filling His Calendar & Selling Supplements</em>
-  </h1>
-  
-  <div class="case-study-metrics">
-    <div class="metric">
-      <div class="metric-number">0 hours</div>
-      <div class="metric-label">Filming. Zero camera time. Clone handles all production.</div>
-    </div>
-    <div class="metric">
-      <div class="metric-number">1 reel/day</div>
-      <div class="metric-label">Consistent. Predictable. Automated across Instagram, YouTube, TikTok.</div>
-    </div>
-    <div class="metric">
-      <div class="metric-number">20K–59K</div>
-      <div class="metric-label">Average views per reel. Thousands of shares and saves monthly.</div>
-    </div>
-    <div class="metric">
-      <div class="metric-number">$Lakhs</div>
-      <div class="metric-label">Revenue from cloned content driving supplement sales & bookings.</div>
-    </div>
-  </div>
+      <div class="eyebrow">Free Case Study · For Experts, Coaches & Service Professionals</div>
 
-  <div class="form-section">
-    <div class="form-headline">Get the Full Case Study</div>
-    <div class="form-subtext">See exactly how we built Dr. Madhusudan's AI clone, the content strategy that works, and the monetization layer that's now generating recurring revenue.</div>
-    
-    <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
-    <form action="https://app.kit.com/forms/9457240/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="9457240" data-uid="39e719395b" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;redirect&quot;,&quot;success_message&quot;:&quot;Success!&quot;,&quot;redirect_url&quot;:&quot;/case-study/video&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;fathom&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:false,&quot;url&quot;:&quot;https://partners.kit.com/hn2twsdad2me?utm_campaign=poweredby&amp;utm_content=form&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}" min-width="400 500 600 700 800">
-      <div data-style="clean">
-        <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
-        <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
-          <div class="formkit-field">
-            <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Your email" required="" type="email">
+      <h1 class="headline">
+        "What If A New Reel Posted To Your Instagram Every Single Day — Building Your Authority, Visibility And Lead Pipeline On Autopilot. <em>And You Never Shot It."</em>
+      </h1>
+
+      <div class="split">
+
+        <div class="bullets-wrap">
+          <div class="bullets-label">Free Case Study Reveals</div>
+          <ul class="bullets">
+            <li class="bullet-item">
+              <div class="bullet-icon">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="bullet-text">
+                <strong>Why the most qualified experts are losing visibility to less qualified creators</strong>
+                — and the one shift that reverses it permanently, starting this month
+              </div>
+            </li>
+            <li class="bullet-item">
+              <div class="bullet-icon">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="bullet-text">
+                <strong>The end-to-end Cloning Engine explained</strong>
+                — from ideation to publishing, how your Twin produces daily content while you focus entirely on your mission
+              </div>
+            </li>
+            <li class="bullet-item">
+              <div class="bullet-icon">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="bullet-text">
+                <strong>How real experts are compounding authority, appointments and revenue on autopilot</strong>
+                — without ever touching a camera again
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="form-card">
+          <div class="form-title">Where should we send the <em>case study?</em></div>
+          <div class="form-sub">Enter your details and you'll be taken straight to the video. No spam. Ever.</div>
+
+          <form id="optinForm" onsubmit="handleSubmit(event)">
+            <div class="field">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Dr. Arjun / Coach Priya" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="you@yourpractice.com" required autocomplete="email" />
+            </div>
+            <button type="submit" class="submit-btn">
+              <span>Watch The Case Study Now</span>
+              <span class="arrow">→</span>
+            </button>
+          </form>
+
+          <div class="form-meta">
+            <span>Instant Access</span>
+            <span class="dot"></span>
+            <span>No Cost</span>
+            <span class="dot"></span>
+            <span>100% Confidential</span>
           </div>
-          <button data-element="submit" class="formkit-submit" type="submit">
-            <span>Get Case Study Video →</span>
-          </button>
         </div>
       </div>
-    </form>
-  </div>
+
+      <div class="proof-strip">
+        <div class="proof-item">
+          <div class="proof-num">1M+</div>
+          <div class="proof-label">Views on one cloned reel</div>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <div class="proof-num">30</div>
+          <div class="proof-label">Reels/month · zero shoots</div>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <div class="proof-num">3</div>
+          <div class="proof-label">Active clone builds live</div>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <div class="proof-num">5 min</div>
+          <div class="proof-label">Daily effort to approve</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-meta">© 2026 GetCloned · Peepoye Network · Gurugram, India</div>
+  </footer>
+
 </div>
 
-<footer>
-  <div class="footer-brand">
-    <strong>GetCloned.in</strong> · Peepoye Network · Akassh Ashok Gupta
-  </div>
-  <div class="footer-links">
-    <a href="mailto:akassh@peepoye.com">Contact</a>
-  </div>
-</footer>
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if (!name || !email) return;
+
+    // TODO: Wire to ConvertKit / Mailchimp / your email provider
+    // fetch('YOUR_WEBHOOK_URL', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ name, email })
+    // });
+
+    // Redirect to value video page
+    window.location.href = '/case-study/video/';
+  }
+</script>
 
 </body>
 </html>
