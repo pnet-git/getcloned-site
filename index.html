@@ -1194,7 +1194,7 @@ body::before {
 
         <div class="founder-photo-wrap">
           <div class="founder-photo">
-            <span class="founder-initials">AAG</span>
+            <img src="/akassh.jpg" alt="Akassh Ashok Gupta — Founder, GetCloned" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />
           </div>
           <div class="founder-photo-caption">The Cloning Guy 🧬</div>
         </div>
@@ -1215,21 +1215,31 @@ body::before {
       <div class="reels-grid">
         <div class="reel-card">
           <div class="reel-label">Reel A</div>
-          <div class="reel-placeholder">
-            <div class="reel-play">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <div class="reel-caption">Tap to play</div>
-          </div>
+          <video
+            src="/reel-a.mp4"
+            playsinline
+            loop
+            muted
+            preload="metadata"
+            style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:10px;cursor:pointer;"
+            onclick="this.muted=!this.muted;this.paused?this.play():this.pause();"
+            onmouseenter="this.play();"
+            onmouseleave="this.pause();this.currentTime=0;"
+          ></video>
         </div>
         <div class="reel-card">
           <div class="reel-label">Reel B</div>
-          <div class="reel-placeholder">
-            <div class="reel-play">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <div class="reel-caption">Tap to play</div>
-          </div>
+          <video
+            src="/reel-b.mp4"
+            playsinline
+            loop
+            muted
+            preload="metadata"
+            style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:10px;cursor:pointer;"
+            onclick="this.muted=!this.muted;this.paused?this.play():this.pause();"
+            onmouseenter="this.play();"
+            onmouseleave="this.pause();this.currentTime=0;"
+          ></video>
         </div>
       </div>
 
