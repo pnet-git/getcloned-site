@@ -571,20 +571,44 @@ body::before {
 </div>
 
 <script>
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     if (!name || !email) return;
 
-    // TODO: Wire to ConvertKit / Mailchimp / your email provider
-    // fetch('YOUR_WEBHOOK_URL', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ name, email })
-    // });
+    const btn = document.querySelector('.submit-btn');
+    const originalHTML = btn.innerHTML;
 
-    // Redirect to value video page
+    // Show loading state
+    btn.innerHTML = '<span>Sending...</span>';
+    btn.disabled = true;
+
+    try {
+      // Split name into first/last
+      const nameParts = name.split(' ');
+      const firstName = nameParts[0] || name;
+      const lastName = nameParts.slice(1).join(' ') || '';
+
+      // POST to Kit (ConvertKit) form
+      const formData = new FormData();
+      formData.append('email_address', email);
+      formData.append('first_name', firstName);
+      if (lastName) formData.append('fields[last_name]', lastName);
+
+      await fetch('https://app.kit.com/forms/9457240/subscriptions', {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors' // Kit doesn't allow CORS, but still registers the subscriber
+      });
+
+    } catch (err) {
+      // Even if fetch errors, we still redirect — Kit usually captures the lead
+      console.log('Kit submission note:', err);
+    }
+
+    // Always redirect to video page
     window.location.href = '/case-study/video/';
   }
 </script>
