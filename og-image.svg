@@ -1,75 +1,96 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <pattern id="scan" x="0" y="0" width="1" height="3" patternUnits="userSpaceOnUse">
-      <rect width="1" height="1" fill="rgba(0,240,200,0.04)"/>
-    </pattern>
-    <radialGradient id="glow" cx="15%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#00f0c8" stop-opacity="0.14"/>
+    <radialGradient id="glowLeft" cx="25%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#00f0c8" stop-opacity="0.15"/>
       <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
     </radialGradient>
+    <pattern id="scan" x="0" y="0" width="1" height="3" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="rgba(0,240,200,0.03)"/>
+    </pattern>
     <linearGradient id="borderGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#00f0c8" stop-opacity="0.6"/>
+      <stop offset="0%" stop-color="#00f0c8" stop-opacity="0.7"/>
       <stop offset="50%" stop-color="#00f0c8" stop-opacity="0.1"/>
-      <stop offset="100%" stop-color="#00f0c8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#00f0c8" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="figFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8e8e8"/>
+      <stop offset="100%" stop-color="#c0c0c0"/>
     </linearGradient>
   </defs>
 
   <!-- BG -->
   <rect width="1200" height="630" fill="#050505"/>
-  <rect width="1200" height="630" fill="url(#glow)"/>
-  <rect width="1200" height="630" fill="url(#scan)" opacity="0.5"/>
+  <rect width="1200" height="630" fill="url(#glowLeft)"/>
+  <rect width="1200" height="630" fill="url(#scan)" opacity="0.6"/>
 
   <!-- Border -->
-  <rect x="24" y="24" width="1152" height="582" rx="16" fill="none" stroke="url(#borderGrad)" stroke-width="1.5"/>
+  <rect x="20" y="20" width="1160" height="590" rx="20" fill="none" stroke="url(#borderGrad)" stroke-width="1.5"/>
 
   <!-- Corner accents -->
-  <path d="M 24 80 L 24 40 Q 24 24 40 24 L 80 24" stroke="#00f0c8" stroke-width="2" fill="none"/>
-  <path d="M 1176 550 L 1176 590 Q 1176 606 1160 606 L 1120 606" stroke="#00f0c8" stroke-width="2" fill="none"/>
+  <path d="M 20 90 L 20 44 Q 20 20 44 20 L 90 20" stroke="#00f0c8" stroke-width="2.5" fill="none"/>
+  <path d="M 1180 540 L 1180 586 Q 1180 610 1156 610 L 1110 610" stroke="#00f0c8" stroke-width="2.5" fill="none"/>
 
-  <!-- LOGO -->
-  <circle cx="72" cy="72" r="8" fill="#00f0c8"/>
-  <circle cx="72" cy="72" r="14" fill="#00f0c8" opacity="0.15"/>
-  <text x="92" y="82" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#e8e8e8">Get</text>
-  <text x="132" y="82" font-family="Georgia, serif" font-size="28" font-style="italic" font-weight="400" fill="#00f0c8">Cloned</text>
+  <!-- ══ LOGO — fixed spacing ══ -->
+  <circle cx="60" cy="66" r="9" fill="#00f0c8"/>
+  <circle cx="60" cy="66" r="16" fill="#00f0c8" opacity="0.12"/>
+  <!-- Get and Cloned with enough gap -->
+  <text x="84" y="78" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#e8e8e8" letter-spacing="0">Get</text>
+  <text x="138" y="78" font-family="Georgia, serif" font-size="28" font-style="italic" font-weight="400" fill="#00f0c8" letter-spacing="0">Cloned</text>
 
-  <!-- TOP RIGHT TAG -->
-  <rect x="1020" y="50" width="152" height="34" rx="17" fill="rgba(0,240,200,0.1)" stroke="rgba(0,240,200,0.3)" stroke-width="1"/>
-  <circle cx="1043" cy="67" r="4" fill="#00f0c8"/>
-  <text x="1056" y="72" font-family="Courier New, monospace" font-size="11" font-weight="600" fill="#00f0c8" letter-spacing="1">GETCLONED.IN</text>
+  <!-- Eyebrow -->
+  <rect x="60" y="112" width="226" height="30" rx="15" fill="rgba(0,240,200,0.1)" stroke="rgba(0,240,200,0.28)" stroke-width="1"/>
+  <circle cx="80" cy="127" r="4" fill="#00f0c8"/>
+  <text x="94" y="132" font-family="Courier New, monospace" font-size="11" font-weight="600" fill="#00f0c8" letter-spacing="1.2">THE CLONING ENGINE</text>
 
-  <!-- MAIN HEADLINE — tighter vertical for CTA space -->
-  <text x="72" y="210" font-family="Georgia, serif" font-size="68" font-weight="700" fill="#e8e8e8" letter-spacing="-2">We help experts</text>
-  <text x="72" y="290" font-family="Georgia, serif" font-size="68" font-weight="700" fill="#e8e8e8" letter-spacing="-2">publish daily content —</text>
-  <text x="72" y="378" font-family="Georgia, serif" font-size="64" font-style="italic" font-weight="400" fill="#00f0c8" letter-spacing="-1">without ever touching</text>
-  <text x="72" y="452" font-family="Georgia, serif" font-size="64" font-style="italic" font-weight="400" fill="#00f0c8" letter-spacing="-1">a camera.</text>
+  <!-- ══ HEADLINE ══ -->
+  <text x="60" y="240" font-family="Georgia, serif" font-size="88" font-weight="700" fill="#e8e8e8" letter-spacing="-3">You stay</text>
+  <text x="60" y="338" font-family="Georgia, serif" font-size="88" font-weight="700" fill="#e8e8e8" letter-spacing="-3">the king.</text>
+  <text x="60" y="420" font-family="Georgia, serif" font-size="58" font-style="italic" font-weight="400" fill="#00f0c8" letter-spacing="-1">Your Twin carries</text>
+  <text x="60" y="492" font-family="Georgia, serif" font-size="58" font-style="italic" font-weight="400" fill="#00f0c8" letter-spacing="-1">the message.</text>
 
-  <!-- CTA BUTTON -->
-  <rect x="72" y="482" width="320" height="58" rx="8" fill="#00f0c8"/>
-  <text x="232" y="518" font-family="Courier New, monospace" font-size="16" font-weight="700" fill="#050505" text-anchor="middle" letter-spacing="1.5">WATCH FREE CASE STUDY →</text>
+  <!-- ══ CTA BUTTON — contained ══ -->
+  <rect x="60" y="516" width="320" height="54" rx="8" fill="#00f0c8"/>
+  <text x="220" y="549" font-family="Courier New, monospace" font-size="13" font-weight="700" fill="#050505" text-anchor="middle" letter-spacing="1.2">WATCH FREE CASE STUDY →</text>
 
-  <!-- PROOF STRIP -->
-  <line x1="72" y1="568" x2="1128" y2="568" stroke="rgba(0,240,200,0.15)" stroke-width="1"/>
-  <text x="72" y="598" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#00f0c8">1M+</text>
-  <text x="112" y="598" font-family="Georgia, serif" font-size="14" fill="#9a9a9a"> views · one cloned reel</text>
-  <circle cx="330" cy="591" r="2" fill="rgba(0,240,200,0.4)"/>
-  <text x="348" y="598" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#00f0c8">30</text>
-  <text x="378" y="598" font-family="Georgia, serif" font-size="14" fill="#9a9a9a"> reels/month · zero shoots</text>
-  <circle cx="590" cy="591" r="2" fill="rgba(0,240,200,0.4)"/>
-  <text x="608" y="598" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#00f0c8">3</text>
-  <text x="624" y="598" font-family="Georgia, serif" font-size="14" fill="#9a9a9a"> active clone builds</text>
-  <circle cx="810" cy="591" r="2" fill="rgba(0,240,200,0.4)"/>
-  <text x="828" y="598" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#00f0c8">5 min</text>
-  <text x="884" y="598" font-family="Georgia, serif" font-size="14" fill="#9a9a9a"> daily to approve</text>
+  <!-- ══ VERTICAL DIVIDER ══ -->
+  <line x1="600" y1="60" x2="600" y2="590" stroke="rgba(0,240,200,0.07)" stroke-width="1"/>
 
-  <!-- Twin watermark -->
-  <g transform="translate(1000, 310)" opacity="0.06">
-    <path d="M -38 -90 L -38 -70 L -20 -85 L 0 -68 L 20 -85 L 38 -70 L 38 -90 Z" fill="#00f0c8"/>
-    <circle cx="0" cy="-40" r="32" fill="none" stroke="#00f0c8" stroke-width="3"/>
-    <path d="M -45 0 Q -50 60 -40 100 L 40 100 Q 50 60 45 0 Q 30 -10 0 -10 Q -30 -10 -45 0 Z" fill="none" stroke="#00f0c8" stroke-width="3"/>
-    <g transform="translate(130, 0)">
-      <circle cx="0" cy="-40" r="32" fill="none" stroke="#00f0c8" stroke-width="3" stroke-dasharray="5,5"/>
-      <path d="M -45 0 Q -50 60 -40 100 L 40 100 Q 50 60 45 0 Q 30 -10 0 -10 Q -30 -10 -45 0 Z" fill="none" stroke="#00f0c8" stroke-width="3" stroke-dasharray="5,5"/>
-    </g>
-    <line x1="45" y1="-40" x2="85" y2="-40" stroke="#00f0c8" stroke-width="2" stroke-dasharray="4,4"/>
+  <!-- ══ RIGHT — TWIN VISUAL ══ -->
+  <!-- Centered between x=600 and x=1180, so center = 890 -->
+  <!-- King at x=770, Twin at x=1010 -->
+
+  <!-- KING figure -->
+  <g transform="translate(770, 290)">
+    <!-- Crown -->
+    <polygon points="-32,-108 -32,-86 -16,-100 0,-80 16,-100 32,-86 32,-108" fill="#00f0c8" opacity="0.95"/>
+    <circle cx="0" cy="-108" r="5" fill="#00f0c8"/>
+    <!-- Head -->
+    <circle cx="0" cy="-46" r="34" fill="url(#figFill)" stroke="#00f0c8" stroke-width="2"/>
+    <!-- Body -->
+    <path d="M-48,0 Q-54,65 -42,112 L42,112 Q54,65 48,0 Q32,-11 0,-11 Q-32,-11 -48,0 Z" fill="url(#figFill)" stroke="#00f0c8" stroke-width="2"/>
+    <!-- Label -->
+    <text x="0" y="136" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-style="italic" fill="#9a9a9a">The King</text>
   </g>
+
+  <!-- CLONED connection line -->
+  <line x1="822" y1="290" x2="958" y2="290" stroke="#00f0c8" stroke-width="1.5" stroke-dasharray="6,5" opacity="0.65"/>
+  <!-- CLONED label -->
+  <rect x="856" y="274" width="88" height="24" rx="4" fill="#0a0a0a" stroke="rgba(0,240,200,0.3)" stroke-width="1"/>
+  <text x="900" y="290" font-family="Courier New, monospace" font-size="10" font-weight="700" fill="#00f0c8" text-anchor="middle" letter-spacing="2">CLONED</text>
+
+  <!-- TWIN figure -->
+  <g transform="translate(1010, 290)">
+    <!-- Head — dashed -->
+    <circle cx="0" cy="-46" r="34" fill="url(#figFill)" stroke="#00f0c8" stroke-width="2" stroke-dasharray="5,4" opacity="0.88"/>
+    <!-- Body — dashed -->
+    <path d="M-48,0 Q-54,65 -42,112 L42,112 Q54,65 48,0 Q32,-11 0,-11 Q-32,-11 -48,0 Z" fill="url(#figFill)" stroke="#00f0c8" stroke-width="2" stroke-dasharray="5,4" opacity="0.88"/>
+    <!-- Glow ring -->
+    <circle cx="0" cy="-46" r="44" fill="none" stroke="#00f0c8" stroke-width="1" opacity="0.12"/>
+    <!-- Label -->
+    <text x="0" y="136" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-style="italic" fill="#9a9a9a">The Twin</text>
+  </g>
+
+  <!-- Caption — below figures, clear of labels -->
+  <text x="890" y="500" text-anchor="middle" font-family="Courier New, monospace" font-size="11" fill="#4a4a4a" letter-spacing="2">IDENTICAL · VOICE · FACE · ENERGY</text>
+
 </svg>
