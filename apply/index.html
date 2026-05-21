@@ -427,6 +427,25 @@ body::before {
         ></div>
       </div>
 
+      <!-- FOMO LINE -->
+      <div style="
+        text-align: center;
+        margin-top: 28px;
+        padding: 20px 24px;
+        background: rgba(0,240,200,0.05);
+        border: 1px solid rgba(0,240,200,0.15);
+        border-radius: 10px;
+      ">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#00f0c8;margin-bottom:8px;">⚡ Limited Spots · Q2 2026</div>
+        <p style="font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:#e8e8e8;line-height:1.4;margin-bottom:6px;">
+          Experts who applied last month are already<br>publishing daily — <span style="color:#00f0c8;">without touching a camera.</span>
+        </p>
+        <p style="font-family:'Inter',sans-serif;font-size:13px;color:#9a9a9a;line-height:1.5;">
+          The longer you wait, the further ahead they get.<br>
+          <strong style="color:#e8e8e8;">This quarter's spots are filling. The form takes 30 seconds.</strong>
+        </p>
+      </div>
+
     </div>
   </main>
 
@@ -436,6 +455,132 @@ body::before {
   </footer>
 
 </div>
+<!-- ═══════════ SOCIAL PROOF TOASTS ═══════════ -->
+<div id="toastContainer" style="
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+"></div>
+
+<script>
+const proofLeads = [
+  { name: "Dr. Eric Berg", niche: "Health & Wellness Expert", city: "California, USA" },
+  { name: "Coach Priya Sharma", niche: "Life & Business Coach", city: "Mumbai, India" },
+  { name: "Dr. Arun Mehta", niche: "Ayurvedic Practitioner", city: "Delhi, India" },
+  { name: "Marcus J.", niche: "Crypto & Finance Expert", city: "Dubai, UAE" },
+  { name: "Dr. Sarah K.", niche: "Functional Medicine Dr.", city: "London, UK" },
+  { name: "Coach Rahul V.", niche: "Mindset & Performance", city: "Bangalore, India" },
+  { name: "Nilufar A.", niche: "Wealth Management", city: "Singapore" },
+  { name: "Dr. James T.", niche: "Nephrologist", city: "Toronto, Canada" },
+  { name: "Fatima Al-R.", niche: "Nutrition Expert", city: "Riyadh, KSA" },
+  { name: "Coach David M.", niche: "Executive Leadership", city: "New York, USA" },
+  { name: "Dr. Anjali S.", niche: "Mental Health Expert", city: "Pune, India" },
+  { name: "Raj K.", niche: "Crypto Educator", city: "Hong Kong" },
+  { name: "Coach Elena V.", niche: "Fitness & Wellness", city: "Sydney, Australia" },
+  { name: "Dr. Omar F.", niche: "Cardiologist", city: "Abu Dhabi, UAE" },
+  { name: "Meera P.", niche: "Astrology & Life Coach", city: "Chennai, India" },
+];
+
+const timeAgo = ["just now", "2 min ago", "4 min ago", "7 min ago", "11 min ago", "18 min ago", "24 min ago"];
+
+let toastIndex = Math.floor(Math.random() * proofLeads.length);
+
+function showToast() {
+  const lead = proofLeads[toastIndex % proofLeads.length];
+  const time = timeAgo[Math.floor(Math.random() * timeAgo.length)];
+  toastIndex++;
+
+  const toast = document.createElement('div');
+  toast.style.cssText = `
+    background: #0f0f10;
+    border: 1px solid rgba(0,240,200,0.28);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 300px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 20px rgba(0,240,200,0.08);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+    position: relative;
+    overflow: hidden;
+  `;
+
+  // Cyan left border
+  const bar = document.createElement('div');
+  bar.style.cssText = 'position:absolute;left:0;top:0;bottom:0;width:3px;background:#00f0c8;border-radius:10px 0 0 10px;';
+  toast.appendChild(bar);
+
+  // Avatar
+  const avatar = document.createElement('div');
+  avatar.style.cssText = `
+    width: 36px; height: 36px; min-width: 36px;
+    background: rgba(0,240,200,0.1);
+    border: 1px solid rgba(0,240,200,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: Georgia, serif; font-size: 14px; font-weight: 700;
+    color: #00f0c8;
+    margin-left: 6px;
+  `;
+  avatar.textContent = lead.name.charAt(0);
+  toast.appendChild(avatar);
+
+  // Text
+  const text = document.createElement('div');
+  text.style.cssText = 'flex: 1; min-width: 0;';
+  text.innerHTML = `
+    <div style="font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#e8e8e8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${lead.name}</div>
+    <div style="font-family:'Inter',sans-serif;font-size:11px;color:#9a9a9a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${lead.niche}</div>
+    <div style="display:flex;align-items:center;gap:6px;margin-top:3px;">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5d5d5d;">${lead.city}</span>
+      <span style="width:2px;height:2px;background:#5d5d5d;border-radius:50%;display:inline-block;"></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#00f0c8;">${time}</span>
+    </div>
+  `;
+  toast.appendChild(text);
+
+  // Check icon
+  const check = document.createElement('div');
+  check.style.cssText = 'font-size:16px;flex-shrink:0;';
+  check.textContent = '✓';
+  check.style.color = '#00f0c8';
+  toast.appendChild(check);
+
+  const container = document.getElementById('toastContainer');
+  container.appendChild(toast);
+
+  // Animate in
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+    });
+  });
+
+  // Animate out after 5 seconds
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(8px)';
+    setTimeout(() => toast.remove(), 400);
+  }, 5000);
+}
+
+// First toast after 8 seconds, then every 35 seconds
+setTimeout(() => {
+  showToast();
+  setInterval(showToast, 35000);
+}, 8000);
+</script>
+
 <!-- ═══════════ EXIT INTENT POPUP ═══════════ -->
 <div id="exitPopup" style="
   display: none;
