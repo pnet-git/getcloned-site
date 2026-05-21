@@ -4,7 +4,7 @@
       <rect width="1" height="1" fill="rgba(0,240,200,0.04)"/>
     </pattern>
     <radialGradient id="glow" cx="15%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#00f0c8" stop-opacity="0.12"/>
+      <stop offset="0%" stop-color="#00f0c8" stop-opacity="0.14"/>
       <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="borderGrad" x1="0" y1="0" x2="1" y2="1">
@@ -13,36 +13,56 @@
       <stop offset="100%" stop-color="#00f0c8" stop-opacity="0.4"/>
     </linearGradient>
   </defs>
+
+  <!-- BG -->
   <rect width="1200" height="630" fill="#050505"/>
   <rect width="1200" height="630" fill="url(#glow)"/>
   <rect width="1200" height="630" fill="url(#scan)" opacity="0.5"/>
+
+  <!-- Border -->
   <rect x="24" y="24" width="1152" height="582" rx="16" fill="none" stroke="url(#borderGrad)" stroke-width="1.5"/>
-  <path d="M 24 80 L 24 40 Q 24 24 40 24 L 80 24" stroke="#00f0c8" stroke-width="2" fill="none" opacity="0.9"/>
-  <path d="M 1176 550 L 1176 590 Q 1176 606 1160 606 L 1120 606" stroke="#00f0c8" stroke-width="2" fill="none" opacity="0.9"/>
+
+  <!-- Corner accents -->
+  <path d="M 24 80 L 24 40 Q 24 24 40 24 L 80 24" stroke="#00f0c8" stroke-width="2" fill="none"/>
+  <path d="M 1176 550 L 1176 590 Q 1176 606 1160 606 L 1120 606" stroke="#00f0c8" stroke-width="2" fill="none"/>
+
+  <!-- LOGO -->
   <circle cx="72" cy="72" r="8" fill="#00f0c8"/>
   <circle cx="72" cy="72" r="14" fill="#00f0c8" opacity="0.15"/>
-  <text x="92" y="82" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#e8e8e8" letter-spacing="-0.5">Get</text>
-  <text x="132" y="82" font-family="Georgia, serif" font-size="28" font-style="italic" font-weight="400" fill="#00f0c8" letter-spacing="-0.5">Cloned</text>
-  <rect x="1040" y="52" width="132" height="32" rx="16" fill="rgba(0,240,200,0.1)" stroke="rgba(0,240,200,0.3)" stroke-width="1"/>
-  <circle cx="1060" cy="68" r="4" fill="#00f0c8"/>
-  <text x="1072" y="73" font-family="Courier New, monospace" font-size="11" font-weight="600" fill="#00f0c8" letter-spacing="1.5">GETCLONED.IN</text>
-  <text x="72" y="230" font-family="Georgia, serif" font-size="72" font-weight="700" fill="#e8e8e8" letter-spacing="-2">We help experts</text>
-  <text x="72" y="315" font-family="Georgia, serif" font-size="72" font-weight="700" fill="#e8e8e8" letter-spacing="-2">publish daily content —</text>
-  <text x="72" y="410" font-family="Georgia, serif" font-size="68" font-style="italic" font-weight="400" fill="#00f0c8" letter-spacing="-1">without ever touching</text>
-  <text x="72" y="490" font-family="Georgia, serif" font-size="68" font-style="italic" font-weight="400" fill="#00f0c8" letter-spacing="-1">a camera.</text>
-  <line x1="72" y1="548" x2="1128" y2="548" stroke="rgba(0,240,200,0.15)" stroke-width="1"/>
-  <text x="72" y="580" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#00f0c8">1M+</text>
-  <text x="116" y="580" font-family="Georgia, serif" font-size="15" fill="#9a9a9a"> views · one cloned reel</text>
-  <circle cx="340" cy="573" r="2" fill="rgba(0,240,200,0.4)"/>
-  <text x="360" y="580" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#00f0c8">30</text>
-  <text x="392" y="580" font-family="Georgia, serif" font-size="15" fill="#9a9a9a"> reels/month · zero shoots</text>
-  <circle cx="620" cy="573" r="2" fill="rgba(0,240,200,0.4)"/>
-  <text x="640" y="580" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#00f0c8">3</text>
-  <text x="658" y="580" font-family="Georgia, serif" font-size="15" fill="#9a9a9a"> active clone builds live</text>
-  <circle cx="870" cy="573" r="2" fill="rgba(0,240,200,0.4)"/>
-  <text x="890" y="580" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#00f0c8">5 min</text>
-  <text x="948" y="580" font-family="Georgia, serif" font-size="15" fill="#9a9a9a"> daily to approve</text>
-  <g transform="translate(980, 300)" opacity="0.07">
+  <text x="92" y="82" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#e8e8e8">Get</text>
+  <text x="132" y="82" font-family="Georgia, serif" font-size="28" font-style="italic" font-weight="400" fill="#00f0c8">Cloned</text>
+
+  <!-- TOP RIGHT TAG -->
+  <rect x="1020" y="50" width="152" height="34" rx="17" fill="rgba(0,240,200,0.1)" stroke="rgba(0,240,200,0.3)" stroke-width="1"/>
+  <circle cx="1043" cy="67" r="4" fill="#00f0c8"/>
+  <text x="1056" y="72" font-family="Courier New, monospace" font-size="11" font-weight="600" fill="#00f0c8" letter-spacing="1">GETCLONED.IN</text>
+
+  <!-- MAIN HEADLINE — tighter vertical for CTA space -->
+  <text x="72" y="210" font-family="Georgia, serif" font-size="68" font-weight="700" fill="#e8e8e8" letter-spacing="-2">We help experts</text>
+  <text x="72" y="290" font-family="Georgia, serif" font-size="68" font-weight="700" fill="#e8e8e8" letter-spacing="-2">publish daily content —</text>
+  <text x="72" y="378" font-family="Georgia, serif" font-size="64" font-style="italic" font-weight="400" fill="#00f0c8" letter-spacing="-1">without ever touching</text>
+  <text x="72" y="452" font-family="Georgia, serif" font-size="64" font-style="italic" font-weight="400" fill="#00f0c8" letter-spacing="-1">a camera.</text>
+
+  <!-- CTA BUTTON -->
+  <rect x="72" y="482" width="320" height="58" rx="8" fill="#00f0c8"/>
+  <text x="232" y="518" font-family="Courier New, monospace" font-size="16" font-weight="700" fill="#050505" text-anchor="middle" letter-spacing="1.5">WATCH FREE CASE STUDY →</text>
+
+  <!-- PROOF STRIP -->
+  <line x1="72" y1="568" x2="1128" y2="568" stroke="rgba(0,240,200,0.15)" stroke-width="1"/>
+  <text x="72" y="598" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#00f0c8">1M+</text>
+  <text x="112" y="598" font-family="Georgia, serif" font-size="14" fill="#9a9a9a"> views · one cloned reel</text>
+  <circle cx="330" cy="591" r="2" fill="rgba(0,240,200,0.4)"/>
+  <text x="348" y="598" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#00f0c8">30</text>
+  <text x="378" y="598" font-family="Georgia, serif" font-size="14" fill="#9a9a9a"> reels/month · zero shoots</text>
+  <circle cx="590" cy="591" r="2" fill="rgba(0,240,200,0.4)"/>
+  <text x="608" y="598" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#00f0c8">3</text>
+  <text x="624" y="598" font-family="Georgia, serif" font-size="14" fill="#9a9a9a"> active clone builds</text>
+  <circle cx="810" cy="591" r="2" fill="rgba(0,240,200,0.4)"/>
+  <text x="828" y="598" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#00f0c8">5 min</text>
+  <text x="884" y="598" font-family="Georgia, serif" font-size="14" fill="#9a9a9a"> daily to approve</text>
+
+  <!-- Twin watermark -->
+  <g transform="translate(1000, 310)" opacity="0.06">
     <path d="M -38 -90 L -38 -70 L -20 -85 L 0 -68 L 20 -85 L 38 -70 L 38 -90 Z" fill="#00f0c8"/>
     <circle cx="0" cy="-40" r="32" fill="none" stroke="#00f0c8" stroke-width="3"/>
     <path d="M -45 0 Q -50 60 -40 100 L 40 100 Q 50 60 45 0 Q 30 -10 0 -10 Q -30 -10 -45 0 Z" fill="none" stroke="#00f0c8" stroke-width="3"/>
