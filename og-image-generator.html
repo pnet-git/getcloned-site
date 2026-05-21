@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1200px; height: 630px; overflow: hidden; background: #050505; font-family: 'Georgia', serif; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- scanlines -->
+    <pattern id="scan" x="0" y="0" width="1" height="3" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="rgba(0,240,200,0.04)"/>
+    </pattern>
+    <!-- cyan glow gradient -->
+    <radialGradient id="glow" cx="15%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#00f0c8" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <!-- border gradient -->
+    <linearGradient id="borderGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00f0c8" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#00f0c8" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#00f0c8" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- BG -->
+  <rect width="1200" height="630" fill="#050505"/>
+
+  <!-- Glow -->
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Scanlines -->
+  <rect width="1200" height="630" fill="url(#scan)" opacity="0.5"/>
+
+  <!-- Border -->
+  <rect x="24" y="24" width="1152" height="582" rx="16" fill="none" stroke="url(#borderGrad)" stroke-width="1.5"/>
+
+  <!-- Corner accents TL -->
+  <path d="M 24 80 L 24 40 Q 24 24 40 24 L 80 24" stroke="#00f0c8" stroke-width="2" fill="none" opacity="0.9"/>
+  <!-- Corner accents BR -->
+  <path d="M 1176 550 L 1176 590 Q 1176 606 1160 606 L 1120 606" stroke="#00f0c8" stroke-width="2" fill="none" opacity="0.9"/>
+
+  <!-- LOGO DOT -->
+  <circle cx="72" cy="72" r="8" fill="#00f0c8"/>
+  <circle cx="72" cy="72" r="14" fill="#00f0c8" opacity="0.15"/>
+
+  <!-- LOGO TEXT -->
+  <text x="92" y="82" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#e8e8e8" letter-spacing="-0.5">Get</text>
+  <text x="132" y="82" font-family="Georgia, serif" font-size="28" font-style="italic" font-weight="400" fill="#00f0c8" letter-spacing="-0.5">Cloned</text>
+
+  <!-- TOP RIGHT TAG -->
+  <rect x="1040" y="52" width="132" height="32" rx="16" fill="rgba(0,240,200,0.1)" stroke="rgba(0,240,200,0.3)" stroke-width="1"/>
+  <circle cx="1060" cy="68" r="4" fill="#00f0c8"/>
+  <text x="1072" y="73" font-family="'Courier New', monospace" font-size="11" font-weight="600" fill="#00f0c8" letter-spacing="1.5">GETCLONED.IN</text>
+
+  <!-- MAIN HEADLINE -->
+  <text x="72" y="230" font-family="Georgia, serif" font-size="72" font-weight="700" fill="#e8e8e8" letter-spacing="-2">We help experts</text>
+  <text x="72" y="315" font-family="Georgia, serif" font-size="72" font-weight="700" fill="#e8e8e8" letter-spacing="-2">publish daily content —</text>
+  <text x="72" y="410" font-family="Georgia, serif" font-size="68" font-style="italic" font-weight="400" fill="#00f0c8" letter-spacing="-1">without ever touching</text>
+  <text x="72" y="490" font-family="Georgia, serif" font-size="68" font-style="italic" font-weight="400" fill="#00f0c8" letter-spacing="-1">a camera.</text>
+
+  <!-- BOTTOM PROOF STRIP -->
+  <line x1="72" y1="548" x2="1128" y2="548" stroke="rgba(0,240,200,0.15)" stroke-width="1"/>
+
+  <!-- Proof items -->
+  <text x="72" y="580" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#00f0c8">1M+</text>
+  <text x="116" y="580" font-family="Georgia, serif" font-size="15" fill="#9a9a9a"> views · one cloned reel</text>
+
+  <text x="72" y="580" font-family="Georgia, serif" font-size="14" fill="rgba(0,240,200,0.3)" x="340">·</text>
+  <circle cx="340" cy="573" r="2" fill="rgba(0,240,200,0.3)"/>
+
+  <text x="360" y="580" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#00f0c8">30</text>
+  <text x="392" y="580" font-family="Georgia, serif" font-size="15" fill="#9a9a9a"> reels/month · zero shoots</text>
+
+  <circle cx="620" cy="573" r="2" fill="rgba(0,240,200,0.3)"/>
+
+  <text x="640" y="580" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#00f0c8">3</text>
+  <text x="658" y="580" font-family="Georgia, serif" font-size="15" fill="#9a9a9a"> active clone builds live</text>
+
+  <circle cx="870" cy="573" r="2" fill="rgba(0,240,200,0.3)"/>
+
+  <text x="890" y="580" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#00f0c8">5 min</text>
+  <text x="948" y="580" font-family="Georgia, serif" font-size="15" fill="#9a9a9a"> daily to approve</text>
+
+  <!-- Twin illustration (right side subtle) -->
+  <g transform="translate(900, 180)" opacity="0.06">
+    <!-- King -->
+    <path d="M -38 -90 L -38 -70 L -20 -85 L 0 -68 L 20 -85 L 38 -70 L 38 -90 Z" fill="#00f0c8"/>
+    <circle cx="0" cy="-40" r="32" fill="none" stroke="#00f0c8" stroke-width="2"/>
+    <path d="M -45 0 Q -50 60 -40 100 L 40 100 Q 50 60 45 0 Q 30 -10 0 -10 Q -30 -10 -45 0 Z" fill="none" stroke="#00f0c8" stroke-width="2"/>
+    <!-- Twin -->
+    <g transform="translate(120, 0)">
+      <circle cx="0" cy="-40" r="32" fill="none" stroke="#00f0c8" stroke-width="2" stroke-dasharray="3,3"/>
+      <path d="M -45 0 Q -50 60 -40 100 L 40 100 Q 50 60 45 0 Q 30 -10 0 -10 Q -30 -10 -45 0 Z" fill="none" stroke="#00f0c8" stroke-width="2" stroke-dasharray="3,3"/>
+    </g>
+    <!-- Connection -->
+    <line x1="45" y1="-40" x2="75" y2="-40" stroke="#00f0c8" stroke-width="1.5" stroke-dasharray="4,4"/>
+  </g>
+</svg>
+</body>
+</html>
