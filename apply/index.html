@@ -538,22 +538,13 @@ function showToast() {
   const text = document.createElement('div');
   text.style.cssText = 'flex: 1; min-width: 0;';
   text.innerHTML = `
-    <div style="font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#e8e8e8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${lead.name}</div>
-    <div style="font-family:'Inter',sans-serif;font-size:11px;color:#9a9a9a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${lead.niche}</div>
-    <div style="display:flex;align-items:center;gap:6px;margin-top:3px;">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5d5d5d;">${lead.city}</span>
-      <span style="width:2px;height:2px;background:#5d5d5d;border-radius:50%;display:inline-block;"></span>
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#00f0c8;">${time}</span>
+    <div style="font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#e8e8e8;line-height:1.3;">
+      <span style="color:#00f0c8;">${lead.name}</span> applied for a strategy call
     </div>
+    <div style="font-family:'Inter',sans-serif;font-size:11px;color:#9a9a9a;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${lead.niche} · ${lead.city}</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5d5d5d;margin-top:2px;">${time}</div>
   `;
   toast.appendChild(text);
-
-  // Check icon
-  const check = document.createElement('div');
-  check.style.cssText = 'font-size:16px;flex-shrink:0;';
-  check.textContent = '✓';
-  check.style.color = '#00f0c8';
-  toast.appendChild(check);
 
   const container = document.getElementById('toastContainer');
   container.appendChild(toast);
