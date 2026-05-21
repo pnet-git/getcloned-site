@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>You're Booked — GetCloned</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--border:rgba(0,240,200,0.12);--border-strong:rgba(0,240,200,0.24);--text:#e8e8e8;--text-dim:#9a9a9a;--text-muted:#5d5d5d;--cyan:#00f0c8;--cyan-glow:rgba(0,240,200,0.25);--cyan-soft:rgba(0,240,200,0.08);--serif:'Fraunces',serif;--sans:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+html::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;background:repeating-linear-gradient(0deg,rgba(0,240,200,0.025) 0px,rgba(0,240,200,0.025) 1px,transparent 1px,transparent 3px);mix-blend-mode:overlay;opacity:0.6;}
+body::before{content:'';position:fixed;top:-300px;left:50%;width:1400px;height:800px;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(0,240,200,0.07) 0%,transparent 60%);pointer-events:none;z-index:0;}
+.wrap{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;}
+.navbar{padding:18px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
+.logo{font-family:var(--serif);font-weight:700;font-size:22px;letter-spacing:-0.02em;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:10px;}
+.logo-dot{width:8px;height:8px;background:var(--cyan);border-radius:50%;box-shadow:0 0 14px var(--cyan-glow);}
+.logo em{font-style:italic;font-weight:400;color:var(--cyan);}
+.main{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 32px;}
+.card{background:#0f0f10;border:1px solid var(--border-strong);border-radius:16px;padding:56px 52px;max-width:620px;width:100%;text-align:center;position:relative;box-shadow:0 0 60px -20px var(--cyan-glow);}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
+.check{width:64px;height:64px;background:var(--cyan-soft);border:1px solid var(--border-strong);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:28px;box-shadow:0 0 24px var(--cyan-glow);}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;}
+h1{font-family:var(--serif);font-size:36px;font-weight:700;letter-spacing:-0.025em;color:var(--text);margin-bottom:16px;line-height:1.1;}
+h1 em{font-style:italic;font-weight:400;color:var(--cyan);}
+.sub{font-family:var(--sans);font-size:16px;color:var(--text-dim);line-height:1.6;margin-bottom:36px;}
+.divider{width:40px;height:1px;background:var(--cyan);opacity:0.4;margin:0 auto 32px;}
+.what-next{text-align:left;margin-bottom:36px;}
+.what-next-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;}
+.step-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;}
+.step-num{width:26px;height:26px;min-width:26px;background:var(--cyan-soft);border:1px solid var(--border-strong);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cyan);}
+.step-text{font-family:var(--sans);font-size:14px;color:var(--text-dim);line-height:1.5;}
+.step-text strong{color:var(--text);font-weight:500;display:block;margin-bottom:2px;}
+.back-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+.back-btn:hover{color:var(--cyan);}
+.footer{padding:32px;text-align:center;border-top:1px solid var(--border);}
+.footer-meta{font-family:var(--mono);font-size:11px;color:var(--text-muted);text-transform:uppercase;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="navbar">
+    <a href="/" class="logo"><span class="logo-dot"></span><span>Get<em>Cloned</em></span></a>
+  </nav>
+  <main class="main">
+    <div class="card">
+      <div class="check">✓</div>
+      <div class="eyebrow">Strategy Session Confirmed</div>
+      <h1>You're booked.<br><em>The Cloning Engine awaits.</em></h1>
+      <p class="sub">Check your email for the confirmation and calendar invite. We're looking forward to mapping your opportunity on the call.</p>
+      <div class="divider"></div>
+      <div class="what-next">
+        <div class="what-next-label">What Happens Next</div>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text"><strong>Check your email</strong>You'll receive a calendar invite with the call link. Add it to your calendar now.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text"><strong>Watch the case study (if you haven't)</strong>The call will make 10× more sense if you've watched it. <a href="/case-study/video/" style="color:var(--cyan);">Watch it here →</a></div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text"><strong>Come ready with one question</strong>What's your biggest content bottleneck right now? That's where we'll start.</div>
+        </div>
+      </div>
+      <a href="/" class="back-btn">← Back to GetCloned</a>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer-meta">© 2026 GetCloned · Peepoye Network · Gurugram, India</div>
+  </footer>
+</div>
+</body>
+</html>

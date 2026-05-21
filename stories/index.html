@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Stories — GetCloned</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--bg-card:#0f0f10;--border:rgba(0,240,200,0.12);--border-strong:rgba(0,240,200,0.24);--text:#e8e8e8;--text-dim:#9a9a9a;--text-muted:#5d5d5d;--cyan:#00f0c8;--cyan-glow:rgba(0,240,200,0.25);--cyan-soft:rgba(0,240,200,0.08);--serif:'Fraunces',serif;--sans:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+html::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;background:repeating-linear-gradient(0deg,rgba(0,240,200,0.025) 0px,rgba(0,240,200,0.025) 1px,transparent 1px,transparent 3px);mix-blend-mode:overlay;opacity:0.6;}
+.navbar{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-content:space-between;align-items:center;background:rgba(5,5,5,0.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:var(--serif);font-weight:700;font-size:22px;letter-spacing:-0.02em;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:10px;}
+.logo-dot{width:8px;height:8px;background:var(--cyan);border-radius:50%;box-shadow:0 0 14px var(--cyan-glow);}
+.logo em{font-style:italic;font-weight:400;color:var(--cyan);}
+.nav-links{display:flex;gap:4px;align-items:center;}
+.nav-links a{font-family:var(--mono);font-size:12px;color:var(--text-dim);text-decoration:none;padding:10px 16px;text-transform:uppercase;letter-spacing:0.04em;transition:color 0.15s;}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan);}
+.nav-links .cta-link{background:var(--cyan);color:var(--bg);font-weight:600;margin-left:10px;border-radius:6px;}
+.main{max-width:900px;margin:0 auto;padding:80px 32px 120px;}
+.page-eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;}
+h1{font-family:var(--serif);font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-0.03em;color:var(--text);margin-bottom:16px;line-height:1.05;}
+h1 em{font-style:italic;font-weight:400;color:var(--cyan);}
+.page-sub{font-family:var(--sans);font-size:17px;color:var(--text-dim);line-height:1.6;margin-bottom:64px;max-width:580px;}
+.stories-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:24px;}
+.story-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:36px 32px;text-decoration:none;display:block;transition:all 0.2s;position:relative;overflow:hidden;}
+.story-card::before{content:'';position:absolute;top:-1px;left:-1px;width:24px;height:24px;border-top:1px solid var(--cyan);border-left:1px solid var(--cyan);border-radius:12px 0 0 0;box-shadow:0 0 10px var(--cyan-glow);}
+.story-card:hover{border-color:var(--border-strong);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.4);}
+.story-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;}
+.story-title{font-family:var(--serif);font-size:24px;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin-bottom:12px;line-height:1.15;}
+.story-excerpt{font-family:var(--sans);font-size:15px;color:var(--text-dim);line-height:1.6;margin-bottom:24px;}
+.story-read{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);}
+.footer{padding:40px 32px;text-align:center;border-top:1px solid var(--border);margin-top:40px;}
+.footer-links{display:flex;justify-content:center;gap:32px;margin-bottom:16px;flex-wrap:wrap;}
+.footer-links a{font-family:var(--mono);font-size:11px;color:var(--text-muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.15s;}
+.footer-links a:hover{color:var(--cyan);}
+.footer-meta{font-family:var(--mono);font-size:11px;color:var(--text-muted);text-transform:uppercase;}
+@media(max-width:600px){.navbar{padding:14px 20px;}.main{padding:50px 20px 80px;}.stories-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="/" class="logo"><span class="logo-dot"></span><span>Get<em>Cloned</em></span></a>
+  <div class="nav-links">
+    <a href="/stories" class="active">Stories</a>
+    <a href="/blogs">Blogs</a>
+    <a href="/case-study" class="cta-link">Free Case Study →</a>
+  </div>
+</nav>
+<main class="main">
+  <div class="page-eyebrow">· Worldview · Editorial · Truth</div>
+  <h1>Stories that change<br>how <em>experts think.</em></h1>
+  <p class="page-sub">Not tactics. Not hacks. These are the ideas that shift how you see your mission — and why your presence in the world matters more than your production schedule.</p>
+  <div class="stories-grid">
+    <a href="/stories/the-king-and-the-messenger/" class="story-card">
+      <div class="story-tag">· The Founding Story</div>
+      <div class="story-title">The King & The Messenger</div>
+      <div class="story-excerpt">Kings never delivered their own messages. The moment a King got on a horse to carry a decree, he stopped being a King. Every expert making their own content is making the same mistake.</div>
+      <div class="story-read">Read The Story →</div>
+    </a>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/stories">Stories</a>
+    <a href="/blogs">Blogs</a>
+    <a href="/case-study">Free Case Study</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+  </div>
+  <div class="footer-meta">© 2026 GetCloned · Peepoye Network · Gurugram, India</div>
+</footer>
+</body>
+</html>

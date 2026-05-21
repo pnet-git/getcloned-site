@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The King & The Messenger — GetCloned</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--bg-card:#0f0f10;--border:rgba(0,240,200,0.12);--text:#e8e8e8;--text-dim:#9a9a9a;--text-muted:#5d5d5d;--cyan:#00f0c8;--cyan-glow:rgba(0,240,200,0.25);--serif:'Fraunces',serif;--sans:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;}
+html::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;background:repeating-linear-gradient(0deg,rgba(0,240,200,0.025) 0px,rgba(0,240,200,0.025) 1px,transparent 1px,transparent 3px);mix-blend-mode:overlay;opacity:0.6;}
+.navbar{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-content:space-between;align-items:center;background:rgba(5,5,5,0.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:var(--serif);font-weight:700;font-size:22px;letter-spacing:-0.02em;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:10px;}
+.logo-dot{width:8px;height:8px;background:var(--cyan);border-radius:50%;box-shadow:0 0 14px var(--cyan-glow);}
+.logo em{font-style:italic;font-weight:400;color:var(--cyan);}
+.nav-links{display:flex;gap:4px;}
+.nav-links a{font-family:var(--mono);font-size:12px;color:var(--text-dim);text-decoration:none;padding:10px 16px;text-transform:uppercase;letter-spacing:0.04em;transition:color 0.15s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-links .cta-link{background:var(--cyan);color:var(--bg);font-weight:600;margin-left:10px;border-radius:6px;}
+.main{max-width:720px;margin:0 auto;padding:80px 32px 120px;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--text-muted);text-decoration:none;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:40px;transition:color 0.15s;}
+.back-link:hover{color:var(--cyan);}
+.page-eyebrow{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;}
+h1{font-family:var(--serif);font-size:clamp(40px,6vw,56px);font-weight:700;letter-spacing:-0.03em;color:var(--text);margin-bottom:20px;line-height:1.1;}
+h1 em{font-style:italic;font-weight:400;color:var(--cyan);}
+.meta{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+.content{font-size:16px;color:var(--text-dim);line-height:1.8;}
+.content h2{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--text);margin:48px 0 20px;}
+.content h2 em{font-style:italic;font-weight:400;color:var(--cyan);}
+.content p{margin-bottom:20px;}
+.content strong{color:var(--text);font-weight:600;}
+.content em{color:var(--cyan);font-style:italic;}
+.quote{border-left:3px solid var(--cyan);padding-left:24px;margin:32px 0;color:var(--text);font-family:var(--serif);font-size:18px;font-weight:500;line-height:1.7;}
+.footer{padding:40px 32px;text-align:center;border-top:1px solid var(--border);margin-top:80px;}
+.footer-links{display:flex;justify-content:center;gap:32px;margin-bottom:16px;flex-wrap:wrap;}
+.footer-links a{font-family:var(--mono);font-size:11px;color:var(--text-muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.15s;}
+.footer-links a:hover{color:var(--cyan);}
+.footer-meta{font-family:var(--mono);font-size:11px;color:var(--text-muted);text-transform:uppercase;}
+@media(max-width:600px){.main{padding:50px 20px 80px;}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="/" class="logo"><span class="logo-dot"></span><span>Get<em>Cloned</em></span></a>
+  <div class="nav-links">
+    <a href="/stories">Stories</a>
+    <a href="/blogs">Blogs</a>
+    <a href="/case-study" class="cta-link">Free Case Study →</a>
+  </div>
+</nav>
+<main class="main">
+  <a href="/stories" class="back-link">← Back to Stories</a>
+  <div class="page-eyebrow">The Founding Story</div>
+  <h1>The King & <em>The Messenger</em></h1>
+  <div class="meta">By Akassh Ashok Gupta · 8 min read</div>
+  <article class="content">
+    <p>Kings never delivered their own messages.</p>
+    <p>Think about it. When a King needed to send a decree to a distant kingdom, he didn't saddle up a horse and ride for weeks. He didn't spend 40% of his reign on the road, learning to be a better messenger. He appointed someone. A trusted advisor. A messenger. And that messenger became the vehicle for the King's words.</p>
+    <p>The King stayed in the palace. Making decisions. Building strategy. Leading the kingdom.</p>
+    <p>The messenger traveled. Carried the word. Delivered with authority and presence.</p>
+    <div class="quote">
+      The moment a King grabbed a horse and started delivering his own messages, he stopped being King. He became a messenger.
+    </div>
+    <h2>Why Every Expert Is Making The Same Mistake</h2>
+    <p>Today's experts are doing the exact opposite.</p>
+    <p>A doctor with 20 years of clinical expertise is spending 3 hours a week scripting. A coach building a movement is editing her own videos. A wealth manager who could close 10 consulting calls per month is spending 8 hours on content production mechanics.</p>
+    <p>They're not making their expertise better. They're becoming better at iMovie.</p>
+    <p>Every hour spent on production is an hour stolen from their actual mission. From seeing patients. From coaching clients. From building wealth strategies. From moving their message into the world with authority.</p>
+    <p>The invisible cost isn't just time. It's <strong>opportunity cost</strong>. That's the real wound.</p>
+    <h2>The Hidden Price Of DIY Content</h2>
+    <p>A doctor who could bill $200/hr for clinical time is now worth $0/hr while editing.</p>
+    <p>A coach building a $50K/month business is spinning on a treadmill of thumbnails instead of selling.</p>
+    <p>A wealth manager misses the exact client inquiry that came in while she was uploading a video.</p>
+    <p>This isn't about being lazy. It's about math. It's about <em>unit economics</em>. It's about realizing that the cost of doing content production yourself isn't just your time — it's every opportunity that didn't happen while you were distracted.</p>
+    <h2>What If Your Twin Could Be The Messenger?</h2>
+    <p>What if you could have a version of yourself — your voice, your face, your energy — publishing daily while you slept?</p>
+    <p>Not a fake. Not a lookalike. An <strong>identical</strong> clone using your actual voice, your actual face, your actual presence.</p>
+    <p>Your Twin stays focused on what the Twin is made for: carrying your message. Publishing. Building visibility. Generating leads.</p>
+    <p>You stay focused on what <em>you're</em> made for: your mission. Your expertise. Your clients. Your impact.</p>
+    <p>The King doesn't deliver the message. The messenger does.</p>
+    <h2>That's The Cloning Engine</h2>
+    <p>We spent 2 years building this. Training AI models on expert voices and faces. Learning to produce content that doesn't just look real — it <em>is</em> real, because it's you.</p>
+    <p>Your Twin gets trained once. Then publishes forever.</p>
+    <p>No more Mondays spent scriptwriting. No more Wednesday nights editing. No more content guilt on Friday.</p>
+    <p>Just daily visibility. Daily leads. Daily authority.</p>
+    <p>While you do what you were actually born to do.</p>
+    <div class="quote">
+      The King's job is to be King.<br>The Messenger's job is to carry the message.<br><br>Why are you doing both?
+    </div>
+    <p>We work with a limited number of experts per quarter. If you're ready to let your Twin do the work, <a href="/case-study">watch the free case study</a>. 21 minutes. Everything you need to know.</p>
+  </article>
+</main>
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/stories">Stories</a>
+    <a href="/blogs">Blogs</a>
+    <a href="/case-study">Free Case Study</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+  </div>
+  <div class="footer-meta">© 2026 GetCloned · Peepoye Network · Gurugram, India</div>
+</footer>
+</body>
+</html>
