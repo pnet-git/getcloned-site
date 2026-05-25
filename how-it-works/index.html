@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>How GetCloned Builds Your Engine — The 4-Pillar Flywheel</title>
+<meta name="description" content="AI content cloning is not a tool. It's a four-pillar engine: Content Strategy, The Clone, Production Pipeline, and Automation Layer — built once, then compounding on autopilot. Here's how GetCloned owns all four end-to-end."/>
+<meta property="og:title" content="How GetCloned Builds Your Engine — The 4-Pillar Flywheel"/>
+<meta property="og:description" content="The full mechanism: Build phase, Run phase, and the flywheel that compounds your reach, authority, and revenue without you touching a camera."/>
+<meta property="og:url" content="https://getcloned.in/how-it-works/"/>
+<meta property="og:type" content="article"/>
+<meta property="og:image" content="https://getcloned.in/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="canonical" href="https://getcloned.in/how-it-works/"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script defer src="/_vercel/insights/script.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How GetCloned Builds an AI Content Engine for Experts",
+  "description": "The 4-pillar flywheel: Content Strategy, The Clone, Production Pipeline, Automation Layer — built in two phases (Build + Run) and compounded over time.",
+  "step": [
+    {"@type": "HowToStep", "name": "Pillar 1 — Content Strategy", "text": "Deep discovery session to extract the expert's vision, mission, key phrases, and life experiences. These are mapped into custom content pillars unique to the expert."},
+    {"@type": "HowToStep", "name": "Pillar 2 — The Clone", "text": "Persona build covering mannerisms, posture, identity, body language, expressions, energy, voice tones, and modulation — using proprietary frameworks so the clone feels indistinguishable from the expert."},
+    {"@type": "HowToStep", "name": "Pillar 3 — Production Pipeline", "text": "Algorithm-optimised production engine with SEO on every reel, retention engineering, platform-specific frameworks, and scripting aligned to the expert's pillars."},
+    {"@type": "HowToStep", "name": "Pillar 4 — Automation Layer", "text": "End-to-end automation from discovery to publishing to cross-platform distribution to lead hunting to monetisation — plugging every leak so the engine becomes a revenue machine on autopilot."}
+  ]
+}
+</script>
+
+<style>
+:root{--bg:#050505;--bg-card:#0f0f10;--bg-elevated:#0a0a0a;--border:rgba(0,240,200,0.12);--border-strong:rgba(0,240,200,0.24);--text:#e8e8e8;--text-dim:#9a9a9a;--text-muted:#5d5d5d;--cyan:#00f0c8;--cyan-bright:#5af5d5;--cyan-glow:rgba(0,240,200,0.25);--cyan-soft:rgba(0,240,200,0.08);--serif:'Fraunces',serif;--sans:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;}
+html::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;background:repeating-linear-gradient(0deg,rgba(0,240,200,0.025) 0px,rgba(0,240,200,0.025) 1px,transparent 1px,transparent 3px);mix-blend-mode:overlay;opacity:0.6;}
+
+/* NAV */
+.navbar{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-content:space-between;align-items:center;background:rgba(5,5,5,0.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:var(--serif);font-weight:700;font-size:22px;letter-spacing:-0.02em;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:10px;}
+.logo-dot{width:8px;height:8px;background:var(--cyan);border-radius:50%;box-shadow:0 0 14px var(--cyan-glow);}
+.logo em{font-style:italic;font-weight:400;color:var(--cyan);}
+.nav-links{display:flex;gap:4px;}
+.nav-links a{font-family:var(--mono);font-size:12px;color:var(--text-dim);text-decoration:none;padding:10px 16px;text-transform:uppercase;letter-spacing:0.04em;transition:color 0.15s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-links .cta-link{background:var(--cyan);color:var(--bg);font-weight:600;margin-left:10px;border-radius:6px;}
+
+/* HERO */
+.hero{max-width:900px;margin:0 auto;padding:80px 32px 40px;text-align:center;}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:24px;}
+.hero h1{font-family:var(--serif);font-size:clamp(36px,5.5vw,58px);font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:24px;}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--cyan);}
+.hero-sub{font-family:var(--sans);font-size:18px;color:var(--text-dim);line-height:1.7;max-width:720px;margin:0 auto 16px;}
+.hero-sub strong{color:var(--text);font-weight:500;}
+
+/* TLDR */
+.tldr-wrap{max-width:760px;margin:32px auto 0;padding:0 32px;}
+.tldr{background:rgba(0,240,200,0.05);border:1px solid rgba(0,240,200,0.15);border-radius:10px;padding:22px 26px;}
+.tldr-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;}
+.tldr p{font-size:14.5px;color:var(--text-dim);line-height:1.75;margin:0;}
+
+/* FLYWHEEL VISUAL */
+.flywheel-section{max-width:1040px;margin:60px auto 30px;padding:0 32px;}
+.flywheel-frame{background:linear-gradient(180deg,rgba(0,240,200,0.04) 0%,rgba(0,240,200,0.01) 100%);border:1px solid var(--border-strong);border-radius:16px;padding:50px 30px;position:relative;overflow:hidden;}
+.flywheel-frame::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(0,240,200,0.08) 0%,transparent 60%);pointer-events:none;}
+.flywheel-eyebrow{text-align:center;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px;position:relative;}
+.flywheel-title{text-align:center;font-family:var(--serif);font-size:24px;font-weight:600;color:var(--text);margin-bottom:36px;position:relative;}
+.flywheel-title em{font-style:italic;color:var(--cyan);font-weight:400;}
+.flywheel-svg-wrap{display:flex;justify-content:center;position:relative;}
+.flywheel-svg{width:100%;max-width:720px;height:auto;}
+.flywheel-legend{display:flex;justify-content:center;gap:32px;margin-top:32px;flex-wrap:wrap;position:relative;}
+.legend-item{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;}
+.legend-build{color:var(--cyan);}
+.legend-run{color:var(--text-dim);}
+.legend-dot{width:10px;height:10px;border-radius:50%;}
+.legend-dot.build{background:var(--cyan);box-shadow:0 0 10px var(--cyan-glow);}
+.legend-dot.run{background:#5af5d5;opacity:0.5;}
+
+/* PHASE BLOCKS */
+.phase-section{max-width:900px;margin:60px auto 0;padding:0 32px;}
+.phase-block{margin-bottom:60px;}
+.phase-header{display:flex;align-items:center;gap:16px;margin-bottom:8px;border-bottom:1px solid var(--border);padding-bottom:16px;}
+.phase-num{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);background:rgba(0,240,200,0.08);padding:6px 12px;border-radius:4px;border:1px solid var(--border-strong);}
+.phase-title{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--text);}
+.phase-title em{font-style:italic;color:var(--cyan);font-weight:400;}
+.phase-sub{font-family:var(--sans);font-size:15px;color:var(--text-dim);margin-top:14px;margin-bottom:36px;line-height:1.7;}
+
+/* PILLAR CARD */
+.pillar{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px;margin-bottom:24px;position:relative;transition:border-color 0.2s;}
+.pillar:hover{border-color:var(--border-strong);}
+.pillar-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);background:rgba(0,240,200,0.06);padding:5px 10px;border-radius:4px;margin-bottom:18px;}
+.pillar-name{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.25;}
+.pillar-name em{font-style:italic;color:var(--cyan);font-weight:400;}
+.pillar-tagline{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;}
+.pillar-body{font-size:15px;color:var(--text-dim);line-height:1.8;}
+.pillar-body p{margin-bottom:14px;}
+.pillar-body p:last-child{margin-bottom:0;}
+.pillar-body strong{color:var(--text);font-weight:500;}
+.pillar-body em{color:var(--cyan);font-style:italic;}
+.pillar-highlight{margin-top:18px;padding:14px 18px;background:rgba(0,240,200,0.04);border-left:2px solid var(--cyan);border-radius:0 6px 6px 0;font-size:14px;color:var(--text);font-style:italic;}
+
+/* FLYWHEEL EFFECT BLOCK */
+.flywheel-effect{max-width:840px;margin:30px auto 60px;padding:0 32px;}
+.flywheel-effect-inner{background:rgba(0,240,200,0.04);border:1px solid var(--border-strong);border-radius:14px;padding:44px 36px;text-align:center;}
+.flywheel-effect-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;}
+.flywheel-effect-headline{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--text);margin-bottom:20px;line-height:1.3;}
+.flywheel-effect-headline em{font-style:italic;color:var(--cyan);font-weight:400;}
+.flywheel-effect-body{font-size:15.5px;color:var(--text-dim);line-height:1.8;max-width:680px;margin:0 auto;}
+.flywheel-effect-body strong{color:var(--text);font-weight:500;}
+
+/* CLOSING */
+.closing-section{max-width:820px;margin:40px auto 60px;padding:0 32px;text-align:center;}
+.closing-quote{font-family:var(--serif);font-size:24px;font-weight:500;color:var(--text);line-height:1.4;margin-bottom:20px;font-style:italic;}
+.closing-quote em{color:var(--cyan);font-style:italic;}
+.closing-sub{font-size:16px;color:var(--text-dim);line-height:1.7;}
+.closing-sub strong{color:var(--text);font-weight:500;}
+
+/* CTA BOX */
+.cta-box{max-width:780px;margin:40px auto 80px;padding:0 32px;}
+.cta-box-inner{background:rgba(0,240,200,0.08);border:1px solid var(--border-strong);border-radius:14px;padding:44px 36px;text-align:center;}
+.cta-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;}
+.cta-headline{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--text);margin-bottom:12px;line-height:1.3;}
+.cta-sub{font-size:15px;color:var(--text-dim);margin-bottom:26px;}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;background:var(--cyan);color:var(--bg);padding:15px 32px;border-radius:8px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:transform 0.15s;}
+.cta-btn:hover{transform:translateY(-2px);}
+.cta-meta{font-family:var(--mono);font-size:11px;color:var(--text-muted);margin-top:14px;}
+
+/* AUTHOR */
+.author-box{max-width:780px;margin:0 auto 80px;padding:40px 32px 0;border-top:1px solid var(--border);}
+.author-label{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;}
+.author-name{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.author-title{font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:0.06em;margin-bottom:14px;}
+.author-bio{font-size:14px;color:var(--text-dim);line-height:1.8;margin-bottom:20px;}
+.author-links{display:flex;gap:20px;flex-wrap:wrap;}
+.author-links a{font-family:var(--mono);font-size:11px;color:var(--cyan);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;}
+
+/* FOOTER */
+.footer{padding:40px 32px;text-align:center;border-top:1px solid var(--border);}
+.footer-links{display:flex;justify-content:center;gap:32px;margin-bottom:16px;flex-wrap:wrap;}
+.footer-links a{font-family:var(--mono);font-size:11px;color:var(--text-muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;}
+.footer-links a:hover{color:var(--cyan);}
+.footer-meta{font-family:var(--mono);font-size:11px;color:var(--text-muted);text-transform:uppercase;}
+
+@media(max-width:680px){
+  .hero{padding:60px 22px 30px;}
+  .flywheel-section,.phase-section,.flywheel-effect,.closing-section,.cta-box{padding:0 22px;}
+  .flywheel-frame{padding:36px 18px;}
+  .flywheel-effect-inner,.cta-box-inner{padding:32px 22px;}
+  .pillar{padding:24px 22px;}
+  .phase-title{font-size:24px;}
+  .nav-links a:not(.cta-link){display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="/" class="logo"><span class="logo-dot"></span><span>Get<em>Cloned</em></span></a>
+  <div class="nav-links">
+    <a href="/blogs">Blogs</a>
+    <a href="/stories">Stories</a>
+    <a href="/case-study" class="cta-link">Free Case Study →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">· The Mechanism</div>
+  <h1>How GetCloned Builds <em>Your Engine.</em></h1>
+  <p class="hero-sub"><strong>AI content cloning is not a tool.</strong> It's a four-pillar engine — built in two phases, then compounding on autopilot. Most services give you one pillar. We own all four end-to-end.</p>
+</section>
+
+<div class="tldr-wrap">
+  <div class="tldr">
+    <div class="tldr-label">TL;DR</div>
+    <p><strong style="color:var(--text)">Phase 1 — Build:</strong> Content Strategy (Pillar 1) + The Clone (Pillar 2). Set up once, deeply customised. <strong style="color:var(--text)">Phase 2 — Run:</strong> Production Pipeline (Pillar 3) + Automation Layer (Pillar 4). Operates daily without you. Then the flywheel: every output from Run gives data back to Build — sharper clones, sharper strategy, sharper content, compounding reach and revenue over time.</p>
+  </div>
+</div>
+
+<!-- FLYWHEEL VISUAL -->
+<section class="flywheel-section">
+  <div class="flywheel-frame">
+    <div class="flywheel-eyebrow">· The 4-Pillar Flywheel</div>
+    <div class="flywheel-title">Your Engine. <em>Compounding.</em></div>
+
+    <div class="flywheel-svg-wrap">
+      <svg class="flywheel-svg" viewBox="0 0 720 620" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#00f0c8" stop-opacity="0.35"/>
+            <stop offset="50%" stop-color="#00f0c8" stop-opacity="0.08"/>
+            <stop offset="100%" stop-color="#00f0c8" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#00f0c8" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#00f0c8" stop-opacity="0"/>
+          </radialGradient>
+          <marker id="arrowCyan" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#00f0c8"/>
+          </marker>
+          <marker id="arrowDim" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#5af5d5" opacity="0.55"/>
+          </marker>
+        </defs>
+
+        <!-- Center glow -->
+        <circle cx="360" cy="310" r="200" fill="url(#centerGlow)"/>
+
+        <!-- Outer ring -->
+        <circle cx="360" cy="310" r="220" fill="none" stroke="#00f0c8" stroke-opacity="0.12" stroke-width="1" stroke-dasharray="2 6"/>
+
+        <!-- Curved flow arrows between nodes (clockwise) -->
+        <path d="M 360 130 Q 510 130 540 280" fill="none" stroke="#00f0c8" stroke-width="1.5" stroke-opacity="0.55" marker-end="url(#arrowCyan)"/>
+        <path d="M 540 340 Q 510 490 360 490" fill="none" stroke="#5af5d5" stroke-width="1.5" stroke-opacity="0.45" marker-end="url(#arrowDim)"/>
+        <path d="M 360 490 Q 210 490 180 340" fill="none" stroke="#5af5d5" stroke-width="1.5" stroke-opacity="0.45" marker-end="url(#arrowDim)"/>
+        <path d="M 180 280 Q 210 130 360 130" fill="none" stroke="#00f0c8" stroke-width="1.5" stroke-opacity="0.55" marker-end="url(#arrowCyan)"/>
+
+        <!-- Inner feedback indicator -->
+        <circle cx="360" cy="310" r="62" fill="#050505" stroke="#00f0c8" stroke-opacity="0.4" stroke-width="1.5"/>
+        <text x="360" y="298" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="2" fill="#00f0c8" font-weight="600">YOUR</text>
+        <text x="360" y="316" text-anchor="middle" font-family="Fraunces,serif" font-size="16" font-style="italic" fill="#e8e8e8" font-weight="600">Engine</text>
+        <text x="360" y="332" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" letter-spacing="1.5" fill="#9a9a9a">COMPOUNDING</text>
+
+        <!-- NODE 1 — TOP — Content Strategy (BUILD) -->
+        <g transform="translate(360, 90)">
+          <circle r="44" fill="url(#nodeGlow)"/>
+          <circle r="36" fill="#0f0f10" stroke="#00f0c8" stroke-width="1.5"/>
+          <text y="-3" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#00f0c8" letter-spacing="1" font-weight="600">PILLAR 1</text>
+          <text y="12" text-anchor="middle" font-family="Fraunces,serif" font-size="14" fill="#e8e8e8" font-weight="600">Strategy</text>
+        </g>
+        <text x="360" y="32" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#00f0c8" letter-spacing="2" font-weight="600">· BUILD</text>
+
+        <!-- NODE 2 — RIGHT — The Clone (BUILD) -->
+        <g transform="translate(580, 310)">
+          <circle r="44" fill="url(#nodeGlow)"/>
+          <circle r="36" fill="#0f0f10" stroke="#00f0c8" stroke-width="1.5"/>
+          <text y="-3" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#00f0c8" letter-spacing="1" font-weight="600">PILLAR 2</text>
+          <text y="12" text-anchor="middle" font-family="Fraunces,serif" font-size="14" fill="#e8e8e8" font-weight="600">Clone</text>
+        </g>
+        <text x="660" y="314" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#00f0c8" letter-spacing="2" font-weight="600">· BUILD</text>
+
+        <!-- NODE 3 — BOTTOM — Production (RUN) -->
+        <g transform="translate(360, 530)">
+          <circle r="44" fill="url(#nodeGlow)" opacity="0.7"/>
+          <circle r="36" fill="#0f0f10" stroke="#5af5d5" stroke-opacity="0.6" stroke-width="1.5"/>
+          <text y="-3" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5af5d5" letter-spacing="1" font-weight="600">PILLAR 3</text>
+          <text y="12" text-anchor="middle" font-family="Fraunces,serif" font-size="14" fill="#e8e8e8" font-weight="600">Pipeline</text>
+        </g>
+        <text x="360" y="590" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#5af5d5" letter-spacing="2" font-weight="600" opacity="0.8">· RUN</text>
+
+        <!-- NODE 4 — LEFT — Automation (RUN) -->
+        <g transform="translate(140, 310)">
+          <circle r="44" fill="url(#nodeGlow)" opacity="0.7"/>
+          <circle r="36" fill="#0f0f10" stroke="#5af5d5" stroke-opacity="0.6" stroke-width="1.5"/>
+          <text y="-3" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5af5d5" letter-spacing="1" font-weight="600">PILLAR 4</text>
+          <text y="12" text-anchor="middle" font-family="Fraunces,serif" font-size="14" fill="#e8e8e8" font-weight="600">Automate</text>
+        </g>
+        <text x="60" y="314" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#5af5d5" letter-spacing="2" font-weight="600" opacity="0.8">· RUN</text>
+
+        <!-- Feedback loop (inner curve showing Run → Build data) -->
+        <path d="M 270 400 Q 220 360 240 290" fill="none" stroke="#00f0c8" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3 4"/>
+        <path d="M 450 400 Q 500 360 480 290" fill="none" stroke="#00f0c8" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3 4"/>
+        <text x="360" y="412" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#00f0c8" opacity="0.55" letter-spacing="1.5">DATA FEEDBACK</text>
+      </svg>
+    </div>
+
+    <div class="flywheel-legend">
+      <div class="legend-item legend-build"><span class="legend-dot build"></span>Build Phase (Once)</div>
+      <div class="legend-item legend-run"><span class="legend-dot run"></span>Run Phase (Continuous)</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 1 BUILD -->
+<section class="phase-section">
+  <div class="phase-block">
+    <div class="phase-header">
+      <span class="phase-num">· Phase 1</span>
+      <h2 class="phase-title">The <em>Build.</em></h2>
+    </div>
+    <p class="phase-sub">A one-time, deeply customised foundation. We don't templatise this. Every expert gets a strategy and a clone built ground-up around <em>who they actually are</em>. This is what most services skip — and why most "AI cloning" fails for serious experts.</p>
+
+    <!-- PILLAR 1 -->
+    <div class="pillar">
+      <div class="pillar-tag">🧠 Pillar 1 · Build Phase</div>
+      <h3 class="pillar-name">Content <em>Strategy</em></h3>
+      <p class="pillar-tagline">The Brain of the Machine</p>
+      <div class="pillar-body">
+        <p>It starts with a <strong>deep discovery session</strong>. We extract your vision, your mission, your key phrases, your life experiences, your worldview — and we map them into <strong>content pillars that are uniquely yours</strong>.</p>
+        <p>Not a template. Not a niche playbook. A strategy built around who you actually are and what you actually stand for.</p>
+        <p>Without this foundation, even the best clone is just a face talking into the void.</p>
+        <div class="pillar-highlight">Every piece of content has a job — build trust, attract leads, nurture clients, or sell your offer. Strategy gives the engine its purpose.</div>
+      </div>
+    </div>
+
+    <!-- PILLAR 2 -->
+    <div class="pillar">
+      <div class="pillar-tag">🧬 Pillar 2 · Build Phase</div>
+      <h3 class="pillar-name">The <em>Clone</em></h3>
+      <p class="pillar-tagline">The Face of the Machine</p>
+      <div class="pillar-body">
+        <p>This is where most services stop at "the avatar." We go much deeper. <strong>We build your persona.</strong></p>
+        <p>Mannerisms. Postures. Identity. What you wear. Body language. Expressions. Confidence level. Your energy. Your voice — not just the sound, but the <em>tones, the modulation, the pauses, the rhythm</em>.</p>
+        <p>The result is a clone that doesn't just look like you. It <strong>feels like you</strong>. Even your spouse shouldn't be able to tell.</p>
+        <div class="pillar-highlight">This level of fidelity is only possible because of the proprietary frameworks we've built — the same frameworks already running for clients like Arfeen Khan and Dr. Madhu Sudan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 2 RUN -->
+<section class="phase-section">
+  <div class="phase-block">
+    <div class="phase-header">
+      <span class="phase-num">· Phase 2</span>
+      <h2 class="phase-title">The <em>Run.</em></h2>
+    </div>
+    <p class="phase-sub">Once Build is done, Run takes over — daily, automatically, without you. This is the part that turns a clone into a <em>compounding engine</em>. Production engineered for the algorithm. Automation engineered for revenue.</p>
+
+    <!-- PILLAR 3 -->
+    <div class="pillar">
+      <div class="pillar-tag">⚙️ Pillar 3 · Run Phase</div>
+      <h3 class="pillar-name">Production <em>Pipeline</em></h3>
+      <p class="pillar-tagline">The Engine Room</p>
+      <div class="pillar-body">
+        <p>This is where <strong>19 years of enterprise automation</strong> meets content production.</p>
+        <p>Every reel and every video is optimised for the algorithm — <strong>SEO baked in, retention engineered, reach maximised.</strong> Ideas are rotated through your content pillars. Scripting frameworks are aligned to your message. Editing decisions are made with platform-specific data — what works on Instagram fails on YouTube, what works on LinkedIn fails on Facebook.</p>
+        <p>This isn't content creation. It's <strong>content engineering</strong>.</p>
+        <div class="pillar-highlight">Every piece is built to win the algorithm: right hook, right retention, right reach, right engagement. Data drives every decision.</div>
+      </div>
+    </div>
+
+    <!-- PILLAR 4 -->
+    <div class="pillar">
+      <div class="pillar-tag">🔄 Pillar 4 · Run Phase</div>
+      <h3 class="pillar-name">Automation <em>Layer</em></h3>
+      <p class="pillar-tagline">The Autopilot</p>
+      <div class="pillar-body">
+        <p>This is the glue — and it's what makes the difference between a system that <em>costs you money</em> and a system that <em>makes you money</em>.</p>
+        <p>End-to-end automation from <strong>discovery → ideation → production → publishing → cross-platform distribution → lead hunting → monetisation</strong>. Every handoff seamless. Every leak plugged.</p>
+        <p>When this layer is built right, you get more than reach and authority. You get a <strong>revenue machine that runs on autopilot</strong> — already proven with our clients.</p>
+        <p>When it's built wrong, you have leaks everywhere — and content becomes a loss-making affair instead of a revenue scale-up.</p>
+        <div class="pillar-highlight">Your only job: batch-approve 10 reels in 5 minutes. The machine handles ideation, production, publishing, distribution, and monetisation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLYWHEEL EFFECT -->
+<section class="flywheel-effect">
+  <div class="flywheel-effect-inner">
+    <div class="flywheel-effect-eyebrow">· The Flywheel Effect</div>
+    <h2 class="flywheel-effect-headline">Run feeds <em>Build.</em> Build sharpens <em>Run.</em></h2>
+    <p class="flywheel-effect-body">Every reel that goes out gives us data. What worked. What didn't. What hooks pulled. What scripts converted. That data flows <strong>back into the Build phase</strong> — refining your content pillars, sharpening your clone, tightening your scripting frameworks. <br><br>Month one: a clone that performs. Month six: a clone that <em>compounds</em>. The longer your engine runs, the sharper it gets. <strong>That's the flywheel.</strong></p>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing-section">
+  <p class="closing-quote">Most services give you <em>one pillar.</em><br>You're left to build the other three yourself — or hire four different vendors.</p>
+  <p class="closing-sub"><strong>GetCloned owns all four.</strong> One framework. One outcome. One point of accountability. <strong>Monetisation included.</strong></p>
+</section>
+
+<!-- CTA -->
+<div class="cta-box">
+  <div class="cta-box-inner">
+    <div class="cta-eyebrow">Free Case Study</div>
+    <h2 class="cta-headline">See all four pillars working as <em>one engine.</em></h2>
+    <p class="cta-sub">Real client. Real numbers. Real machine. 21-minute breakdown of how Dr. Madhu Sudan eliminated himself from content production — and crossed 400,000+ organic views.</p>
+    <a href="/case-study" class="cta-btn">Watch the Free Case Study →</a>
+    <p class="cta-meta">21 minutes · Real results · No pitch until you're ready</p>
+  </div>
+</div>
+
+<!-- AUTHOR -->
+<div class="author-box">
+  <p class="author-label">About the Founder</p>
+  <p class="author-name">Akassh Ashok Gupta — The Cloning Guy 🧬</p>
+  <p class="author-title">Founder, GetCloned.in · Peepoye Network</p>
+  <p class="author-bio">19 years in enterprise automation (Fortune 100 — HSBC, GE, BCG). Built Peepoye to 1.4M+ followers across platforms. One Peepoye reel: 1M+ views. Now builds AI content engines for experts whose mission is bigger than their production problem.</p>
+  <div class="author-links">
+    <a href="/case-study">Free Case Study →</a>
+    <a href="/blogs">Read the Blog →</a>
+    <a href="https://in.linkedin.com/in/akasshagupta" target="_blank" rel="noopener">LinkedIn →</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/how-it-works">How It Works</a>
+    <a href="/blogs">Blogs</a>
+    <a href="/stories">Stories</a>
+    <a href="/case-study">Free Case Study</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </div>
+  <div class="footer-meta">© 2026 GetCloned · Peepoye Network · Gurugram, India</div>
+</footer>
+
+</body>
+</html>
