@@ -33,8 +33,7 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .login-box button:hover{background:var(--cyan2)}
 .pw-error{font-size:12px;color:var(--p0);margin-top:8px;display:none}
 
-#app{display:none;max-width:960px;margin:0 auto;padding:24px 20px 60px}
-
+#app{display:none;max-width:1100px;margin:0 auto;padding:24px 20px 60px}
 .top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
 .top-bar .brand{font-size:11px;color:var(--cyan);letter-spacing:2px;margin-bottom:4px}
 .top-bar h1{font-size:20px;font-weight:500}
@@ -43,16 +42,18 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .sync-dot.syncing{background:var(--wip)}
 .sync-dot.error{background:var(--p0)}
 
-.tabs{display:flex;gap:4px;margin-bottom:28px;border-bottom:1px solid var(--border)}
-.tab{font-size:12px;padding:8px 20px;cursor:pointer;color:var(--text3);letter-spacing:1px;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tabs{display:flex;gap:4px;margin-bottom:28px;border-bottom:1px solid var(--border);overflow-x:auto}
+.tab{font-size:12px;padding:8px 20px;cursor:pointer;color:var(--text3);letter-spacing:1px;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;white-space:nowrap}
 .tab:hover{color:var(--text)}
 .tab.active{color:var(--cyan);border-bottom-color:var(--cyan)}
 
+/* STATS */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:28px}
 .stat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center}
 .stat-num{font-size:24px;font-weight:500}
 .stat-label{font-size:10px;color:var(--text3);margin-top:3px;letter-spacing:1px;text-transform:uppercase}
 
+/* PRIORITY */
 .section{margin-bottom:20px}
 .sec-header{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-radius:var(--radius);margin-bottom:8px;border-left:3px solid transparent}
 .sec-p0{background:var(--p0bg);border-left-color:var(--p0)}
@@ -65,17 +66,15 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .sec-p2 .sec-title{color:var(--p2)}
 .sec-p3 .sec-title{color:var(--p3)}
 .sec-count{font-size:11px;color:var(--text3)}
-
-.task{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:6px;transition:opacity 0.2s}
+.task{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:6px}
 .task.is-done{opacity:0.5}
 .task.is-done .task-title{text-decoration:line-through;color:var(--text3)}
-.task.saving{opacity:0.6}
 .task-main{display:flex;align-items:flex-start;gap:10px}
 .task-body{flex:1;min-width:0}
 .task-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px}
 .task-sub{font-size:11px;color:var(--text2);line-height:1.5}
 .task-actions{display:flex;gap:6px;flex-shrink:0;align-items:flex-start;margin-top:2px}
-.status-btn{display:flex;align-items:center;gap:5px;font-size:10px;padding:4px 9px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;color:var(--text2);font-family:inherit;white-space:nowrap;letter-spacing:0.5px}
+.status-btn{display:flex;align-items:center;gap:5px;font-size:10px;padding:4px 9px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;color:var(--text2);font-family:inherit;white-space:nowrap}
 .status-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .dot-todo{background:var(--todo)}
@@ -93,6 +92,7 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .log-form-btns button{font-size:11px;padding:5px 12px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text2)}
 .log-form-btns .save{border-color:var(--cyan);color:var(--cyan)}
 
+/* CLIENT DASHBOARD */
 .client-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:28px}
 .client-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
 .client-card-header{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
@@ -113,7 +113,7 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .stage-item{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:6px;border:1px solid transparent}
 .stage-done{background:#0a1a12;border-color:#1a3a25}
 .stage-active{background:#0a0f1a;border-color:var(--cyan);box-shadow:0 0 8px rgba(0,240,200,0.08)}
-.stage-todo{background:transparent;border-color:transparent}
+.stage-todo{background:transparent}
 .stage-num{font-size:10px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:500}
 .stage-num-done{background:#1a3a25;color:var(--done)}
 .stage-num-active{background:var(--cyan);color:#000}
@@ -124,10 +124,84 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .stage-label-todo{color:var(--text3)}
 .stage-loop{font-size:9px;color:var(--wip);margin-left:auto;letter-spacing:1px}
 
-.loading-bar{text-align:center;padding:40px;color:var(--text3);font-size:12px;letter-spacing:1px}
+/* PIPELINE */
+.pipeline-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.pipeline-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px}
+.pipeline-stat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:10px;text-align:center}
+.pipeline-stat .n{font-size:20px;font-weight:500}
+.pipeline-stat .l{font-size:10px;color:var(--text3);margin-top:2px;letter-spacing:1px}
+
+.add-lead-btn{font-size:11px;padding:7px 14px;border-radius:var(--radius);border:1px solid var(--cyan);background:transparent;color:var(--cyan);cursor:pointer;font-family:inherit;letter-spacing:1px}
+.add-lead-btn:hover{background:rgba(0,240,200,0.08)}
+
+.add-lead-form{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:20px;margin-bottom:20px;display:none}
+.add-lead-form.open{display:block}
+.add-lead-form h3{font-size:12px;color:var(--cyan);letter-spacing:1px;margin-bottom:16px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:14px}
+.form-field label{font-size:10px;color:var(--text3);letter-spacing:1px;display:block;margin-bottom:4px}
+.form-field input,.form-field select{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:8px 10px;color:var(--text);font-family:inherit;font-size:12px;outline:none}
+.form-field input:focus,.form-field select:focus{border-color:var(--cyan)}
+.form-field select option{background:var(--bg3)}
+.form-actions{display:flex;gap:8px}
+.form-actions button{font-size:11px;padding:7px 16px;border-radius:var(--radius);border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text2)}
+.form-actions .primary{border-color:var(--cyan);color:var(--cyan)}
+.form-actions button:hover{background:var(--bg3)}
+
+.pipeline-filters{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.filter-btn{font-size:10px;padding:4px 10px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text3);letter-spacing:0.5px}
+.filter-btn:hover{border-color:var(--text2);color:var(--text2)}
+.filter-btn.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,240,200,0.06)}
+
+.leads-table{width:100%;border-collapse:collapse}
+.leads-table th{font-size:10px;color:var(--text3);letter-spacing:1px;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);text-transform:uppercase}
+.leads-table td{font-size:12px;padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.leads-table tr:hover td{background:var(--bg2)}
+
+.stage-pill{font-size:10px;padding:3px 8px;border-radius:4px;white-space:nowrap;letter-spacing:0.5px}
+.s1{background:#1a1a0a;color:#888;border:1px solid #2a2a1a}
+.s2{background:#1a1200;color:var(--p1);border:1px solid #2a2000}
+.s3{background:#1a1a00;color:#ffcc00;border:1px solid #2a2a00}
+.s4{background:#0a1a1a;color:var(--cyan);border:1px solid #0a2a2a}
+.s5{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}
+.s6{background:#0a0f1a;color:#aa88ff;border:1px solid #1a0f3a}
+.s7{background:#0f0a1a;color:#cc88ff;border:1px solid #2a0f3a}
+.s8{background:#1a0f00;color:#ffaa44;border:1px solid #3a2000}
+.s9{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
+.s10{background:#1a0a0a;color:var(--p0);border:1px solid #3a1010}
+.s11{background:#1a1a1a;color:#666;border:1px solid #2a2a2a}
+
+.offer-pill{font-size:10px;padding:2px 7px;border-radius:4px;letter-spacing:0.5px}
+.offer-gc{background:#0a1a1a;color:var(--cyan);border:1px solid #0a2a2a}
+.offer-gcplus{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}
+.offer-dba{background:#1a0f00;color:#ffaa44;border:1px solid #3a2000}
+
+.icp-pill{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:500}
+.icp-aplus{background:#0a1a0a;color:var(--done)}
+.icp-a{background:#0a1500;color:#88dd88}
+.icp-b{background:#1a1200;color:var(--p1)}
+.icp-other{background:#1a1a1a;color:#666}
+
+.days-badge{font-size:10px;color:var(--text3)}
+.days-badge.hot{color:var(--p0);font-weight:500}
+.days-badge.warm{color:var(--p1)}
+
+.note-text{font-size:11px;color:var(--text2);max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.lead-actions{display:flex;gap:4px}
+.lead-action-btn{font-size:10px;padding:3px 7px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text3)}
+.lead-action-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+
+.edit-panel{display:none;background:var(--bg3);border-radius:var(--radius);padding:12px;margin-top:8px}
+.edit-panel.open{display:block}
+.edit-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.edit-row select,.edit-row input{background:var(--bg2);border:1px solid var(--border2);border-radius:4px;padding:5px 8px;color:var(--text);font-family:inherit;font-size:11px;outline:none}
+.edit-row select:focus,.edit-row input:focus{border-color:var(--cyan)}
+.edit-save{font-size:11px;padding:5px 12px;border-radius:4px;border:1px solid var(--cyan);background:transparent;color:var(--cyan);cursor:pointer;font-family:inherit}
+
+.empty-state{text-align:center;padding:40px;color:var(--text3);font-size:12px}
 
 .footer{text-align:center;font-size:11px;color:var(--text3);margin-top:40px;letter-spacing:1px}
-@media(max-width:500px){.stats{grid-template-columns:repeat(2,1fr)}.task-actions{flex-direction:column}}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.pipeline-stats{grid-template-columns:repeat(3,1fr)}.task-actions{flex-direction:column}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -158,10 +232,12 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
   </div>
 
   <div class="tabs">
-    <button class="tab active" id="tab-btn-priorities" onclick="switchTab('priorities',this)">PRIORITIES</button>
-    <button class="tab" id="tab-btn-clients" onclick="switchTab('clients',this)">CLIENT DASHBOARD</button>
+    <button class="tab active" onclick="switchTab('priorities',this)">PRIORITIES</button>
+    <button class="tab" onclick="switchTab('clients',this)">CLIENT DASHBOARD</button>
+    <button class="tab" onclick="switchTab('pipeline',this)">LEAD PIPELINE</button>
   </div>
 
+  <!-- PRIORITIES -->
   <div id="tab-priorities">
     <div class="stats">
       <div class="stat"><div class="stat-num" id="s-total" style="color:var(--cyan)">—</div><div class="stat-label">Total</div></div>
@@ -169,11 +245,103 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
       <div class="stat"><div class="stat-num" id="s-wip" style="color:var(--wip)">—</div><div class="stat-label">In Progress</div></div>
       <div class="stat"><div class="stat-num" id="s-todo" style="color:var(--todo)">—</div><div class="stat-label">To Do</div></div>
     </div>
-    <div id="board"><div class="loading-bar">Loading from database...</div></div>
+    <div id="board"><div class="empty-state">Loading...</div></div>
   </div>
 
+  <!-- CLIENT DASHBOARD -->
   <div id="tab-clients" style="display:none">
     <div class="client-grid" id="client-grid"></div>
+  </div>
+
+  <!-- LEAD PIPELINE -->
+  <div id="tab-pipeline" style="display:none">
+    <div class="pipeline-top">
+      <div style="font-size:11px;color:var(--text3)">Track every lead from first contact to signed client.</div>
+      <button class="add-lead-btn" onclick="toggleAddForm()">+ Add Lead</button>
+    </div>
+
+    <div class="add-lead-form" id="add-lead-form">
+      <h3>NEW LEAD</h3>
+      <div class="form-grid">
+        <div class="form-field"><label>Name</label><input type="text" id="fl-name" placeholder="Dr. Neha Mehta"/></div>
+        <div class="form-field"><label>Niche</label><input type="text" id="fl-niche" placeholder="Dermatologist"/></div>
+        <div class="form-field"><label>Offer</label>
+          <select id="fl-offer">
+            <option value="GC">GC — GetCloned</option>
+            <option value="GC+">GC+ — GetCloned Plus</option>
+            <option value="DBA">DBA — Digital Business Accelerator</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Source</label>
+          <select id="fl-source">
+            <option value="Outreach">Outreach</option>
+            <option value="Funnel">Funnel</option>
+            <option value="Ads">Ads</option>
+            <option value="Referral">Referral</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Channel</label>
+          <select id="fl-channel">
+            <option value="Email">Email</option>
+            <option value="Instagram">Instagram</option>
+            <option value="LinkedIn">LinkedIn</option>
+            <option value="Skool">Skool</option>
+            <option value="WhatsApp">WhatsApp</option>
+          </select>
+        </div>
+        <div class="form-field"><label>ICP Score</label>
+          <select id="fl-icp">
+            <option value="A+">A+</option>
+            <option value="A">A</option>
+            <option value="B+">B+</option>
+            <option value="B">B</option>
+            <option value="DBA">DBA lead</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Stage</label>
+          <select id="fl-stage">
+            <option value="1">1 — Identified</option>
+            <option value="2">2 — Contacted</option>
+            <option value="3">3 — Replied</option>
+            <option value="4">4 — Lead Captured</option>
+            <option value="5">5 — Case Study Watched</option>
+            <option value="6">6 — Call Booked</option>
+            <option value="7">7 — Strategy Call Done</option>
+            <option value="8">8 — Proposal Sent</option>
+            <option value="9">9 — Signed ✅</option>
+            <option value="10">10 — Lost ❌</option>
+            <option value="11">11 — On Hold ⏸</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Note</label><input type="text" id="fl-note" placeholder="What happened last?"/></div>
+      </div>
+      <div class="form-actions">
+        <button class="primary" onclick="addLead()">Save Lead</button>
+        <button onclick="toggleAddForm()">Cancel</button>
+      </div>
+    </div>
+
+    <div class="pipeline-stats">
+      <div class="pipeline-stat"><div class="n" id="pl-total" style="color:var(--cyan)">0</div><div class="l">Total</div></div>
+      <div class="pipeline-stat"><div class="n" id="pl-active" style="color:var(--p1)">0</div><div class="l">Active</div></div>
+      <div class="pipeline-stat"><div class="n" id="pl-warm" style="color:#ffcc00">0</div><div class="l">Warm</div></div>
+      <div class="pipeline-stat"><div class="n" id="pl-booked" style="color:#aa88ff">0</div><div class="l">Call Booked</div></div>
+      <div class="pipeline-stat"><div class="n" id="pl-signed" style="color:var(--done)">0</div><div class="l">Signed</div></div>
+    </div>
+
+    <div class="pipeline-filters">
+      <button class="filter-btn active" onclick="filterLeads('all',this)">All</button>
+      <button class="filter-btn" onclick="filterLeads('active',this)">Active</button>
+      <button class="filter-btn" onclick="filterLeads('warm',this)">Warm</button>
+      <button class="filter-btn" onclick="filterLeads('GC',this)">GC</button>
+      <button class="filter-btn" onclick="filterLeads('GC+',this)">GC+</button>
+      <button class="filter-btn" onclick="filterLeads('DBA',this)">DBA</button>
+      <button class="filter-btn" onclick="filterLeads('signed',this)">Signed ✅</button>
+      <button class="filter-btn" onclick="filterLeads('lost',this)">Lost ❌</button>
+      <button class="filter-btn" onclick="filterLeads('hold',this)">On Hold ⏸</button>
+    </div>
+
+    <div id="leads-container"><div class="empty-state">Loading leads...</div></div>
   </div>
 
   <div class="footer">GETCLONED.IN · INTERNAL · NOT FOR DISTRIBUTION</div>
@@ -184,22 +352,25 @@ const PASS='100Clients@GetCloned';
 const SB_URL='https://waocacqbyppyosekpdoh.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indhb2NhY3FieXBweW9zZWtwZG9oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4NzM4MTQsImV4cCI6MjA5NTQ0OTgxNH0.7tVJdzQKo_R_Mx6VHdJRHWaTexbIqYi1j1uYpiwyfsM';
 
+const STAGE_LABELS=['','Identified','Contacted','Replied','Lead Captured','Case Study Watched','Call Booked','Strategy Call Done','Proposal Sent','Signed ✅','Lost ❌','On Hold ⏸'];
+const STAGE_CLS=['','s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11'];
+
 const TASKS=[
   {id:'p0-1',sec:'p0',title:'Daily Instagram DMs',sub:'10 DMs/day to ICP — doctors, coaches, wealth managers. No exceptions.'},
   {id:'p0-2',sec:'p0',title:'Daily cold email',sub:'5 emails/day minimum. Rotate ICP profiles.'},
   {id:'p0-3',sec:'p0',title:'Follow up pipeline',sub:'Anyone who hasn\'t replied in 3–5 days — follow up.'},
   {id:'p0-4',sec:'p0',title:'Rainmaker — hunt 5 partners',sub:'Funnel builders, brand agencies, business coaches who sell to your ICP. Pitch rev share.'},
-  {id:'p0-5',sec:'p0',title:'Coach of coaches play',sub:'Hunt 10 profiles (Shivangi Desai type). Pitch collab: build clone almost at cost, they white label to their coaches. Write outreach templates first.'},
-  {id:'p0-6',sec:'p0',title:'Upsell existing clients',sub:'Book calls with Dr. Madhu, Nirmal, Arfeen. Pitch ONE add-on each: extra platform, lead funnel, LinkedIn expansion.'},
+  {id:'p0-5',sec:'p0',title:'Coach of coaches play',sub:'Hunt 10 profiles (Shivangi Desai type). Pitch collab: build clone at cost, they white label to their coaches.'},
+  {id:'p0-6',sec:'p0',title:'Upsell existing clients',sub:'Book calls with Dr. Madhu, Nirmal, Arfeen. Pitch ONE add-on each.'},
   {id:'p1-1',sec:'p1',title:'Reel — "I didn\'t shoot this. I am the clone."',sub:'Use your clone. Best sign-up driver right now.'},
   {id:'p1-2',sec:'p1',title:'Reel — "12 hours per reel → now zero"',sub:'Personal transformation. Raw. Converts hard.'},
-  {id:'p1-3',sec:'p1',title:'Blog 6 — Origin story (1.4M → eliminated myself)',sub:'"How I Built 1.4M Followers Then Eliminated Myself From Content Production."'},
+  {id:'p1-3',sec:'p1',title:'Blog 6 — Origin story',sub:'"How I Built 1.4M Followers Then Eliminated Myself From Content Production."'},
   {id:'p1-4',sec:'p1',title:'Blog 7 — What Is AI Content Cloning?',sub:'Pure GEO citation magnet. Own the definition.'},
   {id:'p1-5',sec:'p1',title:'Quora — "Is AI content cloning real or a gimmick?"',sub:'High volume. Link to /how-it-works.'},
   {id:'p1-6',sec:'p1',title:'Quora — "How do I get more patients from Instagram?"',sub:'Doctor ICP. Link to Blog 4.'},
   {id:'p1-7',sec:'p1',title:'LinkedIn post — Skool angle adapted',sub:'"What\'s the best way to start posting content?" Gets DMs.'},
   {id:'p1-8',sec:'p1',title:'LinkedIn article — Dr. Madhu case study',sub:'Doctors on LinkedIn will find this. Tag Dr. Madhu.'},
-  {id:'p2-1',sec:'p2',title:'Lock 3 pricing tiers',sub:'Starter / Pro / Elite. Setup fee + monthly retainer. Raise main price 20% and test on next 10 prospects.'},
+  {id:'p2-1',sec:'p2',title:'Lock 3 pricing tiers',sub:'Starter / Pro / Elite. Setup fee + monthly retainer. Raise main price 20%.'},
   {id:'p2-2',sec:'p2',title:'Blog 5 — AI Cloning vs Post Yourself First?',sub:'Handles #1 objection before the sales call.'},
   {id:'p2-3',sec:'p2',title:'Blog 8 — Post daily without being on camera',sub:'Highest search volume in our space.'},
   {id:'p2-4',sec:'p2',title:'Quora — "I don\'t have time to make content"',sub:'Short answer. Link to Blog 0.'},
@@ -225,17 +396,12 @@ const SECTIONS={
   p3:{label:'🟢 P3 — WHEN FREE',cls:'sec-p3'},
 };
 
-const STAGES=[
-  {id:1,label:'Contract Signed'},
-  {id:2,label:'Discovery Session'},
-  {id:3,label:'Content Strategy Locked'},
-  {id:4,label:'Audio Input Received'},
-  {id:5,label:'Video Input Received'},
-  {id:6,label:'Ideas Approved'},
-  {id:7,label:'Scripts Approved'},
-  {id:8,label:'First Reel Delivered'},
-  {id:9,label:'Approved & Published'},
-  {id:10,label:'Production Initiated',loop:true},
+const STAGES_CLIENT=[
+  {id:1,label:'Contract Signed'},{id:2,label:'Discovery Session'},
+  {id:3,label:'Content Strategy Locked'},{id:4,label:'Audio Input Received'},
+  {id:5,label:'Video Input Received'},{id:6,label:'Ideas Approved'},
+  {id:7,label:'Scripts Approved'},{id:8,label:'First Reel Delivered'},
+  {id:9,label:'Approved & Published'},{id:10,label:'Production Initiated',loop:true},
 ];
 
 const CLIENTS=[
@@ -244,15 +410,31 @@ const CLIENTS=[
   {id:'nirmal',name:'Nirmal Bansal',status:'active',currentStage:4,waitingOn:'client',stuckSince:'2026-05-13',note:'Waiting for audio input submission'},
 ];
 
+const SEED_LEADS=[
+  {id:'lead-001',name:'Dr. Neha Mehta',niche:'Sexologist',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:3,note:'Replied "Sure!!" same day. Phase 2 sent. No response.',last_action:'2026-05-06'},
+  {id:'lead-002',name:'Shivangi Desai',niche:'Healthpreneur',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:6,note:'Shared details. Calendly sent. Waiting for booking.',last_action:'2026-05-13'},
+  {id:'lead-003',name:'Dr. Deepali Bhardwaj',niche:'Dermatologist',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:3,note:'Shared number + "let\'s connect soon". WhatsApp sent.',last_action:'2026-05-13'},
+  {id:'lead-004',name:'Dr. Saurabh Sethi',niche:'Gastroenterologist',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:3,note:'Asked for case studies. Sent on 13 May.',last_action:'2026-05-13'},
+  {id:'lead-005',name:'Anjali Tarot',niche:'Tarot Reader',offer:'DBA',source:'Outreach',channel:'Email',icp:'A',stage:2,note:'Replied: ping after 21st. Follow up due.',last_action:'2026-05-08'},
+  {id:'lead-006',name:'Dr. Vijayant Govind Gupta',niche:'Urologist',offer:'GC',source:'Outreach',channel:'Email',icp:'A+',stage:2,note:'A++ signal. High volume practice. No reply yet.',last_action:'2026-05-07'},
+  {id:'lead-007',name:'Ryan Fernando',niche:'Nutrition Coach',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:2,note:'Phase 1 sent. Cold so far.',last_action:'2026-05-11'},
+  {id:'lead-008',name:'Dr. Imran Patel',niche:'Pediatrician',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:2,note:'12.1MN followers. Phase 1 sent. Cold.',last_action:'2026-05-10'},
+  {id:'lead-009',name:'Dimple Jangda',niche:'Health/Beauty',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:2,note:'875K followers. Phase 1 sent. Cold.',last_action:'2026-05-11'},
+  {id:'lead-010',name:'Anna Pleet MD',niche:'Doctor/Weight Loss',offer:'GC',source:'Outreach',channel:'Skool',icp:'A',stage:2,note:'Comment posted on Skool. Rapport building. No selling yet.',last_action:'2026-04-16'},
+];
+
 const STATUS_CYCLE=['todo','wip','done'];
 const STATUS_LABELS={todo:'To do',wip:'In progress',done:'Done'};
 const DOT_CLS={todo:'dot-todo',wip:'dot-wip',done:'dot-done'};
 
-let state={};
-let synced=false;
+let taskState={};
+let leads=[];
+let currentFilter='all';
 
 function today(){return new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}
+function todayISO(){return new Date().toISOString().split('T')[0]}
 function daysSince(d){if(!d)return 0;return Math.floor((new Date()-new Date(d))/(1000*60*60*24))}
+function uid(){return 'lead-'+Date.now()+'-'+Math.random().toString(36).slice(2,7)}
 
 function setSyncStatus(s){
   const dot=document.getElementById('sync-dot');
@@ -265,46 +447,58 @@ function setSyncStatus(s){
 async function sbFetch(path,opts={}){
   const res=await fetch(SB_URL+path,{
     ...opts,
-    headers:{
-      'apikey':SB_KEY,
-      'Authorization':'Bearer '+SB_KEY,
-      'Content-Type':'application/json',
-      'Prefer':'return=representation',
-      ...(opts.headers||{})
-    }
+    headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=representation',...(opts.headers||{})}
   });
   if(!res.ok)throw new Error(await res.text());
   const txt=await res.text();
   return txt?JSON.parse(txt):[];
 }
 
-async function loadFromDB(){
+async function loadTasks(){
   try{
     const rows=await sbFetch('/rest/v1/warroom_state?select=*');
-    rows.forEach(r=>{state[r.id]={status:r.status,logs:r.logs||[]}});
+    rows.forEach(r=>{taskState[r.id]={status:r.status,logs:r.logs||[]}});
     setSyncStatus('ok');
-    synced=true;
-  }catch(e){
-    console.error('Load error',e);
-    setSyncStatus('error');
-  }
+  }catch(e){setSyncStatus('error')}
 }
 
 async function saveTask(id){
   setSyncStatus('syncing');
   try{
-    const s=state[id];
-    await sbFetch('/rest/v1/warroom_state',{
-      method:'POST',
-      headers:{'Prefer':'resolution=merge-duplicates,return=representation'},
-      body:JSON.stringify({id,status:s.status,logs:s.logs,updated_at:new Date().toISOString()})
-    });
+    const s=taskState[id];
+    await sbFetch('/rest/v1/warroom_state',{method:'POST',headers:{'Prefer':'resolution=merge-duplicates,return=representation'},body:JSON.stringify({id,status:s.status,logs:s.logs,updated_at:new Date().toISOString()})});
     setSyncStatus('ok');
     document.getElementById('last-updated').textContent='Updated: '+today();
+  }catch(e){setSyncStatus('error')}
+}
+
+async function loadLeads(){
+  try{
+    const rows=await sbFetch('/rest/v1/pipeline_leads?select=*&order=created_at.desc');
+    if(rows.length===0){
+      await seedLeads();
+    } else {
+      leads=rows;
+    }
   }catch(e){
-    console.error('Save error',e);
-    setSyncStatus('error');
+    leads=SEED_LEADS;
   }
+}
+
+async function seedLeads(){
+  try{
+    const seeded=SEED_LEADS.map(l=>({...l,created_at:new Date().toISOString()}));
+    await sbFetch('/rest/v1/pipeline_leads',{method:'POST',headers:{'Prefer':'resolution=merge-duplicates'},body:JSON.stringify(seeded)});
+    leads=seeded;
+  }catch(e){leads=SEED_LEADS;}
+}
+
+async function saveLead(lead){
+  setSyncStatus('syncing');
+  try{
+    await sbFetch('/rest/v1/pipeline_leads',{method:'POST',headers:{'Prefer':'resolution=merge-duplicates'},body:JSON.stringify({...lead,updated_at:new Date().toISOString()})});
+    setSyncStatus('ok');
+  }catch(e){setSyncStatus('error')}
 }
 
 function checkPw(){
@@ -322,47 +516,42 @@ document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='E
 function switchTab(tab,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('tab-priorities').style.display=tab==='priorities'?'block':'none';
-  document.getElementById('tab-clients').style.display=tab==='clients'?'block':'none';
+  ['priorities','clients','pipeline'].forEach(t=>{
+    document.getElementById('tab-'+t).style.display=t===tab?'block':'none';
+  });
 }
 
 function updateStats(){
   let done=0,wip=0,todo=0;
-  TASKS.forEach(t=>{const s=state[t.id]?.status||'todo';if(s==='done')done++;else if(s==='wip')wip++;else todo++;});
+  TASKS.forEach(t=>{const s=taskState[t.id]?.status||'todo';if(s==='done')done++;else if(s==='wip')wip++;else todo++;});
   document.getElementById('s-total').textContent=TASKS.length;
   document.getElementById('s-done').textContent=done;
   document.getElementById('s-wip').textContent=wip;
   document.getElementById('s-todo').textContent=todo;
+  document.getElementById('last-updated').textContent='Updated: '+today();
 }
 
-function ensureTask(id){if(!state[id])state[id]={status:'todo',logs:[]}}
+function ensureTask(id){if(!taskState[id])taskState[id]={status:'todo',logs:[]}}
 
 function renderTask(t){
   ensureTask(t.id);
-  const s=state[t.id].status;
-  const logs=state[t.id].logs||[];
+  const s=taskState[t.id].status;
+  const logs=taskState[t.id].logs||[];
   const div=document.createElement('div');
   div.className='task'+(s==='done'?' is-done':'');
   div.id='task-'+t.id;
   const logsHtml=logs.length?`<div class="task-logs">${logs.map(l=>`<span class="log-tag">${l}</span>`).join('')}</div>`:'';
   div.innerHTML=`
     <div class="task-main">
-      <div class="task-body">
-        <div class="task-title">${t.title}</div>
-        <div class="task-sub">${t.sub}</div>
-        ${logsHtml}
-      </div>
+      <div class="task-body"><div class="task-title">${t.title}</div><div class="task-sub">${t.sub}</div>${logsHtml}</div>
       <div class="task-actions">
         <button class="status-btn" data-id="${t.id}"><span class="dot ${DOT_CLS[s]}"></span>${STATUS_LABELS[s]}</button>
         <button class="log-btn" data-logid="${t.id}">+ Log</button>
       </div>
     </div>
     <div class="log-form" id="lf-${t.id}">
-      <input type="text" id="li-${t.id}" placeholder='e.g. "Sent 10 DMs" or "Published Blog 6"'/>
-      <div class="log-form-btns">
-        <button class="save" data-saveid="${t.id}">Save</button>
-        <button data-cancelid="${t.id}">Cancel</button>
-      </div>
+      <input type="text" id="li-${t.id}" placeholder='e.g. "Sent 10 DMs"'/>
+      <div class="log-form-btns"><button class="save" data-saveid="${t.id}">Save</button><button data-cancelid="${t.id}">Cancel</button></div>
     </div>`;
   return div;
 }
@@ -372,7 +561,7 @@ function renderBoard(){
   board.innerHTML='';
   Object.entries(SECTIONS).forEach(([key,sec])=>{
     const tasks=TASKS.filter(t=>t.sec===key);
-    const done=tasks.filter(t=>(state[t.id]?.status||'todo')==='done').length;
+    const done=tasks.filter(t=>(taskState[t.id]?.status||'todo')==='done').length;
     const section=document.createElement('div');
     section.className='section';
     const header=document.createElement('div');
@@ -386,22 +575,18 @@ function renderBoard(){
   board.addEventListener('click',async function(e){
     const sb=e.target.closest('[data-id]');
     if(sb){
-      const id=sb.dataset.id;
-      const cur=state[id]?.status||'todo';
+      const id=sb.dataset.id;const cur=taskState[id]?.status||'todo';
       const next=STATUS_CYCLE[(STATUS_CYCLE.indexOf(cur)+1)%3];
-      state[id].status=next;
-      if(next==='done'){state[id].logs=state[id].logs||[];if(!state[id].logs.find(l=>l.startsWith('✓')))state[id].logs.push('✓ Done: '+today());}
-      refreshTask(id);updateStats();updateSectionCounts();
-      await saveTask(id);
-      return;
+      taskState[id].status=next;
+      if(next==='done'){taskState[id].logs=taskState[id].logs||[];if(!taskState[id].logs.find(l=>l.startsWith('✓')))taskState[id].logs.push('✓ Done: '+today());}
+      refreshTask(id);updateStats();updateSectionCounts();await saveTask(id);return;
     }
     const lb=e.target.closest('[data-logid]');
     if(lb){document.getElementById('lf-'+lb.dataset.logid).classList.toggle('open');return;}
     const sv=e.target.closest('[data-saveid]');
     if(sv){
-      const id=sv.dataset.saveid;
-      const val=document.getElementById('li-'+id).value.trim();
-      if(val){state[id].logs=state[id].logs||[];state[id].logs.push(today()+': '+val);refreshTask(id);await saveTask(id);}
+      const id=sv.dataset.saveid;const val=document.getElementById('li-'+id).value.trim();
+      if(val){taskState[id].logs=taskState[id].logs||[];taskState[id].logs.push(today()+': '+val);refreshTask(id);await saveTask(id);}
       document.getElementById('lf-'+id).classList.remove('open');return;
     }
     const cl=e.target.closest('[data-cancelid]');
@@ -410,24 +595,20 @@ function renderBoard(){
 }
 
 function refreshTask(id){
-  const t=TASKS.find(x=>x.id===id);
-  if(!t)return;
-  const old=document.getElementById('task-'+id);
-  if(old)old.replaceWith(renderTask(t));
+  const t=TASKS.find(x=>x.id===id);if(!t)return;
+  const old=document.getElementById('task-'+id);if(old)old.replaceWith(renderTask(t));
 }
 
 function updateSectionCounts(){
   Object.keys(SECTIONS).forEach(key=>{
     const tasks=TASKS.filter(t=>t.sec===key);
-    const done=tasks.filter(t=>(state[t.id]?.status||'todo')==='done').length;
-    const el=document.getElementById('sc-'+key);
-    if(el)el.textContent=done+'/'+tasks.length+' done';
+    const done=tasks.filter(t=>(taskState[t.id]?.status||'todo')==='done').length;
+    const el=document.getElementById('sc-'+key);if(el)el.textContent=done+'/'+tasks.length+' done';
   });
 }
 
 function renderClients(){
-  const grid=document.getElementById('client-grid');
-  grid.innerHTML='';
+  const grid=document.getElementById('client-grid');grid.innerHTML='';
   CLIENTS.forEach(c=>{
     const days=c.stuckSince?daysSince(c.stuckSince):0;
     const badgeClass=c.status==='loop'?'badge-loop':'badge-active';
@@ -435,17 +616,15 @@ function renderClients(){
     const waitingClass=c.waitingOn==='client'?'waiting-client':c.waitingOn==='you'?'waiting-you':'waiting-live';
     const waitingLabel=c.waitingOn==='client'?'⚠ WAITING ON CLIENT':c.waitingOn==='you'?'◎ WAITING ON YOU':'✓ LIVE';
     const daysHtml=days>0?`<span class="days-stuck">${days}d overdue</span>`:`<span class="days-live">On track</span>`;
-    const stagesHtml=STAGES.map(s=>{
-      const isDone=s.id<c.currentStage;
-      const isActive=s.id===c.currentStage;
+    const stagesHtml=STAGES_CLIENT.map(s=>{
+      const isDone=s.id<c.currentStage,isActive=s.id===c.currentStage;
       const cls=isDone?'stage-done':isActive?'stage-active':'stage-todo';
       const numCls=isDone?'stage-num-done':isActive?'stage-num-active':'stage-num-todo';
       const labelCls=isDone?'stage-label-done':isActive?'stage-label-active':'stage-label-todo';
       const loopTag=s.loop&&isActive?`<span class="stage-loop">↺ LOOPS TO 3</span>`:'';
       return `<div class="stage-item ${cls}"><span class="stage-num ${numCls}">${isDone?'✓':s.id}</span><span class="stage-label ${labelCls}">${s.label}</span>${loopTag}</div>`;
     }).join('');
-    const card=document.createElement('div');
-    card.className='client-card';
+    const card=document.createElement('div');card.className='client-card';
     card.innerHTML=`
       <div class="client-card-header"><span class="client-name">${c.name}</span><span class="client-badge ${badgeClass}">${badgeLabel}</span></div>
       <div class="client-meta"><span class="waiting-tag ${waitingClass}">${waitingLabel}</span>${daysHtml}</div>
@@ -454,14 +633,156 @@ function renderClients(){
   });
 }
 
+function icpCls(icp){
+  if(icp==='A+')return 'icp-aplus';
+  if(icp==='A')return 'icp-a';
+  if(icp==='B+'||icp==='B')return 'icp-b';
+  return 'icp-other';
+}
+
+function offerCls(offer){
+  if(offer==='GC')return 'offer-gc';
+  if(offer==='GC+')return 'offer-gcplus';
+  return 'offer-dba';
+}
+
+function renderPipelineStats(){
+  const total=leads.length;
+  const active=leads.filter(l=>l.stage>=2&&l.stage<=8).length;
+  const warm=leads.filter(l=>l.stage===3).length;
+  const booked=leads.filter(l=>l.stage===6).length;
+  const signed=leads.filter(l=>l.stage===9).length;
+  document.getElementById('pl-total').textContent=total;
+  document.getElementById('pl-active').textContent=active;
+  document.getElementById('pl-warm').textContent=warm;
+  document.getElementById('pl-booked').textContent=booked;
+  document.getElementById('pl-signed').textContent=signed;
+}
+
+function getFilteredLeads(){
+  if(currentFilter==='all')return leads;
+  if(currentFilter==='active')return leads.filter(l=>l.stage>=2&&l.stage<=8);
+  if(currentFilter==='warm')return leads.filter(l=>l.stage===3);
+  if(currentFilter==='GC')return leads.filter(l=>l.offer==='GC');
+  if(currentFilter==='GC+')return leads.filter(l=>l.offer==='GC+');
+  if(currentFilter==='DBA')return leads.filter(l=>l.offer==='DBA');
+  if(currentFilter==='signed')return leads.filter(l=>l.stage===9);
+  if(currentFilter==='lost')return leads.filter(l=>l.stage===10);
+  if(currentFilter==='hold')return leads.filter(l=>l.stage===11);
+  return leads;
+}
+
+function renderLeads(){
+  renderPipelineStats();
+  const container=document.getElementById('leads-container');
+  const filtered=getFilteredLeads();
+  if(!filtered.length){container.innerHTML='<div class="empty-state">No leads in this filter.</div>';return;}
+
+  let html=`<table class="leads-table">
+    <thead><tr>
+      <th>Name</th><th>Niche</th><th>Offer</th><th>ICP</th>
+      <th>Stage</th><th>Channel</th><th>Days</th><th>Last Note</th><th>Actions</th>
+    </tr></thead><tbody>`;
+
+  filtered.forEach(l=>{
+    const days=daysSince(l.last_action||l.created_at);
+    const daysCls=days>14?'hot':days>7?'warm':'';
+    html+=`<tr id="lead-row-${l.id}">
+      <td style="font-weight:500;white-space:nowrap">${l.name}</td>
+      <td style="color:var(--text2);white-space:nowrap">${l.niche||'—'}</td>
+      <td><span class="offer-pill ${offerCls(l.offer)}">${l.offer}</span></td>
+      <td><span class="icp-pill ${icpCls(l.icp)}">${l.icp}</span></td>
+      <td><span class="stage-pill ${STAGE_CLS[l.stage]}">${STAGE_LABELS[l.stage]}</span></td>
+      <td style="color:var(--text2)">${l.channel||'—'}</td>
+      <td><span class="days-badge ${daysCls}">${days}d</span></td>
+      <td><span class="note-text" title="${l.note||''}">${l.note||'—'}</span></td>
+      <td>
+        <div class="lead-actions">
+          <button class="lead-action-btn" onclick="advanceStage('${l.id}')">→ Next</button>
+          <button class="lead-action-btn" onclick="toggleEditPanel('${l.id}')">Edit</button>
+        </div>
+        <div class="edit-panel" id="ep-${l.id}">
+          <div class="edit-row">
+            <select id="es-${l.id}" onchange="">
+              ${STAGE_LABELS.slice(1).map((sl,i)=>`<option value="${i+1}" ${l.stage===i+1?'selected':''}>${i+1}. ${sl}</option>`).join('')}
+            </select>
+            <input type="text" id="en-${l.id}" value="${l.note||''}" placeholder="Update note..." style="flex:1;min-width:140px"/>
+          </div>
+          <button class="edit-save" onclick="saveLeadEdit('${l.id}')">Save</button>
+        </div>
+      </td>
+    </tr>`;
+  });
+  html+=`</tbody></table>`;
+  container.innerHTML=html;
+}
+
+function toggleEditPanel(id){
+  const ep=document.getElementById('ep-'+id);
+  ep.classList.toggle('open');
+}
+
+async function advanceStage(id){
+  const lead=leads.find(l=>l.id===id);
+  if(!lead||lead.stage>=11)return;
+  lead.stage=Math.min(lead.stage+1,11);
+  lead.last_action=todayISO();
+  await saveLead(lead);
+  renderLeads();
+}
+
+async function saveLeadEdit(id){
+  const lead=leads.find(l=>l.id===id);if(!lead)return;
+  lead.stage=parseInt(document.getElementById('es-'+id).value);
+  lead.note=document.getElementById('en-'+id).value;
+  lead.last_action=todayISO();
+  await saveLead(lead);
+  document.getElementById('ep-'+id).classList.remove('open');
+  renderLeads();
+}
+
+function filterLeads(filter,btn){
+  currentFilter=filter;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderLeads();
+}
+
+function toggleAddForm(){
+  document.getElementById('add-lead-form').classList.toggle('open');
+}
+
+async function addLead(){
+  const name=document.getElementById('fl-name').value.trim();
+  if(!name){alert('Name is required');return;}
+  const lead={
+    id:uid(),
+    name,
+    niche:document.getElementById('fl-niche').value.trim(),
+    offer:document.getElementById('fl-offer').value,
+    source:document.getElementById('fl-source').value,
+    channel:document.getElementById('fl-channel').value,
+    icp:document.getElementById('fl-icp').value,
+    stage:parseInt(document.getElementById('fl-stage').value),
+    note:document.getElementById('fl-note').value.trim(),
+    last_action:todayISO(),
+    created_at:new Date().toISOString(),
+  };
+  leads.unshift(lead);
+  await saveLead(lead);
+  document.getElementById('add-lead-form').classList.remove('open');
+  ['fl-name','fl-niche','fl-note'].forEach(id=>{document.getElementById(id).value='';});
+  renderLeads();
+}
+
 async function init(){
   setSyncStatus('syncing');
-  await loadFromDB();
+  await Promise.all([loadTasks(),loadLeads()]);
   TASKS.forEach(t=>ensureTask(t.id));
   renderBoard();
   updateStats();
   renderClients();
-  document.getElementById('last-updated').textContent='Updated: '+today();
+  renderLeads();
 }
 </script>
 </body>
