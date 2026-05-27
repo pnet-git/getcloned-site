@@ -8,69 +8,45 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0a0a;
-  --bg2:#111111;
-  --bg3:#181818;
-  --border:#222222;
-  --border2:#2a2a2a;
-  --text:#e8e8e8;
-  --text2:#888;
-  --text3:#555;
-  --cyan:#00f0c8;
-  --cyan2:#00c4a4;
-  --p0:#ff4d4d;
-  --p0bg:#1a0a0a;
-  --p1:#ff9500;
-  --p1bg:#1a1200;
-  --p2:#34c759;
-  --p2bg:#0a1a0a;
-  --p3:#007aff;
-  --p3bg:#0a0f1a;
-  --done:#34c759;
-  --wip:#ff9500;
-  --todo:#555;
-  --radius:8px;
-  --radius-lg:12px;
+  --bg:#0a0a0a;--bg2:#111111;--bg3:#181818;
+  --border:#222222;--border2:#2a2a2a;
+  --text:#e8e8e8;--text2:#888;--text3:#555;
+  --cyan:#00f0c8;--cyan2:#00c4a4;
+  --p0:#ff4d4d;--p0bg:#1a0a0a;
+  --p1:#ff9500;--p1bg:#1a1200;
+  --p2:#34c759;--p2bg:#0a1a0a;
+  --p3:#007aff;--p3bg:#0a0f1a;
+  --done:#00f0c8;--wip:#007aff;--todo:#333;
+  --radius:8px;--radius-lg:12px;
 }
 body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospace,system-ui;min-height:100vh}
 
 /* LOGIN */
-#login-screen{
-  display:flex;align-items:center;justify-content:center;
-  min-height:100vh;background:var(--bg);
-}
-.login-box{
-  background:var(--bg2);border:1px solid var(--border2);
-  border-radius:var(--radius-lg);padding:40px;width:360px;text-align:center;
-}
-.login-box .logo{font-size:13px;color:var(--cyan);letter-spacing:2px;margin-bottom:8px}
-.login-box h1{font-size:20px;font-weight:500;margin-bottom:4px;color:var(--text)}
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh}
+.login-box{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:40px;width:360px;text-align:center}
+.login-box .brand{font-size:11px;color:var(--cyan);letter-spacing:2px;margin-bottom:8px}
+.login-box h1{font-size:20px;font-weight:500;margin-bottom:4px}
 .login-box p{font-size:12px;color:var(--text3);margin-bottom:28px}
-.login-box input{
-  width:100%;background:var(--bg3);border:1px solid var(--border2);
-  border-radius:var(--radius);padding:12px 16px;color:var(--text);
-  font-family:inherit;font-size:14px;margin-bottom:12px;outline:none;
-  letter-spacing:1px;
-}
+.login-box input{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:12px 16px;color:var(--text);font-family:inherit;font-size:14px;margin-bottom:12px;outline:none;letter-spacing:1px}
 .login-box input:focus{border-color:var(--cyan)}
-.login-box button{
-  width:100%;background:var(--cyan);color:#000;border:none;
-  border-radius:var(--radius);padding:12px;font-family:inherit;
-  font-size:14px;font-weight:500;cursor:pointer;letter-spacing:1px;
-}
+.login-box button{width:100%;background:var(--cyan);color:#000;border:none;border-radius:var(--radius);padding:12px;font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;letter-spacing:1px}
 .login-box button:hover{background:var(--cyan2)}
-.login-error{font-size:12px;color:var(--p0);margin-top:8px;display:none}
+.pw-error{font-size:12px;color:var(--p0);margin-top:8px;display:none}
 
 /* APP */
-#app{display:none;max-width:900px;margin:0 auto;padding:24px 20px 60px}
+#app{display:none;max-width:960px;margin:0 auto;padding:24px 20px 60px}
 
-.top-bar{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:28px;flex-wrap:wrap;gap:12px;
-}
-.top-bar-left .brand{font-size:11px;color:var(--cyan);letter-spacing:2px;margin-bottom:4px}
-.top-bar-left h1{font-size:20px;font-weight:500;color:var(--text)}
-.top-bar-right{font-size:11px;color:var(--text3);text-align:right;line-height:1.6}
+/* TOP BAR */
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.top-bar .brand{font-size:11px;color:var(--cyan);letter-spacing:2px;margin-bottom:4px}
+.top-bar h1{font-size:20px;font-weight:500}
+.top-bar-right{font-size:11px;color:var(--text3);text-align:right;line-height:1.8}
+
+/* TABS */
+.tabs{display:flex;gap:4px;margin-bottom:28px;border-bottom:1px solid var(--border)}
+.tab{font-size:12px;padding:8px 20px;cursor:pointer;color:var(--text3);letter-spacing:1px;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--cyan);border-bottom-color:var(--cyan)}
 
 /* STATS */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:28px}
@@ -78,13 +54,9 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .stat-num{font-size:24px;font-weight:500}
 .stat-label{font-size:10px;color:var(--text3);margin-top:3px;letter-spacing:1px;text-transform:uppercase}
 
-/* SECTIONS */
+/* PRIORITY TRACKER */
 .section{margin-bottom:20px}
-.sec-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:8px 14px;border-radius:var(--radius);margin-bottom:8px;
-  border-left:3px solid transparent;
-}
+.sec-header{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-radius:var(--radius);margin-bottom:8px;border-left:3px solid transparent}
 .sec-p0{background:var(--p0bg);border-left-color:var(--p0)}
 .sec-p1{background:var(--p1bg);border-left-color:var(--p1)}
 .sec-p2{background:var(--p2bg);border-left-color:var(--p2)}
@@ -95,74 +67,68 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .sec-p2 .sec-title{color:var(--p2)}
 .sec-p3 .sec-title{color:var(--p3)}
 .sec-count{font-size:11px;color:var(--text3)}
-
-/* TASK ITEMS */
-.task{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:var(--radius);padding:12px 14px;margin-bottom:6px;
-}
+.task{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:6px}
+.task.is-done{opacity:0.5}
+.task.is-done .task-title{text-decoration:line-through;color:var(--text3)}
 .task-main{display:flex;align-items:flex-start;gap:10px}
 .task-body{flex:1;min-width:0}
 .task-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px}
 .task-sub{font-size:11px;color:var(--text2);line-height:1.5}
 .task-actions{display:flex;gap:6px;flex-shrink:0;align-items:flex-start;margin-top:2px}
-
-.status-btn{
-  display:flex;align-items:center;gap:5px;
-  font-size:10px;padding:4px 9px;border-radius:4px;
-  border:1px solid var(--border2);background:transparent;
-  cursor:pointer;color:var(--text2);font-family:inherit;
-  white-space:nowrap;letter-spacing:0.5px;
-}
+.status-btn{display:flex;align-items:center;gap:5px;font-size:10px;padding:4px 9px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;color:var(--text2);font-family:inherit;white-space:nowrap;letter-spacing:0.5px}
 .status-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .dot-todo{background:var(--todo)}
 .dot-wip{background:var(--wip)}
 .dot-done{background:var(--done)}
-
-.log-btn{
-  font-size:10px;padding:4px 9px;border-radius:4px;
-  border:1px solid var(--border2);background:transparent;
-  cursor:pointer;color:var(--text3);font-family:inherit;
-  white-space:nowrap;
-}
+.log-btn{font-size:10px;padding:4px 9px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;color:var(--text3);font-family:inherit;white-space:nowrap}
 .log-btn:hover{border-color:var(--cyan);color:var(--cyan)}
-
 .task-logs{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px}
-.log-tag{
-  font-size:10px;background:var(--bg3);border:1px solid var(--border);
-  border-radius:4px;padding:2px 7px;color:var(--text3);
-}
-
-.log-form{
-  display:none;margin-top:10px;padding-top:10px;
-  border-top:1px solid var(--border);
-}
+.log-tag{font-size:10px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:2px 7px;color:var(--text3)}
+.log-form{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
 .log-form.open{display:block}
-.log-form input{
-  width:100%;background:var(--bg3);border:1px solid var(--border2);
-  border-radius:var(--radius);padding:8px 12px;color:var(--text);
-  font-family:inherit;font-size:12px;margin-bottom:8px;outline:none;
-}
+.log-form input{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:8px 12px;color:var(--text);font-family:inherit;font-size:12px;margin-bottom:8px;outline:none}
 .log-form input:focus{border-color:var(--cyan)}
 .log-form-btns{display:flex;gap:6px}
-.log-form-btns button{
-  font-size:11px;padding:5px 12px;border-radius:4px;
-  border:1px solid var(--border2);background:transparent;
-  cursor:pointer;font-family:inherit;color:var(--text2);
-}
+.log-form-btns button{font-size:11px;padding:5px 12px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text2)}
 .log-form-btns .save{border-color:var(--cyan);color:var(--cyan)}
-.log-form-btns button:hover{background:var(--bg3)}
 
-/* DONE state styling */
-.task.is-done{opacity:0.55}
-.task.is-done .task-title{text-decoration:line-through;color:var(--text3)}
+/* CLIENT DASHBOARD */
+.client-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:28px}
+.client-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.client-card-header{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.client-name{font-size:14px;font-weight:500;color:var(--text)}
+.client-badge{font-size:10px;padding:3px 8px;border-radius:4px;letter-spacing:1px;font-weight:500}
+.badge-active{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
+.badge-paused{background:#1a1200;color:var(--p1);border:1px solid #2a2000}
+.badge-loop{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}
+.client-meta{padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.waiting-tag{font-size:10px;padding:3px 8px;border-radius:4px;letter-spacing:0.5px}
+.waiting-client{background:#1a0a0a;color:var(--p0);border:1px solid #3a1010}
+.waiting-you{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}
+.waiting-live{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
+.days-stuck{font-size:11px;color:var(--p0);font-weight:500}
+.days-live{font-size:11px;color:var(--done)}
 
-/* FOOTER */
-.footer{
-  text-align:center;font-size:11px;color:var(--text3);
-  margin-top:40px;letter-spacing:1px;
-}
+/* ROADMAP */
+.roadmap{padding:16px 18px}
+.roadmap-title{font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.stage-list{display:flex;flex-direction:column;gap:6px}
+.stage-item{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:6px;border:1px solid transparent}
+.stage-done{background:#0a1a12;border-color:#1a3a25}
+.stage-active{background:#0a0f1a;border-color:var(--cyan);box-shadow:0 0 8px rgba(0,240,200,0.08)}
+.stage-todo{background:transparent;border-color:transparent}
+.stage-num{font-size:10px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:500}
+.stage-num-done{background:#1a3a25;color:var(--done)}
+.stage-num-active{background:var(--cyan);color:#000}
+.stage-num-todo{background:var(--bg3);color:var(--text3)}
+.stage-label{font-size:11px}
+.stage-label-done{color:var(--text3)}
+.stage-label-active{color:var(--cyan);font-weight:500}
+.stage-label-todo{color:var(--text3)}
+.stage-loop{font-size:9px;color:var(--wip);margin-left:auto;letter-spacing:1px}
+
+.footer{text-align:center;font-size:11px;color:var(--text3);margin-top:40px;letter-spacing:1px}
 
 @media(max-width:500px){
   .stats{grid-template-columns:repeat(2,1fr)}
@@ -177,86 +143,143 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 <!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
-    <div class="logo">GETCLONED.IN</div>
+    <div class="brand">GETCLONED.IN</div>
     <h1>War Room</h1>
     <p>Internal use only. Stay locked in.</p>
-    <input type="password" id="pw-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPw()"/>
+    <input type="password" id="pw-input" placeholder="Enter password"/>
     <button onclick="checkPw()">ENTER →</button>
-    <div class="login-error" id="pw-error">Wrong password. Try again.</div>
+    <div class="pw-error" id="pw-error">Wrong password. Try again.</div>
   </div>
 </div>
 
 <!-- APP -->
 <div id="app">
   <div class="top-bar">
-    <div class="top-bar-left">
+    <div>
       <div class="brand">GETCLONED.IN</div>
-      <h1>War Room — Priority Tracker</h1>
+      <h1>War Room</h1>
     </div>
     <div class="top-bar-right">
       <div id="last-updated">—</div>
-      <div>Click status to cycle &nbsp;·&nbsp; + Log to record activity</div>
+      <div>Internal · Not for distribution</div>
     </div>
   </div>
 
-  <div class="stats">
-    <div class="stat"><div class="stat-num" id="s-total" style="color:var(--cyan)">0</div><div class="stat-label">Total</div></div>
-    <div class="stat"><div class="stat-num" id="s-done" style="color:var(--done)">0</div><div class="stat-label">Done</div></div>
-    <div class="stat"><div class="stat-num" id="s-wip" style="color:var(--wip)">0</div><div class="stat-label">In Progress</div></div>
-    <div class="stat"><div class="stat-num" id="s-todo" style="color:var(--todo)">0</div><div class="stat-label">To Do</div></div>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('priorities')">PRIORITIES</button>
+    <button class="tab" onclick="switchTab('clients')">CLIENT DASHBOARD</button>
   </div>
 
-  <div id="board"></div>
+  <!-- PRIORITIES TAB -->
+  <div id="tab-priorities">
+    <div class="stats">
+      <div class="stat"><div class="stat-num" id="s-total" style="color:var(--cyan)">0</div><div class="stat-label">Total</div></div>
+      <div class="stat"><div class="stat-num" id="s-done" style="color:var(--done)">0</div><div class="stat-label">Done</div></div>
+      <div class="stat"><div class="stat-num" id="s-wip" style="color:var(--wip)">0</div><div class="stat-label">In Progress</div></div>
+      <div class="stat"><div class="stat-num" id="s-todo" style="color:var(--todo)">0</div><div class="stat-label">To Do</div></div>
+    </div>
+    <div id="board"></div>
+  </div>
 
-  <div class="footer">GETCLONED.IN &nbsp;·&nbsp; INTERNAL &nbsp;·&nbsp; NOT FOR DISTRIBUTION</div>
+  <!-- CLIENT DASHBOARD TAB -->
+  <div id="tab-clients" style="display:none">
+    <div class="client-grid" id="client-grid"></div>
+  </div>
+
+  <div class="footer">GETCLONED.IN · INTERNAL · NOT FOR DISTRIBUTION</div>
 </div>
 
 <script>
-const PASS = '100Clients@GetCloned';
+const PASS='100Clients@GetCloned';
 
-const TASKS = [
+/* ── TASKS ── */
+const TASKS=[
   {id:'p0-1',sec:'p0',title:'Daily Instagram DMs',sub:'10 DMs/day to ICP — doctors, coaches, wealth managers. No exceptions.'},
-  {id:'p0-2',sec:'p0',title:'Daily cold email',sub:'5 emails/day minimum. Rotate ICP profiles — doctors, coaches, wealth managers.'},
-  {id:'p0-3',sec:'p0',title:'Follow up pipeline',sub:'Anyone who hasn\'t replied in 3–5 days — follow up. Don\'t let leads go cold.'},
-  {id:'p0-4',sec:'p0',title:'Rainmaker — hunt 5 partners',sub:'Funnel builders, brand agencies, business coaches who sell to your ICP. Pitch rev share. Write the pitch deck first.'},
-  {id:'p0-5',sec:'p0',title:'Coach of coaches play',sub:'Hunt 10 profiles (Shivangi Desai type) on Instagram + LinkedIn. Pitch collab: "We build your clone almost at cost. You white label to your coaches." Write outreach templates in a dedicated session first.'},
-  {id:'p0-6',sec:'p0',title:'Upsell existing clients',sub:'Book calls with Dr. Madhu, Nirmal, Arfeen. Pitch ONE add-on each: extra platform, lead funnel, LinkedIn expansion. Free money.'},
-
-  {id:'p1-1',sec:'p1',title:'Reel — "I didn\'t shoot this. I am the clone."',sub:'Use your clone to record this. Best sign-up driver right now.'},
-  {id:'p1-2',sec:'p1',title:'Reel — "12 hours per reel → now zero"',sub:'Personal transformation story. Raw. Converts hard.'},
-  {id:'p1-3',sec:'p1',title:'Blog 6 — Origin story',sub:'"How I Built 1.4M Followers Then Eliminated Myself From Content Production." Highest trust → sign-ups.'},
-  {id:'p1-4',sec:'p1',title:'Blog 7 — What Is AI Content Cloning?',sub:'Pure GEO citation magnet. Own the definition. Link to /how-it-works.'},
-  {id:'p1-5',sec:'p1',title:'Quora — "Is AI content cloning real or a gimmick?"',sub:'High volume. We have the answer. Link to /how-it-works.'},
-  {id:'p1-6',sec:'p1',title:'Quora — "How do I get more patients from Instagram?"',sub:'Doctor ICP asks this daily. Link to Blog 4.'},
-  {id:'p1-7',sec:'p1',title:'LinkedIn post — Skool angle adapted',sub:'"What\'s the best way to start posting content?" Raw, honest, gets DMs.'},
-  {id:'p1-8',sec:'p1',title:'LinkedIn article — Dr. Madhu case study',sub:'Doctors on LinkedIn will find this. Repurpose Blog 4. Tag Dr. Madhu.'},
-
-  {id:'p2-1',sec:'p2',title:'Lock 3 pricing tiers',sub:'Starter / Pro / Elite with clear deliverables. Setup fee + monthly retainer structure. Raise main price 20% and test on next 10 prospects.'},
+  {id:'p0-2',sec:'p0',title:'Daily cold email',sub:'5 emails/day minimum. Rotate ICP profiles.'},
+  {id:'p0-3',sec:'p0',title:'Follow up pipeline',sub:'Anyone who hasn\'t replied in 3–5 days — follow up.'},
+  {id:'p0-4',sec:'p0',title:'Rainmaker — hunt 5 partners',sub:'Funnel builders, brand agencies, business coaches who sell to your ICP. Pitch rev share.'},
+  {id:'p0-5',sec:'p0',title:'Coach of coaches play',sub:'Hunt 10 profiles (Shivangi Desai type). Pitch collab: "We build your clone almost at cost. You white label to your coaches." Write outreach templates first.'},
+  {id:'p0-6',sec:'p0',title:'Upsell existing clients',sub:'Book calls with Dr. Madhu, Nirmal, Arfeen. Pitch ONE add-on each: extra platform, lead funnel, LinkedIn expansion.'},
+  {id:'p1-1',sec:'p1',title:'Reel — "I didn\'t shoot this. I am the clone."',sub:'Use your clone. Best sign-up driver right now.'},
+  {id:'p1-2',sec:'p1',title:'Reel — "12 hours per reel → now zero"',sub:'Personal transformation. Raw. Converts hard.'},
+  {id:'p1-3',sec:'p1',title:'Blog 6 — Origin story (1.4M → eliminated myself)',sub:'"How I Built 1.4M Followers Then Eliminated Myself From Content Production."'},
+  {id:'p1-4',sec:'p1',title:'Blog 7 — What Is AI Content Cloning?',sub:'Pure GEO citation magnet. Own the definition.'},
+  {id:'p1-5',sec:'p1',title:'Quora — "Is AI content cloning real or a gimmick?"',sub:'High volume. Link to /how-it-works.'},
+  {id:'p1-6',sec:'p1',title:'Quora — "How do I get more patients from Instagram?"',sub:'Doctor ICP. Link to Blog 4.'},
+  {id:'p1-7',sec:'p1',title:'LinkedIn post — Skool angle adapted',sub:'"What\'s the best way to start posting content?" Gets DMs.'},
+  {id:'p1-8',sec:'p1',title:'LinkedIn article — Dr. Madhu case study',sub:'Doctors on LinkedIn will find this. Tag Dr. Madhu.'},
+  {id:'p2-1',sec:'p2',title:'Lock 3 pricing tiers',sub:'Starter / Pro / Elite. Setup fee + monthly retainer. Raise main price 20% and test on next 10 prospects.'},
   {id:'p2-2',sec:'p2',title:'Blog 5 — AI Cloning vs Post Yourself First?',sub:'Handles #1 objection before the sales call.'},
-  {id:'p2-3',sec:'p2',title:'Blog 8 — Post daily without being on camera',sub:'Highest search volume in our space. Write this one carefully.'},
+  {id:'p2-3',sec:'p2',title:'Blog 8 — Post daily without being on camera',sub:'Highest search volume in our space.'},
   {id:'p2-4',sec:'p2',title:'Quora — "I don\'t have time to make content"',sub:'Short answer. Link to Blog 0.'},
-  {id:'p2-5',sec:'p2',title:'Quora — HeyGen vs AI content cloning',sub:'Kills the tool comparison. We\'re not a tool. We\'re a system.'},
-  {id:'p2-6',sec:'p2',title:'Reddit — r/Entrepreneur — doctor story post',sub:'"We built an AI clone for a doctor. Here\'s what happened in 30 days." Link to Blog 4.'},
+  {id:'p2-5',sec:'p2',title:'Quora — HeyGen vs AI content cloning',sub:'Kills the tool comparison. We\'re not a tool.'},
+  {id:'p2-6',sec:'p2',title:'Reddit — r/Entrepreneur — doctor story',sub:'"We built an AI clone for a doctor. 30 days." Link to Blog 4.'},
   {id:'p2-7',sec:'p2',title:'Reddit — r/contentcreators — cloning vs post yourself',sub:'Link to Blog 5.'},
-  {id:'p2-8',sec:'p2',title:'Reel — "The algorithm was using me. Then I flipped it."',sub:'Authority + curiosity hook. Slower burn but compounds.'},
-  {id:'p2-9',sec:'p2',title:'LinkedIn — "Camera-comfortable influencers era is over"',sub:'Polarising. Gets shares. From Foundation Doc.'},
-  {id:'p2-10',sec:'p2',title:'LinkedIn — Dr. Madhu results post',sub:'Before/after numbers. Screenshot style. Tag Dr. Madhu for reach.'},
-  {id:'p2-11',sec:'p2',title:'Trustpilot + Google reviews',sub:'Get reviews from Dr. Madhu + Nirmal + Arfeen. Google Business + Trustpilot both.'},
-
-  {id:'p3-1',sec:'p3',title:'Blog 9 — Doctors getting patients without ads',sub:'Niche ICP. Supports Blog 4. Slower burn but high GEO value.'},
-  {id:'p3-2',sec:'p3',title:'Blog 10 — AI cloning FAQ mega-blog',sub:'Perplexity citation magnet. Answer every question in one post.'},
-  {id:'p3-3',sec:'p3',title:'Quora — Akassh + Peepoye 1.4M story',sub:'Personal authority answer. Link to Blog 6.'},
-  {id:'p3-4',sec:'p3',title:'Reddit — r/AItools — Is AI cloning worth it in 2026?',sub:'Thought leadership. Link to /how-it-works.'},
-  {id:'p3-5',sec:'p3',title:'Skool — daily comments',sub:'Stay visible as The Cloning Guy. Comment on top posts daily.'},
-  {id:'p3-6',sec:'p3',title:'LinkedIn Giants — daily comments',sub:'Comment on top doctor/coach voices every day. Compounds.'},
+  {id:'p2-8',sec:'p2',title:'Reel — "The algorithm was using me. Then I flipped it."',sub:'Authority + curiosity hook.'},
+  {id:'p2-9',sec:'p2',title:'LinkedIn — "Camera-comfortable influencers era is over"',sub:'Polarising. Gets shares.'},
+  {id:'p2-10',sec:'p2',title:'LinkedIn — Dr. Madhu results post',sub:'Before/after numbers. Screenshot style. Tag Dr. Madhu.'},
+  {id:'p2-11',sec:'p2',title:'Trustpilot + Google reviews',sub:'Dr. Madhu + Nirmal + Arfeen. Both platforms.'},
+  {id:'p3-1',sec:'p3',title:'Blog 9 — Doctors getting patients without ads',sub:'Niche ICP. Supports Blog 4.'},
+  {id:'p3-2',sec:'p3',title:'Blog 10 — AI cloning FAQ mega-blog',sub:'Perplexity citation magnet.'},
+  {id:'p3-3',sec:'p3',title:'Quora — Akassh + Peepoye 1.4M story',sub:'Personal authority. Link to Blog 6.'},
+  {id:'p3-4',sec:'p3',title:'Reddit — r/AItools — Is AI cloning worth it in 2026?',sub:'Link to /how-it-works.'},
+  {id:'p3-5',sec:'p3',title:'Skool — daily comments',sub:'Stay visible as The Cloning Guy.'},
+  {id:'p3-6',sec:'p3',title:'LinkedIn Giants — daily comments',sub:'Comment on top doctor/coach voices daily.'},
 ];
 
-const SECTIONS = {
+const SECTIONS={
   p0:{label:'🔴 P0 — DO THIS WEEK',cls:'sec-p0'},
   p1:{label:'🟠 P1 — NEXT WEEK',cls:'sec-p1'},
   p2:{label:'🟡 P2 — THIS MONTH',cls:'sec-p2'},
   p3:{label:'🟢 P3 — WHEN FREE',cls:'sec-p3'},
 };
+
+/* ── STAGES ── */
+const STAGES=[
+  {id:1,label:'Contract Signed'},
+  {id:2,label:'Discovery Session'},
+  {id:3,label:'Content Strategy Locked'},
+  {id:4,label:'Audio Input Received'},
+  {id:5,label:'Video Input Received'},
+  {id:6,label:'Ideas Approved'},
+  {id:7,label:'Scripts Approved'},
+  {id:8,label:'First Reel Delivered'},
+  {id:9,label:'Approved & Published'},
+  {id:10,label:'Production Initiated',loop:true},
+];
+
+/* ── CLIENTS ── */
+const CLIENTS=[
+  {
+    id:'arfeen',
+    name:'Arfeen Khan',
+    status:'active',
+    currentStage:5,
+    waitingOn:'client',
+    stuckSince:'2026-05-25',
+    note:'Waiting for video input submission',
+  },
+  {
+    id:'madhu',
+    name:'Dr. Madhu Sudan',
+    status:'loop',
+    currentStage:10,
+    waitingOn:'live',
+    stuckSince:null,
+    note:'Reels publishing daily. Loop running.',
+  },
+  {
+    id:'nirmal',
+    name:'Nirmal Bansal',
+    status:'active',
+    currentStage:4,
+    waitingOn:'client',
+    stuckSince:'2026-05-13',
+    note:'Waiting for audio input submission',
+  },
+];
+
+/* ── STATE ── */
 const STATUS_CYCLE=['todo','wip','done'];
 const STATUS_LABELS={todo:'To do',wip:'In progress',done:'Done'};
 const DOT_CLS={todo:'dot-todo',wip:'dot-wip',done:'dot-done'};
@@ -268,6 +291,13 @@ function ensureTask(id){if(!state[id])state[id]={status:'todo',logs:[]}}
 
 function today(){return new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}
 
+function daysSince(dateStr){
+  if(!dateStr)return 0;
+  const diff=new Date()-new Date(dateStr);
+  return Math.floor(diff/(1000*60*60*24));
+}
+
+/* ── AUTH ── */
 function checkPw(){
   const v=document.getElementById('pw-input').value;
   if(v===PASS){
@@ -279,13 +309,20 @@ function checkPw(){
     document.getElementById('pw-input').value='';
   }
 }
+document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPw()});
 
+/* ── TABS ── */
+function switchTab(tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-priorities').style.display=tab==='priorities'?'block':'none';
+  document.getElementById('tab-clients').style.display=tab==='clients'?'block':'none';
+}
+
+/* ── STATS ── */
 function updateStats(){
   let done=0,wip=0,todo=0;
-  TASKS.forEach(t=>{
-    const s=state[t.id]?.status||'todo';
-    if(s==='done')done++;else if(s==='wip')wip++;else todo++;
-  });
+  TASKS.forEach(t=>{const s=state[t.id]?.status||'todo';if(s==='done')done++;else if(s==='wip')wip++;else todo++;});
   document.getElementById('s-total').textContent=TASKS.length;
   document.getElementById('s-done').textContent=done;
   document.getElementById('s-wip').textContent=wip;
@@ -293,6 +330,7 @@ function updateStats(){
   document.getElementById('last-updated').textContent='Updated: '+today();
 }
 
+/* ── PRIORITY BOARD ── */
 function renderTask(t){
   ensureTask(t.id);
   const s=state[t.id].status;
@@ -300,11 +338,7 @@ function renderTask(t){
   const div=document.createElement('div');
   div.className='task'+(s==='done'?' is-done':'');
   div.id='task-'+t.id;
-
-  const logsHtml=logs.length
-    ?`<div class="task-logs">${logs.map(l=>`<span class="log-tag">${l}</span>`).join('')}</div>`
-    :'';
-
+  const logsHtml=logs.length?`<div class="task-logs">${logs.map(l=>`<span class="log-tag">${l}</span>`).join('')}</div>`:'';
   div.innerHTML=`
     <div class="task-main">
       <div class="task-body">
@@ -320,36 +354,29 @@ function renderTask(t){
       </div>
     </div>
     <div class="log-form" id="lf-${t.id}">
-      <input type="text" id="li-${t.id}" placeholder='e.g. "Sent 10 DMs to doctors" or "Published Blog 6"'/>
+      <input type="text" id="li-${t.id}" placeholder='e.g. "Sent 10 DMs" or "Published Blog 6"'/>
       <div class="log-form-btns">
         <button class="save" data-saveid="${t.id}">Save</button>
         <button data-cancelid="${t.id}">Cancel</button>
       </div>
-    </div>
-  `;
+    </div>`;
   return div;
 }
 
 function renderBoard(){
   const board=document.getElementById('board');
   board.innerHTML='';
-
   Object.entries(SECTIONS).forEach(([key,sec])=>{
     const tasks=TASKS.filter(t=>t.sec===key);
     const done=tasks.filter(t=>(state[t.id]?.status||'todo')==='done').length;
-
     const section=document.createElement('div');
     section.className='section';
     section.id='sec-'+key;
-
     const header=document.createElement('div');
     header.className='sec-header '+sec.cls;
     header.innerHTML=`<span class="sec-title">${sec.label}</span><span class="sec-count" id="sc-${key}">${done}/${tasks.length} done</span>`;
     section.appendChild(header);
-
-    tasks.forEach(t=>{
-      section.appendChild(renderTask(t));
-    });
+    tasks.forEach(t=>section.appendChild(renderTask(t)));
     board.appendChild(section);
   });
 
@@ -360,41 +387,22 @@ function renderBoard(){
       const cur=state[id]?.status||'todo';
       const next=STATUS_CYCLE[(STATUS_CYCLE.indexOf(cur)+1)%3];
       state[id].status=next;
-      if(next==='done'){
-        state[id].logs=state[id].logs||[];
-        if(!state[id].logs.find(l=>l.startsWith('✓'))){
-          state[id].logs.push('✓ Done: '+today());
-        }
-      }
-      saveState();
-      refreshTask(id);
-      updateStats();
-      updateSectionCounts();
+      if(next==='done'){state[id].logs=state[id].logs||[];if(!state[id].logs.find(l=>l.startsWith('✓')))state[id].logs.push('✓ Done: '+today());}
+      saveState();refreshTask(id);updateStats();updateSectionCounts();
       return;
     }
     const lb=e.target.closest('[data-logid]');
-    if(lb){
-      const lf=document.getElementById('lf-'+lb.dataset.logid);
-      lf.classList.toggle('open');
-      return;
-    }
+    if(lb){document.getElementById('lf-'+lb.dataset.logid).classList.toggle('open');return;}
     const sv=e.target.closest('[data-saveid]');
     if(sv){
       const id=sv.dataset.saveid;
       const val=document.getElementById('li-'+id).value.trim();
-      if(val){
-        state[id].logs=state[id].logs||[];
-        state[id].logs.push(today()+': '+val);
-        saveState();
-        refreshTask(id);
-      }
+      if(val){state[id].logs=state[id].logs||[];state[id].logs.push(today()+': '+val);saveState();refreshTask(id);}
       document.getElementById('lf-'+id).classList.remove('open');
       return;
     }
     const cl=e.target.closest('[data-cancelid]');
-    if(cl){
-      document.getElementById('lf-'+cl.dataset.cancelid).classList.remove('open');
-    }
+    if(cl)document.getElementById('lf-'+cl.dataset.cancelid).classList.remove('open');
   });
 }
 
@@ -402,9 +410,7 @@ function refreshTask(id){
   const t=TASKS.find(x=>x.id===id);
   if(!t)return;
   const old=document.getElementById('task-'+id);
-  if(!old)return;
-  const fresh=renderTask(t);
-  old.replaceWith(fresh);
+  if(old)old.replaceWith(renderTask(t));
 }
 
 function updateSectionCounts(){
@@ -416,16 +422,61 @@ function updateSectionCounts(){
   });
 }
 
+/* ── CLIENT DASHBOARD ── */
+function renderClients(){
+  const grid=document.getElementById('client-grid');
+  grid.innerHTML='';
+  CLIENTS.forEach(c=>{
+    const days=c.stuckSince?daysSince(c.stuckSince):0;
+    const badgeClass=c.status==='loop'?'badge-loop':c.status==='active'?'badge-active':'badge-paused';
+    const badgeLabel=c.status==='loop'?'LIVE — LOOPING':c.status==='active'?'ACTIVE':'PAUSED';
+    const waitingClass=c.waitingOn==='client'?'waiting-client':c.waitingOn==='you'?'waiting-you':'waiting-live';
+    const waitingLabel=c.waitingOn==='client'?'⚠ WAITING ON CLIENT':c.waitingOn==='you'?'◎ WAITING ON YOU':'✓ LIVE';
+    const daysHtml=days>0?`<span class="days-stuck">${days}d overdue</span>`:`<span class="days-live">On track</span>`;
+
+    const stagesHtml=STAGES.map(s=>{
+      const isDone=s.id<c.currentStage;
+      const isActive=s.id===c.currentStage;
+      const cls=isDone?'stage-done':isActive?'stage-active':'stage-todo';
+      const numCls=isDone?'stage-num-done':isActive?'stage-num-active':'stage-num-todo';
+      const labelCls=isDone?'stage-label-done':isActive?'stage-label-active':'stage-label-todo';
+      const loopTag=s.loop&&isActive?`<span class="stage-loop">↺ LOOPS TO 3</span>`:'';
+      const check=isDone?'✓':s.id;
+      return `<div class="stage-item ${cls}">
+        <span class="stage-num ${numCls}">${check}</span>
+        <span class="stage-label ${labelCls}">${s.label}</span>
+        ${loopTag}
+      </div>`;
+    }).join('');
+
+    const card=document.createElement('div');
+    card.className='client-card';
+    card.innerHTML=`
+      <div class="client-card-header">
+        <span class="client-name">${c.name}</span>
+        <span class="client-badge ${badgeClass}">${badgeLabel}</span>
+      </div>
+      <div class="client-meta">
+        <span class="waiting-tag ${waitingClass}">${waitingLabel}</span>
+        ${daysHtml}
+      </div>
+      <div class="roadmap">
+        <div class="roadmap-title">Build Journey</div>
+        <div class="stage-list">${stagesHtml}</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:10px;line-height:1.5">${c.note}</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+/* ── INIT ── */
 function init(){
   loadState();
   TASKS.forEach(t=>ensureTask(t.id));
   renderBoard();
   updateStats();
+  renderClients();
 }
-
-document.getElementById('pw-input').addEventListener('keydown',function(e){
-  if(e.key==='Enter')checkPw();
-});
 </script>
 </body>
 </html>
