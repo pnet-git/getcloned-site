@@ -21,7 +21,6 @@
   --radius:8px;--radius-lg:12px;
 }
 body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospace,system-ui;min-height:100vh}
-
 #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh}
 .login-box{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:40px;width:360px;text-align:center}
 .login-box .brand{font-size:11px;color:var(--cyan);letter-spacing:2px;margin-bottom:8px}
@@ -32,43 +31,30 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .login-box button{width:100%;background:var(--cyan);color:#000;border:none;border-radius:var(--radius);padding:12px;font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;letter-spacing:1px}
 .login-box button:hover{background:var(--cyan2)}
 .pw-error{font-size:12px;color:var(--p0);margin-top:8px;display:none}
-
 #app{display:none;max-width:1100px;margin:0 auto;padding:24px 20px 60px}
 .top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
 .top-bar .brand{font-size:11px;color:var(--cyan);letter-spacing:2px;margin-bottom:4px}
 .top-bar h1{font-size:20px;font-weight:500}
 .top-bar-right{font-size:11px;color:var(--text3);text-align:right;line-height:1.8}
 .sync-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--done);margin-right:4px;vertical-align:middle}
-.sync-dot.syncing{background:var(--wip)}
-.sync-dot.error{background:var(--p0)}
-
+.sync-dot.syncing{background:var(--wip)}.sync-dot.error{background:var(--p0)}
 .tabs{display:flex;gap:4px;margin-bottom:28px;border-bottom:1px solid var(--border);overflow-x:auto}
 .tab{font-size:12px;padding:8px 20px;cursor:pointer;color:var(--text3);letter-spacing:1px;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;white-space:nowrap}
-.tab:hover{color:var(--text)}
-.tab.active{color:var(--cyan);border-bottom-color:var(--cyan)}
-
-/* STATS */
+.tab:hover{color:var(--text)}.tab.active{color:var(--cyan);border-bottom-color:var(--cyan)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:28px}
 .stat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center}
 .stat-num{font-size:24px;font-weight:500}
 .stat-label{font-size:10px;color:var(--text3);margin-top:3px;letter-spacing:1px;text-transform:uppercase}
-
-/* PRIORITY */
 .section{margin-bottom:20px}
 .sec-header{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-radius:var(--radius);margin-bottom:8px;border-left:3px solid transparent}
-.sec-p0{background:var(--p0bg);border-left-color:var(--p0)}
-.sec-p1{background:var(--p1bg);border-left-color:var(--p1)}
-.sec-p2{background:var(--p2bg);border-left-color:var(--p2)}
-.sec-p3{background:var(--p3bg);border-left-color:var(--p3)}
+.sec-p0{background:var(--p0bg);border-left-color:var(--p0)}.sec-p1{background:var(--p1bg);border-left-color:var(--p1)}
+.sec-p2{background:var(--p2bg);border-left-color:var(--p2)}.sec-p3{background:var(--p3bg);border-left-color:var(--p3)}
 .sec-title{font-size:12px;font-weight:500;letter-spacing:1px}
-.sec-p0 .sec-title{color:var(--p0)}
-.sec-p1 .sec-title{color:var(--p1)}
-.sec-p2 .sec-title{color:var(--p2)}
-.sec-p3 .sec-title{color:var(--p3)}
+.sec-p0 .sec-title{color:var(--p0)}.sec-p1 .sec-title{color:var(--p1)}
+.sec-p2 .sec-title{color:var(--p2)}.sec-p3 .sec-title{color:var(--p3)}
 .sec-count{font-size:11px;color:var(--text3)}
 .task{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:6px}
-.task.is-done{opacity:0.5}
-.task.is-done .task-title{text-decoration:line-through;color:var(--text3)}
+.task.is-done{opacity:0.5}.task.is-done .task-title{text-decoration:line-through;color:var(--text3)}
 .task-main{display:flex;align-items:flex-start;gap:10px}
 .task-body{flex:1;min-width:0}
 .task-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px}
@@ -77,9 +63,7 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .status-btn{display:flex;align-items:center;gap:5px;font-size:10px;padding:4px 9px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;color:var(--text2);font-family:inherit;white-space:nowrap}
 .status-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.dot-todo{background:var(--todo)}
-.dot-wip{background:var(--wip)}
-.dot-done{background:var(--done)}
+.dot-todo{background:var(--todo)}.dot-wip{background:var(--wip)}.dot-done{background:var(--done)}
 .log-btn{font-size:10px;padding:4px 9px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;color:var(--text3);font-family:inherit;white-space:nowrap}
 .log-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 .task-logs{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px}
@@ -91,8 +75,6 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .log-form-btns{display:flex;gap:6px}
 .log-form-btns button{font-size:11px;padding:5px 12px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text2)}
 .log-form-btns .save{border-color:var(--cyan);color:var(--cyan)}
-
-/* CLIENT DASHBOARD */
 .client-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:28px}
 .client-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
 .client-card-header{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
@@ -105,8 +87,7 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .waiting-client{background:#1a0a0a;color:var(--p0);border:1px solid #3a1010}
 .waiting-you{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}
 .waiting-live{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
-.days-stuck{font-size:11px;color:var(--p0);font-weight:500}
-.days-live{font-size:11px;color:var(--done)}
+.days-stuck{font-size:11px;color:var(--p0);font-weight:500}.days-live{font-size:11px;color:var(--done)}
 .roadmap{padding:16px 18px}
 .roadmap-title{font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
 .stage-list{display:flex;flex-direction:column;gap:6px}
@@ -119,25 +100,29 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .stage-num-active{background:var(--cyan);color:#000}
 .stage-num-todo{background:var(--bg3);color:var(--text3)}
 .stage-label{font-size:11px}
-.stage-label-done{color:var(--text3)}
-.stage-label-active{color:var(--cyan);font-weight:500}
-.stage-label-todo{color:var(--text3)}
+.stage-label-done{color:var(--text3)}.stage-label-active{color:var(--cyan);font-weight:500}.stage-label-todo{color:var(--text3)}
 .stage-loop{font-size:9px;color:var(--wip);margin-left:auto;letter-spacing:1px}
 
 /* PIPELINE */
+.alert-banner{background:#1a0800;border:1px solid #3a1800;border-radius:var(--radius-lg);padding:16px 20px;margin-bottom:20px}
+.alert-banner-title{font-size:11px;color:var(--p0);letter-spacing:1px;margin-bottom:10px;font-weight:500}
+.alert-list{display:flex;flex-direction:column;gap:6px}
+.alert-item{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.alert-name{font-size:12px;font-weight:500;color:var(--text)}
+.alert-msg{font-size:11px;color:var(--p1)}
+.alert-act{font-size:10px;padding:3px 8px;border-radius:4px;background:#3a1800;color:var(--p0);border:1px solid #5a2800;cursor:pointer;font-family:inherit;white-space:nowrap}
+.alert-act:hover{background:#4a2000}
+
 .pipeline-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
 .pipeline-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px}
-.pipeline-stat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:10px;text-align:center}
-.pipeline-stat .n{font-size:20px;font-weight:500}
-.pipeline-stat .l{font-size:10px;color:var(--text3);margin-top:2px;letter-spacing:1px}
-
+.ps{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:10px;text-align:center}
+.ps .n{font-size:20px;font-weight:500}.ps .l{font-size:10px;color:var(--text3);margin-top:2px;letter-spacing:1px}
 .add-lead-btn{font-size:11px;padding:7px 14px;border-radius:var(--radius);border:1px solid var(--cyan);background:transparent;color:var(--cyan);cursor:pointer;font-family:inherit;letter-spacing:1px}
 .add-lead-btn:hover{background:rgba(0,240,200,0.08)}
-
 .add-lead-form{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:20px;margin-bottom:20px;display:none}
 .add-lead-form.open{display:block}
 .add-lead-form h3{font-size:12px;color:var(--cyan);letter-spacing:1px;margin-bottom:16px}
-.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:14px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:14px}
 .form-field label{font-size:10px;color:var(--text3);letter-spacing:1px;display:block;margin-bottom:4px}
 .form-field input,.form-field select{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:8px 10px;color:var(--text);font-family:inherit;font-size:12px;outline:none}
 .form-field input:focus,.form-field select:focus{border-color:var(--cyan)}
@@ -145,20 +130,16 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .form-actions{display:flex;gap:8px}
 .form-actions button{font-size:11px;padding:7px 16px;border-radius:var(--radius);border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text2)}
 .form-actions .primary{border-color:var(--cyan);color:var(--cyan)}
-.form-actions button:hover{background:var(--bg3)}
-
 .pipeline-filters{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
 .filter-btn{font-size:10px;padding:4px 10px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text3);letter-spacing:0.5px}
 .filter-btn:hover{border-color:var(--text2);color:var(--text2)}
 .filter-btn.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,240,200,0.06)}
-
 .leads-table{width:100%;border-collapse:collapse}
-.leads-table th{font-size:10px;color:var(--text3);letter-spacing:1px;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);text-transform:uppercase}
-.leads-table td{font-size:12px;padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
-.leads-table tr:hover td{background:var(--bg2)}
-
-.stage-pill{font-size:10px;padding:3px 8px;border-radius:4px;white-space:nowrap;letter-spacing:0.5px}
-.s1{background:#1a1a0a;color:#888;border:1px solid #2a2a1a}
+.leads-table th{font-size:10px;color:var(--text3);letter-spacing:1px;padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);text-transform:uppercase;white-space:nowrap}
+.leads-table td{font-size:12px;padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+.leads-table tr:hover td{background:rgba(255,255,255,0.02)}
+.stage-pill{font-size:10px;padding:3px 7px;border-radius:4px;white-space:nowrap;letter-spacing:0.5px}
+.s1{background:#1a1a0a;color:#666;border:1px solid #2a2a1a}
 .s2{background:#1a1200;color:var(--p1);border:1px solid #2a2000}
 .s3{background:#1a1a00;color:#ffcc00;border:1px solid #2a2a00}
 .s4{background:#0a1a1a;color:var(--cyan);border:1px solid #0a2a2a}
@@ -168,40 +149,44 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .s8{background:#1a0f00;color:#ffaa44;border:1px solid #3a2000}
 .s9{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
 .s10{background:#1a0a0a;color:var(--p0);border:1px solid #3a1010}
-.s11{background:#1a1a1a;color:#666;border:1px solid #2a2a2a}
-
+.s11{background:#1a1a1a;color:#555;border:1px solid #2a2a2a}
 .offer-pill{font-size:10px;padding:2px 7px;border-radius:4px;letter-spacing:0.5px}
 .offer-gc{background:#0a1a1a;color:var(--cyan);border:1px solid #0a2a2a}
 .offer-gcplus{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}
 .offer-dba{background:#1a0f00;color:#ffaa44;border:1px solid #3a2000}
-
 .icp-pill{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:500}
 .icp-aplus{background:#0a1a0a;color:var(--done)}
 .icp-a{background:#0a1500;color:#88dd88}
 .icp-b{background:#1a1200;color:var(--p1)}
-.icp-other{background:#1a1a1a;color:#666}
+.icp-other{background:#1a1a1a;color:#555}
 
-.days-badge{font-size:10px;color:var(--text3)}
-.days-badge.hot{color:var(--p0);font-weight:500}
-.days-badge.warm{color:var(--p1)}
+/* ACTION BADGES */
+.action-badge{font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;font-weight:500;letter-spacing:0.5px}
+.ab-red{background:#2a0808;color:var(--p0);border:1px solid #4a1010}
+.ab-yellow{background:#1a1200;color:var(--p1);border:1px solid #3a2800}
+.ab-green{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
+.ab-grey{background:#1a1a1a;color:#555;border:1px solid #2a2a2a}
 
-.note-text{font-size:11px;color:var(--text2);max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-.lead-actions{display:flex;gap:4px}
-.lead-action-btn{font-size:10px;padding:3px 7px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text3)}
+.note-text{font-size:11px;color:var(--text2);max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lead-actions{display:flex;gap:4px;flex-wrap:nowrap}
+.lead-action-btn{font-size:10px;padding:3px 7px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text3);white-space:nowrap}
 .lead-action-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 
-.edit-panel{display:none;background:var(--bg3);border-radius:var(--radius);padding:12px;margin-top:8px}
+/* EDIT PANEL */
+.edit-panel{display:none;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:14px;margin-top:6px}
 .edit-panel.open{display:block}
-.edit-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-.edit-row select,.edit-row input{background:var(--bg2);border:1px solid var(--border2);border-radius:4px;padding:5px 8px;color:var(--text);font-family:inherit;font-size:11px;outline:none}
-.edit-row select:focus,.edit-row input:focus{border-color:var(--cyan)}
-.edit-save{font-size:11px;padding:5px 12px;border-radius:4px;border:1px solid var(--cyan);background:transparent;color:var(--cyan);cursor:pointer;font-family:inherit}
+.edit-panel-title{font-size:10px;color:var(--cyan);letter-spacing:1px;margin-bottom:10px}
+.edit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:10px}
+.edit-field label{font-size:10px;color:var(--text3);letter-spacing:1px;display:block;margin-bottom:3px}
+.edit-field input,.edit-field select{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:4px;padding:6px 8px;color:var(--text);font-family:inherit;font-size:11px;outline:none}
+.edit-field input:focus,.edit-field select:focus{border-color:var(--cyan)}
+.edit-btns{display:flex;gap:6px}
+.edit-btns button{font-size:11px;padding:5px 12px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text2)}
+.edit-btns .save{border-color:var(--cyan);color:var(--cyan)}
 
 .empty-state{text-align:center;padding:40px;color:var(--text3);font-size:12px}
-
 .footer{text-align:center;font-size:11px;color:var(--text3);margin-top:40px;letter-spacing:1px}
-@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.pipeline-stats{grid-template-columns:repeat(3,1fr)}.task-actions{flex-direction:column}}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.pipeline-stats{grid-template-columns:repeat(3,1fr)}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -221,10 +206,7 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 
 <div id="app">
   <div class="top-bar">
-    <div>
-      <div class="brand">GETCLONED.IN</div>
-      <h1>War Room</h1>
-    </div>
+    <div><div class="brand">GETCLONED.IN</div><h1>War Room</h1></div>
     <div class="top-bar-right">
       <div><span class="sync-dot" id="sync-dot"></span><span id="sync-status">Connecting...</span></div>
       <div id="last-updated">—</div>
@@ -237,7 +219,6 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
     <button class="tab" onclick="switchTab('pipeline',this)">LEAD PIPELINE</button>
   </div>
 
-  <!-- PRIORITIES -->
   <div id="tab-priorities">
     <div class="stats">
       <div class="stat"><div class="stat-num" id="s-total" style="color:var(--cyan)">—</div><div class="stat-label">Total</div></div>
@@ -248,72 +229,46 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
     <div id="board"><div class="empty-state">Loading...</div></div>
   </div>
 
-  <!-- CLIENT DASHBOARD -->
   <div id="tab-clients" style="display:none">
     <div class="client-grid" id="client-grid"></div>
   </div>
 
-  <!-- LEAD PIPELINE -->
   <div id="tab-pipeline" style="display:none">
+    <div id="alert-zone"></div>
+
     <div class="pipeline-top">
-      <div style="font-size:11px;color:var(--text3)">Track every lead from first contact to signed client.</div>
+      <div style="font-size:11px;color:var(--text3)">Track every lead. Never miss a follow up.</div>
       <button class="add-lead-btn" onclick="toggleAddForm()">+ Add Lead</button>
     </div>
 
     <div class="add-lead-form" id="add-lead-form">
       <h3>NEW LEAD</h3>
       <div class="form-grid">
-        <div class="form-field"><label>Name</label><input type="text" id="fl-name" placeholder="Dr. Neha Mehta"/></div>
+        <div class="form-field"><label>Name *</label><input type="text" id="fl-name" placeholder="Dr. Neha Mehta"/></div>
         <div class="form-field"><label>Niche</label><input type="text" id="fl-niche" placeholder="Dermatologist"/></div>
         <div class="form-field"><label>Offer</label>
-          <select id="fl-offer">
-            <option value="GC">GC — GetCloned</option>
-            <option value="GC+">GC+ — GetCloned Plus</option>
-            <option value="DBA">DBA — Digital Business Accelerator</option>
-          </select>
+          <select id="fl-offer"><option value="GC">GC — GetCloned</option><option value="GC+">GC+ — GetCloned Plus</option><option value="DBA">DBA</option></select>
         </div>
         <div class="form-field"><label>Source</label>
-          <select id="fl-source">
-            <option value="Outreach">Outreach</option>
-            <option value="Funnel">Funnel</option>
-            <option value="Ads">Ads</option>
-            <option value="Referral">Referral</option>
-          </select>
+          <select id="fl-source"><option value="Outreach">Outreach</option><option value="Funnel">Funnel</option><option value="Ads">Ads</option><option value="Referral">Referral</option></select>
         </div>
         <div class="form-field"><label>Channel</label>
-          <select id="fl-channel">
-            <option value="Email">Email</option>
-            <option value="Instagram">Instagram</option>
-            <option value="LinkedIn">LinkedIn</option>
-            <option value="Skool">Skool</option>
-            <option value="WhatsApp">WhatsApp</option>
-          </select>
+          <select id="fl-channel"><option value="Email">Email</option><option value="Instagram">Instagram</option><option value="LinkedIn">LinkedIn</option><option value="Skool">Skool</option><option value="WhatsApp">WhatsApp</option></select>
         </div>
         <div class="form-field"><label>ICP Score</label>
-          <select id="fl-icp">
-            <option value="A+">A+</option>
-            <option value="A">A</option>
-            <option value="B+">B+</option>
-            <option value="B">B</option>
-            <option value="DBA">DBA lead</option>
-          </select>
+          <select id="fl-icp"><option value="A+">A+</option><option value="A">A</option><option value="B+">B+</option><option value="B">B</option><option value="DBA">DBA lead</option></select>
         </div>
         <div class="form-field"><label>Stage</label>
           <select id="fl-stage">
-            <option value="1">1 — Identified</option>
-            <option value="2">2 — Contacted</option>
-            <option value="3">3 — Replied</option>
-            <option value="4">4 — Lead Captured</option>
-            <option value="5">5 — Case Study Watched</option>
-            <option value="6">6 — Call Booked</option>
-            <option value="7">7 — Strategy Call Done</option>
-            <option value="8">8 — Proposal Sent</option>
-            <option value="9">9 — Signed ✅</option>
-            <option value="10">10 — Lost ❌</option>
-            <option value="11">11 — On Hold ⏸</option>
+            <option value="1">1 — Identified</option><option value="2">2 — Contacted</option>
+            <option value="3">3 — Replied</option><option value="4">4 — Lead Captured</option>
+            <option value="5">5 — Case Study Watched</option><option value="6">6 — Call Booked</option>
+            <option value="7">7 — Strategy Call Done</option><option value="8">8 — Proposal Sent</option>
+            <option value="9">9 — Signed ✅</option><option value="10">10 — Lost ❌</option><option value="11">11 — On Hold ⏸</option>
           </select>
         </div>
-        <div class="form-field"><label>Note</label><input type="text" id="fl-note" placeholder="What happened last?"/></div>
+        <div class="form-field"><label>Action Date *</label><input type="date" id="fl-date"/></div>
+        <div class="form-field"><label>Note</label><input type="text" id="fl-note" placeholder="What happened?"/></div>
       </div>
       <div class="form-actions">
         <button class="primary" onclick="addLead()">Save Lead</button>
@@ -322,15 +277,16 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
     </div>
 
     <div class="pipeline-stats">
-      <div class="pipeline-stat"><div class="n" id="pl-total" style="color:var(--cyan)">0</div><div class="l">Total</div></div>
-      <div class="pipeline-stat"><div class="n" id="pl-active" style="color:var(--p1)">0</div><div class="l">Active</div></div>
-      <div class="pipeline-stat"><div class="n" id="pl-warm" style="color:#ffcc00">0</div><div class="l">Warm</div></div>
-      <div class="pipeline-stat"><div class="n" id="pl-booked" style="color:#aa88ff">0</div><div class="l">Call Booked</div></div>
-      <div class="pipeline-stat"><div class="n" id="pl-signed" style="color:var(--done)">0</div><div class="l">Signed</div></div>
+      <div class="ps"><div class="n" id="pl-total" style="color:var(--cyan)">0</div><div class="l">Total</div></div>
+      <div class="ps"><div class="n" id="pl-active" style="color:var(--p1)">0</div><div class="l">Active</div></div>
+      <div class="ps"><div class="n" id="pl-warm" style="color:#ffcc00">0</div><div class="l">Warm</div></div>
+      <div class="ps"><div class="n" id="pl-booked" style="color:#aa88ff">0</div><div class="l">Call Booked</div></div>
+      <div class="ps"><div class="n" id="pl-signed" style="color:var(--done)">0</div><div class="l">Signed</div></div>
     </div>
 
     <div class="pipeline-filters">
       <button class="filter-btn active" onclick="filterLeads('all',this)">All</button>
+      <button class="filter-btn" onclick="filterLeads('action',this)">🔴 Needs Action</button>
       <button class="filter-btn" onclick="filterLeads('active',this)">Active</button>
       <button class="filter-btn" onclick="filterLeads('warm',this)">Warm</button>
       <button class="filter-btn" onclick="filterLeads('GC',this)">GC</button>
@@ -354,6 +310,17 @@ const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZ
 
 const STAGE_LABELS=['','Identified','Contacted','Replied','Lead Captured','Case Study Watched','Call Booked','Strategy Call Done','Proposal Sent','Signed ✅','Lost ❌','On Hold ⏸'];
 const STAGE_CLS=['','s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11'];
+
+// Alert thresholds per stage (days before alert fires)
+const ALERT_RULES={
+  2:{days:3,msg:'Follow up — no reply in {d} days',level:'red'},
+  3:{days:2,msg:'Respond now — replied {d} days ago',level:'red'},
+  4:{days:1,msg:'Nurture — lead captured {d} days ago',level:'yellow'},
+  6:{days:1,msg:'Call was {d} days ago — update stage',level:'yellow'},
+  7:{days:2,msg:'Call done {d} days ago — send proposal',level:'red'},
+  8:{days:5,msg:'Proposal sent {d} days ago — follow up',level:'red'},
+  11:{days:14,msg:'On hold for {d} days — time to ping',level:'yellow'},
+};
 
 const TASKS=[
   {id:'p0-1',sec:'p0',title:'Daily Instagram DMs',sub:'10 DMs/day to ICP — doctors, coaches, wealth managers. No exceptions.'},
@@ -410,19 +377,6 @@ const CLIENTS=[
   {id:'nirmal',name:'Nirmal Bansal',status:'active',currentStage:4,waitingOn:'client',stuckSince:'2026-05-13',note:'Waiting for audio input submission'},
 ];
 
-const SEED_LEADS=[
-  {id:'lead-001',name:'Dr. Neha Mehta',niche:'Sexologist',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:3,note:'Replied "Sure!!" same day. Phase 2 sent. No response.',last_action:'2026-05-06'},
-  {id:'lead-002',name:'Shivangi Desai',niche:'Healthpreneur',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:6,note:'Shared details. Calendly sent. Waiting for booking.',last_action:'2026-05-13'},
-  {id:'lead-003',name:'Dr. Deepali Bhardwaj',niche:'Dermatologist',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:3,note:'Shared number + "let\'s connect soon". WhatsApp sent.',last_action:'2026-05-13'},
-  {id:'lead-004',name:'Dr. Saurabh Sethi',niche:'Gastroenterologist',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:3,note:'Asked for case studies. Sent on 13 May.',last_action:'2026-05-13'},
-  {id:'lead-005',name:'Anjali Tarot',niche:'Tarot Reader',offer:'DBA',source:'Outreach',channel:'Email',icp:'A',stage:2,note:'Replied: ping after 21st. Follow up due.',last_action:'2026-05-08'},
-  {id:'lead-006',name:'Dr. Vijayant Govind Gupta',niche:'Urologist',offer:'GC',source:'Outreach',channel:'Email',icp:'A+',stage:2,note:'A++ signal. High volume practice. No reply yet.',last_action:'2026-05-07'},
-  {id:'lead-007',name:'Ryan Fernando',niche:'Nutrition Coach',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:2,note:'Phase 1 sent. Cold so far.',last_action:'2026-05-11'},
-  {id:'lead-008',name:'Dr. Imran Patel',niche:'Pediatrician',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:2,note:'12.1MN followers. Phase 1 sent. Cold.',last_action:'2026-05-10'},
-  {id:'lead-009',name:'Dimple Jangda',niche:'Health/Beauty',offer:'GC',source:'Outreach',channel:'Email',icp:'A',stage:2,note:'875K followers. Phase 1 sent. Cold.',last_action:'2026-05-11'},
-  {id:'lead-010',name:'Anna Pleet MD',niche:'Doctor/Weight Loss',offer:'GC',source:'Outreach',channel:'Skool',icp:'A',stage:2,note:'Comment posted on Skool. Rapport building. No selling yet.',last_action:'2026-04-16'},
-];
-
 const STATUS_CYCLE=['todo','wip','done'];
 const STATUS_LABELS={todo:'To do',wip:'In progress',done:'Done'};
 const DOT_CLS={todo:'dot-todo',wip:'dot-wip',done:'dot-done'};
@@ -435,6 +389,32 @@ function today(){return new Date().toLocaleDateString('en-IN',{day:'2-digit',mon
 function todayISO(){return new Date().toISOString().split('T')[0]}
 function daysSince(d){if(!d)return 0;return Math.floor((new Date()-new Date(d))/(1000*60*60*24))}
 function uid(){return 'lead-'+Date.now()+'-'+Math.random().toString(36).slice(2,7)}
+
+function getAlert(lead){
+  const rule=ALERT_RULES[lead.stage];
+  if(!rule)return null;
+  const days=daysSince(lead.last_action);
+  if(days>=rule.days){
+    return{msg:rule.msg.replace('{d}',days),level:rule.level,days};
+  }
+  if(days>=rule.days-1&&rule.days>1){
+    return{msg:'Follow up due soon — '+days+'d since last action',level:'yellow',days};
+  }
+  return null;
+}
+
+function getActionBadge(lead){
+  if(lead.stage===9)return{cls:'ab-green',label:'Signed ✅'};
+  if(lead.stage===10)return{cls:'ab-grey',label:'Lost'};
+  if(lead.stage===11){
+    const d=daysSince(lead.last_action);
+    return d>=14?{cls:'ab-yellow',label:'Ping now'}:{cls:'ab-grey',label:'On hold'};
+  }
+  const alert=getAlert(lead);
+  if(!alert)return{cls:'ab-green',label:'On track'};
+  if(alert.level==='red')return{cls:'ab-red',label:'Follow up now'};
+  return{cls:'ab-yellow',label:'Follow up soon'};
+}
 
 function setSyncStatus(s){
   const dot=document.getElementById('sync-dot');
@@ -466,7 +446,7 @@ async function saveTask(id){
   setSyncStatus('syncing');
   try{
     const s=taskState[id];
-    await sbFetch('/rest/v1/warroom_state',{method:'POST',headers:{'Prefer':'resolution=merge-duplicates,return=representation'},body:JSON.stringify({id,status:s.status,logs:s.logs,updated_at:new Date().toISOString()})});
+    await sbFetch('/rest/v1/warroom_state',{method:'POST',headers:{'Prefer':'resolution=merge-duplicates'},body:JSON.stringify({id,status:s.status,logs:s.logs,updated_at:new Date().toISOString()})});
     setSyncStatus('ok');
     document.getElementById('last-updated').textContent='Updated: '+today();
   }catch(e){setSyncStatus('error')}
@@ -475,22 +455,8 @@ async function saveTask(id){
 async function loadLeads(){
   try{
     const rows=await sbFetch('/rest/v1/pipeline_leads?select=*&order=created_at.desc');
-    if(rows.length===0){
-      await seedLeads();
-    } else {
-      leads=rows;
-    }
-  }catch(e){
-    leads=SEED_LEADS;
-  }
-}
-
-async function seedLeads(){
-  try{
-    const seeded=SEED_LEADS.map(l=>({...l,created_at:new Date().toISOString()}));
-    await sbFetch('/rest/v1/pipeline_leads',{method:'POST',headers:{'Prefer':'resolution=merge-duplicates'},body:JSON.stringify(seeded)});
-    leads=seeded;
-  }catch(e){leads=SEED_LEADS;}
+    leads=rows;
+  }catch(e){leads=[]}
 }
 
 async function saveLead(lead){
@@ -557,21 +523,17 @@ function renderTask(t){
 }
 
 function renderBoard(){
-  const board=document.getElementById('board');
-  board.innerHTML='';
+  const board=document.getElementById('board');board.innerHTML='';
   Object.entries(SECTIONS).forEach(([key,sec])=>{
     const tasks=TASKS.filter(t=>t.sec===key);
     const done=tasks.filter(t=>(taskState[t.id]?.status||'todo')==='done').length;
-    const section=document.createElement('div');
-    section.className='section';
-    const header=document.createElement('div');
-    header.className='sec-header '+sec.cls;
+    const section=document.createElement('div');section.className='section';
+    const header=document.createElement('div');header.className='sec-header '+sec.cls;
     header.innerHTML=`<span class="sec-title">${sec.label}</span><span class="sec-count" id="sc-${key}">${done}/${tasks.length} done</span>`;
     section.appendChild(header);
     tasks.forEach(t=>section.appendChild(renderTask(t)));
     board.appendChild(section);
   });
-
   board.addEventListener('click',async function(e){
     const sb=e.target.closest('[data-id]');
     if(sb){
@@ -633,34 +595,53 @@ function renderClients(){
   });
 }
 
-function icpCls(icp){
-  if(icp==='A+')return 'icp-aplus';
-  if(icp==='A')return 'icp-a';
-  if(icp==='B+'||icp==='B')return 'icp-b';
-  return 'icp-other';
+function renderAlerts(){
+  const zone=document.getElementById('alert-zone');
+  const alerts=leads.filter(l=>{
+    if(l.stage===9||l.stage===10)return false;
+    return getAlert(l)!==null&&getAlert(l).level==='red';
+  });
+  if(!alerts.length){zone.innerHTML='';return;}
+  let html=`<div class="alert-banner"><div class="alert-banner-title">🔴 ACTION NEEDED TODAY (${alerts.length})</div><div class="alert-list">`;
+  alerts.forEach(l=>{
+    const a=getAlert(l);
+    html+=`<div class="alert-item">
+      <span class="alert-name">${l.name}</span>
+      <span class="alert-msg">${a.msg}</span>
+      <button class="alert-act" onclick="scrollToLead('${l.id}')">View →</button>
+    </div>`;
+  });
+  html+=`</div></div>`;
+  zone.innerHTML=html;
 }
 
+function scrollToLead(id){
+  filterLeads('all',document.querySelector('.filter-btn'));
+  setTimeout(()=>{
+    const row=document.getElementById('lead-row-'+id);
+    if(row)row.scrollIntoView({behavior:'smooth',block:'center'});
+  },100);
+}
+
+function icpCls(icp){
+  if(icp==='A+')return 'icp-aplus';if(icp==='A')return 'icp-a';
+  if(icp==='B+'||icp==='B')return 'icp-b';return 'icp-other';
+}
 function offerCls(offer){
-  if(offer==='GC')return 'offer-gc';
-  if(offer==='GC+')return 'offer-gcplus';
-  return 'offer-dba';
+  if(offer==='GC')return 'offer-gc';if(offer==='GC+')return 'offer-gcplus';return 'offer-dba';
 }
 
 function renderPipelineStats(){
-  const total=leads.length;
-  const active=leads.filter(l=>l.stage>=2&&l.stage<=8).length;
-  const warm=leads.filter(l=>l.stage===3).length;
-  const booked=leads.filter(l=>l.stage===6).length;
-  const signed=leads.filter(l=>l.stage===9).length;
-  document.getElementById('pl-total').textContent=total;
-  document.getElementById('pl-active').textContent=active;
-  document.getElementById('pl-warm').textContent=warm;
-  document.getElementById('pl-booked').textContent=booked;
-  document.getElementById('pl-signed').textContent=signed;
+  document.getElementById('pl-total').textContent=leads.length;
+  document.getElementById('pl-active').textContent=leads.filter(l=>l.stage>=2&&l.stage<=8).length;
+  document.getElementById('pl-warm').textContent=leads.filter(l=>l.stage===3).length;
+  document.getElementById('pl-booked').textContent=leads.filter(l=>l.stage===6).length;
+  document.getElementById('pl-signed').textContent=leads.filter(l=>l.stage===9).length;
 }
 
 function getFilteredLeads(){
   if(currentFilter==='all')return leads;
+  if(currentFilter==='action')return leads.filter(l=>getAlert(l)&&getAlert(l).level==='red');
   if(currentFilter==='active')return leads.filter(l=>l.stage>=2&&l.stage<=8);
   if(currentFilter==='warm')return leads.filter(l=>l.stage===3);
   if(currentFilter==='GC')return leads.filter(l=>l.offer==='GC');
@@ -674,41 +655,49 @@ function getFilteredLeads(){
 
 function renderLeads(){
   renderPipelineStats();
+  renderAlerts();
   const container=document.getElementById('leads-container');
   const filtered=getFilteredLeads();
   if(!filtered.length){container.innerHTML='<div class="empty-state">No leads in this filter.</div>';return;}
-
-  let html=`<table class="leads-table">
-    <thead><tr>
-      <th>Name</th><th>Niche</th><th>Offer</th><th>ICP</th>
-      <th>Stage</th><th>Channel</th><th>Days</th><th>Last Note</th><th>Actions</th>
-    </tr></thead><tbody>`;
-
+  let html=`<table class="leads-table"><thead><tr>
+    <th>Name</th><th>Niche</th><th>Offer</th><th>ICP</th><th>Stage</th>
+    <th>Action</th><th>Days</th><th>Last Note</th><th>Actions</th>
+  </tr></thead><tbody>`;
   filtered.forEach(l=>{
     const days=daysSince(l.last_action||l.created_at);
-    const daysCls=days>14?'hot':days>7?'warm':'';
+    const ab=getActionBadge(l);
     html+=`<tr id="lead-row-${l.id}">
       <td style="font-weight:500;white-space:nowrap">${l.name}</td>
       <td style="color:var(--text2);white-space:nowrap">${l.niche||'—'}</td>
       <td><span class="offer-pill ${offerCls(l.offer)}">${l.offer}</span></td>
       <td><span class="icp-pill ${icpCls(l.icp)}">${l.icp}</span></td>
       <td><span class="stage-pill ${STAGE_CLS[l.stage]}">${STAGE_LABELS[l.stage]}</span></td>
-      <td style="color:var(--text2)">${l.channel||'—'}</td>
-      <td><span class="days-badge ${daysCls}">${days}d</span></td>
+      <td><span class="action-badge ${ab.cls}">${ab.label}</span></td>
+      <td style="color:var(--text3);white-space:nowrap">${days}d ago</td>
       <td><span class="note-text" title="${l.note||''}">${l.note||'—'}</span></td>
       <td>
         <div class="lead-actions">
-          <button class="lead-action-btn" onclick="advanceStage('${l.id}')">→ Next</button>
           <button class="lead-action-btn" onclick="toggleEditPanel('${l.id}')">Edit</button>
         </div>
         <div class="edit-panel" id="ep-${l.id}">
-          <div class="edit-row">
-            <select id="es-${l.id}" onchange="">
-              ${STAGE_LABELS.slice(1).map((sl,i)=>`<option value="${i+1}" ${l.stage===i+1?'selected':''}>${i+1}. ${sl}</option>`).join('')}
-            </select>
-            <input type="text" id="en-${l.id}" value="${l.note||''}" placeholder="Update note..." style="flex:1;min-width:140px"/>
+          <div class="edit-panel-title">UPDATE LEAD</div>
+          <div class="edit-grid">
+            <div class="edit-field"><label>Stage</label>
+              <select id="es-${l.id}">
+                ${STAGE_LABELS.slice(1).map((sl,i)=>`<option value="${i+1}" ${l.stage===i+1?'selected':''}>${i+1}. ${sl}</option>`).join('')}
+              </select>
+            </div>
+            <div class="edit-field"><label>Action Date</label>
+              <input type="date" id="ed-${l.id}" value="${l.last_action||todayISO()}"/>
+            </div>
+            <div class="edit-field"><label>Note</label>
+              <input type="text" id="en-${l.id}" value="${l.note||''}" placeholder="What happened?"/>
+            </div>
           </div>
-          <button class="edit-save" onclick="saveLeadEdit('${l.id}')">Save</button>
+          <div class="edit-btns">
+            <button class="save" onclick="saveLeadEdit('${l.id}')">Save</button>
+            <button onclick="toggleEditPanel('${l.id}')">Cancel</button>
+          </div>
         </div>
       </td>
     </tr>`;
@@ -718,24 +707,15 @@ function renderLeads(){
 }
 
 function toggleEditPanel(id){
-  const ep=document.getElementById('ep-'+id);
-  ep.classList.toggle('open');
-}
-
-async function advanceStage(id){
-  const lead=leads.find(l=>l.id===id);
-  if(!lead||lead.stage>=11)return;
-  lead.stage=Math.min(lead.stage+1,11);
-  lead.last_action=todayISO();
-  await saveLead(lead);
-  renderLeads();
+  document.querySelectorAll('.edit-panel').forEach(ep=>{if(ep.id!=='ep-'+id)ep.classList.remove('open')});
+  document.getElementById('ep-'+id).classList.toggle('open');
 }
 
 async function saveLeadEdit(id){
   const lead=leads.find(l=>l.id===id);if(!lead)return;
   lead.stage=parseInt(document.getElementById('es-'+id).value);
+  lead.last_action=document.getElementById('ed-'+id).value;
   lead.note=document.getElementById('en-'+id).value;
-  lead.last_action=todayISO();
   await saveLead(lead);
   document.getElementById('ep-'+id).classList.remove('open');
   renderLeads();
@@ -744,20 +724,23 @@ async function saveLeadEdit(id){
 function filterLeads(filter,btn){
   currentFilter=filter;
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
+  if(btn)btn.classList.add('active');
   renderLeads();
 }
 
 function toggleAddForm(){
-  document.getElementById('add-lead-form').classList.toggle('open');
+  const form=document.getElementById('add-lead-form');
+  form.classList.toggle('open');
+  if(form.classList.contains('open')){
+    document.getElementById('fl-date').value=todayISO();
+  }
 }
 
 async function addLead(){
   const name=document.getElementById('fl-name').value.trim();
   if(!name){alert('Name is required');return;}
   const lead={
-    id:uid(),
-    name,
+    id:uid(),name,
     niche:document.getElementById('fl-niche').value.trim(),
     offer:document.getElementById('fl-offer').value,
     source:document.getElementById('fl-source').value,
@@ -765,7 +748,7 @@ async function addLead(){
     icp:document.getElementById('fl-icp').value,
     stage:parseInt(document.getElementById('fl-stage').value),
     note:document.getElementById('fl-note').value.trim(),
-    last_action:todayISO(),
+    last_action:document.getElementById('fl-date').value||todayISO(),
     created_at:new Date().toISOString(),
   };
   leads.unshift(lead);
@@ -779,10 +762,7 @@ async function init(){
   setSyncStatus('syncing');
   await Promise.all([loadTasks(),loadLeads()]);
   TASKS.forEach(t=>ensureTask(t.id));
-  renderBoard();
-  updateStats();
-  renderClients();
-  renderLeads();
+  renderBoard();updateStats();renderClients();renderLeads();
 }
 </script>
 </body>
