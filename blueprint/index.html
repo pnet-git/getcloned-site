@@ -245,6 +245,10 @@ p strong{color:var(--text);font-weight:600}
 .price{font-family:var(--serif);font-size:clamp(36px,6vw,56px);font-weight:600;color:var(--text)}
 .price-note{font-family:var(--mono);font-size:13px;color:var(--text-dim)}
 /* Stacked offer box */
+.offer-layout{display:grid;grid-template-columns:220px 1fr;gap:32px;align-items:start;margin-top:28px}
+.offer-box-img{position:relative}
+.offer-box-img img{width:100%;border-radius:12px;display:block;box-shadow:0 8px 32px rgba(0,240,200,0.15),0 0 0 1px var(--border)}
+.offer-stack-side{flex:1}
 .stack{margin:28px 0 0;display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden}
 .stack-item{display:flex;align-items:center;gap:16px;padding:18px 20px;background:var(--bg-card)}
 .stack-check{color:var(--cyan);font-size:18px;font-weight:700;flex-shrink:0}
@@ -452,6 +456,8 @@ p strong{color:var(--text);font-weight:600}
 
   /* OFFER */
   .offer-card{padding:28px 20px}
+  .offer-layout{grid-template-columns:1fr}
+  .offer-box-img{max-width:240px;margin:0 auto}
   .stack-item{padding:14px 14px;gap:12px}
   .stack-name{font-size:15px}
   .stack-desc{font-size:12.5px}
@@ -943,7 +949,12 @@ p strong{color:var(--text);font-weight:600}
     <div class="offer-card">
       <div class="offer-name">The Autopilot Income System Blueprint Call</div>
       <h3>Not a sales call. A working session — you leave with the plan, whether we work together or not.</h3>
-      <div class="stack">
+      <div class="offer-layout">
+        <div class="offer-box-img">
+          <img src="/media/img-blueprint-box.jpeg" alt="Autopilot Income System Blueprint">
+        </div>
+        <div class="offer-stack-side">
+        <div class="stack">
         <div class="stack-item">
           <div class="stack-check">✓</div>
           <div class="stack-body"><span class="stack-name">Your Personal Cloning Blueprint <span class="stack-tag">PDF you keep</span></span><span class="stack-desc">The exact roadmap to put your expertise everywhere — without filming</span></div>
@@ -969,6 +980,8 @@ p strong{color:var(--text);font-weight:600}
         <span class="st-label">Total real value</span>
         <span class="st-strike">₹5,500</span>
       </div>
+      </div><!-- end offer-stack-side -->
+      </div><!-- end offer-layout -->
       <div class="price-row">
         <span class="price-today">Today, to hold your seat:</span>
         <span class="price">₹499</span>
