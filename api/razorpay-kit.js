@@ -96,7 +96,7 @@ export default async function handler(req, res) {
     const tagRes = await fetch(`https://api.kit.com/v4/tags/${KIT_TAG_ID}/subscribers`, {
       method: 'POST',
       headers: KIT_HEADERS,
-      body: JSON.stringify({ subscriber_id: subscriberId })
+      body: JSON.stringify({ email_address: email })
     });
     const tagData = await tagRes.json();
     return res.status(200).json({
