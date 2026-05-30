@@ -259,6 +259,10 @@ p strong{color:var(--text);font-weight:600}
 .st-strike{font-family:var(--serif);font-size:24px;color:var(--text-muted);text-decoration:line-through}
 .price-today{font-family:var(--mono);font-size:14px;color:var(--cyan);letter-spacing:.5px}
 .refund-line{font-size:14px;color:var(--text-dim);margin:4px 0 28px}
+.stack-tag{display:inline-block;font-family:var(--mono);font-size:10px;color:var(--cyan);background:var(--cyan-soft);border:1px solid var(--border);border-radius:4px;padding:2px 7px;letter-spacing:.5px;text-transform:uppercase;vertical-align:middle;margin-left:6px;font-weight:500}
+.scarcity-bar{display:flex;align-items:center;gap:12px;background:rgba(0,240,200,0.05);border:1px solid var(--border-strong);border-radius:10px;padding:14px 18px;margin-bottom:22px;font-size:14.5px;color:var(--text);line-height:1.5}
+.scarcity-dot{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);flex-shrink:0;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
 /* ============ GUARANTEE ============ */
 .guarantee{text-align:center;max-width:720px;margin:0 auto}
@@ -811,28 +815,32 @@ p strong{color:var(--text);font-weight:600}
 <section class="s-dark divider-top" data-section="S13_OFFER">
   <div class="wrap" id="book">
     <div class="div-label">What you actually get</div>
+    <div class="scarcity-bar">
+      <span class="scarcity-dot"></span>
+      <span>Each Blueprint Call is a real 1-on-1 working session — so we only take <strong>a handful each week.</strong> When the week's seats are gone, they're gone.</span>
+    </div>
     <div class="offer-card">
       <div class="offer-name">The Autopilot Income System Blueprint Call</div>
       <h3>Not a sales call. A working session — you leave with the plan, whether we work together or not.</h3>
       <div class="stack">
         <div class="stack-item">
           <div class="stack-check">✓</div>
-          <div class="stack-body"><span class="stack-name">Your Personal Cloning Blueprint</span><span class="stack-desc">The exact roadmap to put your expertise everywhere — without filming</span></div>
+          <div class="stack-body"><span class="stack-name">Your Personal Cloning Blueprint <span class="stack-tag">PDF you keep</span></span><span class="stack-desc">The exact roadmap to put your expertise everywhere — without filming</span></div>
           <div class="stack-val">₹2,500</div>
         </div>
         <div class="stack-item">
           <div class="stack-check">✓</div>
-          <div class="stack-body"><span class="stack-name">The Money-Leak Diagnosis</span><span class="stack-desc">What staying the messenger is quietly costing you every month</span></div>
+          <div class="stack-body"><span class="stack-name">The Money-Leak Diagnosis <span class="stack-tag">live on call</span></span><span class="stack-desc">What staying the messenger is quietly costing you every month</span></div>
           <div class="stack-val">₹1,500</div>
         </div>
         <div class="stack-item">
           <div class="stack-check">✓</div>
-          <div class="stack-body"><span class="stack-name">Live Proof-of-Concept</span><span class="stack-desc">See a clone built for someone in your exact field — live on the call</span></div>
+          <div class="stack-body"><span class="stack-name">Live Proof-of-Concept <span class="stack-tag">built on screen</span></span><span class="stack-desc">See a clone built for someone in your exact field — live on the call</span></div>
           <div class="stack-val">₹1,500</div>
         </div>
         <div class="stack-item">
           <div class="stack-check">✓</div>
-          <div class="stack-body"><span class="stack-name">Your Fit Verdict</span><span class="stack-desc">A straight answer: can we build this for you — no chasing, no pressure</span></div>
+          <div class="stack-body"><span class="stack-name">Your Fit Verdict <span class="stack-tag">straight answer</span></span><span class="stack-desc">Can we build this for you — no chasing, no pressure either way</span></div>
           <div class="stack-val">Priceless</div>
         </div>
       </div>
