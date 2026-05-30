@@ -145,7 +145,7 @@ p strong{color:var(--text);font-weight:600}
 .reel-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s}
 .reel-card:hover{border-color:var(--border-strong);transform:translateY(-3px)}
 .reel-card.picked{border-color:var(--cyan);box-shadow:0 0 24px var(--cyan-glow)}
-.reel-frame{position:relative;width:100%;padding-bottom:177.77%;max-height:480px;overflow:hidden;background:#fff}
+.reel-frame{position:relative;width:100%;padding-bottom:177.77%;max-height:480px;overflow:hidden;background:#0a0c0c}
 .reel-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
 .reel-frame video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
 .reel-footer{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-top:1px solid var(--border)}
@@ -252,6 +252,24 @@ p strong{color:var(--text);font-weight:600}
 .shield{width:62px;height:62px;margin:0 auto 22px;border-radius:14px;border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-size:26px;background:var(--cyan-soft);box-shadow:0 0 30px var(--cyan-soft)}
 .guarantee p{color:var(--text);font-size:clamp(17px,2.2vw,19px)}
 
+/* ============ GUARANTEE (Sabri/CF pattern) ============ */
+.guarantee-block{display:grid;grid-template-columns:280px 1fr;gap:52px;align-items:center;max-width:860px;margin:0 auto}
+.guarantee-visual{position:relative;flex-shrink:0}
+.guarantee-visual img{width:100%;border-radius:14px;display:block;border:1px solid var(--border)}
+.guarantee-badge-fallback{width:200px;height:200px;margin:0 auto;background:radial-gradient(circle at 50% 40%,rgba(0,240,200,0.12),transparent 70%);border:2px solid var(--border-strong);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.gb-inner{text-align:center}
+.gb-num{font-family:var(--serif);font-size:52px;font-weight:600;color:var(--cyan);line-height:1}
+.gb-text{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-top:8px}
+.guarantee-copy h2{margin-bottom:18px}
+.guarantee-copy p{font-size:17px;color:var(--text-dim)}
+.guarantee-points{margin-top:24px;display:flex;flex-direction:column;gap:12px}
+.gp{display:flex;align-items:center;gap:12px;font-size:16px;color:var(--text)}
+.gp-icon{color:var(--cyan);font-size:18px;font-weight:700;flex-shrink:0}
+@media(max-width:760px){
+  .guarantee-block{grid-template-columns:1fr;gap:28px;text-align:center}
+  .guarantee-points{align-items:center}
+  .gp{justify-content:center}
+}
 /* ============ FAQ ============ */
 .faq-item{border-bottom:1px solid var(--border)}
 .faq-q{width:100%;text-align:left;background:none;border:none;color:var(--text);font-family:var(--serif);font-size:clamp(18px,2.6vw,23px);font-weight:500;padding:25px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
@@ -532,12 +550,12 @@ p strong{color:var(--text);font-weight:600}
         <div class="reel-pair-label"><span class="rp-name">Peepoye</span><span class="rp-tag">Creator · 1.4M+ Followers</span></div>
         <div class="reel-row">
           <div class="reel-card" data-choice="P1" onclick="pickReel(this,'peepoye')">
-            <div class="reel-frame"><iframe src="https://www.instagram.com/p/DY4Z8lGohm7/embed/" frameborder="0" scrolling="no" allowtransparency="true"></iframe></div>
-            <div class="reel-footer"><span class="reel-views">300K+ views</span><span class="reel-pick">TAP TO PICK →</span></div>
+            <div class="reel-frame"><video src="/media/reel-peepoye-1.mp4" playsinline loop muted preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="this.muted=!this.muted"></video></div>
+            <div class="reel-footer"><span class="reel-views">300K+ views</span><span class="reel-pick">HOVER TO PLAY · TAP TO PICK →</span></div>
           </div>
           <div class="reel-card" data-choice="P2" onclick="pickReel(this,'peepoye')">
-            <div class="reel-frame"><iframe src="https://www.instagram.com/p/DXRkVw-D-DY/embed/" frameborder="0" scrolling="no" allowtransparency="true"></iframe></div>
-            <div class="reel-footer"><span class="reel-views">1.2M+ views</span><span class="reel-pick">TAP TO PICK →</span></div>
+            <div class="reel-frame"><video src="/media/reel-peepoye-2.mp4" playsinline loop muted preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="this.muted=!this.muted"></video></div>
+            <div class="reel-footer"><span class="reel-views">1.2M+ views</span><span class="reel-pick">HOVER TO PLAY · TAP TO PICK →</span></div>
           </div>
         </div>
         <div class="reel-reveal" id="reveal-peepoye"></div>
@@ -546,12 +564,12 @@ p strong{color:var(--text);font-weight:600}
         <div class="reel-pair-label"><span class="rp-name">Dr. Madhu Sudan</span><span class="rp-tag">Ayurvedic Sexologist · India</span></div>
         <div class="reel-row">
           <div class="reel-card" data-choice="M1" onclick="pickReel(this,'madhu')">
-            <div class="reel-frame"><iframe src="https://www.instagram.com/p/DYmpV26In0N/embed/" frameborder="0" scrolling="no" allowtransparency="true"></iframe></div>
-            <div class="reel-footer"><span class="reel-views">73K+ views</span><span class="reel-pick">TAP TO PICK →</span></div>
+            <div class="reel-frame"><video src="/media/reel-madhu-1.mp4" playsinline loop muted preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="this.muted=!this.muted"></video></div>
+            <div class="reel-footer"><span class="reel-views">73K+ views</span><span class="reel-pick">HOVER TO PLAY · TAP TO PICK →</span></div>
           </div>
           <div class="reel-card" data-choice="M2" onclick="pickReel(this,'madhu')">
-            <div class="reel-frame"><iframe src="https://www.instagram.com/p/DXzGWLeI59b/embed/" frameborder="0" scrolling="no" allowtransparency="true"></iframe></div>
-            <div class="reel-footer"><span class="reel-views">60K+ views</span><span class="reel-pick">TAP TO PICK →</span></div>
+            <div class="reel-frame"><video src="/media/reel-madhu-2.mp4" playsinline loop muted preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="this.muted=!this.muted"></video></div>
+            <div class="reel-footer"><span class="reel-views">60K+ views</span><span class="reel-pick">HOVER TO PLAY · TAP TO PICK →</span></div>
           </div>
         </div>
         <div class="reel-reveal" id="reveal-madhu"></div>
@@ -756,11 +774,15 @@ p strong{color:var(--text);font-weight:600}
         <a href="/client-results" class="proof-link">See full story →</a>
       </div>
       <div class="proof-card wip">
-        <div class="proof-circle"><div class="initials">AR</div></div>
+        <div class="proof-circle">
+          <img src="media/img-proof-arfeen.jpeg" alt="Arfeen Khan"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="initials" style="display:none">AR</div>
+        </div>
         <div class="proof-name">Arfeen Khan</div>
         <div class="proof-role">Top Coach · 4,000+ Coaches Under Him</div>
         <p class="proof-quote">"Yours is perfect. I can't tell the difference."</p>
-        <div class="proof-wip-badge">— WORK IN PROGRESS —</div>
+        <div class="proof-wip-badge">— WORK IN PROGRESS — FULL STORY COMING SOON —</div>
       </div>
     </div>
   </div>
@@ -791,14 +813,30 @@ p strong{color:var(--text);font-weight:600}
 </section>
 
 <!-- S14 GUARANTEE -->
-<section class="s-bg1 divider-top" data-section="S14_GUARANTEE">
+<section class="s-bg2 divider-top" data-section="S14_GUARANTEE">
   <div class="wrap">
-    <div class="guarantee">
-      <div class="shield">🛡️</div>
-      <div class="eyebrow center">The no-risk promise</div>
-      <h2>Get a roadmap worth 10× the fee — or get every rupee back.</h2>
-      <p>Sit on the call. Get your blueprint. If you walk away feeling it wasn't worth far more than ₹499, just say so — and we refund you in full, within 24 hours, straight back to your account.</p>
-      <p><strong>The risk is entirely ours. The roadmap is entirely yours to keep.</strong></p>
+    <div class="guarantee-block">
+      <div class="guarantee-visual">
+        <img src="media/img-guarantee.jpeg" alt="The GetCloned Guarantee"
+          onerror="this.style.display='none'">
+        <div class="guarantee-badge-fallback" id="guaranteeFallback">
+          <div class="gb-inner">
+            <div class="gb-num">24h</div>
+            <div class="gb-text">FULL REFUND<br>GUARANTEE</div>
+          </div>
+        </div>
+      </div>
+      <div class="guarantee-copy">
+        <div class="eyebrow">The no-risk promise</div>
+        <h2>Get a roadmap worth 10× the fee — or every rupee back. In 24 hours.</h2>
+        <p>Here's my personal commitment: sit on the call, get your Blueprint. If you walk away feeling it wasn't worth far more than ₹499 — just say so. No forms. No hoops. We refund every rupee within 24 hours, straight back to your account.</p>
+        <p><strong>The risk is entirely mine. The roadmap is entirely yours to keep — regardless.</strong></p>
+        <div class="guarantee-points">
+          <div class="gp"><span class="gp-icon">✓</span><span>Refund in 24 hours — no questions asked</span></div>
+          <div class="gp"><span class="gp-icon">✓</span><span>The Blueprint is yours to keep either way</span></div>
+          <div class="gp"><span class="gp-icon">✓</span><span>My personal commitment — not a policy</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
