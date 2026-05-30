@@ -1148,6 +1148,23 @@ const CONFIG={
   CALENDLY_LINK:"https://calendly.com/akassh/cloning-blueprint-call"
 };
 
+/* UTM CAPTURE — read from URL, pass to Kit */
+function getUTMs(){
+  var p=new URLSearchParams(window.location.search);
+  return {
+    source:p.get('utm_source')||'',
+    medium:p.get('utm_medium')||'',
+    campaign:p.get('utm_campaign')||'',
+    term:p.get('utm_term')||'',
+    content:p.get('utm_content')||''
+  };
+}
+/* Store UTMs in session so they survive any redirects within the page */
+(function(){
+  var u=getUTMs();
+  if(u.source) sessionStorage.setItem('utms',JSON.stringify(u));
+})();
+
 /* LEAD MODAL */
 function openLead(s){document.getElementById('leadModal').classList.add('active');document.body.style.overflow='hidden';}
 function closeLead(){document.getElementById('leadModal').classList.remove('active');document.body.style.overflow='';}
@@ -1160,7 +1177,14 @@ function handleLead(e){
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){alert('Please enter a valid email');return;}
   if(CONFIG.KIT_FORM_ACTION){
     var fd=new FormData();
-    fd.append('email_address',email);fd.append('fields[first_name]',name);
+    fd.append('email_address',email);
+    fd.append('fields[first_name]',name);
+    var utms=JSON.parse(sessionStorage.getItem('utms')||'{}');
+    if(utms.source)  fd.append('fields[utm_source]',utms.source);
+    if(utms.medium)  fd.append('fields[utm_medium]',utms.medium);
+    if(utms.campaign)fd.append('fields[utm_campaign]',utms.campaign);
+    if(utms.term)    fd.append('fields[utm_term]',utms.term);
+    if(utms.content) fd.append('fields[utm_content]',utms.content);
     fetch(CONFIG.KIT_FORM_ACTION,{method:'POST',body:new URLSearchParams(fd)}).catch(function(){});
   }
   setTimeout(function(){window.location.href=CONFIG.RAZORPAY_LINK;},250);
