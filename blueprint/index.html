@@ -314,16 +314,17 @@ p strong{color:var(--text);font-weight:600}
 .modal .btn{width:100%;margin-top:6px;padding:16px}
 .modal-trust{text-align:center;margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.5px}
 
-/* ============ EXIT INTENT — compact, no image ============ */
-.exit-overlay{position:fixed;inset:0;background:rgba(3,5,5,0.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:2100;padding:20px}
+/* ============ EXIT INTENT — pattern interrupt ============ */
+.exit-overlay{position:fixed;inset:0;background:rgba(3,5,5,0.92);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;z-index:2100;padding:20px}
 .exit-overlay.active{display:flex}
-.exit-card{position:relative;background:radial-gradient(ellipse at 50% 0%,rgba(0,240,200,0.1),transparent 65%),var(--bg-card);border:1px solid var(--border-strong);border-radius:18px;max-width:480px;width:100%;padding:44px 38px;text-align:center;animation:modalIn .4s cubic-bezier(.2,.8,.2,1)}
+.exit-card{position:relative;background:var(--bg-card);border:1px solid var(--border-strong);border-radius:18px;max-width:520px;width:100%;padding:52px 44px;text-align:center;animation:modalIn .35s cubic-bezier(.2,.8,.2,1)}
 .exit-card::before{content:'';position:absolute;top:-1px;left:-1px;width:26px;height:26px;border-top:1px solid var(--cyan);border-left:1px solid var(--cyan);box-shadow:0 0 12px var(--cyan-glow);border-top-left-radius:18px}
 .exit-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:24px;color:var(--text-muted);cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center}
 .exit-close:hover{color:var(--cyan)}
-.exit-card .eyebrow{margin-bottom:14px}
-.exit-card h3{font-size:clamp(22px,3.4vw,28px);margin-bottom:14px}
-.exit-card p{color:var(--text);font-size:16px;margin-bottom:26px;line-height:1.6}
+.exit-interrupt{font-family:var(--serif);font-size:clamp(28px,4.5vw,42px);font-weight:600;line-height:1.15;color:var(--text);margin-bottom:10px}
+.exit-interrupt .hit{color:var(--cyan);font-style:italic}
+.exit-sub{font-family:var(--mono);font-size:13px;color:var(--text-muted);letter-spacing:.5px;margin-bottom:36px}
+@media(max-width:480px){.exit-card{padding:40px 24px}.exit-interrupt{font-size:26px}}
 
 /* ============ TOAST ============ */
 .toast{position:fixed;bottom:84px;left:26px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:11px;padding:12px 16px;display:none;z-index:1300;width:260px;box-shadow:0 12px 36px rgba(0,0,0,0.5);animation:toastIn .5s ease}
@@ -906,16 +907,15 @@ p strong{color:var(--text);font-weight:600}
 </div>
 
 <!-- P2 EXIT_INTENT -->
-<!-- P2 EXIT_INTENT — compact, no image -->
+<!-- P2 EXIT_INTENT — pattern interrupt, one line -->
 <div class="exit-overlay" id="exitPopup" data-section="P2_EXIT_INTENT" onclick="closeExitOutside(event)">
   <div class="exit-card">
     <button class="exit-close" onclick="closeExit()">×</button>
-    <div class="eyebrow center">Before you go</div>
-    <h3>Imagine where you'll be in six months.</h3>
-    <p>One reel — in your voice, optimised for the algorithm — published <strong>every single day</strong>, on autopilot, while you sleep. Six months from now you've either compounded into the authority everyone in your field follows… or you're still here, reading about it. <strong>The seat doesn't stay empty forever.</strong></p>
+    <div class="exit-interrupt">6 months from now<br>you're either <span class="hit">the authority</span><br>or still watching them.</div>
+    <div class="exit-sub">The seat doesn't stay empty forever.</div>
     <div class="two-btn">
-      <button class="btn btn-yes" onclick="closeExit();openLead('exit')">Yes — I want that authority on autopilot →</button>
-      <button class="btn-no" onclick="closeExit()">No — I'll keep doing it the slow way and hope it works out.</button>
+      <button class="btn btn-yes" onclick="closeExit();openLead('exit')">Claim my seat now →</button>
+      <button class="btn-no" onclick="closeExit()">No — I'll keep watching from the sidelines.</button>
     </div>
   </div>
 </div>
