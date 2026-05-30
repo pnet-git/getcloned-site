@@ -262,6 +262,17 @@ p strong{color:var(--text);font-weight:600}
 .price-today{font-family:var(--mono);font-size:14px;color:var(--cyan);letter-spacing:.5px}
 .refund-line{font-size:14px;color:var(--text-dim);margin:4px 0 28px}
 .stack-tag{display:inline-block;font-family:var(--mono);font-size:10px;color:var(--cyan);background:var(--cyan-soft);border:1px solid var(--border);border-radius:4px;padding:2px 7px;letter-spacing:.5px;text-transform:uppercase;vertical-align:middle;margin-left:6px;font-weight:500}
+/* Pricing disruption */
+.pricing-disruption{margin:24px 0 28px;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.pd-row{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border)}
+.pd-row:last-child{border-bottom:none}
+.pd-sub{padding:4px 18px 12px;border-bottom:1px solid var(--border)}
+.pd-label{font-family:var(--mono);font-size:12px;color:var(--text-dim);letter-spacing:.3px}
+.pd-sub-label{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.3px}
+.pd-val{font-family:var(--serif);font-size:16px;font-weight:600}
+.pd-old{color:var(--text-muted);text-decoration:line-through}
+.pd-bad{color:rgba(255,80,80,0.7);font-size:13px;font-family:var(--mono)}
+.pd-good{color:var(--cyan);font-size:13px;font-family:var(--mono)}
 .scarcity-bar{display:flex;align-items:center;gap:12px;background:rgba(0,240,200,0.05);border:1px solid var(--border-strong);border-radius:10px;padding:16px 20px;margin-bottom:22px;font-size:16px;color:var(--text);line-height:1.5}
 .scarcity-dot{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);flex-shrink:0;animation:pulse 2s infinite}
 
@@ -689,12 +700,17 @@ p strong{color:var(--text);font-weight:600}
       <div class="wound-tag" onclick="pickWound(this)">Scrolled past my own posts.</div>
       <div class="wound-tag" onclick="pickWound(this)">Missed a week. Then a month. Then three.</div>
       <div class="wound-tag" onclick="pickWound(this)">Someone less qualified is beating me online.</div>
-      <div class="wound-tag" onclick="pickWound(this)">Paid an agency. Got generic output.</div>
-      <div class="wound-tag" onclick="pickWound(this)">My patients/clients don't know how much I know.</div>
-      <div class="wound-tag" onclick="pickWound(this)">I know I should be posting. I can't make myself.</div>
+      <div class="wound-tag" onclick="pickWound(this)">Paid an agency. Got generic, overpriced output.</div>
+      <div class="wound-tag" onclick="pickWound(this)">My patients/clients don't know half of what I know.</div>
+      <div class="wound-tag" onclick="pickWound(this)">I know I should be posting. I just can't make myself.</div>
       <div class="wound-tag" onclick="pickWound(this)">Every week I say "this week I'll start."</div>
-      <div class="wound-tag" onclick="pickWound(this)">My expertise is stuck inside my head.</div>
-      <div class="wound-tag" onclick="pickWound(this)">Content is stealing time from my real work.</div>
+      <div class="wound-tag" onclick="pickWound(this)">My expertise is trapped inside my head.</div>
+      <div class="wound-tag" onclick="pickWound(this)">Content keeps stealing time from my real work.</div>
+      <div class="wound-tag" onclick="pickWound(this)">Trained an editor. Just when it got good — they left.</div>
+      <div class="wound-tag" onclick="pickWound(this)">I'm burning money on ads because content doesn't convert.</div>
+      <div class="wound-tag" onclick="pickWound(this)">I tried automating it myself. Failed.</div>
+      <div class="wound-tag" onclick="pickWound(this)">I am the bottleneck. My review ruins everything.</div>
+      <div class="wound-tag" onclick="pickWound(this)">Less-qualified creators are taking the audience I should have.</div>
     </div>
     <div class="wound-trigger" id="woundTrigger">
       <span class="wt-count" id="woundCount">0</span> selected
@@ -846,22 +862,24 @@ p strong{color:var(--text);font-weight:600}
     <p style="max-width:600px;margin:0 auto 40px">We're selective — not to be exclusive, but because the engine only produces results for people it's built for.</p>
     <div class="for-grid" style="text-align:left">
       <div class="for-card yes">
-        <h3 style="color:var(--cyan)">✓ Built for you if…</h3>
+        <h3 style="color:var(--cyan)">✓ This is you.</h3>
         <ul class="for-list">
-          <li><span class="ic">→</span>You think like a movement leader — you have a mission to serve, not just a service to sell</li>
-          <li><span class="ic">→</span>You're a doctor, coach, specialist or consultant — people already pay for your expertise</li>
-          <li><span class="ic">→</span>You know your knowledge is more valuable than your online presence suggests</li>
-          <li><span class="ic">→</span>You want inbound leads and authority — not viral moments</li>
-          <li><span class="ic">→</span>You're ready to let a system carry the content so you can carry the mission</li>
+          <li><span class="ic">→</span>You have 5–20 years of expertise people already pay for — doctor, coach, specialist, consultant</li>
+          <li><span class="ic">→</span>You feel like your knowledge is worth far more than your online presence suggests</li>
+          <li><span class="ic">→</span>You hate the camera. Not because you're shy — because performing feels beneath your expertise</li>
+          <li><span class="ic">→</span>You've tried agencies, editors, batch filming — nothing stuck because you were still the bottleneck</li>
+          <li><span class="ic">→</span>You think in missions and movements — not in reels and hashtags</li>
+          <li><span class="ic">→</span>You want daily authority and inbound leads — not viral moments that lead nowhere</li>
         </ul>
       </div>
       <div class="for-card no">
-        <h3 style="color:rgba(255,80,80,0.8)">✗ Not for you if…</h3>
+        <h3 style="color:rgba(255,80,80,0.8)">✗ This is not you.</h3>
         <ul class="for-list">
-          <li><span class="ic">✗</span>You think like a content creator — you love making reels and being on camera</li>
-          <li><span class="ic">✗</span>You don't have an offer or audience yet — you're still building from zero</li>
-          <li><span class="ic">✗</span>You want views and entertainment, not authority and conversion</li>
-          <li><span class="ic">✗</span>You're looking for the cheapest option, not the right one</li>
+          <li><span class="ic">✗</span>You love being on camera. Content creation energises you. You're a creator first.</li>
+          <li><span class="ic">✗</span>You're just starting out — no offer, no clients, no proven expertise yet</li>
+          <li><span class="ic">✗</span>You want followers and entertainment views — not authority and client conversion</li>
+          <li><span class="ic">✗</span>You want to stay hands-on in production — you enjoy the process and don't want it automated</li>
+          <li><span class="ic">✗</span>You're looking for the cheapest option. This is not that.</li>
         </ul>
       </div>
     </div>
@@ -986,6 +1004,12 @@ p strong{color:var(--text);font-weight:600}
         <span class="price">₹499</span>
       </div>
       <p class="refund-line">…and you get all ₹499 back within 24 hours if the Blueprint isn't worth 10× that. <strong>You keep the Blueprint regardless.</strong></p>
+      <div class="pricing-disruption">
+        <div class="pd-row"><span class="pd-label">What experts currently pay per month</span><span class="pd-val pd-old">₹30,000–₹80,000</span></div>
+        <div class="pd-row pd-sub"><span class="pd-sub-label">Video editors + agencies + VA + batch filming costs</span></div>
+        <div class="pd-row"><span class="pd-label">What they get</span><span class="pd-val pd-bad">Inconsistent. Generic. Still requires you.</span></div>
+        <div class="pd-row"><span class="pd-label">What GetCloned costs</span><span class="pd-val pd-good">A fraction. Daily cloned content. You never film.</span></div>
+      </div>
       <div class="two-btn">
         <button class="btn btn-yes" onclick="openLead('offer')">Yes — build my authority 100× faster →</button>
         <button class="btn-no" onclick="openExit()">No — I'll stay the messenger and hope it changes.</button>
