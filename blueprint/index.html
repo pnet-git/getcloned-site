@@ -137,32 +137,24 @@ p strong{color:var(--text);font-weight:600}
 .ocard p{font-size:15px;margin-bottom:0}
 
 /* ============ CLONE GAME ============ */
-.reel-grid{display:flex;flex-direction:column;gap:40px;margin:32px 0;max-width:640px}
-.reel-pair-label{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
-.rp-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--text)}
-.rp-tag{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.5px}
-.reel-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.reel-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s}
-.reel-card:hover{border-color:var(--border-strong);transform:translateY(-3px)}
-.reel-card.picked{border-color:var(--cyan);box-shadow:0 0 24px var(--cyan-glow)}
-/* Fixed height — no more full-screen 9:16 frames */
-.reel-frame{position:relative;width:100%;padding-bottom:177.77%;overflow:hidden;background:#0a0c0c}
-.reel-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
-.reel-frame video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
-.reel-footer{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-top:1px solid var(--border)}
-.reel-views{font-family:var(--mono);font-size:11px;color:var(--cyan);font-weight:600}
-.reel-pick{font-family:var(--mono);font-size:10px;color:var(--text-muted)}
-.reel-card.picked .reel-pick{color:var(--cyan)}
-.reel-reveal{margin-top:8px;font-family:var(--mono);font-size:12px;color:var(--text-muted);text-align:center;min-height:0}
+/* ============ CLONE GAME — quad layout ============ */
+.verdict-row{display:flex;gap:14px;margin-bottom:24px;flex-wrap:wrap}
+.verdict-btn{flex:1;min-width:200px;font-family:var(--mono);font-size:14px;font-weight:600;padding:14px 20px;border-radius:10px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);cursor:pointer;transition:all .2s;text-align:center}
+.verdict-btn:hover{border-color:var(--border-strong);color:var(--text)}
+.verdict-btn.active{border-color:var(--cyan);color:var(--cyan);background:var(--cyan-soft)}
+.quad-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:8px}
+.quad-reel{border-radius:12px;overflow:hidden;border:2px solid var(--border);cursor:pointer;transition:border-color .2s,transform .2s;opacity:.7}
+.quad-reel:hover{transform:translateY(-3px);opacity:1}
+.quad-reel.active{border-color:var(--cyan);box-shadow:0 0 20px var(--cyan-glow);opacity:1}
+.quad-frame{position:relative;width:100%;padding-bottom:177.77%;overflow:hidden;background:#0a0c0c}
+.quad-frame video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.quad-label{padding:8px 10px;font-family:var(--mono);font-size:10px;color:var(--text-muted);text-align:center;background:var(--bg-card);letter-spacing:.3px}
 .game-reveal{display:none;text-align:center;margin-top:28px;padding:32px;background:linear-gradient(135deg,var(--cyan-soft),transparent);border:1px solid var(--border-strong);border-radius:14px}
 .game-reveal.show{display:block;animation:fade .5s ease}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .game-reveal .big{font-family:var(--serif);font-size:clamp(22px,3.4vw,32px);color:var(--cyan);font-weight:600;margin-bottom:10px}
-/* Game header */
-.game-header{max-width:680px;margin-bottom:8px}
-.game-instruction{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 28px}
-.gi{font-family:var(--mono);font-size:12px;color:var(--text-dim);background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:7px 13px;letter-spacing:.3px}
-.gi .n{color:var(--cyan);font-weight:600;margin-right:5px}
+/* mobile — 2x2 grid */
+@media(max-width:640px){.quad-row{grid-template-columns:1fr 1fr}}
 
 /* ============ MECHANISM ============ */
 .worldview-img{margin:0 auto 40px;max-width:760px;border-radius:14px;overflow:hidden;border:1px solid var(--border)}
@@ -568,48 +560,44 @@ p strong{color:var(--text);font-weight:600}
   </div>
 </section>
 
-<!-- S3 CLONE_GAME — curiosity-driven game -->
+<!-- S3 CLONE_GAME — we win either way -->
 <section class="s-bg2 divider-top" data-section="S3_CLONE_GAME">
   <div class="wrap">
     <div class="div-label">The clone test</div>
-    <div class="game-header">
-      <h2>Can you spot the AI? 🤔</h2>
-      <p style="max-width:560px;margin-bottom:4px">One of each pair is a real expert filming himself. The other is his AI clone. Hover to watch. <strong>Tap the one you think is the clone.</strong></p>
+    <h2>Which of these is AI? 🤔</h2>
+    <p style="max-width:600px;margin-bottom:28px">Watch any reel. Then tell us — is it filmed by the expert, or made by his AI clone?</p>
+
+    <!-- TWO VERDICT BUTTONS -->
+    <div class="verdict-row" id="verdictRow">
+      <button class="verdict-btn" id="btnAI" onclick="castVerdict('ai')">🤖 This is AI-generated</button>
+      <button class="verdict-btn" id="btnReal" onclick="castVerdict('real')">🎥 This is filmed by the expert</button>
     </div>
-    <div class="reel-grid">
-      <div class="reel-pair">
-        <div class="reel-pair-label"><span class="rp-name">Peepoye</span><span class="rp-tag">Creator · 1.4M+ Followers</span></div>
-        <div class="reel-row">
-          <div class="reel-card" data-choice="P1" onclick="pickReel(this,'peepoye')">
-            <div class="reel-frame"><video src="/media/reel-peepoye-1.mp4" playsinline loop muted preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="this.muted=!this.muted"></video></div>
-            <div class="reel-footer"><span class="reel-views">300K+ views</span><span class="reel-pick">TAP TO PICK →</span></div>
-          </div>
-          <div class="reel-card" data-choice="P2" onclick="pickReel(this,'peepoye')">
-            <div class="reel-frame"><video src="/media/reel-peepoye-2.mp4" playsinline loop muted preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="this.muted=!this.muted"></video></div>
-            <div class="reel-footer"><span class="reel-views">1.2M+ views</span><span class="reel-pick">TAP TO PICK →</span></div>
-          </div>
-        </div>
-        <div class="reel-reveal" id="reveal-peepoye"></div>
+
+    <!-- 4 REELS IN ONE ROW -->
+    <div class="quad-row">
+      <div class="quad-reel active" id="qr1" onclick="selectReel(this,1)">
+        <div class="quad-frame"><video src="/media/reel-peepoye-1.mp4" playsinline loop muted preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video></div>
+        <div class="quad-label">Peepoye · 300K+</div>
       </div>
-      <div class="reel-pair">
-        <div class="reel-pair-label"><span class="rp-name">Dr. Madhu Sudan</span><span class="rp-tag">Ayurvedic Specialist · India</span></div>
-        <div class="reel-row">
-          <div class="reel-card" data-choice="M1" onclick="pickReel(this,'madhu')">
-            <div class="reel-frame"><video src="/media/reel-madhu-1.mp4" playsinline loop muted preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="this.muted=!this.muted"></video></div>
-            <div class="reel-footer"><span class="reel-views">73K+ views</span><span class="reel-pick">TAP TO PICK →</span></div>
-          </div>
-          <div class="reel-card" data-choice="M2" onclick="pickReel(this,'madhu')">
-            <div class="reel-frame"><video src="/media/reel-madhu-2.mp4" playsinline loop muted preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="this.muted=!this.muted"></video></div>
-            <div class="reel-footer"><span class="reel-views">60K+ views</span><span class="reel-pick">TAP TO PICK →</span></div>
-          </div>
-        </div>
-        <div class="reel-reveal" id="reveal-madhu"></div>
+      <div class="quad-reel" id="qr2" onclick="selectReel(this,2)">
+        <div class="quad-frame"><video src="/media/reel-madhu-1.mp4" playsinline loop muted preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video></div>
+        <div class="quad-label">Dr. Madhu · 73K+</div>
+      </div>
+      <div class="quad-reel" id="qr3" onclick="selectReel(this,3)">
+        <div class="quad-frame"><video src="/media/reel-peepoye-2.mp4" playsinline loop muted preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video></div>
+        <div class="quad-label">Peepoye · 1.2M+</div>
+      </div>
+      <div class="quad-reel" id="qr4" onclick="selectReel(this,4)">
+        <div class="quad-frame"><video src="/media/reel-madhu-2.mp4" playsinline loop muted preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video></div>
+        <div class="quad-label">Dr. Madhu · 60K+</div>
       </div>
     </div>
+
+    <!-- REVEAL — fires regardless of verdict -->
     <div class="game-reveal" id="gameReveal">
-      <p class="big">You couldn't tell. Nobody can. 🤯</p>
-      <p>The reels that got <strong>1.2M views</strong>. The ones patients watch before booking Dr. Madhu. None of it was filmed by the expert. Not a single second.</p>
-      <p style="margin-bottom:0"><strong>Now imagine your expertise doing that — every day, on autopilot, while you sleep.</strong></p>
+      <p class="big" id="revealHeadline"></p>
+      <p id="revealBody"></p>
+      <p><strong>Every single reel above is AI-generated. Not one second was filmed by the expert.</strong></p>
       <button class="btn" onclick="openLead('clone-game')" style="margin-top:28px">Show me how to build mine →</button>
     </div>
   </div>
