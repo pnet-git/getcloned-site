@@ -61,7 +61,7 @@ export default async function handler(req, res) {
   }
 
   const KIT_HEADERS = {
-    'Authorization': `Bearer ${KIT_API_KEY}`,
+    'X-Kit-Api-Key': KIT_API_KEY,
     'Content-Type': 'application/json',
     'Accept': 'application/json'
   };
