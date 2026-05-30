@@ -1,4 +1,6 @@
-import crypto from 'crypto';
+// Vercel Serverless Function v5
+// Razorpay payment.captured webhook → Kit tag getcloned-paid-confirmed
+// Auth: X-Kit-Api-Key header (NOT Authorization Bearer)
 
 const KIT_API_KEY = process.env.KIT_API_KEY || 'kit_7633fa8beb20783a55917d04000b8769';
 const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET;
