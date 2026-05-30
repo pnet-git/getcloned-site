@@ -4,15 +4,10 @@ const KIT_API_KEY = process.env.KIT_API_KEY;
 const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET;
 const KIT_TAG_ID = '19878292';
 
-// Tell Vercel NOT to parse the body — we'll do it manually
-// This is critical for webhook signature verification
 export const config = {
-  api: {
-    bodyParser: false,
-  },
+  api: { bodyParser: false },
 };
 
-// Read raw body from request stream
 async function getRawBody(req) {
   return new Promise((resolve, reject) => {
     let data = '';
@@ -27,22 +22,18 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Read raw body
   const rawBody = await getRawBody(req);
 
-  // Signature verification — temporarily disabled for debugging
-  // TODO: re-enable once webhook flow is confirmed working
-  // if (RAZORPAY_WEBHOOK_SECRET) { ... }
+  // Signature verification disabled for now
+  // Will re-enable after flow is confirmed working
 
-  // Parse body
   let body;
   try {
     body = JSON.parse(rawBody);
   } catch (e) {
-    return res.status(400).json({ error: 'Invalid JSON body' });
+    return res.status(400).json({ error: 'Invalid JSON' });
   }
 
-  // Only handle payment.captured and payment_link.paid
   const event = body?.event;
   if (event !== 'payment.captured' && event !== 'payment_link.paid') {
     return res.status(200).json({ message: 'Event ignored', event });
@@ -51,75 +42,62 @@ export default async function handler(req, res) {
   // Extract email
   let email = null;
   try {
-    const payload = body.payload;
+    const p = body.payload;
     email =
-      payload?.payment?.entity?.email ||
-      payload?.payment_link?.entity?.customer_details?.contact_email ||
+      p?.payment?.entity?.email ||
+      p?.payment_link?.entity?.customer_details?.contact_email ||
       null;
   } catch (e) {
-    return res.status(400).json({ error: 'Could not extract email', detail: e.message });
+    return res.status(400).json({ error: 'Email extraction failed', detail: e.message });
   }
 
   if (!email) {
-    return res.status(400).json({ error: 'No email found in payload' });
+    return res.status(400).json({ error: 'No email in payload' });
   }
 
-  // Find subscriber in Kit
+  const KIT_HEADERS = {
+    'Authorization': `Bearer ${KIT_API_KEY}`,
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  };
+
+  // Step 1: Find OR create subscriber by email using upsert
   let subscriberId = null;
   try {
-    const findRes = await fetch(
-      `https://api.kit.com/v4/subscribers?email_address=${encodeURIComponent(email)}`,
-      {
-        headers: {
-          'Authorization': `Bearer ${KIT_API_KEY}`,
-          'Content-Type': 'application/json',
-          'X-Kit-Api-Version': '2024-07-24'
-        }
-      }
-    );
-    const findData = await findRes.json();
-    if (findData.subscribers && findData.subscribers.length > 0) {
-      subscriberId = findData.subscribers[0].id;
+    // Use create (upsert) — if exists Kit returns existing subscriber
+    const upsertRes = await fetch('https://api.kit.com/v4/subscribers', {
+      method: 'POST',
+      headers: KIT_HEADERS,
+      body: JSON.stringify({ email_address: email })
+    });
+    const upsertData = await upsertRes.json();
+    subscriberId = upsertData?.subscriber?.id || null;
+
+    if (!subscriberId) {
+      return res.status(500).json({
+        error: 'Upsert failed',
+        status: upsertRes.status,
+        kit_response: upsertData
+      });
     }
   } catch (e) {
-    return res.status(500).json({ error: 'Kit lookup failed', detail: e.message });
+    return res.status(500).json({ error: 'Kit upsert error', detail: e.message });
   }
 
-  // Create if not found
-  if (!subscriberId) {
-    try {
-      const createRes = await fetch('https://api.kit.com/v4/subscribers', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${KIT_API_KEY}`,
-          'Content-Type': 'application/json',
-          'X-Kit-Api-Version': '2024-07-24'
-        },
-        body: JSON.stringify({ email_address: email, state: 'active' })
-      });
-      const createData = await createRes.json();
-      subscriberId = createData.subscriber?.id;
-    } catch (e) {
-      return res.status(500).json({ error: 'Kit create failed', detail: e.message });
-    }
-  }
-
-  if (!subscriberId) {
-    return res.status(500).json({ error: 'No subscriber ID' });
-  }
-
-  // Tag the subscriber
+  // Step 2: Tag the subscriber
   try {
-    await fetch(`https://api.kit.com/v4/tags/${KIT_TAG_ID}/subscribers`, {
+    const tagRes = await fetch(`https://api.kit.com/v4/tags/${KIT_TAG_ID}/subscribers`, {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${KIT_API_KEY}`,
-        'Content-Type': 'application/json',
-        'X-Kit-Api-Version': '2024-07-24'
-      },
+      headers: KIT_HEADERS,
       body: JSON.stringify({ subscriber_id: subscriberId })
     });
-    return res.status(200).json({ success: true, email, subscriber_id: subscriberId });
+    const tagData = await tagRes.json();
+    return res.status(200).json({
+      success: true,
+      email,
+      subscriber_id: subscriberId,
+      tag_response: tagData
+    });
   } catch (e) {
     return res.status(500).json({ error: 'Tag failed', detail: e.message });
   }
