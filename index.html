@@ -726,315 +726,97 @@ body::before {
 
 /* ═══════════ RATING GAME ═══════════ */
 .game {
-  padding: 100px 32px 120px;
-  background: var(--bg);
-  position: relative;
+  padding: 80px 0;
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
 }
-
 .game-inner {
-  max-width: 1100px;
+  max-width: 900px;
   margin: 0 auto;
+  padding: 0 24px;
 }
-
-.game-header {
-  text-align: center;
-  margin-bottom: 56px;
-}
-
+.game-header { text-align: center; margin-bottom: 32px; }
 .game-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  color: var(--cyan);
-  text-transform: uppercase;
-  padding: 7px 16px 7px 14px;
-  background: var(--cyan-soft);
-  border: 1px solid var(--border-strong);
-  border-radius: 100px;
-  margin-bottom: 24px;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--cyan);
+  background: rgba(0,240,200,0.06); border: 1px solid var(--border);
+  padding: 6px 14px; border-radius: 20px; margin-bottom: 18px;
 }
-
-.game-eyebrow::before {
-  content: '';
-  width: 6px; height: 6px;
-  background: var(--cyan);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--cyan-glow);
-}
-
+.game-eyebrow::before { content: '●'; font-size: 8px; color: var(--cyan); }
 .game-headline {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(40px, 5.4vw, 64px);
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  color: var(--text);
-  margin-bottom: 20px;
+  font-family: var(--serif); font-size: clamp(28px,4.5vw,44px);
+  font-weight: 600; letter-spacing: -.018em; line-height: 1.1;
+  margin-bottom: 14px; color: var(--text);
 }
+.game-headline em { color: var(--cyan); font-style: italic; }
+.game-intro { color: var(--text-dim); font-size: 17px; max-width: 560px; margin: 0 auto; }
 
-.game-headline em {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--cyan);
-}
-
-.game-intro {
-  font-family: var(--sans);
-  font-size: 17px;
-  line-height: 1.55;
-  color: var(--text-dim);
-  max-width: 680px;
-  margin: 0 auto 14px;
-}
-
-.game-intro strong { color: var(--text); font-weight: 500; }
-
-.game-question {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 21px;
-  color: var(--text);
-  margin-top: 8px;
-}
-
-/* REELS GRID */
-.reels-grid {
+/* TRAP GRID — 4 reels in a row */
+.trap-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  max-width: 720px;
-  margin: 0 auto 56px;
-}
-
-.reel-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-  aspect-ratio: 9 / 16;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.reel-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--cyan);
-  background: var(--bg-card-hover);
-  box-shadow: 0 12px 40px -8px var(--cyan-glow);
-}
-
-.reel-label {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--cyan);
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
-  padding: 5px 10px;
-  border-radius: 4px;
-  z-index: 2;
-  border: 1px solid var(--border);
-}
-
-.reel-placeholder { text-align: center; color: var(--text); padding: 30px; }
-
-.reel-play {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: rgba(0, 240, 200, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 16px;
-  border: 1px solid var(--border-strong);
-  transition: all 0.25s;
-  backdrop-filter: blur(8px);
-}
-
-.reel-card:hover .reel-play {
-  background: var(--cyan);
-  border-color: var(--cyan);
-  transform: scale(1.05);
-  box-shadow: 0 0 32px var(--cyan-glow);
-}
-
-.reel-play svg { width: 22px; height: 22px; fill: var(--cyan); margin-left: 3px; transition: fill 0.25s; }
-.reel-card:hover .reel-play svg { fill: var(--bg); }
-
-.reel-caption {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-muted);
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-/* RATING BUTTONS */
-.rating-section { text-align: center; margin-bottom: 56px; }
-
-.rating-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 22px;
-}
-
-.rating-buttons {
-  display: flex;
+  grid-template-columns: repeat(4,1fr);
   gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
-  margin: 0 auto;
+  margin-bottom: 8px;
 }
-
-.rating-btn {
-  background: var(--bg-card);
-  border: 1px solid var(--border-strong);
-  padding: 18px 28px;
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text);
-  cursor: pointer;
-  transition: all 0.2s;
-  min-width: 220px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+.trap-reel {
+  border-radius: 12px; overflow: hidden;
+  border: 2px solid var(--border); cursor: pointer;
+  transition: border-color .2s, transform .2s;
+  opacity: .75;
 }
-
-.rating-btn .rating-emoji { font-size: 18px; }
-
-.rating-btn:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--cyan);
-  color: var(--cyan);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px -8px var(--cyan-glow);
+.trap-reel:hover { transform: translateY(-3px); opacity: 1; }
+.trap-reel.picked { border-color: var(--cyan); box-shadow: 0 0 20px rgba(0,240,200,0.25); opacity: 1; }
+.trap-frame {
+  position: relative; width: 100%; padding-bottom: 177.77%; overflow: hidden; background: #0a0c0c;
 }
-
-.rating-btn:disabled { cursor: default; opacity: 0.35; transform: none; }
-.rating-btn:disabled:hover {
-  background: var(--bg-card);
-  border-color: var(--border-strong);
-  color: var(--text);
-  box-shadow: none;
+.trap-frame video { position: absolute; top:0;left:0;width:100%;height:100%;object-fit:cover; }
+.trap-label {
+  padding: 8px 10px; font-family: var(--mono); font-size: 10px;
+  color: var(--text-dim); text-align: center; background: var(--bg-card);
+  letter-spacing: .3px;
 }
 
 /* REVEAL */
-.reveal {
-  display: none;
-  background: var(--bg-card);
-  border: 1px solid var(--border-strong);
-  border-radius: 12px;
-  padding: 48px 48px 52px;
-  margin-top: 12px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  max-width: 780px;
-  margin-left: auto;
-  margin-right: auto;
+.trap-reveal {
+  display: none; text-align: center; margin-top: 28px;
+  padding: 40px 32px;
+  background: linear-gradient(135deg,rgba(0,240,200,0.06),transparent);
+  border: 1px solid var(--border); border-radius: 16px;
 }
-
-.reveal.active {
-  display: block;
-  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.reveal::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-  box-shadow: 0 0 12px var(--cyan-glow);
-}
+.trap-reveal.active { display: block; animation: trapFade .5s ease; }
+@keyframes trapFade { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
 
 .reveal-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 18px;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--cyan);
+  background: rgba(0,240,200,0.06); border: 1px solid var(--border);
+  padding: 6px 14px; border-radius: 20px; margin-bottom: 18px;
 }
-
 .reveal-eyebrow::before { content: '✓'; font-size: 13px; }
-
 .reveal-stat {
-  font-family: var(--serif);
-  font-size: clamp(28px, 3.8vw, 42px);
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-  margin-bottom: 18px;
-  color: var(--text);
+  font-family: var(--serif); font-size: clamp(22px,3.5vw,34px);
+  font-weight: 600; color: var(--cyan); margin-bottom: 16px; line-height: 1.15;
 }
-
-.reveal-stat em { font-style: italic; color: var(--cyan); font-weight: 400; }
-
-.reveal-aggregate {
-  font-family: var(--sans);
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--text-dim);
-  margin-bottom: 28px;
-  max-width: 580px;
-  margin-left: auto;
-  margin-right: auto;
+.reveal-aggregate { color: var(--text-dim); font-size: 16px; max-width: 620px; margin: 0 auto 24px; line-height: 1.6; }
+.reveal-aggregate strong { color: var(--text); }
+.reveal-divider { height: 1px; background: var(--border); margin: 24px auto; max-width: 200px; }
+.reveal-story { color: var(--text-dim); font-size: 16px; max-width: 560px; margin: 0 auto 28px; line-height: 1.6; }
+.reveal-story strong { color: var(--text); }
+.reveal-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 15px; font-weight: 600;
+  color: var(--bg); background: var(--cyan);
+  padding: 16px 28px; border-radius: 9px; text-decoration: none;
+  box-shadow: 0 4px 24px rgba(0,240,200,0.25); transition: transform .15s, box-shadow .15s;
 }
+.reveal-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,240,200,0.35); }
+.reveal-cta .arrow { font-size: 18px; }
 
-.reveal-aggregate strong { color: var(--text); font-weight: 500; }
-
-.reveal-divider {
-  width: 40px;
-  height: 1px;
-  background: var(--cyan);
-  margin: 0 auto 28px;
-  opacity: 0.5;
-}
-
-.reveal-story {
-  font-family: var(--sans);
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--text);
-  margin-bottom: 32px;
-  max-width: 620px;
-  margin-left: auto;
-  margin-right: auto;
+@media(max-width:640px){
+  .trap-grid { grid-template-columns: 1fr 1fr; }
+  .trap-reveal { padding: 28px 20px; }
 }
 
 .reveal-story strong { color: var(--text); font-weight: 600; }
@@ -1479,75 +1261,21 @@ body::before {
   <section class="game" id="game">
     <div class="game-inner">
       <div class="game-header">
-        <div class="game-eyebrow">Live Proof · Try It Yourself</div>
-        <h2 class="game-headline">Rate the <em>Clone.</em></h2>
-        <p class="game-intro">Below are two reels of our client <strong>Dr. Madhusudan</strong> — Ayurvedic expert, 378K followers. <strong>Both were made by our Cloning Engine. He wasn't on camera for either.</strong></p>
-        <p class="game-question">How real do they look to you?</p>
+        <div class="game-eyebrow">The Clone Test · Try It</div>
+        <h2 class="game-headline">Which one was filmed<br>by the <em>expert?</em> 👆</h2>
+        <p class="game-intro">Hover any reel to watch. Then tap the one you think was filmed by a real person — not AI.</p>
       </div>
 
-      <div class="reels-grid">
-        <div class="reel-card">
-          <div class="reel-label">Reel A</div>
-          <video
-            src="/reel-a.mp4"
-            playsinline
-            loop
-            muted
-            preload="metadata"
-            style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:10px;cursor:pointer;"
-            onclick="this.muted=!this.muted;this.paused?this.play():this.pause();"
-            onmouseenter="this.play();"
-            onmouseleave="this.pause();this.currentTime=0;"
-          ></video>
-        </div>
-        <div class="reel-card">
-          <div class="reel-label">Reel B</div>
-          <video
-            src="/reel-b.mp4"
-            playsinline
-            loop
-            muted
-            preload="metadata"
-            style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:10px;cursor:pointer;"
-            onclick="this.muted=!this.muted;this.paused?this.play():this.pause();"
-            onmouseenter="this.play();"
-            onmouseleave="this.pause();this.currentTime=0;"
-          ></video>
-        </div>
-      </div>
+      <!-- 4 REELS — randomised from pool each load -->
+      <div class="trap-grid" id="trapGrid"></div>
 
-      <div class="rating-section" id="ratingSection">
-        <div class="rating-label">Take Your Best Guess</div>
-        <div class="rating-buttons">
-          <button class="rating-btn" onclick="reveal('fake')">
-            <span class="rating-emoji">⚠️</span>
-            <span>Looks fake to me</span>
-          </button>
-          <button class="rating-btn" onclick="reveal('real')">
-            <span class="rating-emoji">🤔</span>
-            <span>Looks like the original</span>
-          </button>
-          <button class="rating-btn" onclick="reveal('perfect')">
-            <span class="rating-emoji">🔥</span>
-            <span>Looks 100% real</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="reveal" id="reveal">
-        <div class="reveal-eyebrow">The Result</div>
-        <div class="reveal-stat" id="revealStat">You said they look <em>highly real.</em></div>
-        <p class="reveal-aggregate" id="revealAggregate">
-          <strong>3,847 visitors</strong> before you have rated these reels — <strong>94% said they look real or 100% real.</strong> Only 6% thought either looked fake.
-        </p>
-
+      <!-- REVEAL — fires on any tap, they always lose -->
+      <div class="trap-reveal" id="trapReveal">
+        <div class="reveal-eyebrow">The Answer</div>
+        <div class="reveal-stat">Wrong. Every single one is AI. 🤯</div>
+        <p class="reveal-aggregate">There is no reel filmed by the expert. <strong>All four are AI clones.</strong> The 1.2M views, the 73K views — every one produced without the expert touching a camera. Their audiences never knew. You didn't either.</p>
         <div class="reveal-divider"></div>
-
-        <p class="reveal-story">
-          <strong>Dr. Madhusudan used to spend 5–6 hours batch-shooting reels.</strong> He'd skip weeks. Patients dropped off. Ads ate his margins.<br><br>
-          Today, our Cloning Engine produces every reel for him — script, voice, video, edit, publish. He just approves them. <em>His authority compounds daily. Without him touching a camera.</em>
-        </p>
-
+        <p class="reveal-story"><strong>That's not a trick. That's the product.</strong> Every expert above went from camera-tired and inconsistent to daily presence — on autopilot. Without filming a single second.</p>
         <a href="/case-study" class="reveal-cta">
           <span>See exactly how — Free Case Study</span>
           <span class="arrow">→</span>
@@ -1581,24 +1309,51 @@ body::before {
 </div>
 
 <script>
-  function reveal(rating) {
-    const revealEl = document.getElementById('reveal');
-    const statEl = document.getElementById('revealStat');
+  /* ── CLONE GAME TRAP — they always lose, we always win ── */
+  var REEL_POOL = [
+    {src:'/media/reel-peepoye-1.mp4', label:'Peepoye · 300K+ views'},
+    {src:'/media/reel-peepoye-2.mp4', label:'Peepoye · 1.2M+ views'},
+    {src:'/media/reel-madhu-1.mp4',   label:'Dr. Madhu · 73K+ views'},
+    {src:'/media/reel-madhu-2.mp4',   label:'Dr. Madhu · 60K+ views'},
+    /* Add new reels here as builds complete:
+    {src:'/media/reel-arfeen-1.mp4',  label:'Arfeen Khan · coming soon'},
+    {src:'/media/reel-nirmal-1.mp4',  label:'Nirmal · coming soon'} */
+  ];
 
-    document.querySelectorAll('.rating-btn').forEach(b => b.disabled = true);
-
-    let userText = '';
-    if (rating === 'fake') userText = 'You said they look <em>fake.</em>';
-    else if (rating === 'real') userText = 'You said they look <em>like the original.</em>';
-    else userText = 'You said they look <em>100% real.</em>';
-    statEl.innerHTML = userText;
-
-    revealEl.classList.add('active');
-
-    setTimeout(() => {
-      revealEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 200);
+  function shufflePool(arr){
+    var a=arr.slice();
+    for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}
+    return a;
   }
+
+  function buildTrapGrid(){
+    var pool=shufflePool(REEL_POOL).slice(0,4);
+    var grid=document.getElementById('trapGrid');
+    if(!grid)return;
+    grid.innerHTML=pool.map(function(r,i){
+      return '<div class="trap-reel" id="tr'+i+'" onclick="trapPick(this)">' +
+        '<div class="trap-frame"><video src="'+r.src+'" playsinline loop muted preload="metadata" '+
+        'onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video></div>'+
+        '<div class="trap-label">'+r.label+'</div>'+
+        '</div>';
+    }).join('');
+  }
+
+  var trapPicked=false;
+  function trapPick(el){
+    document.querySelectorAll('.trap-reel').forEach(function(r){r.classList.remove('picked');});
+    el.classList.add('picked');
+    var v=el.querySelector('video');
+    if(v)v.play();
+    if(!trapPicked){
+      trapPicked=true;
+      var reveal=document.getElementById('trapReveal');
+      reveal.classList.add('active');
+      setTimeout(function(){reveal.scrollIntoView({behavior:'smooth',block:'nearest'});},200);
+    }
+  }
+
+  buildTrapGrid();
 </script>
 
 <!-- ═══════════ EXIT INTENT POPUP ═══════════ -->
