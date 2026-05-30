@@ -1,66 +1,72 @@
-// Vercel Serverless Function
-// Razorpay payment.captured webhook → Kit tag getcloned-paid-confirmed
-
 import crypto from 'crypto';
 
 const KIT_API_KEY = process.env.KIT_API_KEY;
 const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET;
-const KIT_TAG_ID = '19878292'; // getcloned-paid-confirmed
+const KIT_TAG_ID = '19878292';
 
+// Tell Vercel NOT to parse the body — we'll do it manually
+// This is critical for webhook signature verification
 export const config = {
   api: {
-    bodyParser: {
-      sizeLimit: '1mb',
-    },
+    bodyParser: false,
   },
 };
 
+// Read raw body from request stream
+async function getRawBody(req) {
+  return new Promise((resolve, reject) => {
+    let data = '';
+    req.on('data', chunk => { data += chunk; });
+    req.on('end', () => resolve(data));
+    req.on('error', reject);
+  });
+}
+
 export default async function handler(req, res) {
-  // Only accept POST
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Log incoming request for debugging
-  console.log('Razorpay webhook received:', {
-    event: req.body?.event,
-    headers: req.headers
-  });
+  // Read raw body
+  const rawBody = await getRawBody(req);
 
-  // Verify Razorpay webhook signature
+  // Verify Razorpay signature
   if (RAZORPAY_WEBHOOK_SECRET) {
     const signature = req.headers['x-razorpay-signature'];
     if (!signature) {
-      console.log('No signature header found');
-      return res.status(401).json({ error: 'No signature' });
+      return res.status(401).json({ error: 'No signature header' });
     }
-    const body = JSON.stringify(req.body);
     const expected = crypto
       .createHmac('sha256', RAZORPAY_WEBHOOK_SECRET)
-      .update(body)
+      .update(rawBody)
       .digest('hex');
-
     if (signature !== expected) {
-      console.log('Signature mismatch');
       return res.status(401).json({ error: 'Invalid signature' });
     }
   }
 
+  // Parse body
+  let body;
+  try {
+    body = JSON.parse(rawBody);
+  } catch (e) {
+    return res.status(400).json({ error: 'Invalid JSON body' });
+  }
+
   // Only handle payment.captured and payment_link.paid
-  const event = req.body?.event;
+  const event = body?.event;
   if (event !== 'payment.captured' && event !== 'payment_link.paid') {
     return res.status(200).json({ message: 'Event ignored', event });
   }
 
-  // Extract email from Razorpay payload
+  // Extract email
   let email = null;
   try {
-    const payload = req.body.payload;
+    const payload = body.payload;
     email =
       payload?.payment?.entity?.email ||
       payload?.payment_link?.entity?.customer_details?.contact_email ||
       null;
-    console.log('Extracted email:', email);
   } catch (e) {
     return res.status(400).json({ error: 'Could not extract email', detail: e.message });
   }
@@ -69,7 +75,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'No email found in payload' });
   }
 
-  // Step 1: Find subscriber in Kit by email
+  // Find subscriber in Kit
   let subscriberId = null;
   try {
     const findRes = await fetch(
@@ -83,15 +89,14 @@ export default async function handler(req, res) {
       }
     );
     const findData = await findRes.json();
-    console.log('Kit subscriber lookup:', findData);
     if (findData.subscribers && findData.subscribers.length > 0) {
       subscriberId = findData.subscribers[0].id;
     }
   } catch (e) {
-    return res.status(500).json({ error: 'Failed to look up subscriber', detail: e.message });
+    return res.status(500).json({ error: 'Kit lookup failed', detail: e.message });
   }
 
-  // Step 2: If not found, create them
+  // Create if not found
   if (!subscriberId) {
     try {
       const createRes = await fetch('https://api.kit.com/v4/subscribers', {
@@ -104,20 +109,19 @@ export default async function handler(req, res) {
         body: JSON.stringify({ email_address: email, state: 'active' })
       });
       const createData = await createRes.json();
-      console.log('Kit subscriber created:', createData);
       subscriberId = createData.subscriber?.id;
     } catch (e) {
-      return res.status(500).json({ error: 'Failed to create subscriber', detail: e.message });
+      return res.status(500).json({ error: 'Kit create failed', detail: e.message });
     }
   }
 
   if (!subscriberId) {
-    return res.status(500).json({ error: 'Could not get subscriber ID' });
+    return res.status(500).json({ error: 'No subscriber ID' });
   }
 
-  // Step 3: Add tag getcloned-paid-confirmed
+  // Tag the subscriber
   try {
-    const tagRes = await fetch(`https://api.kit.com/v4/tags/${KIT_TAG_ID}/subscribers`, {
+    await fetch(`https://api.kit.com/v4/tags/${KIT_TAG_ID}/subscribers`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${KIT_API_KEY}`,
@@ -126,15 +130,8 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({ subscriber_id: subscriberId })
     });
-    const tagData = await tagRes.json();
-    console.log('Tag applied:', tagData);
-    return res.status(200).json({
-      success: true,
-      email,
-      subscriber_id: subscriberId,
-      tag: 'getcloned-paid-confirmed'
-    });
+    return res.status(200).json({ success: true, email, subscriber_id: subscriberId });
   } catch (e) {
-    return res.status(500).json({ error: 'Failed to add tag', detail: e.message });
+    return res.status(500).json({ error: 'Tag failed', detail: e.message });
   }
 }
