@@ -375,7 +375,7 @@ p strong{color:var(--text);font-weight:600}
 
 /* ============ WOUND GRID — clickable tags ============ */
 .wound-grid{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0}
-.wound-tag{font-size:15px;padding:13px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text-dim);transition:border-color .2s,color .2s,box-shadow .2s;line-height:1.4}
+.wound-tag{font-size:15px;padding:13px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text-dim);transition:border-color .2s,color .2s,box-shadow .2s,opacity .2s,transform .2s;line-height:1.4;opacity:1}
 .wound-tag:hover{border-color:var(--border-strong);color:var(--text)}
 .wound-tag.felt{border-color:var(--cyan);color:var(--cyan);background:var(--cyan-soft);box-shadow:0 0 14px var(--cyan-glow)}
 .wound-trigger{font-family:var(--mono);font-size:13px;color:var(--text-muted);margin:16px 0 8px;letter-spacing:.5px}
@@ -710,27 +710,7 @@ p strong{color:var(--text);font-weight:600}
     <div class="div-label">The mirror</div>
     <h2>Every expert hits these walls.</h2>
     <p style="max-width:580px;margin-bottom:28px">Tap every emotion you've felt. The more you recognise, the more certain this is for you.</p>
-    <div class="wound-grid" id="woundGrid">
-      <div class="wound-tag" onclick="pickWound(this)">Filmed 10+ takes. Deleted them all.</div>
-      <div class="wound-tag" onclick="pickWound(this)">Scrolled past my own posts.</div>
-      <div class="wound-tag" onclick="pickWound(this)">Missed a week. Then a month. Then three.</div>
-      <div class="wound-tag" onclick="pickWound(this)">Someone less qualified is beating me online.</div>
-      <div class="wound-tag" onclick="pickWound(this)">Paid an agency. Got generic, overpriced output.</div>
-      <div class="wound-tag" onclick="pickWound(this)">My patients/clients don't know half of what I know.</div>
-      <div class="wound-tag" onclick="pickWound(this)">I know I should be posting. I just can't make myself.</div>
-      <div class="wound-tag" onclick="pickWound(this)">Every week I say "this week I'll start."</div>
-      <div class="wound-tag" onclick="pickWound(this)">My expertise isn't converting into content the way it should.</div>
-      <div class="wound-tag" onclick="pickWound(this)">Content keeps stealing time from my real work.</div>
-      <div class="wound-tag" onclick="pickWound(this)">Trained an editor. Just when it got good — they left.</div>
-      <div class="wound-tag" onclick="pickWound(this)">I'm burning money on ads because content doesn't convert.</div>
-      <div class="wound-tag" onclick="pickWound(this)">I tried automating it myself. Failed.</div>
-      <div class="wound-tag" onclick="pickWound(this)">I am the bottleneck. My review ruins everything.</div>
-      <div class="wound-tag" onclick="pickWound(this)">Less-qualified creators are taking the audience I should have.</div>
-      <div class="wound-tag" onclick="pickWound(this)">I can't find new topics to make videos on.</div>
-      <div class="wound-tag" onclick="pickWound(this)">I'm not distributing content across platforms even when I could.</div>
-      <div class="wound-tag" onclick="pickWound(this)">I read about AI and automation but haven't done enough with it.</div>
-      <div class="wound-tag" onclick="pickWound(this)">I need someone to just do it the way I want — and keep it consistent.</div>
-    </div>
+    <div class="wound-grid" id="woundGrid"></div>
     <div class="wound-trigger" id="woundTrigger">
       <span class="wt-count" id="woundCount">0</span> selected
     </div>
@@ -1186,17 +1166,67 @@ function closeExit(){document.getElementById('exitPopup').classList.remove('acti
 function closeExitOutside(e){if(e.target.id==='exitPopup')closeExit();}
 document.addEventListener('mouseleave',function(e){if(e.clientY<10&&!exitFired)openExit();});
 
-/* WOUND MIRROR — clickable tags with random flash */
+/* WOUND MIRROR — show 8 at a time, replace clicked ones with new */
+var ALL_WOUNDS = [
+  "Filmed 10+ takes. Deleted them all.",
+  "Scrolled past my own posts.",
+  "Missed a week. Then a month. Then three.",
+  "Someone less qualified is beating me online.",
+  "Paid an agency. Got generic, overpriced output.",
+  "My patients/clients don't know half of what I know.",
+  "I know I should be posting. I just can't make myself.",
+  "Every week I say \"this week I'll start.\"",
+  "My expertise isn't converting into content the way it should.",
+  "Content keeps stealing time from my real work.",
+  "Trained an editor. Just when it got good — they left.",
+  "I'm burning money on ads because content doesn't convert.",
+  "I tried automating it myself. Failed.",
+  "I am the bottleneck. My review ruins everything.",
+  "Less-qualified creators are taking the audience I should have.",
+  "I can't find new topics to make videos on.",
+  "I'm not distributing content across platforms even when I could.",
+  "I keep reading about AI and automation but haven't acted.",
+  "I need someone to just do it the way I want — and keep it consistent."
+];
 var woundCount=0;
+var shownWounds=[];
+var remainingWounds=[];
+
+function shuffleArr(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+
+function buildWoundGrid(){
+  var grid=document.getElementById('woundGrid');
+  if(!grid)return;
+  remainingWounds=shuffleArr(ALL_WOUNDS);
+  shownWounds=remainingWounds.splice(0,8);
+  grid.innerHTML=shownWounds.map(function(w,i){
+    return '<div class="wound-tag" data-idx="'+i+'" onclick="pickWound(this)">'+w+'</div>';
+  }).join('');
+}
+
 function pickWound(el){
-  el.classList.toggle('felt');
-  woundCount=document.querySelectorAll('.wound-tag.felt').length;
+  el.classList.add('felt');
+  woundCount++;
   document.getElementById('woundCount').textContent=woundCount;
   var reveal=document.getElementById('woundReveal');
   if(woundCount>=3){reveal.classList.add('show');}
-  else{reveal.classList.remove('show');}
+  // Replace this tag with a new unseen one if available
+  if(remainingWounds.length>0){
+    var next=remainingWounds.shift();
+    setTimeout(function(){
+      el.style.opacity='0';
+      el.style.transform='scale(0.9)';
+      setTimeout(function(){
+        el.textContent=next;
+        el.classList.remove('felt');
+        el.style.opacity='1';
+        el.style.transform='scale(1)';
+      },200);
+    },400);
+  }
 }
-/* Flash random unpicked tags to hint there are more */
+
+/* Flash random unpicked tag */
 function flashRandom(){
   var tags=Array.from(document.querySelectorAll('.wound-tag:not(.felt)'));
   if(!tags.length)return;
@@ -1204,7 +1234,9 @@ function flashRandom(){
   el.classList.add('flash');
   setTimeout(function(){el.classList.remove('flash');},600);
 }
-setInterval(flashRandom,2200);
+
+buildWoundGrid();
+setInterval(flashRandom,2800);
 var reelPicked=false;
 function selectReel(el,n){
   document.querySelectorAll('.quad-reel').forEach(function(r){r.classList.remove('active');});
