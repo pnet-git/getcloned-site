@@ -1,6 +1,5 @@
 // Vercel Serverless Function
 // Razorpay payment.captured webhook → Kit tag getcloned-paid-confirmed
-// Endpoint: getcloned.in/api/razorpay-kit
 
 import crypto from 'crypto';
 
@@ -8,15 +7,33 @@ const KIT_API_KEY = process.env.KIT_API_KEY;
 const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET;
 const KIT_TAG_ID = '19878292'; // getcloned-paid-confirmed
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '1mb',
+    },
+  },
+};
+
 export default async function handler(req, res) {
   // Only accept POST
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Log incoming request for debugging
+  console.log('Razorpay webhook received:', {
+    event: req.body?.event,
+    headers: req.headers
+  });
+
   // Verify Razorpay webhook signature
   if (RAZORPAY_WEBHOOK_SECRET) {
     const signature = req.headers['x-razorpay-signature'];
+    if (!signature) {
+      console.log('No signature header found');
+      return res.status(401).json({ error: 'No signature' });
+    }
     const body = JSON.stringify(req.body);
     const expected = crypto
       .createHmac('sha256', RAZORPAY_WEBHOOK_SECRET)
@@ -24,6 +41,7 @@ export default async function handler(req, res) {
       .digest('hex');
 
     if (signature !== expected) {
+      console.log('Signature mismatch');
       return res.status(401).json({ error: 'Invalid signature' });
     }
   }
@@ -42,6 +60,7 @@ export default async function handler(req, res) {
       payload?.payment?.entity?.email ||
       payload?.payment_link?.entity?.customer_details?.contact_email ||
       null;
+    console.log('Extracted email:', email);
   } catch (e) {
     return res.status(400).json({ error: 'Could not extract email', detail: e.message });
   }
@@ -64,6 +83,7 @@ export default async function handler(req, res) {
       }
     );
     const findData = await findRes.json();
+    console.log('Kit subscriber lookup:', findData);
     if (findData.subscribers && findData.subscribers.length > 0) {
       subscriberId = findData.subscribers[0].id;
     }
@@ -84,6 +104,7 @@ export default async function handler(req, res) {
         body: JSON.stringify({ email_address: email, state: 'active' })
       });
       const createData = await createRes.json();
+      console.log('Kit subscriber created:', createData);
       subscriberId = createData.subscriber?.id;
     } catch (e) {
       return res.status(500).json({ error: 'Failed to create subscriber', detail: e.message });
@@ -106,12 +127,12 @@ export default async function handler(req, res) {
       body: JSON.stringify({ subscriber_id: subscriberId })
     });
     const tagData = await tagRes.json();
+    console.log('Tag applied:', tagData);
     return res.status(200).json({
       success: true,
       email,
       subscriber_id: subscriberId,
-      tag: 'getcloned-paid-confirmed',
-      kit_response: tagData
+      tag: 'getcloned-paid-confirmed'
     });
   } catch (e) {
     return res.status(500).json({ error: 'Failed to add tag', detail: e.message });
