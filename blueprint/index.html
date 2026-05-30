@@ -246,6 +246,19 @@ p strong{color:var(--text);font-weight:600}
 .price-row{display:flex;align-items:baseline;gap:14px;margin:30px 0 6px;flex-wrap:wrap}
 .price{font-family:var(--serif);font-size:clamp(36px,6vw,56px);font-weight:600;color:var(--text)}
 .price-note{font-family:var(--mono);font-size:13px;color:var(--text-dim)}
+/* Stacked offer box */
+.stack{margin:28px 0 0;display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.stack-item{display:flex;align-items:center;gap:16px;padding:18px 20px;background:var(--bg-card)}
+.stack-check{color:var(--cyan);font-size:18px;font-weight:700;flex-shrink:0}
+.stack-body{flex:1;display:flex;flex-direction:column;gap:3px}
+.stack-name{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--text)}
+.stack-desc{font-size:13.5px;color:var(--text-dim);line-height:1.4}
+.stack-val{font-family:var(--mono);font-size:14px;color:var(--text-muted);flex-shrink:0;text-align:right}
+.stack-total{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;margin-top:1px;background:rgba(0,240,200,0.04);border:1px solid var(--border);border-radius:10px}
+.st-label{font-family:var(--mono);font-size:13px;color:var(--text-dim);letter-spacing:.5px;text-transform:uppercase}
+.st-strike{font-family:var(--serif);font-size:24px;color:var(--text-muted);text-decoration:line-through}
+.price-today{font-family:var(--mono);font-size:14px;color:var(--cyan);letter-spacing:.5px}
+.refund-line{font-size:14px;color:var(--text-dim);margin:4px 0 28px}
 
 /* ============ GUARANTEE ============ */
 .guarantee{text-align:center;max-width:720px;margin:0 auto}
@@ -390,6 +403,11 @@ p strong{color:var(--text);font-weight:600}
 
   /* OFFER */
   .offer-card{padding:28px 20px}
+  .stack-item{padding:14px 14px;gap:12px}
+  .stack-name{font-size:15px}
+  .stack-desc{font-size:12.5px}
+  .stack-val{font-size:12px}
+  .st-strike{font-size:20px}
   /* btn-yes text too long — allow smaller font */
   .btn-yes{font-size:14px;padding:16px 20px;line-height:1.4}
   .btn-no{font-size:12px;padding:12px 18px}
@@ -491,7 +509,7 @@ p strong{color:var(--text);font-weight:600}
   <div class="wrap center-h epiphany">
     <div class="eyebrow center">What you just witnessed</div>
     <div class="epiphany-line">That was a real AI clone.<br>Built for a <span class="cyan">real expert.</span> Trusted by a real audience.</div>
-    <p class="epiphany-sub">Not a demo. Not a test. A live product — deployed, performing, compounding daily while its owner sees patients, coaches clients, builds his mission. What you felt watching it? That's exactly what your audience will feel watching yours.</p>
+    <p class="epiphany-sub">Not a demo. A live clone — working every day while its owner doesn't. <strong>What you just felt is what your audience will feel watching yours.</strong></p>
     <button class="btn" onclick="openLead('epiphany')" style="margin-bottom:14px">Show me what this looks like for my expertise →</button>
     <span class="btn-sub">Book a Blueprint Call — ₹499 · fully refundable</span>
   </div>
@@ -509,7 +527,7 @@ p strong{color:var(--text);font-weight:600}
         <div class="obody">
           <span class="moment">"Someone DMs you: how are you everywhere?"</span>
           <h3>You become the one they remember</h3>
-          <p>Daily presence in your voice. The authority that makes you the first name in your field — in your patients' heads, your peers' feeds, your category.</p>
+          <p>Daily presence in your voice — until you're the first name they think of.</p>
         </div>
       </div>
       <div class="ocard">
@@ -517,7 +535,7 @@ p strong{color:var(--text);font-weight:600}
         <div class="obody">
           <span class="moment">"You wake up to three new appointment requests."</span>
           <h3>Leads arrive while you sleep</h3>
-          <p>Your expertise pulls the right people in around the clock — appointments, enquiries, opportunities arriving without you chasing a single one.</p>
+          <p>The right people find you around the clock. You chase no one.</p>
         </div>
       </div>
       <div class="ocard">
@@ -525,7 +543,7 @@ p strong{color:var(--text);font-weight:600}
         <div class="obody">
           <span class="moment">"Sunday morning. No camera. No guilt."</span>
           <h3>Your time is yours again</h3>
-          <p>The hours you poured into filming and editing return to your mission, your patients, your family — the work only you can do.</p>
+          <p>The hours you lost to filming go back to the work only you can do.</p>
         </div>
       </div>
       <div class="ocard">
@@ -640,10 +658,10 @@ p strong{color:var(--text);font-weight:600}
     <h2>You didn't give up. You tried everything.</h2>
     <p style="max-width:640px">The problem was never effort. Every door you tried was the wrong door.</p>
     <div class="escapes">
-      <div class="escape"><div class="etitle">The agency.</div><p>Generic scripts. Stock voices. Content that looked nothing like you — and performed like it too. You paid for someone else's average.</p></div>
-      <div class="escape"><div class="etitle">The VA / editor.</div><p>They could polish footage. But you still had to film it. The bottleneck didn't move — it just got more expensive.</p></div>
-      <div class="escape"><div class="etitle">The batch filming weekend.</div><p>Two days. Fifteen pieces. Done. Except the delivery fell apart by week three. Back to zero.</p></div>
-      <div class="escape"><div class="etitle">The "just post anything" phase.</div><p>Low quality. Low engagement. It damaged your brand more than helped it. You stopped — and you were right to.</p></div>
+      <div class="escape"><div class="etitle">The agency.</div><p>Generic scripts. Stock voices. You paid for someone else's average.</p></div>
+      <div class="escape"><div class="etitle">The VA / editor.</div><p>You still had to film it. The bottleneck just got more expensive.</p></div>
+      <div class="escape"><div class="etitle">The batch filming weekend.</div><p>Fifteen pieces in a weekend. Back to zero by week three.</p></div>
+      <div class="escape"><div class="etitle">The "just post anything" phase.</div><p>Low quality damaged your brand more than silence would. You stopped.</p></div>
     </div>
     <p class="escape-close">"Every door was the wrong door — because every door still required you to be the messenger."</p>
   </div>
@@ -655,8 +673,8 @@ p strong{color:var(--text);font-weight:600}
     <div class="div-label">The absolution</div>
     <div class="reframe-card">
       <div class="big-line">That word you chose — lazy, inconsistent, stuck —<br><span class="cyan">it was never true.</span></div>
-      <p>Your identity was protecting itself. You are an expert, a practitioner, a craftsman — not a content creator. Your resistance to the camera isn't a character flaw. It's your expertise refusing to be cheapened by a process it was never designed for.</p>
-      <p><strong>The system failed you. Not the other way around.</strong> The modern world handed experts a megaphone and said "now entertain them." That was always the wrong job for the right person.</p>
+      <p>Your resistance to the camera was never a flaw. It's your expertise refusing to be cheapened by a job it was never built for.</p>
+      <p><strong>The system failed you. Not the other way around.</strong></p>
     </div>
   </div>
 </section>
@@ -674,7 +692,7 @@ p strong{color:var(--text);font-weight:600}
       <div class="cbox"><div class="cimg"><img src="/media/img-engine-3.jpeg" alt="Published Everywhere"></div><div class="cname">Published Everywhere</div></div>
       <div class="cbox"><div class="cimg"><img src="/media/img-engine-4.jpeg" alt="Authority & Leads"></div><div class="cname">Authority &amp; Leads</div></div>
     </div>
-    <p>Same face. Same voice. Same expertise. Better quality than when you did it yourself — because the engine only gets smarter the longer it runs.</p>
+    <p><strong>Same face. Same voice. Same expertise.</strong> Better quality than you'd make yourself — and it only gets smarter.</p>
     <div class="metrics">
       <div class="metric"><div class="num">6h → min</div><div class="lbl">PER PIECE OF CONTENT</div></div>
       <div class="metric"><div class="num">90%</div><div class="lbl">LESS OF YOUR TIME</div></div>
@@ -755,7 +773,7 @@ p strong{color:var(--text);font-weight:600}
         </div>
         <div class="proof-name">Akassh Ashok Gupta</div>
         <div class="proof-role">Client · Peepoye · 1.4M+ Followers</div>
-        <p class="proof-quote">"19+ years in corporate automation. Hit the same wall every expert hits — drowning in production. One cloned reel crossed <strong>1.2M views</strong>. The second is already at 250K+."
+        <p class="proof-quote">"I hit the same wall every expert hits — drowning in production. One cloned reel crossed <strong>1.2M views</strong>."
           <a href="/client-results" style="display:block;margin-top:8px;color:var(--cyan);font-size:13px;font-family:var(--mono)">Read more →</a>
         </p>
         <div class="proof-result">✅ 1.2M views · cloned reel</div>
@@ -792,22 +810,44 @@ p strong{color:var(--text);font-weight:600}
 <!-- S13 OFFER -->
 <section class="s-dark divider-top" data-section="S13_OFFER">
   <div class="wrap" id="book">
-    <div class="div-label">What you're booking</div>
+    <div class="div-label">What you actually get</div>
     <div class="offer-card">
       <div class="offer-name">The Autopilot Income System Blueprint Call</div>
-      <h3>Walk away with your personal roadmap to authority, visibility and leads — on autopilot.</h3>
-      <p>This isn't a sales call. It's a working session. On the call, we:</p>
-      <ul class="offer-list">
-        <li>Diagnose exactly where you are now — and what's quietly costing you every month you stay the messenger</li>
-        <li>Map your personal Autopilot Income System Blueprint — how your expertise shows up everywhere, without you filming anything</li>
-        <li>Show you the proof of concept — live — so you see precisely how this works for someone in your exact field</li>
-        <li>Answer the real question: can we build this for you, and is it the right fit</li>
-      </ul>
-      <div class="price-row"><span class="price">₹499</span><span class="price-note">to hold your seat · fully refundable in 24 hours</span></div>
-      <p class="dim" style="font-size:14px;margin-bottom:28px">We're not interested in your ₹499. It's there to keep this calendar for serious experts only — and you get every rupee back if the roadmap isn't worth far more than that.</p>
+      <h3>Not a sales call. A working session — you leave with the plan, whether we work together or not.</h3>
+      <div class="stack">
+        <div class="stack-item">
+          <div class="stack-check">✓</div>
+          <div class="stack-body"><span class="stack-name">Your Personal Cloning Blueprint</span><span class="stack-desc">The exact roadmap to put your expertise everywhere — without filming</span></div>
+          <div class="stack-val">₹2,500</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-check">✓</div>
+          <div class="stack-body"><span class="stack-name">The Money-Leak Diagnosis</span><span class="stack-desc">What staying the messenger is quietly costing you every month</span></div>
+          <div class="stack-val">₹1,500</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-check">✓</div>
+          <div class="stack-body"><span class="stack-name">Live Proof-of-Concept</span><span class="stack-desc">See a clone built for someone in your exact field — live on the call</span></div>
+          <div class="stack-val">₹1,500</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-check">✓</div>
+          <div class="stack-body"><span class="stack-name">Your Fit Verdict</span><span class="stack-desc">A straight answer: can we build this for you — no chasing, no pressure</span></div>
+          <div class="stack-val">Priceless</div>
+        </div>
+      </div>
+      <div class="stack-total">
+        <span class="st-label">Total real value</span>
+        <span class="st-strike">₹5,500</span>
+      </div>
+      <div class="price-row">
+        <span class="price-today">Today, to hold your seat:</span>
+        <span class="price">₹499</span>
+      </div>
+      <p class="refund-line">…and you get all ₹499 back within 24 hours if the Blueprint isn't worth 10× that. <strong>You keep the Blueprint regardless.</strong></p>
       <div class="two-btn">
-        <button class="btn btn-yes" onclick="openLead('offer')">Yes — show me my Blueprint and help me build my authority 100× faster than others →</button>
-        <button class="btn-no" onclick="openExit()">No — I'll keep going slow, inconsistent, and stretched between content and my mission.</button>
+        <button class="btn btn-yes" onclick="openLead('offer')">Yes — build my authority 100× faster →</button>
+        <button class="btn-no" onclick="openExit()">No — I'll stay the messenger and hope it changes.</button>
       </div>
     </div>
   </div>
@@ -830,8 +870,7 @@ p strong{color:var(--text);font-weight:600}
       <div class="guarantee-copy">
         <div class="eyebrow">The no-risk promise</div>
         <h2>Get a roadmap worth 10× the fee — or every rupee back. In 24 hours.</h2>
-        <p>Here's my personal commitment: sit on the call, get your Blueprint. If you walk away feeling it wasn't worth far more than ₹499 — just say so. No forms. No hoops. We refund every rupee within 24 hours, straight back to your account.</p>
-        <p><strong>The risk is entirely mine. The roadmap is entirely yours to keep — regardless.</strong></p>
+        <p>Sit on the call. Get your Blueprint. If it's not worth 10× the ₹499 — say so, and every rupee is back in your account within 24 hours. <strong>No forms. No hoops. The Blueprint stays yours regardless.</strong></p>
         <div class="guarantee-points">
           <div class="gp"><span class="gp-icon">✓</span><span>Refund in 24 hours — no questions asked</span></div>
           <div class="gp"><span class="gp-icon">✓</span><span>The Blueprint is yours to keep either way</span></div>
@@ -896,7 +935,7 @@ p strong{color:var(--text);font-weight:600}
   <div class="modal">
     <button class="modal-close" onclick="closeLead()">×</button>
     <h3>You're one step from your Blueprint.</h3>
-    <p class="modal-sub">Hold your seat. You'll go straight to secure checkout, then your calendar opens.</p>
+    <p class="modal-sub">Secure your seat — your calendar opens right after.</p>
     <form id="leadForm" onsubmit="handleLead(event)">
       <div class="fg"><input type="text" name="first_name" placeholder="Your name" required></div>
       <div class="fg"><input type="email" name="email_address" placeholder="Email address" required></div>
