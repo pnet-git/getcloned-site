@@ -258,7 +258,7 @@ p strong{color:var(--text);font-weight:600}
 .price-today{font-family:var(--mono);font-size:14px;color:var(--cyan);letter-spacing:.5px}
 .refund-line{font-size:14px;color:var(--text-dim);margin:4px 0 28px}
 .stack-tag{display:inline-block;font-family:var(--mono);font-size:10px;color:var(--cyan);background:var(--cyan-soft);border:1px solid var(--border);border-radius:4px;padding:2px 7px;letter-spacing:.5px;text-transform:uppercase;vertical-align:middle;margin-left:6px;font-weight:500}
-.scarcity-bar{display:flex;align-items:center;gap:12px;background:rgba(0,240,200,0.05);border:1px solid var(--border-strong);border-radius:10px;padding:14px 18px;margin-bottom:22px;font-size:14.5px;color:var(--text);line-height:1.5}
+.scarcity-bar{display:flex;align-items:center;gap:12px;background:rgba(0,240,200,0.05);border:1px solid var(--border-strong);border-radius:10px;padding:16px 20px;margin-bottom:22px;font-size:16px;color:var(--text);line-height:1.5}
 .scarcity-dot{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);flex-shrink:0;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
@@ -351,6 +351,53 @@ p strong{color:var(--text);font-weight:600}
 
 .fade-up{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
 .fade-up.in{opacity:1;transform:none}
+
+/* ============ ANNOUNCEMENT BAR ============ */
+.announce-bar{background:rgba(0,240,200,0.07);border-bottom:1px solid var(--border-strong);padding:11px 24px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center;font-size:15px;color:var(--text)}
+.announce-dot{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);flex-shrink:0;animation:pulse 2s infinite}
+.announce-cta{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--bg);background:var(--cyan);border:none;border-radius:6px;padding:7px 14px;cursor:pointer;white-space:nowrap;transition:transform .15s}
+.announce-cta:hover{transform:translateY(-1px)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ============ WOUND GRID — clickable tags ============ */
+.wound-grid{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0}
+.wound-tag{font-size:15px;padding:13px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--text-dim);transition:border-color .2s,color .2s,box-shadow .2s;line-height:1.4}
+.wound-tag:hover{border-color:var(--border-strong);color:var(--text)}
+.wound-tag.felt{border-color:var(--cyan);color:var(--cyan);background:var(--cyan-soft);box-shadow:0 0 14px var(--cyan-glow)}
+.wound-trigger{font-family:var(--mono);font-size:13px;color:var(--text-muted);margin:16px 0 8px;letter-spacing:.5px}
+.wt-count{font-size:22px;font-weight:600;color:var(--cyan);font-family:var(--serif)}
+.wound-reveal{display:none;margin-top:16px;padding:22px 24px;background:linear-gradient(135deg,var(--cyan-soft),transparent);border:1px solid var(--border-strong);border-radius:12px;font-size:17px;color:var(--text-dim);line-height:1.6}
+.wound-reveal.show{display:block;animation:fade .5s ease}
+.wound-reveal .cyan{display:block;font-family:var(--serif);font-size:clamp(18px,2.8vw,24px);font-weight:600;color:var(--cyan);margin-bottom:10px}
+
+/* ============ MECHANISM sub-headlines ============ */
+.mech-subhead{font-family:var(--serif);font-size:clamp(19px,2.8vw,26px);font-weight:600;color:var(--text);text-align:center;margin:32px 0 20px}
+.mech-subhead .cyan{font-style:italic}
+.mech-subhead-below{font-family:var(--mono);font-size:13px;color:var(--text-dim);text-align:center;margin-top:20px;letter-spacing:.5px}
+
+/* ============ BUILD PROCESS — emoji icons ============ */
+.step-img-slot{font-size:32px;margin-bottom:14px;display:block}
+
+/* ============ POSSIBILITIES ============ */
+.poss-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:left}
+.poss-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:26px 22px;transition:transform .2s,border-color .2s}
+.poss-card:hover{transform:translateY(-4px);border-color:var(--border-strong)}
+.poss-icon{font-size:28px;margin-bottom:12px;display:block}
+.poss-title{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--text);margin-bottom:10px}
+.poss-card p{font-size:14.5px;margin:0;color:var(--text-dim);line-height:1.55}
+@media(max-width:760px){.poss-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.poss-grid{grid-template-columns:1fr}}
+
+/* ============ FOUNDER STRIP (below stat bar) ============ */
+.founder-strip{display:flex;gap:24px;align-items:flex-start;margin-top:40px;padding:28px 28px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;border-left:3px solid var(--cyan)}
+.founder-strip-photo{width:72px;height:72px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid var(--border-strong)}
+.founder-strip-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.founder-strip-body{flex:1}
+.founder-strip-quote{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2vw,17px);color:var(--text-dim);line-height:1.6;margin-bottom:12px}
+.founder-strip-quote strong{color:var(--text);font-style:normal}
+.founder-strip-name{font-family:var(--mono);font-size:12px;color:var(--cyan);letter-spacing:.5px}
+.founder-strip-name span{color:var(--text-muted)}
+@media(max-width:640px){.founder-strip{flex-direction:column;gap:16px;padding:22px 18px}}
 
 /* ============ RESPONSIVE ============ */
 
@@ -477,10 +524,14 @@ p strong{color:var(--text);font-weight:600}
 ============================================================ -->
 
 <!-- S0 NAVBAR -->
+<div class="announce-bar">
+  <span class="announce-dot"></span>
+  <span>Blueprint Calls are limited to a handful each week — serious experts only. <strong>When seats are gone, the calendar closes.</strong></span>
+  <button class="announce-cta" onclick="openLead('announce')">Claim Your Seat →</button>
+</div>
 <nav class="navbar" data-section="S0_NAVBAR">
-  <a href="/" class="logo"><span class="logo-dot"></span><span>GetCloned</span></a>
+  <span class="logo"><span class="logo-dot"></span><span>GetCloned</span></span>
   <div class="nav-links">
-    <a href="/client-results" class="nav-link">Client Results</a>
     <button class="nav-cta" onclick="openLead('nav')">Book Your Blueprint Call →</button>
   </div>
 </nav>
@@ -623,26 +674,30 @@ p strong{color:var(--text);font-weight:600}
   </div>
 </section>
 
-<!-- S5 WOUND_MIRROR — Pain stings MORE after seeing the exit -->
+<!-- S5 WOUND_MIRROR — clickable confession tags -->
 <section class="s-bg1 divider-top" data-section="S5_WOUND_MIRROR">
   <div class="wrap narrow">
     <div class="div-label">The mirror</div>
-    <h2>You've said something to yourself. Something you've never said out loud.</h2>
-    <ul class="wound-list">
-      <li>You've filmed fifteen takes and deleted every one. <em>The camera doesn't lie</em> — and you hate what it shows.</li>
-      <li>You scroll past your own posts. Something about them feels like a performance — and performances feel beneath you.</li>
-      <li>You've missed a week. Then a month. Then three. The gap became a wall.</li>
-      <li>You watch someone half as qualified get 10× the reach. And you wonder: <em>is this just not for people like me?</em></li>
-      <li>Your mission — the reason you built this expertise — is sitting behind a content bottleneck you never signed up for.</li>
-    </ul>
-    <p>The words you've used on yourself:</p>
-    <div class="label-stack">
-      <span class="label-tag hit">Lazy</span><span class="label-tag hit">Inconsistent</span>
-      <span class="label-tag hit">Not cut out for this</span><span class="label-tag">Too busy</span>
-      <span class="label-tag">Behind</span><span class="label-tag hit">Not made for the camera</span>
-      <span class="label-tag">Undisciplined</span><span class="label-tag hit">Stuck</span>
+    <h2>Tap every one that's happened to you.</h2>
+    <div class="wound-grid" id="woundGrid">
+      <div class="wound-tag" onclick="pickWound(this)">Filmed 10+ takes. Deleted them all.</div>
+      <div class="wound-tag" onclick="pickWound(this)">Scrolled past my own posts.</div>
+      <div class="wound-tag" onclick="pickWound(this)">Missed a week. Then a month. Then three.</div>
+      <div class="wound-tag" onclick="pickWound(this)">Someone less qualified is beating me online.</div>
+      <div class="wound-tag" onclick="pickWound(this)">Paid an agency. Got generic output.</div>
+      <div class="wound-tag" onclick="pickWound(this)">My patients/clients don't know how much I know.</div>
+      <div class="wound-tag" onclick="pickWound(this)">I know I should be posting. I can't make myself.</div>
+      <div class="wound-tag" onclick="pickWound(this)">Every week I say "this week I'll start."</div>
+      <div class="wound-tag" onclick="pickWound(this)">My expertise is stuck inside my head.</div>
+      <div class="wound-tag" onclick="pickWound(this)">Content is stealing time from my real work.</div>
     </div>
-    <p style="margin-top:8px">You just watched the proof that none of it was true. What comes next will confirm it.</p>
+    <div class="wound-trigger" id="woundTrigger">
+      <span class="wt-count" id="woundCount">0</span> selected
+    </div>
+    <div class="wound-reveal" id="woundReveal">
+      <span class="cyan">If you clicked 3 or more — this page was built for you.</span>
+      None of it was laziness. None of it was weakness. It was the wrong system.<br>The right one is below.
+    </div>
   </div>
 </section>
 
@@ -667,9 +722,9 @@ p strong{color:var(--text);font-weight:600}
   <div class="wrap">
     <div class="div-label">The absolution</div>
     <div class="reframe-card">
-      <div class="big-line">That word you chose — lazy, inconsistent, stuck —<br><span class="cyan">it was never true.</span></div>
-      <p>Your resistance to the camera was never a flaw. It's your expertise refusing to be cheapened by a job it was never built for.</p>
-      <p><strong>The system failed you. Not the other way around.</strong></p>
+      <div class="big-line">You were never supposed to<br>compete on <span class="cyan">content.</span></div>
+      <p>You were built to compete on expertise. On mission. On the movement only you can create. The creators beating you online — they're winning a game you were never meant to play.</p>
+      <p>Your battlefield is the depth of your knowledge. The transformation you create. The lives you change. <strong>Let the content be automated. Let the clone carry the scroll. You carry the mission.</strong></p>
     </div>
   </div>
 </section>
@@ -688,11 +743,13 @@ p strong{color:var(--text);font-weight:600}
       <div class="cbox"><div class="cimg"><img src="/media/img-engine-4.jpeg" alt="Authority & Leads"></div><div class="cname">Authority &amp; Leads</div></div>
     </div>
     <p><strong>Same face. Same voice. Same expertise.</strong> Better quality than you'd make yourself — and it only gets smarter.</p>
+    <div class="mech-subhead">When you <span class="cyan">Get Cloned</span>, you get:</div>
     <div class="metrics">
       <div class="metric"><div class="num">6h → min</div><div class="lbl">PER PIECE OF CONTENT</div></div>
       <div class="metric"><div class="num">90%</div><div class="lbl">LESS OF YOUR TIME</div></div>
       <div class="metric"><div class="num">10×</div><div class="lbl">MORE PRESENCE</div></div>
     </div>
+    <div class="mech-subhead-below">And it compounds — every single day. Automatically.</div>
   </div>
 </section>
 
@@ -703,10 +760,75 @@ p strong{color:var(--text);font-weight:600}
     <h2>Four weeks. Then it runs without you — forever.</h2>
     <p style="margin-bottom:42px;max-width:620px;margin-left:auto;margin-right:auto">Every step has one rule: you stay the expert. We handle everything else.</p>
     <div class="steps">
-      <div class="step"><div class="snum">WEEK 1</div><h3>We capture you</h3><p>Your voice, your conviction, the way your expertise sounds when you're not performing for a camera.</p><span class="feel">"The weight already starts to lift."</span></div>
-      <div class="step"><div class="snum">WEEK 2</div><h3>Your twin comes alive</h3><p>Built until the people closest to you can't tell the difference. Same face. Same voice. The same credibility that took you decades to build.</p><span class="feel">"Pride. Disbelief. Then pride again."</span></div>
-      <div class="step"><div class="snum">WEEK 3</div><h3>You speak once</h3><p>Your ideas become finished, optimised pieces — in your exact tone, your language, your authority. No reviewing. No editing.</p><span class="feel">"This is what freedom feels like."</span></div>
-      <div class="step"><div class="snum">WEEK 4+</div><h3>You go live — and compound</h3><p>Your first piece publishes. It outperforms what you made by hand. Then it compounds daily while you focus on your mission.</p><span class="feel">"Back on the throne."</span></div>
+      <div class="step">
+        <div class="step-img-slot">🎯</div>
+        <div class="snum">WEEK 1</div>
+        <h3>Discovery &amp; Mission Clarity</h3>
+        <p>We go deep. Your mission, your purpose, your ideal audience, your content pillars. We build the strategy your clone will run — no guesswork.</p>
+        <span class="feel">"Someone finally got what I'm trying to build."</span>
+      </div>
+      <div class="step">
+        <div class="step-img-slot">🧬</div>
+        <div class="snum">WEEK 2</div>
+        <h3>Your Clone Gets Built</h3>
+        <p>Your face, your voice, your mannerisms, your tone — cloned until even the people closest to you can't tell the difference. Indistinguishable by design.</p>
+        <span class="feel">"Pride. Disbelief. Then pride again."</span>
+      </div>
+      <div class="step">
+        <div class="step-img-slot">⚙️</div>
+        <div class="snum">WEEK 3</div>
+        <h3>The Autopilot Engine Goes Live</h3>
+        <p>End-to-end content automation goes live. Your ideas in → cloned content out. Written, filmed, edited, optimised. You review nothing. We publish everything.</p>
+        <span class="feel">"This is what freedom feels like."</span>
+      </div>
+      <div class="step">
+        <div class="step-img-slot">🚀</div>
+        <div class="snum">WEEK 4+</div>
+        <h3>Daily Publishing. Every Platform. Forever.</h3>
+        <p>One piece of your expertise becomes 10 — distributed across every platform, every day. As data comes in, we refine the engine. It gets smarter. You get more visible.</p>
+        <span class="feel">"Back on the throne."</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S_POSSIBILITIES — The life with a clone running for you -->
+<section class="s-dark divider-top" data-section="S_POSSIBILITIES">
+  <div class="wrap center-h">
+    <div class="div-label">The life on the other side</div>
+    <h2>What your life looks like when your clone is running.</h2>
+    <p style="max-width:620px;margin:0 auto 44px">This isn't aspiration. These are the specific freedoms experts report — within weeks of going live.</p>
+    <div class="poss-grid">
+      <div class="poss-card">
+        <div class="poss-icon">👨‍👩‍👧</div>
+        <div class="poss-title">Your family gets you back</div>
+        <p>No more filming on Sunday mornings. No more guilt on family trips. Your evenings belong to your people — not a ring light.</p>
+      </div>
+      <div class="poss-card">
+        <div class="poss-icon">✈️</div>
+        <div class="poss-title">Your business survives your absence</div>
+        <p>You take a vacation. Your clone keeps posting. You get sick. Your authority keeps compounding. You stop — the engine doesn't.</p>
+      </div>
+      <div class="poss-card">
+        <div class="poss-icon">📈</div>
+        <div class="poss-title">Revenue runs on autopilot</div>
+        <p>Your cloned content sells your programs and offers 24/7 — enquiries, bookings, and DMs arriving while you sleep or see patients.</p>
+      </div>
+      <div class="poss-card">
+        <div class="poss-icon">🔄</div>
+        <div class="poss-title">No more hiring headaches</div>
+        <p>No agency to manage. No editor who leaves. No VA who needs briefing. The engine runs itself — and only gets better over time.</p>
+      </div>
+      <div class="poss-card">
+        <div class="poss-icon">🎯</div>
+        <div class="poss-title">Your mission scales beyond you</div>
+        <p>Your expertise reaches thousands — daily — without you repeating yourself. Your movement grows. Your impact multiplies. You protect your time.</p>
+      </div>
+      <div class="poss-card">
+        <div class="poss-icon">👑</div>
+        <div class="poss-title">You become the authority in your field</div>
+        <p>Daily presence. Every platform. Your voice in their feed — every single day. The authority that takes others years, compressed into weeks.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -719,37 +841,45 @@ p strong{color:var(--text);font-weight:600}
     <p style="max-width:600px;margin:0 auto 40px">We're selective — not to be exclusive, but because the engine only produces results for people it's built for.</p>
     <div class="for-grid" style="text-align:left">
       <div class="for-card yes">
-        <h3 style="color:var(--cyan)">✓ This is for you if…</h3>
+        <h3 style="color:var(--cyan)">✓ For you if…</h3>
         <ul class="for-list">
-          <li><span class="ic">→</span>You have real, proven expertise — a doctor, coach, wellness specialist, consultant with 5+ years of practice</li>
-          <li><span class="ic">→</span>You have an existing offer or service people already pay for</li>
-          <li><span class="ic">→</span>You've tried showing up online and it hasn't worked — or haven't tried because you hate the process</li>
-          <li><span class="ic">→</span>You want authority and leads, not just views</li>
-          <li><span class="ic">→</span>You want your mission to outlast your capacity to carry it alone</li>
+          <li><span class="ic">→</span>Doctor, coach, specialist, consultant — real expertise, real clients</li>
+          <li><span class="ic">→</span>You have an offer people already pay for</li>
+          <li><span class="ic">→</span>Online presence isn't working — or you haven't started because you hate the process</li>
+          <li><span class="ic">→</span>You want authority and inbound leads — not just views</li>
+          <li><span class="ic">→</span>You want your mission to outlast your capacity</li>
         </ul>
       </div>
       <div class="for-card no">
-        <h3 style="color:rgba(255,80,80,0.8)">✗ This is NOT for you if…</h3>
+        <h3 style="color:rgba(255,80,80,0.8)">✗ Not for you if…</h3>
         <ul class="for-list">
-          <li><span class="ic">✗</span>You're starting from scratch with no offer and no audience</li>
-          <li><span class="ic">✗</span>You want viral content for entertainment — not authority for conversion</li>
-          <li><span class="ic">✗</span>You expect results without giving us your ideas and voice</li>
-          <li><span class="ic">✗</span>You're looking for the cheapest option, not the right one</li>
-          <li><span class="ic">✗</span>You're not ready to protect your expertise from being diluted</li>
+          <li><span class="ic">✗</span>No offer. No audience. Starting from zero.</li>
+          <li><span class="ic">✗</span>You want entertainment views, not authority conversion</li>
+          <li><span class="ic">✗</span>You won't share your ideas and voice to fuel the engine</li>
+          <li><span class="ic">✗</span>You're looking for the cheapest option</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- S11 STAT_BAR — Credibility AFTER desire is built -->
-<section class="s-bg1 divider-top" data-section="S11_STAT_BAR" style="padding:54px 0">
+<!-- S11 STAT_BAR + FOUNDER -->
+<section class="s-bg1 divider-top" data-section="S11_STAT_BAR" style="padding:54px 0 72px">
   <div class="wrap">
     <div class="statbar">
       <div class="stat"><div class="n">1.4M+</div><div class="l">Audience Built</div></div>
       <div class="stat"><div class="n">1.2M+</div><div class="l">Views · One Cloned Reel</div></div>
       <div class="stat"><div class="n">5M+</div><div class="l">Monthly Views</div></div>
       <div class="stat"><div class="n">19 yrs</div><div class="l">Automation Expertise</div></div>
+    </div>
+    <div class="founder-strip">
+      <div class="founder-strip-photo">
+        <img src="/akassh.jpg" alt="Akassh Ashok Gupta" onerror="this.style.display='none'">
+      </div>
+      <div class="founder-strip-body">
+        <p class="founder-strip-quote">"I spent 19+ years building automation for Fortune 500 companies. Then I became a creator — and hit the same wall every expert hits. So I built the Cloning Engine I wished existed. <strong>These numbers are mine. Built with my own engine. I eat my own cooking.</strong>"</p>
+        <div class="founder-strip-name">Akassh Ashok Gupta <span>· Founder, GetCloned · The Cloning Guy 🧬</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -996,7 +1126,16 @@ function closeExit(){document.getElementById('exitPopup').classList.remove('acti
 function closeExitOutside(e){if(e.target.id==='exitPopup')closeExit();}
 document.addEventListener('mouseleave',function(e){if(e.clientY<10&&!exitFired)openExit();});
 
-/* CLONE GAME — they always lose, we always win */
+/* WOUND MIRROR — clickable tags */
+var woundCount=0;
+function pickWound(el){
+  el.classList.toggle('felt');
+  woundCount=document.querySelectorAll('.wound-tag.felt').length;
+  document.getElementById('woundCount').textContent=woundCount;
+  var reveal=document.getElementById('woundReveal');
+  if(woundCount>=3){reveal.classList.add('show');}
+  else{reveal.classList.remove('show');}
+}
 var reelPicked=false;
 function selectReel(el,n){
   document.querySelectorAll('.quad-reel').forEach(function(r){r.classList.remove('active');});
