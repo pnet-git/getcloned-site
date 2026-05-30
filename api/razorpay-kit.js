@@ -2,7 +2,7 @@
 // Razorpay payment.captured webhook → Kit tag getcloned-paid-confirmed
 // Auth: X-Kit-Api-Key header (NOT Authorization Bearer)
 
-const KIT_API_KEY = process.env.KIT_API_KEY || 'kit_7633fa8beb20783a55917d04000b8769';
+const KIT_API_KEY = process.env.KIT_API_KEY;
 const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET;
 const KIT_TAG_ID = '19878292';
 
@@ -31,8 +31,20 @@ export default async function handler(req, res) {
 
   const rawBody = await getRawBody(req);
 
-  // Signature verification disabled for now
-  // Will re-enable after flow is confirmed working
+  // Verify Razorpay webhook signature
+  if (RAZORPAY_WEBHOOK_SECRET) {
+    const signature = req.headers['x-razorpay-signature'];
+    if (!signature) {
+      return res.status(401).json({ error: 'No signature header' });
+    }
+    const expected = crypto
+      .createHmac('sha256', RAZORPAY_WEBHOOK_SECRET)
+      .update(rawBody)
+      .digest('hex');
+    if (signature !== expected) {
+      return res.status(401).json({ error: 'Invalid signature' });
+    }
+  }
 
   let body;
   try {
