@@ -245,7 +245,7 @@ p strong{color:var(--text);font-weight:600}
 .price{font-family:var(--serif);font-size:clamp(36px,6vw,56px);font-weight:600;color:var(--text)}
 .price-note{font-family:var(--mono);font-size:13px;color:var(--text-dim)}
 /* Stacked offer box */
-.offer-layout{display:grid;grid-template-columns:220px 1fr;gap:32px;align-items:start;margin-top:28px}
+.offer-layout{display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:start;margin-top:28px}
 .offer-box-img{position:relative}
 .offer-box-img img{width:100%;border-radius:12px;display:block;box-shadow:0 8px 32px rgba(0,240,200,0.15),0 0 0 1px var(--border)}
 .offer-stack-side{flex:1}
@@ -264,7 +264,6 @@ p strong{color:var(--text);font-weight:600}
 .stack-tag{display:inline-block;font-family:var(--mono);font-size:10px;color:var(--cyan);background:var(--cyan-soft);border:1px solid var(--border);border-radius:4px;padding:2px 7px;letter-spacing:.5px;text-transform:uppercase;vertical-align:middle;margin-left:6px;font-weight:500}
 .scarcity-bar{display:flex;align-items:center;gap:12px;background:rgba(0,240,200,0.05);border:1px solid var(--border-strong);border-radius:10px;padding:16px 20px;margin-bottom:22px;font-size:16px;color:var(--text);line-height:1.5}
 .scarcity-dot{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);flex-shrink:0;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
 /* ============ GUARANTEE ============ */
 .guarantee{text-align:center;max-width:720px;margin:0 auto}
@@ -533,7 +532,6 @@ p strong{color:var(--text);font-weight:600}
 <div class="announce-bar">
   <span class="announce-dot"></span>
   <span>Blueprint Calls are limited to a handful each week — serious experts only. <strong>When seats are gone, the calendar closes.</strong></span>
-  <button class="announce-cta" onclick="openLead('announce')">Claim Your Seat →</button>
 </div>
 <nav class="navbar" data-section="S0_NAVBAR">
   <span class="logo"><span class="logo-dot"></span><span>GetCloned</span></span>
@@ -684,7 +682,8 @@ p strong{color:var(--text);font-weight:600}
 <section class="s-bg1 divider-top" data-section="S5_WOUND_MIRROR">
   <div class="wrap narrow">
     <div class="div-label">The mirror</div>
-    <h2>Tap every one that's happened to you.</h2>
+    <h2>Every expert hits these walls.</h2>
+    <p style="max-width:580px;margin-bottom:28px">Tap every emotion you've felt. The more you recognise, the more certain this is for you.</p>
     <div class="wound-grid" id="woundGrid">
       <div class="wound-tag" onclick="pickWound(this)">Filmed 10+ takes. Deleted them all.</div>
       <div class="wound-tag" onclick="pickWound(this)">Scrolled past my own posts.</div>
@@ -726,11 +725,11 @@ p strong{color:var(--text);font-weight:600}
 <!-- S7 REFRAME — The absolution -->
 <section class="s-bg1 divider-top" data-section="S7_REFRAME">
   <div class="wrap">
-    <div class="div-label">The absolution</div>
+    <div class="div-label">The truth</div>
     <div class="reframe-card">
-      <div class="big-line">You were never supposed to<br>compete on <span class="cyan">content.</span></div>
-      <p>You were built to compete on expertise. On mission. On the movement only you can create. The creators beating you online — they're winning a game you were never meant to play.</p>
-      <p>Your battlefield is the depth of your knowledge. The transformation you create. The lives you change. <strong>Let the content be automated. Let the clone carry the scroll. You carry the mission.</strong></p>
+      <div class="big-line">The content game was never<br>yours to <span class="cyan">play.</span></div>
+      <p>You built years of expertise so you could change lives — not so you could film yourself. The people beating you online aren't better than you. They're just more comfortable with a camera. That's not a skill gap. That's a system gap.</p>
+      <p><strong>Stop competing on content. Compete on expertise. Let the clone carry the content. You carry the mission.</strong></p>
     </div>
   </div>
 </section>
@@ -847,22 +846,22 @@ p strong{color:var(--text);font-weight:600}
     <p style="max-width:600px;margin:0 auto 40px">We're selective — not to be exclusive, but because the engine only produces results for people it's built for.</p>
     <div class="for-grid" style="text-align:left">
       <div class="for-card yes">
-        <h3 style="color:var(--cyan)">✓ For you if…</h3>
+        <h3 style="color:var(--cyan)">✓ Built for you if…</h3>
         <ul class="for-list">
-          <li><span class="ic">→</span>Doctor, coach, specialist, consultant — real expertise, real clients</li>
-          <li><span class="ic">→</span>You have an offer people already pay for</li>
-          <li><span class="ic">→</span>Online presence isn't working — or you haven't started because you hate the process</li>
-          <li><span class="ic">→</span>You want authority and inbound leads — not just views</li>
-          <li><span class="ic">→</span>You want your mission to outlast your capacity</li>
+          <li><span class="ic">→</span>You think like a movement leader — you have a mission to serve, not just a service to sell</li>
+          <li><span class="ic">→</span>You're a doctor, coach, specialist or consultant — people already pay for your expertise</li>
+          <li><span class="ic">→</span>You know your knowledge is more valuable than your online presence suggests</li>
+          <li><span class="ic">→</span>You want inbound leads and authority — not viral moments</li>
+          <li><span class="ic">→</span>You're ready to let a system carry the content so you can carry the mission</li>
         </ul>
       </div>
       <div class="for-card no">
         <h3 style="color:rgba(255,80,80,0.8)">✗ Not for you if…</h3>
         <ul class="for-list">
-          <li><span class="ic">✗</span>No offer. No audience. Starting from zero.</li>
-          <li><span class="ic">✗</span>You want entertainment views, not authority conversion</li>
-          <li><span class="ic">✗</span>You won't share your ideas and voice to fuel the engine</li>
-          <li><span class="ic">✗</span>You're looking for the cheapest option</li>
+          <li><span class="ic">✗</span>You think like a content creator — you love making reels and being on camera</li>
+          <li><span class="ic">✗</span>You don't have an offer or audience yet — you're still building from zero</li>
+          <li><span class="ic">✗</span>You want views and entertainment, not authority and conversion</li>
+          <li><span class="ic">✗</span>You're looking for the cheapest option, not the right one</li>
         </ul>
       </div>
     </div>
