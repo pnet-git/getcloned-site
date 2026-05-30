@@ -525,6 +525,7 @@ p strong{color:var(--text);font-weight:600}
   .nav-cta{font-size:12px;padding:8px 12px}
 }
 </style>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
 
@@ -1143,6 +1144,7 @@ p strong{color:var(--text);font-weight:600}
    >>> INTEGRATION CONFIG — swap these 3 when ready <<<
 ============================================================ */
 const CONFIG={
+  RAZORPAY_KEY_ID:"rzp_live_CF7QB0B5zEyuMn",
   RAZORPAY_LINK:"https://rzp.io/rzp/getcloned-blueprint",
   KIT_FORM_ACTION:"https://app.kit.com/forms/9503204/subscriptions",
   CALENDLY_LINK:"https://calendly.com/akassh/cloning-blueprint-call"
@@ -1187,7 +1189,24 @@ function handleLead(e){
     if(utms.content) fd.append('fields[utm_content]',utms.content);
     fetch(CONFIG.KIT_FORM_ACTION,{method:'POST',body:new URLSearchParams(fd)}).catch(function(){});
   }
-  setTimeout(function(){window.location.href=CONFIG.RAZORPAY_LINK;},250);
+  // Open Razorpay inline popup
+  var options={
+    key: CONFIG.RAZORPAY_KEY_ID,
+    amount: 49900,
+    currency: 'INR',
+    name: 'GetCloned',
+    description: 'Autopilot Income System Blueprint Call',
+    image: 'https://getcloned.in/media/v2_cyan_512.png',
+    prefill: { name: name, email: email },
+    notes: { source: utms.source||'direct', medium: utms.medium||'', campaign: utms.campaign||'' },
+    theme: { color: '#00f0c8' },
+    modal: { ondismiss: function(){ closeLead(); } },
+    handler: function(response){
+      window.location.href = '/thank-you-blueprint';
+    }
+  };
+  var rzp = new window.Razorpay(options);
+  rzp.open();
 }
 
 /* EXIT INTENT */
