@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Results — GetCloned</title>
+<meta name="description" content="Real results from real experts. See exactly what GetCloned has built — views, authority, and leads on autopilot.">
+<link rel="icon" type="image/svg+xml" href="/media/mark_cyan.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050505;--bg-2:#080b0b;--bg-card:#0f0f10;
+  --border:rgba(0,240,200,0.12);--border-strong:rgba(0,240,200,0.24);
+  --text:#ececec;--text-dim:#9a9a9a;--text-muted:#5d5d5d;
+  --cyan:#00f0c8;--cyan-glow:rgba(0,240,200,0.25);--cyan-soft:rgba(0,240,200,0.08);
+  --serif:'Fraunces',serif;--mono:'IBM Plex Mono',monospace;--sans:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+  background:repeating-linear-gradient(0deg,rgba(0,240,200,0.025) 0px,rgba(0,240,200,0.025) 1px,transparent 1px,transparent 3px);
+  mix-blend-mode:overlay;opacity:0.55}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px}
+.navbar{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:15px 24px;background:rgba(5,5,5,0.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-family:var(--mono);font-weight:600;font-size:15px}
+.logo-dot{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan-glow)}
+.logo em{color:var(--cyan);font-style:normal}
+.nav-cta{font-family:var(--mono);font-size:13px;color:var(--bg);background:var(--cyan);padding:9px 16px;border-radius:7px;font-weight:600;text-decoration:none}
+/* PAGE HEADER */
+.page-header{padding:80px 0 60px;text-align:center;background:radial-gradient(ellipse at 50% 0%,var(--cyan-soft),transparent 60%)}
+.page-header .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);margin-bottom:18px}
+.page-header h1{font-family:var(--serif);font-size:clamp(32px,5vw,52px);font-weight:600;letter-spacing:-.02em;margin-bottom:18px}
+.page-header p{color:var(--text-dim);font-size:18px;max-width:580px;margin:0 auto}
+/* CLIENT CARD */
+.client-section{padding:72px 0;border-top:1px solid var(--border)}
+.client-section:first-of-type{border-top:none}
+.client-header{display:flex;align-items:center;gap:24px;margin-bottom:36px}
+.client-circle{width:90px;height:90px;border-radius:50%;flex-shrink:0;position:relative}
+.client-circle::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px solid var(--cyan);box-shadow:0 0 18px var(--cyan-glow)}
+.client-circle img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.client-circle .ini{width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 50% 35%,#1c2a28,#0a0f0e);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:24px;font-weight:600;color:var(--cyan)}
+.client-info h2{font-family:var(--serif);font-size:clamp(22px,3.5vw,32px);font-weight:600;margin-bottom:4px}
+.client-info .role{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:34px}
+.stat-box{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px 16px;text-align:center}
+.stat-box .n{font-family:var(--serif);font-size:clamp(22px,4vw,32px);font-weight:600;color:var(--cyan);line-height:1}
+.stat-box .l{font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-top:8px;letter-spacing:.5px;text-transform:uppercase}
+.story-text p{font-size:17px;color:var(--text-dim);margin-bottom:16px}
+.story-text p strong{color:var(--text)}
+.quote-block{background:linear-gradient(135deg,var(--cyan-soft),transparent);border:1px solid var(--border-strong);border-radius:12px;padding:28px 28px;margin:28px 0}
+.quote-block .q{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.8vw,22px);color:var(--text);line-height:1.45;margin-bottom:12px}
+.quote-block .attr{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase}
+.coming-soon-card{background:var(--bg-card);border:2px dashed var(--border);border-radius:16px;padding:52px 32px;text-align:center}
+.coming-soon-card h2{font-family:var(--serif);font-size:clamp(22px,3.5vw,30px);margin-bottom:12px}
+.coming-soon-card p{color:var(--text-dim);font-size:16px;max-width:480px;margin:0 auto 24px}
+.cs-badge{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);border:1px dashed var(--border);padding:7px 14px;border-radius:6px}
+/* CTA BAR */
+.cta-bar{background:radial-gradient(ellipse at 50% 0%,rgba(0,240,200,0.06),transparent 60%),#070909;border-top:1px solid var(--border);padding:64px 0;text-align:center;margin-top:40px}
+.cta-bar h2{font-family:var(--serif);font-size:clamp(26px,4vw,38px);font-weight:600;margin-bottom:14px}
+.cta-bar p{color:var(--text-dim);font-size:17px;margin-bottom:32px}
+.btn{display:inline-flex;align-items:center;font-family:var(--mono);font-weight:600;font-size:15px;color:var(--bg);background:var(--cyan);padding:17px 34px;border-radius:9px;text-decoration:none;box-shadow:0 4px 26px var(--cyan-glow);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 38px var(--cyan-glow)}
+.footer{border-top:1px solid var(--border);padding:36px 24px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--text-muted)}
+.footer a{color:var(--text-dim);text-decoration:none;margin:0 10px}
+.footer a:hover{color:var(--cyan)}
+@media(max-width:640px){
+  .client-header{flex-direction:column;text-align:center}
+  .stats-row{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="/" class="logo"><span class="logo-dot"></span><span>GetCloned<em>+</em></span></a>
+  <a href="/blueprint" class="nav-cta">Book Blueprint Call →</a>
+</nav>
+
+<div class="page-header">
+  <div class="wrap">
+    <div class="eyebrow">Verified Results</div>
+    <h1>Experts already on autopilot.</h1>
+    <p>Real names. Real numbers. Every result below is true, verifiable, and building every day.</p>
+  </div>
+</div>
+
+<!-- CLIENT 1: AKASSH / PEEPOYE -->
+<section class="client-section" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="client-header">
+      <div class="client-circle">
+        <img src="/media/img-proof-akassh.jpeg" alt="Akassh Ashok Gupta"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="ini" style="display:none">AK</div>
+      </div>
+      <div class="client-info">
+        <h2>Akassh Ashok Gupta</h2>
+        <div class="role">Founder, GetCloned · Peepoye Network · 1.4M+ Followers</div>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-box"><div class="n">1.2M+</div><div class="l">Views · First Cloned Reel</div></div>
+      <div class="stat-box"><div class="n">250K+</div><div class="l">Views · Second Cloned Reel</div></div>
+      <div class="stat-box"><div class="n">5M+</div><div class="l">Monthly Views · All Platforms</div></div>
+    </div>
+    <div class="story-text">
+      <p>19+ years building automation and business transformation frameworks for Fortune 500 companies. Then Akassh left corporate to build Peepoye — and hit the same wall every expert hits. <strong>Drowning in production.</strong> Six hours to film one piece. Batching weekends that burned out by week three. The expertise was real. The system was broken.</p>
+      <p>So he built the Cloning Engine he wished existed. Applied it to himself first — the founder eating his own cooking. The first cloned reel crossed <strong>1.2 million views</strong>. The second is already at 250K+ and climbing. Total monthly views across platforms: <strong>5M+</strong>.</p>
+      <p><strong>"I don't just sell the clone. I am the clone."</strong> The medium proves the product. Every piece of GetCloned content you see is produced by the Cloning Engine — the founder's credibility is the live demonstration.</p>
+    </div>
+    <div class="quote-block">
+      <div class="q">"I spent 19+ years in corporate building automation for Fortune 500 companies. Then I became a content creator — amassing 1.4 million subscribers — and hit the same wall every expert hits. Drowning in production. So I built the Cloning Engine I wished existed."</div>
+      <div class="attr">— Akassh Ashok Gupta · Founder, GetCloned · The Cloning Guy</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT 2: DR. MADHU -->
+<section class="client-section" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="client-header">
+      <div class="client-circle">
+        <img src="/media/img-proof-madhu.jpeg" alt="Dr. Madhu Sudan"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="ini" style="display:none">MS</div>
+      </div>
+      <div class="client-info">
+        <h2>Dr. Madhu Sudan</h2>
+        <div class="role">Ayurveda &amp; Sexual-Health Expert · India · 15+ Years Practice</div>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-box"><div class="n">100K+</div><div class="l">Views · Cloned Reel</div></div>
+      <div class="stat-box"><div class="n">15 yrs</div><div class="l">Clinical Practice</div></div>
+      <div class="stat-box"><div class="n">0</div><div class="l">Cameras. Ever.</div></div>
+    </div>
+    <div class="story-text">
+      <p>Camera-tired. Inconsistent posting. Ads burning money month after month. Dr. Madhu Sudan had 15 years of proven clinical expertise and a reputation that deserved far wider reach — but the content production process was eating what little time his practice left him.</p>
+      <p>His first cloned reel crossed <strong>100K+ views</strong>. It outperformed everything he had ever filmed himself — in reach, in engagement, in the kind of trust-building that fills a clinic. <strong>He never picked up a camera once.</strong></p>
+      <p>The people closest to him couldn't tell the difference. His wife — who knows his mannerisms better than anyone — couldn't tell the difference. That's the bar we build to.</p>
+    </div>
+    <div class="quote-block" style="background:linear-gradient(135deg,rgba(0,240,200,0.04),transparent);border-style:dashed">
+      <div class="q" style="color:var(--text-dim);font-size:clamp(16px,2.3vw,19px)">Full testimonial and case study video coming soon. Dr. Madhu's complete story — the before, the build, the results — will be published here.</div>
+      <div class="attr">— Testimonial capture in progress</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT 3: ARFEEN — COMING SOON -->
+<section class="client-section" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="coming-soon-card">
+      <div class="client-circle" style="margin:0 auto 24px">
+        <div class="ini">AR</div>
+      </div>
+      <h2>Arfeen Khan</h2>
+      <p style="font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:20px">Top Coach · 4,000+ Coaches Under Him</p>
+      <p>"Yours is perfect. I can't tell the difference." — those were his exact words when he saw the first output. Full case study and results publishing as the build completes.</p>
+      <div class="cs-badge">— WORK IN PROGRESS — FULL STORY COMING SOON —</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<div class="cta-bar">
+  <div class="wrap">
+    <h2>Want to be the next story on this page?</h2>
+    <p>Book your Blueprint Call. Walk away with a roadmap — fully refundable if it isn't worth 10× the fee.</p>
+    <a href="/blueprint" class="btn">Book Your Blueprint Call — ₹499 →</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <a href="/">Home</a>
+  <a href="/blueprint">Blueprint Call</a>
+  <a href="/privacy">Privacy</a>
+  <a href="/terms">Terms</a>
+  <p style="margin-top:14px">© 2026 GetCloned · Peepoye Network · Gurugram, India</p>
+</footer>
+
+</body>
+</html>
