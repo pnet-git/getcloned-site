@@ -2,7 +2,7 @@
 // Razorpay payment.captured webhook → Kit tag getcloned-paid-confirmed
 // Endpoint: getcloned.in/api/razorpay-kit
 
-const crypto = require('crypto');
+import crypto from 'crypto';
 
 const KIT_API_KEY = process.env.KIT_API_KEY;
 const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET;
@@ -28,9 +28,9 @@ export default async function handler(req, res) {
     }
   }
 
-  // Only handle payment.captured events
-  const event = req.body.event;
-  if (event !== 'payment.captured' && event !== 'payment_link.paid' && event !== 'payment_page.paid') {
+  // Only handle payment.captured and payment_link.paid
+  const event = req.body?.event;
+  if (event !== 'payment.captured' && event !== 'payment_link.paid') {
     return res.status(200).json({ message: 'Event ignored', event });
   }
 
@@ -38,11 +38,9 @@ export default async function handler(req, res) {
   let email = null;
   try {
     const payload = req.body.payload;
-    // Try payment_link.paid / payment_page.paid structure
     email =
       payload?.payment?.entity?.email ||
       payload?.payment_link?.entity?.customer_details?.contact_email ||
-      payload?.payment_page?.entity?.customer_details?.email ||
       null;
   } catch (e) {
     return res.status(400).json({ error: 'Could not extract email', detail: e.message });
@@ -52,16 +50,19 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'No email found in payload' });
   }
 
-  // Step 1: Find or create subscriber in Kit by email
+  // Step 1: Find subscriber in Kit by email
   let subscriberId = null;
   try {
-    const findRes = await fetch(`https://api.kit.com/v4/subscribers?email_address=${encodeURIComponent(email)}`, {
-      headers: {
-        'Authorization': `Bearer ${KIT_API_KEY}`,
-        'Content-Type': 'application/json',
-        'X-Kit-Api-Version': '2024-07-24'
+    const findRes = await fetch(
+      `https://api.kit.com/v4/subscribers?email_address=${encodeURIComponent(email)}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${KIT_API_KEY}`,
+          'Content-Type': 'application/json',
+          'X-Kit-Api-Version': '2024-07-24'
+        }
       }
-    });
+    );
     const findData = await findRes.json();
     if (findData.subscribers && findData.subscribers.length > 0) {
       subscriberId = findData.subscribers[0].id;
@@ -70,7 +71,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Failed to look up subscriber', detail: e.message });
   }
 
-  // If not found in Kit, create them
+  // Step 2: If not found, create them
   if (!subscriberId) {
     try {
       const createRes = await fetch('https://api.kit.com/v4/subscribers', {
@@ -93,7 +94,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Could not get subscriber ID' });
   }
 
-  // Step 2: Add tag getcloned-paid-confirmed
+  // Step 3: Add tag getcloned-paid-confirmed
   try {
     const tagRes = await fetch(`https://api.kit.com/v4/tags/${KIT_TAG_ID}/subscribers`, {
       method: 'POST',
