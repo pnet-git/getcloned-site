@@ -22,6 +22,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Debug: confirm env vars are loaded
+  if (!KIT_API_KEY) {
+    return res.status(500).json({ error: 'KIT_API_KEY not set in environment' });
+  }
+
   const rawBody = await getRawBody(req);
 
   // Signature verification disabled for now
