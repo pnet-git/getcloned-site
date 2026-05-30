@@ -159,15 +159,24 @@ p strong{color:var(--text);font-weight:600}
 .img-wrap{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(155deg,#13161a,#090b0c)}
 .img-wrap img{width:100%;display:block}
 
-/* ============ CLONE GAME ============ */
-.game{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:32px 0}
-.reel{position:relative;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s}
-.reel:hover{border-color:var(--border-strong);transform:translateY(-4px)}
-.reel-thumb{aspect-ratio:9/12;background:linear-gradient(160deg,#15181c,#090b0c);display:flex;align-items:center;justify-content:center}
-.play{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--cyan);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:18px;background:var(--cyan-soft)}
-.reel-label{padding:15px;font-family:var(--mono);font-size:13px;text-align:center;color:var(--text-dim);border-top:1px solid var(--border)}
-.reel.picked{border-color:var(--cyan);box-shadow:0 0 26px var(--cyan-glow)}
-.game-reveal{display:none;text-align:center;margin-top:6px}
+/* ============ CLONE GAME — 4 REEL GRID ============ */
+.reel-grid{display:flex;flex-direction:column;gap:48px;margin:36px 0}
+.reel-pair-label{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
+.rp-name{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--text)}
+.rp-tag{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.5px}
+.reel-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.reel-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s}
+.reel-card:hover{border-color:var(--border-strong);transform:translateY(-3px)}
+.reel-card.picked{border-color:var(--cyan);box-shadow:0 0 24px var(--cyan-glow)}
+.reel-frame{position:relative;width:100%;padding-bottom:177.77%;overflow:hidden;background:#fff}
+.reel-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.reel-footer{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-top:1px solid var(--border)}
+.reel-views{font-family:var(--mono);font-size:12px;color:var(--cyan);font-weight:600;letter-spacing:.3px}
+.reel-pick{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.5px}
+.reel-card.picked .reel-pick{color:var(--cyan)}
+.reel-reveal{margin-top:10px;font-family:var(--mono);font-size:12px;color:var(--text-muted);text-align:center;min-height:0;transition:all .3s}
+@media(max-width:640px){.reel-row{grid-template-columns:1fr 1fr;gap:10px}}
+.game-reveal{display:none;text-align:center;margin-top:32px;padding:32px;background:linear-gradient(135deg,var(--cyan-soft),transparent);border:1px solid var(--border-strong);border-radius:14px}
 .game-reveal.show{display:block;animation:fade .5s ease}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .game-reveal .big{font-family:var(--serif);font-size:clamp(22px,3.4vw,32px);color:var(--cyan);font-weight:600;margin-bottom:10px}
@@ -524,16 +533,60 @@ p strong{color:var(--text);font-weight:600}
   <div class="wrap">
     <div class="div-label">The 5-second test</div>
     <h2>Which one is the clone?</h2>
-    <p>Two reels from the same expert. One he filmed himself. One his clone produced — he never picked up a camera. Watch both. Then pick.</p>
-    <div class="game">
-      <div class="reel" data-choice="A" onclick="pickClone('A')"><div class="reel-thumb"><div class="play">▶</div></div><div class="reel-label">REEL A</div></div>
-      <div class="reel" data-choice="B" onclick="pickClone('B')"><div class="reel-thumb"><div class="play">▶</div></div><div class="reel-label">REEL B</div></div>
-    </div>
+    <p style="max-width:640px">Four reels. Two experts. One of each pair was filmed by the expert themselves. The other — their AI clone did it. They never picked up a camera. Watch them. Then pick.</p>
+
+    <!-- 2x2 REEL GRID -->
+    <div class="reel-grid">
+
+      <!-- PAIR 1: PEEPOYE -->
+      <div class="reel-pair">
+        <div class="reel-pair-label"><span class="rp-name">Peepoye</span><span class="rp-tag">Creator · 1.4M+ Followers</span></div>
+        <div class="reel-row">
+          <div class="reel-card" data-choice="P1" onclick="pickReel(this,'peepoye')">
+            <div class="reel-frame">
+              <iframe src="https://www.instagram.com/p/DY4Z8lGohm7/embed/" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+            <div class="reel-footer"><span class="reel-views">300K+ views</span><span class="reel-pick">TAP TO PICK →</span></div>
+          </div>
+          <div class="reel-card" data-choice="P2" onclick="pickReel(this,'peepoye')">
+            <div class="reel-frame">
+              <iframe src="https://www.instagram.com/p/DXRkVw-D-DY/embed/" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+            <div class="reel-footer"><span class="reel-views">1.2M+ views</span><span class="reel-pick">TAP TO PICK →</span></div>
+          </div>
+        </div>
+        <div class="reel-reveal" id="reveal-peepoye"></div>
+      </div>
+
+      <!-- PAIR 2: DR. MADHU -->
+      <div class="reel-pair">
+        <div class="reel-pair-label"><span class="rp-name">Dr. Madhu Sudan</span><span class="rp-tag">Ayurvedic Sexologist · India</span></div>
+        <div class="reel-row">
+          <div class="reel-card" data-choice="M1" onclick="pickReel(this,'madhu')">
+            <div class="reel-frame">
+              <iframe src="https://www.instagram.com/p/DYmpV26In0N/embed/" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+            <div class="reel-footer"><span class="reel-views">73K+ views</span><span class="reel-pick">TAP TO PICK →</span></div>
+          </div>
+          <div class="reel-card" data-choice="M2" onclick="pickReel(this,'madhu')">
+            <div class="reel-frame">
+              <iframe src="https://www.instagram.com/p/DXzGWLeI59b/embed/" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+            <div class="reel-footer"><span class="reel-views">60K+ views</span><span class="reel-pick">TAP TO PICK →</span></div>
+          </div>
+        </div>
+        <div class="reel-reveal" id="reveal-madhu"></div>
+      </div>
+
+    </div><!-- end reel-grid -->
+
+    <!-- MASTER REVEAL (fires when both picked) -->
     <div class="game-reveal" id="gameReveal">
       <p class="big">Most people get this wrong.</p>
-      <p>That's the entire point. If you can't tell — neither can your audience, your patients, or your peers. The clone isn't a cheap copy. It's you, without the hours. <strong>This is exactly what we build.</strong></p>
+      <p>That's the entire point. If you can't tell — neither can your audience, your patients, or your peers. The clone isn't a cheap copy. It's you, without the hours. <strong>Two niches. Two experts. Same result. This is what we build.</strong></p>
+      <button class="btn" onclick="openLead('clone-game')" style="margin-top:24px">I want this for my expertise →</button>
     </div>
-    <p class="dim mono" style="font-size:12px;text-align:center;margin-top:6px">↑ Dr. Madhu original vs cloned reel — to be embedded</p>
+
   </div>
 </section>
 
@@ -871,8 +924,24 @@ function closeExit(){document.getElementById('exitPopup').classList.remove('acti
 function closeExitOutside(e){if(e.target.id==='exitPopup')closeExit();}
 document.addEventListener('mouseleave',function(e){if(e.clientY<10&&!exitFired){openExit();}});
 
-/* CLONE GAME */
-function pickClone(c){document.querySelectorAll('.reel').forEach(r=>r.classList.remove('picked'));document.querySelector('.reel[data-choice="'+c+'"]').classList.add('picked');document.getElementById('gameReveal').classList.add('show');}
+/* CLONE GAME — 4 reels, 2 pairs */
+var picked={peepoye:false,madhu:false};
+function pickReel(el,pair){
+  // highlight picked card in this pair
+  el.closest('.reel-row').querySelectorAll('.reel-card').forEach(function(c){c.classList.remove('picked')});
+  el.classList.add('picked');
+  picked[pair]=true;
+  // show per-pair micro-feedback
+  var rev=document.getElementById('reveal-'+pair);
+  if(rev)rev.textContent='✓ Picked. Now try the other expert.';
+  // fire master reveal when both pairs done
+  if(picked.peepoye&&picked.madhu){
+    document.getElementById('gameReveal').classList.add('show');
+    document.getElementById('reveal-peepoye').textContent='';
+    document.getElementById('reveal-madhu').textContent='';
+    document.getElementById('gameReveal').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+}
 
 /* FAQ */
 function toggleFaq(b){b.classList.toggle('open');var a=b.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px';}
