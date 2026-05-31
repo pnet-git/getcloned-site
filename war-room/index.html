@@ -185,6 +185,51 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .edit-btns .save{border-color:var(--cyan);color:var(--cyan)}
 
 .empty-state{text-align:center;padding:40px;color:var(--text3);font-size:12px}
+
+/* TODAY TAB */
+.checkin-card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:18px 20px;margin-bottom:20px}
+.checkin-title{font-size:11px;color:var(--cyan);letter-spacing:1px;margin-bottom:14px}
+.checkin-q{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.checkin-q:last-child{border-bottom:none}
+.checkin-label{font-size:12px;color:var(--text)}
+.checkin-btns{display:flex;gap:6px}
+.checkin-opt{font-size:11px;padding:5px 14px;border-radius:6px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text3)}
+.checkin-opt:hover{border-color:var(--text2);color:var(--text2)}
+.checkin-opt.sel-yes{border-color:var(--p0);color:var(--p0);background:#1a0808}
+.checkin-opt.sel-no{border-color:var(--done);color:var(--done);background:#081a08}
+.checkin-done-btn{width:100%;margin-top:14px;font-size:12px;padding:10px;border-radius:var(--radius);border:1px solid var(--cyan);background:transparent;color:var(--cyan);cursor:pointer;font-family:inherit;letter-spacing:1px}
+.checkin-done-btn:hover{background:rgba(0,240,200,0.08)}
+
+.onething-card{background:linear-gradient(135deg,#0a1512,#0a0f1a);border:1px solid var(--cyan);border-radius:var(--radius-lg);padding:28px;margin-bottom:20px;box-shadow:0 0 24px rgba(0,240,200,0.06)}
+.onething-label{font-size:11px;color:var(--cyan);letter-spacing:2px;margin-bottom:14px}
+.onething-task{font-size:22px;font-weight:500;color:var(--text);margin-bottom:10px;line-height:1.3}
+.onething-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.onething-tag{font-size:11px;padding:3px 10px;border-radius:5px;letter-spacing:0.5px}
+.ot-mot{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
+.ot-ru{background:#1a0f00;color:var(--p1);border:1px solid #3a2000}
+.ot-rgh{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}
+.ot-rb{background:#1a1a1a;color:var(--text3);border:1px solid #2a2a2a}
+.onething-why{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:18px}
+.onething-actions{display:flex;gap:10px;flex-wrap:wrap}
+.onething-done{font-size:12px;padding:10px 20px;border-radius:var(--radius);border:none;background:var(--cyan);color:#000;cursor:pointer;font-family:inherit;font-weight:500;letter-spacing:0.5px}
+.onething-done:hover{background:var(--cyan2)}
+.onething-why-btn{font-size:12px;padding:10px 16px;border-radius:var(--radius);border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;font-family:inherit}
+.onething-why-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.onething-score{margin-left:auto;font-size:11px;color:var(--text3)}
+
+.emergency-card{background:#1a0606;border:1px solid var(--p0);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px;text-align:center}
+.emergency-card .et{font-size:14px;color:var(--p0);font-weight:500;margin-bottom:6px;letter-spacing:1px}
+.emergency-card .es{font-size:12px;color:var(--text2)}
+
+.queue-title{font-size:11px;color:var(--text3);letter-spacing:1px;margin-bottom:10px;text-transform:uppercase}
+.queue-item{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:6px}
+.queue-rank{font-size:13px;color:var(--text3);font-weight:500;width:20px;flex-shrink:0}
+.queue-body{flex:1;min-width:0}
+.queue-task{font-size:13px;color:var(--text);margin-bottom:2px}
+.queue-meta{font-size:10px;color:var(--text3)}
+.queue-tag{font-size:9px;padding:1px 6px;border-radius:3px;letter-spacing:0.5px;margin-left:6px}
+.queue-score{font-size:11px;color:var(--text3);flex-shrink:0}
+
 .footer{text-align:center;font-size:11px;color:var(--text3);margin-top:40px;letter-spacing:1px}
 @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.pipeline-stats{grid-template-columns:repeat(3,1fr)}}
 </style>
@@ -214,12 +259,19 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('priorities',this)">PRIORITIES</button>
+    <button class="tab active" onclick="switchTab('today',this)">🎯 TODAY</button>
+    <button class="tab" onclick="switchTab('priorities',this)">PRIORITIES</button>
     <button class="tab" onclick="switchTab('clients',this)">CLIENT DASHBOARD</button>
     <button class="tab" onclick="switchTab('pipeline',this)">LEAD PIPELINE</button>
   </div>
 
-  <div id="tab-priorities">
+  <div id="tab-today">
+    <div id="today-checkin"></div>
+    <div id="today-onething"></div>
+    <div id="today-queue"></div>
+  </div>
+
+  <div id="tab-priorities" style="display:none">
     <div class="stats">
       <div class="stat"><div class="stat-num" id="s-total" style="color:var(--cyan)">—</div><div class="stat-label">Total</div></div>
       <div class="stat"><div class="stat-num" id="s-done" style="color:var(--done)">—</div><div class="stat-label">Done</div></div>
@@ -482,9 +534,10 @@ document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='E
 function switchTab(tab,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
-  ['priorities','clients','pipeline'].forEach(t=>{
+  ['today','priorities','clients','pipeline'].forEach(t=>{
     document.getElementById('tab-'+t).style.display=t===tab?'block':'none';
   });
+  if(tab==='today')renderToday();
 }
 
 function updateStats(){
@@ -758,11 +811,264 @@ async function addLead(){
   renderLeads();
 }
 
+// ═══════════════ TODAY — INTELLIGENCE LAYER ═══════════════
+// Scoring formula (from research):
+// Score = 10·MOT + 7·RU + 4·RGH + 2·RB + 3R + 2U + 2B + S − E
+// MOT=Money on table, RU=Revenue unblocking, RGH=Revenue habit, RB=Revenue building
+
+let checkinState={emergency:null,outreach:null,clientWaiting:null,date:null};
+let completedToday=[];
+
+function loadCheckin(){
+  try{
+    const saved=JSON.parse(localStorage.getItem('gc_checkin')||'{}');
+    if(saved.date===todayISO()){checkinState=saved;}
+    else{checkinState={emergency:null,outreach:null,clientWaiting:null,date:todayISO()};}
+    completedToday=JSON.parse(localStorage.getItem('gc_completed_'+todayISO())||'[]');
+  }catch(e){}
+}
+function saveCheckin(){
+  checkinState.date=todayISO();
+  try{localStorage.setItem('gc_checkin',JSON.stringify(checkinState));}catch(e){}
+}
+function markCompletedToday(id){
+  if(!completedToday.includes(id))completedToday.push(id);
+  try{localStorage.setItem('gc_completed_'+todayISO(),JSON.stringify(completedToday));}catch(e){}
+}
+
+// Build a scored candidate list from leads + priority tasks
+function buildCandidates(){
+  const candidates=[];
+
+  // 1. LEADS → scored by stage + days cold
+  leads.forEach(l=>{
+    if(l.stage===9||l.stage===10)return; // signed or lost — skip
+    if(completedToday.includes('lead-'+l.id))return;
+    const days=daysSince(l.last_action||l.created_at);
+    let type,typeMult,R,U;
+
+    if(l.stage===8){ // Proposal Sent = MONEY ON TABLE
+      type='MOT';typeMult=10;R=5;U=Math.min(5,2+Math.floor(days/3));
+    } else if(l.stage===6||l.stage===7){ // Call booked / call done = MOT
+      type='MOT';typeMult=10;R=5;U=Math.min(5,2+Math.floor(days/2));
+    } else if(l.stage===3){ // Replied = revenue unblocking (respond!)
+      type='RU';typeMult=7;R=4;U=Math.min(5,3+Math.floor(days/2));
+    } else if(l.stage===4||l.stage===5){ // captured/watched = unblocking
+      type='RU';typeMult=7;R=4;U=Math.min(5,2+Math.floor(days/3));
+    } else if(l.stage===11){ // on hold
+      type='RB';typeMult=2;R=3;U=days>=14?4:2;
+    } else { // contacted/identified = habit territory
+      type='RGH';typeMult=4;R=3;U=Math.min(5,2+Math.floor(days/3));
+    }
+
+    const B=0,S=1,E=1; // leads are low-effort follow-ups
+    const score=typeMult+3*R+2*U+2*B+S-E;
+    const alert=getAlert(l);
+    candidates.push({
+      id:'lead-'+l.id,
+      kind:'lead',
+      title:'Follow up with '+l.name,
+      type,score,days,
+      meta:l.niche+' · '+STAGE_LABELS[l.stage]+' · '+l.offer,
+      why:buildWhy(type,l,days),
+      isHot:alert&&alert.level==='red',
+    });
+  });
+
+  // 2. CLIENTS waiting on you (delivery = revenue unblocking)
+  if(checkinState.clientWaiting==='yes'){
+    CLIENTS.forEach(c=>{
+      if(c.waitingOn==='you'&&!completedToday.includes('client-'+c.id)){
+        const days=c.stuckSince?daysSince(c.stuckSince):0;
+        const score=7+3*4+2*Math.min(5,2+Math.floor(days/3))+2*1+2-1;
+        candidates.push({
+          id:'client-'+c.id,kind:'client',
+          title:'Move '+c.name+' forward',
+          type:'RU',score,days,
+          meta:'Client delivery · '+STAGES_CLIENT[c.currentStage-1].label,
+          why:c.name+' is blocked waiting on you. Delivery delays risk retention — and retention is revenue.',
+          isHot:true,
+        });
+      }
+    });
+  }
+
+  // 3. DAILY OUTREACH habit (if not done today)
+  if(checkinState.outreach==='no'){
+    candidates.push({
+      id:'habit-outreach',kind:'habit',
+      title:'Do your daily outreach — 10 DMs + 5 emails',
+      type:'RGH',score:4+3*3+2*5+0+1-2,days:0,
+      meta:'Sales habit · Fills tomorrow\'s pipeline',
+      why:'Outreach is your daily revenue-generating habit. Skip it and the pipeline dries up in 2 weeks. Non-negotiable.',
+      isHot:false,
+    });
+  }
+
+  // 4. P0 PRIORITY TASKS not done (revenue building/habit)
+  TASKS.filter(t=>t.sec==='p0').forEach(t=>{
+    const s=taskState[t.id]?.status||'todo';
+    if(s==='done')return;
+    if(completedToday.includes('task-'+t.id))return;
+    // skip the outreach/follow-up tasks — covered by leads/habit above
+    if(t.id==='p0-1'||t.id==='p0-2'||t.id==='p0-3')return;
+    const isHabit=false;
+    candidates.push({
+      id:'task-'+t.id,kind:'task',
+      title:t.title,
+      type:'RB',score:2+3*3+2*3+0+2-2,days:0,
+      meta:'P0 priority · '+t.sub.slice(0,50),
+      why:t.sub,
+      isHot:false,
+    });
+  });
+
+  candidates.sort((a,b)=>b.score-a.score);
+  return candidates;
+}
+
+function buildWhy(type,lead,days){
+  if(type==='MOT'){
+    return 'Money on the table. '+lead.name+' is at "'+STAGE_LABELS[lead.stage]+'" — '+days+' days since last action. This is the closest thing to cash you have. Close it.';
+  }
+  if(type==='RU'){
+    return lead.name+' replied and is waiting. '+days+' days cold. Every day silent kills the deal. Respond now.';
+  }
+  if(type==='RGH'){
+    return lead.name+' is early stage. Keep the pipeline moving — follow up to push them forward.';
+  }
+  return lead.name+' on hold for '+days+' days. Time to re-engage.';
+}
+
+function typeTagCls(type){
+  return type==='MOT'?'ot-mot':type==='RU'?'ot-ru':type==='RGH'?'ot-rgh':'ot-rb';
+}
+function typeTagLabel(type){
+  return type==='MOT'?'💰 Money on table':type==='RU'?'🔓 Revenue unblocking':type==='RGH'?'🔁 Revenue habit':'🏗 Revenue building';
+}
+
+function renderCheckin(){
+  const done=checkinState.emergency!==null&&checkinState.outreach!==null&&checkinState.clientWaiting!==null;
+  const el=document.getElementById('today-checkin');
+  function opt(field,val,label){
+    const sel=checkinState[field]===val;
+    const cls=sel?(val==='yes'?'sel-yes':'sel-no'):'';
+    return `<button class="checkin-opt ${cls}" onclick="setCheckin('${field}','${val}')">${label}</button>`;
+  }
+  el.innerHTML=`
+    <div class="checkin-card">
+      <div class="checkin-title">☀️ MORNING CHECK-IN — ${today()}</div>
+      <div class="checkin-q">
+        <span class="checkin-label">Any emergency today? (client critical / team blocker / personal)</span>
+        <div class="checkin-btns">${opt('emergency','yes','Yes')}${opt('emergency','no','No')}</div>
+      </div>
+      <div class="checkin-q">
+        <span class="checkin-label">Have you done your daily outreach yet?</span>
+        <div class="checkin-btns">${opt('outreach','yes','Yes')}${opt('outreach','no','Not yet')}</div>
+      </div>
+      <div class="checkin-q">
+        <span class="checkin-label">Any client waiting on YOU right now?</span>
+        <div class="checkin-btns">${opt('clientWaiting','yes','Yes')}${opt('clientWaiting','no','No')}</div>
+      </div>
+    </div>`;
+}
+
+function setCheckin(field,val){
+  checkinState[field]=val;
+  saveCheckin();
+  renderCheckin();
+  renderOneThing();
+  renderQueue();
+}
+
+function renderOneThing(){
+  const el=document.getElementById('today-onething');
+  const checkinDone=checkinState.emergency!==null&&checkinState.outreach!==null&&checkinState.clientWaiting!==null;
+
+  if(!checkinDone){
+    el.innerHTML=`<div class="onething-card" style="border-color:var(--border2);box-shadow:none">
+      <div class="onething-label">🎯 YOUR ONE THING</div>
+      <div class="onething-why" style="margin-bottom:0">Answer the 3 check-in questions above and I'll tell you exactly what to do first today.</div>
+    </div>`;
+    return;
+  }
+
+  // Emergency override
+  if(checkinState.emergency==='yes'){
+    el.innerHTML=`<div class="emergency-card">
+      <div class="et">⚠️ EMERGENCY MODE</div>
+      <div class="es">You flagged an emergency. Handle it first — it overrides everything. Once resolved, come back and switch it to "No" to get your next priority.</div>
+    </div>`;
+    return;
+  }
+
+  const candidates=buildCandidates();
+  if(!candidates.length){
+    el.innerHTML=`<div class="onething-card">
+      <div class="onething-label">🎯 YOUR ONE THING</div>
+      <div class="onething-task">You're clear. ✅</div>
+      <div class="onething-why">Nothing urgent in the queue. Good place to work on revenue-building — content, blogs, or strategy.</div>
+    </div>`;
+    return;
+  }
+
+  const top=candidates[0];
+  el.innerHTML=`<div class="onething-card">
+    <div class="onething-label">🎯 YOUR ONE THING — DO THIS FIRST</div>
+    <div class="onething-task">${top.title}</div>
+    <div class="onething-meta">
+      <span class="onething-tag ${typeTagCls(top.type)}">${typeTagLabel(top.type)}</span>
+      <span style="font-size:11px;color:var(--text3)">${top.meta}</span>
+      <span class="onething-score">Score: ${top.score}</span>
+    </div>
+    <div class="onething-why">${top.why}</div>
+    <div class="onething-actions">
+      <button class="onething-done" onclick="completeOneThing('${top.id}')">✓ Done — show next</button>
+      <button class="onething-why-btn" onclick="alert('Scoring: ${typeTagLabel(top.type)} base + urgency from ${top.days} days waiting. Money-on-table always ranks highest, then revenue-unblocking, then habits, then building.')">Why this?</button>
+    </div>
+  </div>`;
+}
+
+function completeOneThing(id){
+  markCompletedToday(id);
+  renderOneThing();
+  renderQueue();
+}
+
+function renderQueue(){
+  const el=document.getElementById('today-queue');
+  const checkinDone=checkinState.emergency!==null&&checkinState.outreach!==null&&checkinState.clientWaiting!==null;
+  if(!checkinDone||checkinState.emergency==='yes'){el.innerHTML='';return;}
+  const candidates=buildCandidates();
+  if(candidates.length<=1){el.innerHTML='';return;}
+  const next=candidates.slice(1,5);
+  let html=`<div class="queue-title">Next in queue</div>`;
+  next.forEach((c,i)=>{
+    html+=`<div class="queue-item">
+      <span class="queue-rank">${i+2}</span>
+      <div class="queue-body">
+        <div class="queue-task">${c.title}<span class="queue-tag ${typeTagCls(c.type)}">${c.type}</span></div>
+        <div class="queue-meta">${c.meta}</div>
+      </div>
+      <span class="queue-score">${c.score}</span>
+    </div>`;
+  });
+  el.innerHTML=html;
+}
+
+function renderToday(){
+  loadCheckin();
+  renderCheckin();
+  renderOneThing();
+  renderQueue();
+}
+
 async function init(){
   setSyncStatus('syncing');
   await Promise.all([loadTasks(),loadLeads()]);
   TASKS.forEach(t=>ensureTask(t.id));
   renderBoard();updateStats();renderClients();renderLeads();
+  renderToday();
 }
 </script>
 </body>
