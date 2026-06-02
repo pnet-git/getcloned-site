@@ -985,16 +985,18 @@ html::before {
   </div>
 </div>
 
-<!-- Calendly widget assets -->
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Cal.com embed -->
+<script>
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "gcplus", {origin:"https://cal.com"});
+</script>
 
 <script>
 (function () {
-  var CAL_BASE = "https://calendly.com/akassh/cloning-blueprint-call";
+  var CAL_LINK = "akassh-ashok-gupta/getcloned-plus-strategy-call";
   var answers = { 1: null, 2: null, 3: null };
   var current = 1;
-  var calendlyLoaded = false;
+  var calLoaded = false;
 
   var overlay = document.getElementById('qualOverlay');
   var dots = document.querySelectorAll('#qualDots .dot');
@@ -1060,35 +1062,45 @@ html::before {
     });
   });
 
-  function buildCalUrl() {
-    var params = new URLSearchParams();
-    params.set('utm_source', 'getcloned-plus');
-    params.set('utm_medium', 'qualification-gate');
-    params.set('utm_campaign', 'budget:' + (answers[1] || ''));
-    params.set('utm_content', 'goal:' + (answers[2] || ''));
-    params.set('utm_term', 'stage:' + (answers[3] || ''));
-    return CAL_BASE + '?' + params.toString();
+  function buildCalConfig() {
+    // pass answers as metadata so they ride along with the booking
+    return {
+      "metadata[budget]": answers[1] || "",
+      "metadata[goal]": answers[2] || "",
+      "metadata[stage]": answers[3] || "",
+      "utm_source": "getcloned-plus",
+      "utm_medium": "qualification-gate"
+    };
   }
 
-  function initCalendly() {
-    if (window.Calendly && !calendlyLoaded) {
-      window.Calendly.initInlineWidget({
-        url: buildCalUrl(),
-        parentElement: document.getElementById('qualCalEmbed')
+  function initCal() {
+    if (window.Cal && !calLoaded) {
+      window.Cal.ns["gcplus"]("inline", {
+        elementOrSelector: "#qualCalEmbed",
+        calLink: CAL_LINK,
+        config: buildCalConfig()
       });
-      calendlyLoaded = true;
+      window.Cal.ns["gcplus"]("ui", {
+        theme: "dark",
+        cssVarsPerTheme: {
+          dark: { "cal-brand": "#d4af64" }
+        },
+        hideEventTypeDetails: false,
+        layout: "month_view"
+      });
+      calLoaded = true;
       return true;
     }
-    return calendlyLoaded;
+    return calLoaded;
   }
 
   document.getElementById('qualOpenBtn').addEventListener('click', function () {
     goToStep(5);
-    if (!initCalendly()) {
+    if (!initCal()) {
       var tries = 0;
       var iv = setInterval(function () {
         tries++;
-        if (initCalendly() || tries > 50) clearInterval(iv);
+        if (initCal() || tries > 50) clearInterval(iv);
       }, 150);
     }
   });
