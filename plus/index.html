@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GetCloned+ — Cinematic AI Content for Brands</title>
+<meta name="description" content="GetCloned+ builds cinematic AI story content for brands — the conversion layer that turns feeds and ads into emotion, desire, and footfall. Part of the AIS engine by Peepoye Network." />
+<meta property="og:title" content="GetCloned+ — Cinematic AI Content for Brands" />
+<meta property="og:description" content="Not photos. Feelings. Cinematic AI story content that makes your audience feel — and move." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="shortcut icon" href="/favicon.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #060504;
+  --bg-elevated: #0c0a08;
+  --bg-card: #110e0a;
+  --bg-card-hover: #181310;
+
+  --border: rgba(212, 175, 100, 0.14);
+  --border-strong: rgba(212, 175, 100, 0.30);
+
+  --text: #f2ece0;
+  --text-dim: #b0a690;
+  --text-muted: #6b6253;
+
+  --gold: #d4af64;
+  --gold-bright: #f0d28a;
+  --gold-deep: #b8923f;
+  --gold-glow: rgba(212, 175, 100, 0.28);
+  --gold-soft: rgba(212, 175, 100, 0.08);
+  --wine: #4a1f28;
+
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* film grain texture */
+html::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(212, 175, 100, 0.018) 0px,
+    rgba(212, 175, 100, 0.018) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+.wrap { position: relative; z-index: 1; }
+
+/* ═══════════ NAVBAR ═══════════ */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 18px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(6, 5, 4, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-dot {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 14px var(--gold-glow), 0 0 6px var(--gold);
+}
+
+.logo-text em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+}
+.logo-plus {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.nav-links { display: flex; gap: 4px; align-items: center; }
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+}
+.nav-links a:hover { color: var(--gold); }
+
+.nav-links .cta-link {
+  background: var(--gold);
+  color: var(--bg);
+  padding: 10px 18px;
+  font-weight: 600;
+  margin-left: 10px;
+  letter-spacing: 0.06em;
+  box-shadow: 0 0 24px var(--gold-glow);
+}
+.nav-links .cta-link:hover {
+  background: var(--gold-bright);
+  color: var(--bg);
+  box-shadow: 0 0 32px var(--gold-glow);
+}
+.nav-links .cta-link .arrow-mini {
+  display: inline-block; margin-left: 4px; transition: transform 0.2s;
+}
+.nav-links .cta-link:hover .arrow-mini { transform: translateX(2px); }
+
+/* ═══════════ FULL-BLEED CINEMATIC HERO ═══════════ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+/* the cinematic image/video layer — swap plus-hero.jpg with motion later */
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: #0a0806;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 60% 35%, rgba(212, 175, 100, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 80% at 75% 50%, rgba(184, 79, 60, 0.14) 0%, transparent 55%),
+    radial-gradient(circle at 78% 42%, rgba(240, 210, 138, 0.35) 0%, transparent 22%),
+    linear-gradient(135deg, #120d08 0%, #1c130b 40%, #0a0705 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+/* when you drop plus-hero.jpg in /plus/, uncomment to use it as the image:
+.hero-media {
+  background-image:
+    linear-gradient(to top, rgba(6,5,4,0.95) 0%, rgba(6,5,4,0.3) 45%, rgba(6,5,4,0.55) 100%),
+    url('/plus/plus-hero.jpg');
+}
+*/
+
+/* golden-hour glow particles */
+.hero-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 72% 38%, rgba(240,210,138,0.6) 0px, transparent 2px),
+    radial-gradient(circle at 80% 48%, rgba(240,210,138,0.4) 0px, transparent 2px),
+    radial-gradient(circle at 68% 55%, rgba(240,210,138,0.5) 0px, transparent 1.5px),
+    radial-gradient(circle at 84% 60%, rgba(240,210,138,0.35) 0px, transparent 2px);
+  background-size: 100% 100%;
+  opacity: 0.8;
+  animation: shimmer 4s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* gradient scrim so text reads over any image */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(6,5,4,0.96) 0%,
+    rgba(6,5,4,0.55) 30%,
+    rgba(6,5,4,0.15) 60%,
+    rgba(6,5,4,0.45) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1180px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 32px 80px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-transform: uppercase;
+  padding: 7px 16px 7px 14px;
+  background: var(--gold-soft);
+  border: 1px solid var(--border-strong);
+  border-radius: 100px;
+  margin-bottom: 28px;
+  backdrop-filter: blur(8px);
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--gold-glow);
+  animation: pulse 2.4s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
+.hero-headline {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(48px, 8vw, 104px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 24px;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.6);
+  max-width: 900px;
+}
+.hero-headline em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold-bright);
+}
+
+.hero-sub {
+  font-family: var(--sans);
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.55;
+  color: var(--text-dim);
+  font-weight: 400;
+  margin-bottom: 36px;
+  max-width: 560px;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.5);
+}
+.hero-sub strong { color: var(--text); font-weight: 500; }
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--gold);
+  color: #1a1206;
+  border: none;
+  padding: 18px 34px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+  box-shadow: 0 0 32px var(--gold-glow), 0 8px 24px -8px rgba(212,175,100,0.4);
+}
+.hero-cta:hover {
+  background: var(--gold-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 0 48px var(--gold-glow), 0 12px 32px -8px rgba(212,175,100,0.5);
+}
+.hero-cta .arrow { transition: transform 0.2s; font-size: 18px; line-height: 1; }
+.hero-cta:hover .arrow { transform: translateX(4px); }
+
+/* ═══════════ SHARED SECTION ═══════════ */
+.section { padding: 110px 32px; position: relative; }
+.section-inner { max-width: 1080px; margin: 0 auto; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.eyebrow::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(32px, 4.4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 28px;
+  max-width: 760px;
+}
+.section-title em { font-style: italic; font-weight: 400; color: var(--gold-bright); }
+
+.section-lead {
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--text-dim);
+  max-width: 620px;
+  margin-bottom: 16px;
+}
+.section-lead strong { color: var(--text); font-weight: 500; }
+.section-lead em { font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 1.06em; }
+
+/* ═══════════ WHAT IT DOES — feature band ═══════════ */
+.does {
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(212,175,100,0.06) 0%, transparent 60%),
+    var(--bg-elevated);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.does-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.does-points { list-style: none; margin-top: 36px; }
+.does-points li {
+  display: flex;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.does-points li:last-child { border-bottom: none; }
+.does-num {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 600;
+  padding-top: 3px;
+  flex-shrink: 0;
+}
+.does-text { font-size: 16px; line-height: 1.6; color: var(--text-dim); }
+.does-text strong { color: var(--text); font-weight: 600; }
+
+/* cinematic still frame placeholder card */
+.film-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 38%, rgba(240,210,138,0.28) 0%, transparent 58%),
+    radial-gradient(ellipse 80% 60% at 45% 60%, rgba(184,79,60,0.18) 0%, transparent 55%),
+    linear-gradient(150deg, #1a120a 0%, #0d0906 100%);
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.8), 0 0 60px -24px var(--gold-glow);
+  display: flex;
+  align-items: flex-end;
+  padding: 24px;
+}
+.film-frame::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 55% 40%, rgba(240,210,138,0.5) 0px, transparent 2px),
+    radial-gradient(circle at 62% 48%, rgba(240,210,138,0.35) 0px, transparent 1.5px),
+    radial-gradient(circle at 48% 52%, rgba(240,210,138,0.4) 0px, transparent 2px);
+  animation: shimmer 4s ease-in-out infinite;
+}
+.film-frame-play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: rgba(6,5,4,0.4);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 24px var(--gold-glow);
+}
+.film-frame-play::after {
+  content: '';
+  width: 0; height: 0;
+  border-left: 16px solid var(--gold);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  margin-left: 4px;
+}
+.film-frame-caption {
+  position: relative;
+  z-index: 1;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+/* ═══════════ THE LOOP — 3 layer combo ═══════════ */
+.loop { background: var(--bg); }
+.loop-head { text-align: center; margin-bottom: 64px; }
+.loop-head .eyebrow { justify-content: center; }
+.loop-head .section-title { margin: 0 auto 20px; }
+.loop-head .section-lead { margin: 0 auto; }
+
+.loop-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  position: relative;
+}
+.layer {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 34px 28px;
+  transition: all 0.25s;
+  position: relative;
+}
+.layer:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
+  transform: translateY(-4px);
+}
+.layer-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.layer-name {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.layer-name.cyan { color: #00d9b8; }
+.layer-name.gold { color: var(--gold-bright); }
+.layer-name.warm { color: #e08a5a; }
+.layer-role {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+.layer-desc { font-size: 14.5px; line-height: 1.6; color: var(--text-dim); }
+
+.loop-note {
+  text-align: center;
+  margin-top: 40px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.loop-note em { color: var(--gold-bright); font-style: italic; }
+
+/* ═══════════ WHY US ═══════════ */
+.why {
+  background:
+    radial-gradient(ellipse 50% 60% at 20% 40%, rgba(212,175,100,0.05) 0%, transparent 60%),
+    var(--bg-elevated);
+  border-top: 1px solid var(--border);
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+  margin-bottom: 64px;
+}
+.why-item { padding: 28px 0; border-top: 1px solid var(--border-strong); }
+.why-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 40px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.why-label {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+.why-label strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 4px; font-size: 16px; }
+
+.why-line {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.2vw, 38px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--text);
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 44px;
+  letter-spacing: -0.01em;
+}
+.why-line em { color: var(--gold-bright); }
+.why-line .big { font-size: 1.1em; font-weight: 600; font-style: normal; color: var(--gold-bright); }
+
+.final-cta-wrap { text-align: center; }
+
+/* ═══════════ FOOTER ═══════════ */
+.footer {
+  padding: 72px 32px 40px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.footer-logo-dot {
+  width: 8px; height: 8px; background: var(--gold);
+  border-radius: 50%; box-shadow: 0 0 14px var(--gold-glow);
+}
+.footer-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin-bottom: 28px;
+}
+.footer-tagline em { color: var(--gold); }
+.footer-divider {
+  width: 60px; height: 1px;
+  background: var(--border-strong);
+  margin: 0 auto 28px;
+}
+.footer-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 22px;
+}
+.footer-links { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+.footer-links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.15s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media (max-width: 860px) {
+  .does-grid { grid-template-columns: 1fr; gap: 40px; }
+  .loop-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; gap: 0; }
+  .why-item { border-top: 1px solid var(--border); }
+  .film-frame { aspect-ratio: 16 / 10; max-width: 480px; }
+}
+@media (max-width: 600px) {
+  .navbar { padding: 14px 20px; }
+  .nav-links { gap: 2px; }
+  .nav-links a:not(.cta-link) { display: none; }
+  .nav-links .cta-link { padding: 8px 14px; font-size: 11px; margin-left: 0; }
+  .hero { min-height: 88vh; }
+  .hero-content { padding: 0 20px 56px; }
+  .section { padding: 72px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <span class="logo-dot"></span>
+      <span class="logo-text">GetCloned<span class="logo-plus">+</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="/">GetCloned</a>
+      <a href="#what">What It Does</a>
+      <a href="#engine">The Engine</a>
+      <a href="https://calendly.com/akassh/cloning-blueprint-call" class="cta-link" target="_blank" rel="noopener">Book a Call<span class="arrow-mini">→</span></a>
+    </div>
+  </nav>
+
+  <!-- HERO — full bleed cinematic -->
+  <header class="hero">
+    <div class="hero-media"></div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">GetCloned+ · The Conversion Layer</span>
+      <h1 class="hero-headline">Not photos.<br><em>Feelings.</em></h1>
+      <p class="hero-sub">Cinematic AI story content for brands — living, breathing scenes that move people from <strong>scrolling</strong> to <strong>feeling</strong> to <strong>walking through your door.</strong></p>
+      <a href="https://calendly.com/akassh/cloning-blueprint-call" class="hero-cta" target="_blank" rel="noopener">
+        Book a Strategy Call <span class="arrow">→</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- WHAT IT DOES -->
+  <section class="section does" id="what">
+    <div class="section-inner does-grid">
+      <div>
+        <span class="eyebrow">What GetCloned+ Does</span>
+        <h2 class="section-title">The feed that makes people <em>feel.</em></h2>
+        <p class="section-lead">A static post gets scrolled past. A cinematic story gets <em>felt</em> — and a felt brand is the one people walk into.</p>
+        <p class="section-lead">GetCloned+ engineers highly emotional, story-led AI content that moves a viewer through real psychological states — from passive, to curious, to <strong>eager buyer</strong>. It lives on your social feed and powers your paid ads on Meta and Google.</p>
+        <ul class="does-points">
+          <li><span class="does-num">01</span><span class="does-text"><strong>Cinematic feed content.</strong> Living scenes — not photos — published daily so your brand looks as alive online as it feels in person.</span></li>
+          <li><span class="does-num">02</span><span class="does-text"><strong>Conversion-led ad creative.</strong> Emotional AI films built for Meta &amp; Google — pre-framing buyers before they ever hit your funnel.</span></li>
+          <li><span class="does-num">03</span><span class="does-text"><strong>Desire before arrival.</strong> Stories that get saved, shared, and sent to a friend — building want before the customer ever reaches you.</span></li>
+        </ul>
+      </div>
+      <div class="film-frame">
+        <div class="film-frame-play"></div>
+        <span class="film-frame-caption">Cinematic ad · golden-hour scene</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ENGINE / LOOP -->
+  <section class="section loop" id="engine">
+    <div class="section-inner">
+      <div class="loop-head">
+        <span class="eyebrow">Where It Gets Explosive</span>
+        <h2 class="section-title">One layer is powerful.<br><em>Three is unfair.</em></h2>
+        <p class="section-lead">GetCloned+ doesn't work alone. It sits inside the AIS engine — three layers that compound into an audience your brand owns forever.</p>
+      </div>
+      <div class="loop-grid">
+        <div class="layer">
+          <div class="layer-tag">Layer 01 · Trust</div>
+          <div class="layer-name cyan">GetCloned</div>
+          <div class="layer-role">The trust foundation</div>
+          <div class="layer-desc">A cloned brand face — founder, spokesperson, or avatar — delivering authority content that warms the audience and builds credibility. Brings in the views.</div>
+        </div>
+        <div class="layer">
+          <div class="layer-tag">Layer 02 · Convert</div>
+          <div class="layer-name gold">GetCloned+</div>
+          <div class="layer-role">The conversion layer</div>
+          <div class="layer-desc">Cinematic AI stories that invoke emotion and pull viewers toward the buy. Pre-frames every lead before they reach your funnels, landing pages and offers.</div>
+        </div>
+        <div class="layer">
+          <div class="layer-tag">Layer 03 · Capture</div>
+          <div class="layer-name warm">DBA</div>
+          <div class="layer-role">The monetisation loop</div>
+          <div class="layer-desc">Lead magnets, product funnels, nurture and reactivation. Whoever doesn't convert is captured, re-offered and brought back — turning attention into recurring revenue.</div>
+        </div>
+      </div>
+      <p class="loop-note">Ads get attention. <em>The loop turns attention into footfall, repeat buyers, and an audience the brand owns forever.</em></p>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section why">
+    <div class="section-inner">
+      <span class="eyebrow">Why GetCloned+</span>
+      <h2 class="section-title">The tool is 20%.<br>The <em>thinking</em> is 80%.</h2>
+      <p class="section-lead">Anyone can prompt an AI video. Almost no one can build the engine of strategy, story and systems around it that actually drives outcomes. That's the part we bring.</p>
+
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-num">1M+</div>
+          <div class="why-label"><strong>Proven at scale.</strong> A creator who crossed 1,000,000+ subscribers — then eliminated himself from production entirely. The reels still cross 1M+ views.</div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">20yr</div>
+          <div class="why-label"><strong>Transformation operator.</strong> Two decades in business transformation — senior consulting at a NASDAQ-listed $9.6B firm serving Fortune Global 500 brands.</div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">AI</div>
+          <div class="why-label"><strong>Native, not curious.</strong> We build cinematic AI engines for a living — paired with the business judgement to make them convert, not just impress.</div>
+        </div>
+      </div>
+
+      <p class="why-line">Most brands pour money into ads that build <em>reach</em> but no <span class="big">trust.</span><br>We build the engine that does both.</p>
+
+      <div class="final-cta-wrap">
+        <a href="https://calendly.com/akassh/cloning-blueprint-call" class="hero-cta" target="_blank" rel="noopener">
+          Book a Strategy Call <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <span class="footer-logo-dot"></span>
+      <span>GetCloned<span style="color:var(--gold);font-weight:700;">+</span></span>
+    </div>
+    <div class="footer-tagline">Ads get attention.<br>The <em>engine</em> builds an audience you own.</div>
+    <div class="footer-divider"></div>
+    <div class="footer-meta">© 2026 GetCloned+ · AIS — Autopilot Income System · Peepoye Network</div>
+    <div class="footer-links">
+      <a href="/">GetCloned</a>
+      <a href="#what">What It Does</a>
+      <a href="#engine">The Engine</a>
+      <a href="https://calendly.com/akassh/cloning-blueprint-call" target="_blank" rel="noopener">Book a Call</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
