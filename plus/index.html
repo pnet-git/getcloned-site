@@ -526,6 +526,110 @@ html::before {
 
 .final-cta-wrap { text-align: center; }
 
+/* ═══════════ QUALIFICATION GATE ═══════════ */
+.gate {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(212,175,100,0.06) 0%, transparent 55%),
+    var(--bg);
+  border-top: 1px solid var(--border);
+}
+.gate-inner { max-width: 760px; margin: 0 auto; }
+
+.gate-card {
+  margin-top: 44px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px 36px;
+  box-shadow: 0 30px 80px -24px rgba(0,0,0,0.8);
+}
+
+.q { margin-bottom: 32px; }
+.q:last-of-type { margin-bottom: 28px; }
+
+.q-head {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.q-num {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.q-opts { display: flex; flex-direction: column; gap: 10px; }
+
+.opt {
+  text-align: left;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--text-dim);
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 15px 18px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  line-height: 1.4;
+}
+.opt:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-card-hover);
+  color: var(--text);
+}
+.opt.selected {
+  border-color: var(--gold);
+  background: var(--gold-soft);
+  color: var(--text);
+  box-shadow: 0 0 18px -4px var(--gold-glow);
+}
+
+.gate-cta-wrap {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.gate-unlock {
+  border: none;
+  cursor: pointer;
+  opacity: 0.4;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.gate-unlock.ready {
+  opacity: 1;
+  pointer-events: auto;
+}
+.gate-progress {
+  margin-top: 16px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.calendly-reveal {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.6s ease, opacity 0.6s ease, margin 0.6s ease;
+  margin-top: 0;
+}
+.calendly-reveal.open {
+  max-height: 760px;
+  opacity: 1;
+  margin-top: 36px;
+}
+
 /* ═══════════ FOOTER ═══════════ */
 .footer {
   padding: 72px 32px 40px;
@@ -616,7 +720,7 @@ html::before {
       <a href="/">GetCloned</a>
       <a href="#what">What It Does</a>
       <a href="#engine">The Engine</a>
-      <a href="https://calendly.com/akassh/cloning-blueprint-call" class="cta-link" target="_blank" rel="noopener">Book a Call<span class="arrow-mini">→</span></a>
+      <a href="#book" class="cta-link">Book a Call<span class="arrow-mini">→</span></a>
     </div>
   </nav>
 
@@ -628,7 +732,7 @@ html::before {
       <span class="hero-eyebrow">GetCloned+ · The Conversion Layer</span>
       <h1 class="hero-headline">Not photos.<br><em>Feelings.</em></h1>
       <p class="hero-sub">Cinematic AI story content for brands — living, breathing scenes that move people from <strong>scrolling</strong> to <strong>feeling</strong> to <strong>walking through your door.</strong></p>
-      <a href="https://calendly.com/akassh/cloning-blueprint-call" class="hero-cta" target="_blank" rel="noopener">
+      <a href="#book" class="hero-cta">
         Book a Strategy Call <span class="arrow">→</span>
       </a>
     </div>
@@ -712,12 +816,67 @@ html::before {
       <p class="why-line">Most brands pour money into ads that build <em>reach</em> but no <span class="big">trust.</span><br>We build the engine that does both.</p>
 
       <div class="final-cta-wrap">
-        <a href="https://calendly.com/akassh/cloning-blueprint-call" class="hero-cta" target="_blank" rel="noopener">
+        <a href="#book" class="hero-cta">
           Book a Strategy Call <span class="arrow">→</span>
         </a>
       </div>
     </div>
   </section>
+
+  <!-- QUALIFICATION GATE -->
+  <section class="section gate" id="book">
+    <div class="gate-inner">
+      <span class="eyebrow" style="justify-content:center;">Book a Strategy Call</span>
+      <h2 class="section-title" style="text-align:center;margin:0 auto 16px;">Three quick questions.<br>Then <em>the calendar opens.</em></h2>
+      <p class="section-lead" style="text-align:center;margin:0 auto 8px;">So we walk into the call already understanding your brand — and your time isn't wasted on basics.</p>
+
+      <div class="gate-card" id="gateCard">
+        <!-- Q1 -->
+        <div class="q" data-q="1">
+          <div class="q-head"><span class="q-num">01</span> What's your monthly marketing budget right now?</div>
+          <div class="q-opts">
+            <button class="opt" data-val="Under $5K/mo">Under $5K / month</button>
+            <button class="opt" data-val="$5K–$15K/mo">$5K – $15K / month</button>
+            <button class="opt" data-val="$15K–$50K/mo">$15K – $50K / month</button>
+            <button class="opt" data-val="$50K+/mo">$50K+ / month</button>
+          </div>
+        </div>
+        <!-- Q2 -->
+        <div class="q" data-q="2">
+          <div class="q-head"><span class="q-num">02</span> What's your #1 goal with cinematic AI content?</div>
+          <div class="q-opts">
+            <button class="opt" data-val="Build an owned audience">Build an audience we own — not rented from one channel</button>
+            <button class="opt" data-val="Higher conversion">Higher conversion from the traffic we already get</button>
+            <button class="opt" data-val="Premium brand presence">A premium presence that matches our brand name</button>
+            <button class="opt" data-val="Reach a new market">Reach a market we're not touching today</button>
+          </div>
+        </div>
+        <!-- Q3 -->
+        <div class="q" data-q="3">
+          <div class="q-head"><span class="q-num">03</span> Where are you today?</div>
+          <div class="q-opts">
+            <button class="opt" data-val="Ads but no capture">We run ads but capture almost nothing</button>
+            <button class="opt" data-val="Strong offline silent online">Strong offline — nearly silent online</button>
+            <button class="opt" data-val="Static and flat">We post, but it's static and flat</button>
+            <button class="opt" data-val="Exploring AI">Just exploring what AI content can do</button>
+          </div>
+        </div>
+
+        <div class="gate-cta-wrap">
+          <button class="hero-cta gate-unlock" id="unlockBtn" disabled>
+            Open My Booking <span class="arrow">→</span>
+          </button>
+          <p class="gate-progress" id="gateProgress">Answer all three to open the calendar</p>
+        </div>
+      </div>
+
+      <!-- Calendly slides in here -->
+      <div class="calendly-reveal" id="calendlyReveal">
+        <div class="calendly-inline-widget" id="calendlyEmbed" style="min-width:320px;height:700px;"></div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -732,10 +891,90 @@ html::before {
       <a href="/">GetCloned</a>
       <a href="#what">What It Does</a>
       <a href="#engine">The Engine</a>
-      <a href="https://calendly.com/akassh/cloning-blueprint-call" target="_blank" rel="noopener">Book a Call</a>
+      <a href="#book">Book a Call</a>
     </div>
   </footer>
 
 </div>
+
+<!-- Calendly widget assets -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<script>
+(function () {
+  var CAL_BASE = "https://calendly.com/akassh/cloning-blueprint-call";
+  var answers = { 1: null, 2: null, 3: null };
+  var calendlyLoaded = false;
+
+  document.querySelectorAll('.q').forEach(function (qBlock) {
+    var qNum = qBlock.getAttribute('data-q');
+    qBlock.querySelectorAll('.opt').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        qBlock.querySelectorAll('.opt').forEach(function (b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        answers[qNum] = btn.getAttribute('data-val');
+        checkReady();
+      });
+    });
+  });
+
+  function allAnswered() { return answers[1] && answers[2] && answers[3]; }
+
+  function checkReady() {
+    var btn = document.getElementById('unlockBtn');
+    var prog = document.getElementById('gateProgress');
+    if (allAnswered()) {
+      btn.classList.add('ready');
+      prog.textContent = 'Ready — open the calendar';
+    } else {
+      btn.classList.remove('ready');
+      var done = [answers[1], answers[2], answers[3]].filter(Boolean).length;
+      prog.textContent = done + ' of 3 answered';
+    }
+  }
+
+  function buildCalUrl() {
+    var params = new URLSearchParams();
+    params.set('utm_source', 'getcloned-plus');
+    params.set('utm_medium', 'qualification-gate');
+    params.set('utm_campaign', 'budget:' + (answers[1] || ''));
+    params.set('utm_content', 'goal:' + (answers[2] || ''));
+    params.set('utm_term', 'stage:' + (answers[3] || ''));
+    return CAL_BASE + '?' + params.toString();
+  }
+
+  function openCalendly() {
+    if (window.Calendly && !calendlyLoaded) {
+      window.Calendly.initInlineWidget({
+        url: buildCalUrl(),
+        parentElement: document.getElementById('calendlyEmbed')
+      });
+      calendlyLoaded = true;
+      return true;
+    }
+    return calendlyLoaded;
+  }
+
+  document.getElementById('unlockBtn').addEventListener('click', function () {
+    if (!allAnswered()) return;
+    var reveal = document.getElementById('calendlyReveal');
+    reveal.classList.add('open');
+
+    if (!openCalendly()) {
+      var tries = 0;
+      var iv = setInterval(function () {
+        tries++;
+        if (openCalendly() || tries > 40) clearInterval(iv);
+      }, 150);
+    }
+
+    setTimeout(function () {
+      reveal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 250);
+  });
+})();
+</script>
+
 </body>
 </html>
