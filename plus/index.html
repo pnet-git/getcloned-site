@@ -540,7 +540,15 @@ html::before {
   opacity: 0;
   transition: opacity 0.4s ease;
 }
-.qual-overlay.open { display: flex; opacity: 1; overflow-y: auto; }
+.qual-overlay.open {
+  display: flex;
+  opacity: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4vh 0;
+}
 
 .qual-inner {
   margin: auto;
@@ -689,7 +697,7 @@ html::before {
 .qual-open-btn:hover .arrow { transform: translateX(4px); }
 
 /* calendly step — fills overlay */
-.qual-cal-step { display: none; width: 100%; max-width: 680px; max-height: 88vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.qual-cal-step { display: none; width: 100%; max-width: 680px; }
 .qual-cal-step.active { display: block; }
 .qual-cal-head {
   text-align: center;
@@ -700,14 +708,14 @@ html::before {
   margin-bottom: 20px;
 }
 .qual-cal-head em { color: var(--gold); font-style: italic; }
-#qualCalEmbed { min-width: 320px; width: 100%; height: 78vh; max-height: 78vh; border-radius: 12px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+#qualCalEmbed { min-width: 320px; width: 100%; min-height: 640px; border-radius: 12px; }
 
 @media (max-width: 600px) {
   .qual-inner { padding: 32px 20px; }
   .qual-close { right: 12px; }
   .qual-dots { margin-bottom: 32px; }
   .qual-q { margin-bottom: 28px; }
-  #qualCalEmbed { height: 560px; }
+  #qualCalEmbed { min-height: 560px; }
 }
 
 /* ═══════════ FOOTER ═══════════ */
