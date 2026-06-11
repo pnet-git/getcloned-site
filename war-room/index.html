@@ -217,13 +217,15 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 .note-text.open{-webkit-line-clamp:unset}
 .hot-zone{margin-bottom:20px}
 .hot-title{font-size:12px;letter-spacing:1.5px;color:#ff9f43;font-weight:600;margin-bottom:10px}
-.hot-card{background:linear-gradient(135deg,#1a1208,#0f0c06);border:1px solid #5a3a10;border-left:3px solid #ff9f43;border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.hot-card{background:linear-gradient(135deg,#1a1208,#0f0c06);border:1px solid #5a3a10;border-left:3px solid #ff9f43;border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;max-width:720px}
 .hot-name{font-size:15px;font-weight:600}
 .hot-meta{font-size:12.5px;color:var(--text2);margin-top:3px}
 .hot-when{font-size:12.5px;color:#ff9f43;white-space:nowrap;font-weight:500}
 .fu-zone{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:12px 16px;margin-bottom:20px}
 .fu-title{font-size:12px;letter-spacing:1.5px;color:var(--p1);font-weight:600;margin-bottom:6px}
-.fu-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.fu-item{display:grid;grid-template-columns:minmax(160px,1fr) auto 90px;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.fu-item>span:nth-child(2){text-align:right}
+.fu-item>button{justify-self:end}
 .fu-item:last-child{border-bottom:none}
 .lead-actions{display:flex;gap:4px;flex-wrap:nowrap}
 .lead-action-btn{font-size:11px;padding:3px 7px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text3);white-space:nowrap}
@@ -241,6 +243,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 .edit-btns button{font-size:11px;padding:5px 12px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text2)}
 .edit-btns .save{border-color:var(--cyan);color:var(--cyan)}
 
+.status-legend{display:none;font-size:12.5px;color:var(--text2);line-height:1.9;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;margin-bottom:14px}
+.status-legend.open{display:block}
 .empty-state{text-align:center;padding:40px;color:var(--text3);font-size:12px}
 
 /* TODAY TAB */
@@ -344,6 +348,14 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
   </div>
 
   <div id="tab-pipeline" style="display:none">
+    <div class="pipeline-stats">
+      <div class="ps"><div class="n" id="pl-hot" style="color:#ff9f43">0</div><div class="l">🔥 Hot Now</div></div>
+      <div class="ps"><div class="n" id="pl-outreach" style="color:var(--cyan)">0</div><div class="l">Outreach This Month</div></div>
+      <div class="ps"><div class="n" id="pl-resp" style="color:var(--p1)">0%</div><div class="l">Response Rate</div></div>
+      <div class="ps"><div class="n" id="pl-booked" style="color:#aa88ff">0</div><div class="l">Calls Booked</div></div>
+      <div class="ps"><div class="n" id="pl-due" style="color:var(--p0)">0</div><div class="l">Follow-ups Due</div></div>
+    </div>
+
     <div id="alert-zone"></div>
 
     <div class="pipeline-top">
@@ -386,14 +398,6 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
       </div>
     </div>
 
-    <div class="pipeline-stats">
-      <div class="ps"><div class="n" id="pl-hot" style="color:#ff9f43">0</div><div class="l">🔥 Hot Now</div></div>
-      <div class="ps"><div class="n" id="pl-outreach" style="color:var(--cyan)">0</div><div class="l">Outreach This Month</div></div>
-      <div class="ps"><div class="n" id="pl-resp" style="color:var(--p1)">0%</div><div class="l">Response Rate</div></div>
-      <div class="ps"><div class="n" id="pl-booked" style="color:#aa88ff">0</div><div class="l">Calls Booked</div></div>
-      <div class="ps"><div class="n" id="pl-due" style="color:var(--p0)">0</div><div class="l">Follow-ups Due</div></div>
-    </div>
-
     <div class="pipeline-filters">
       <button class="filter-btn active" onclick="filterLeads('all',this)">All</button>
       <button class="filter-btn" onclick="filterLeads('action',this)">🔴 Needs Action</button>
@@ -405,6 +409,11 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
       <button class="filter-btn" onclick="filterLeads('signed',this)">Signed ✅</button>
       <button class="filter-btn" onclick="filterLeads('lost',this)">Lost ❌</button>
       <button class="filter-btn" onclick="filterLeads('hold',this)">On Hold ⏸</button>
+      <button class="filter-btn" onclick="document.getElementById('status-legend').classList.toggle('open')" title="What do statuses mean?">?</button>
+    </div>
+
+    <div id="status-legend" class="status-legend">
+      <b>🔥 Replied</b> — they wrote back, ball is in YOUR court &nbsp;·&nbsp; <b>Proposal Out</b> — proposal/qualified, money closest &nbsp;·&nbsp; <b>Sent — waiting</b> — email out, their move &nbsp;·&nbsp; <b>Draft in Mail</b> — written, waiting for you to review &amp; send &nbsp;·&nbsp; <b>Not Contacted</b> — logged, no outreach yet &nbsp;·&nbsp; <b>Bounced → DM</b> — email failed, route via Instagram DM &nbsp;·&nbsp; <b>Skip</b> — triaged out (reason in note)
     </div>
 
     <div id="leads-container"><div class="empty-state">Loading leads...</div></div>
@@ -505,8 +514,17 @@ function todayISO(){return new Date().toISOString().split('T')[0]}
 function daysSince(d){if(!d)return 0;const dt=new Date(d);if(isNaN(dt))return 0;return Math.floor((new Date()-dt)/(1000*60*60*24))}
 function lastTouch(l){for(const d of [l.last_action,l.updated_at,l.created_at]){if(!d)continue;const dt=new Date(d);if(!isNaN(dt))return dt;}return null}
 function touchDays(l){const t=lastTouch(l);return t?Math.floor((new Date()-t)/(1000*60*60*24)):0}
-const STATUS_LABEL={new:'New',email_drafted:'Drafted',email_sent:'Sent — waiting',replied:'🔥 Replied',qualified:'Qualified',call_booked:'Call Booked',signed:'Signed ✅',lost:'Lost ❌',not_interested:'Not Interested',bounced:'Bounced → DM',on_hold:'On Hold ⏸',skip:'Skip'};
+const STATUS_LABEL={new:'Not Contacted',email_drafted:'Draft in Mail',email_sent:'Sent — waiting',replied:'🔥 Replied',qualified:'Proposal Out',call_booked:'Call Booked',signed:'Signed ✅',lost:'Lost ❌',not_interested:'Not Interested',bounced:'Bounced → DM',on_hold:'On Hold ⏸',skip:'Skip'};
 const STATUS_CLS={new:'s1',email_drafted:'s2',email_sent:'s2',replied:'s3',qualified:'s8',call_booked:'s6',signed:'s9',lost:'s10',not_interested:'s10',bounced:'s10',on_hold:'s11',skip:'s11'};
+const STATUS_RANK={replied:0,signed:1,qualified:1,call_booked:1,email_sent:2,email_drafted:3,bounced:4,new:5,skip:6,on_hold:6,not_interested:7,lost:7};
+function sortByPriority(arr){
+  return arr.slice().sort((a,b)=>{
+    const ra=STATUS_RANK[effStatus(a)]??5, rb=STATUS_RANK[effStatus(b)]??5;
+    if(ra!==rb)return ra-rb;
+    if(effStatus(a)==='email_sent')return touchDays(b)-touchDays(a);
+    return lastTouch(b)-lastTouch(a);
+  });
+}
 function effStatus(l){
   if(l.status&&l.status!=='new')return l.status;
   const s=l.stage;
@@ -795,7 +813,7 @@ function renderPipelineStats(){
 }
 
 function getFilteredLeads(){
-  if(currentFilter==='all')return leads;
+  if(currentFilter==='all')return leads.filter(l=>!['skip','lost','not_interested','on_hold'].includes(effStatus(l)));
   if(currentFilter==='action'){const due=followupsDue();return leads.filter(l=>effStatus(l)==='replied'||due.includes(l));}
   if(currentFilter==='active')return leads.filter(l=>['email_drafted','email_sent','replied','qualified','call_booked','bounced'].includes(effStatus(l)));
   if(currentFilter==='warm')return leads.filter(l=>['replied','qualified'].includes(effStatus(l)));
@@ -812,7 +830,7 @@ function renderLeads(){
   renderPipelineStats();
   renderAlerts();
   const container=document.getElementById('leads-container');
-  const filtered=getFilteredLeads();
+  const filtered=sortByPriority(getFilteredLeads());
   if(!filtered.length){container.innerHTML='<div class="empty-state">No leads in this filter.</div>';return;}
   let html=`<table class="leads-table"><thead><tr>
     <th>Name</th><th>Niche</th><th>Offer</th><th>ICP</th><th>Status</th>
