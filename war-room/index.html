@@ -139,7 +139,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 .filter-btn:hover{border-color:var(--text2);color:var(--text2)}
 .filter-btn.active{border-color:var(--cyan);color:var(--cyan);background:rgba(201,161,74,0.08)}
 .leads-table{width:100%;border-collapse:collapse}
-.leads-table th{font-size:11px;color:var(--text3);letter-spacing:1px;padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);text-transform:uppercase;white-space:nowrap}
+.leads-table th{font-size:12px;color:var(--text3);letter-spacing:1px;padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);text-transform:uppercase;white-space:nowrap}
 .leads-table td{font-size:13px;padding:11px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
 .leads-table tr:hover td{background:rgba(255,255,255,0.02)}
 /* STRATEGY */
@@ -213,7 +213,18 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 .ab-green{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
 .ab-grey{background:#1a1a1a;color:#555;border:1px solid #2a2a2a}
 
-.note-text{font-size:11px;color:var(--text2);max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.note-text{font-size:12.5px;color:var(--text2);max-width:280px;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer;line-height:1.5}
+.note-text.open{-webkit-line-clamp:unset}
+.hot-zone{margin-bottom:20px}
+.hot-title{font-size:12px;letter-spacing:1.5px;color:#ff9f43;font-weight:600;margin-bottom:10px}
+.hot-card{background:linear-gradient(135deg,#1a1208,#0f0c06);border:1px solid #5a3a10;border-left:3px solid #ff9f43;border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.hot-name{font-size:15px;font-weight:600}
+.hot-meta{font-size:12.5px;color:var(--text2);margin-top:3px}
+.hot-when{font-size:12.5px;color:#ff9f43;white-space:nowrap;font-weight:500}
+.fu-zone{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:12px 16px;margin-bottom:20px}
+.fu-title{font-size:12px;letter-spacing:1.5px;color:var(--p1);font-weight:600;margin-bottom:6px}
+.fu-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.fu-item:last-child{border-bottom:none}
 .lead-actions{display:flex;gap:4px;flex-wrap:nowrap}
 .lead-action-btn{font-size:11px;padding:3px 7px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text3);white-space:nowrap}
 .lead-action-btn:hover{border-color:var(--cyan);color:var(--cyan)}
@@ -376,11 +387,11 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
     </div>
 
     <div class="pipeline-stats">
-      <div class="ps"><div class="n" id="pl-total" style="color:var(--cyan)">0</div><div class="l">Total</div></div>
-      <div class="ps"><div class="n" id="pl-active" style="color:var(--p1)">0</div><div class="l">Active</div></div>
-      <div class="ps"><div class="n" id="pl-warm" style="color:#ffcc00">0</div><div class="l">Warm</div></div>
-      <div class="ps"><div class="n" id="pl-booked" style="color:#aa88ff">0</div><div class="l">Call Booked</div></div>
-      <div class="ps"><div class="n" id="pl-signed" style="color:var(--done)">0</div><div class="l">Signed</div></div>
+      <div class="ps"><div class="n" id="pl-hot" style="color:#ff9f43">0</div><div class="l">🔥 Hot Now</div></div>
+      <div class="ps"><div class="n" id="pl-outreach" style="color:var(--cyan)">0</div><div class="l">Outreach This Month</div></div>
+      <div class="ps"><div class="n" id="pl-resp" style="color:var(--p1)">0%</div><div class="l">Response Rate</div></div>
+      <div class="ps"><div class="n" id="pl-booked" style="color:#aa88ff">0</div><div class="l">Calls Booked</div></div>
+      <div class="ps"><div class="n" id="pl-due" style="color:var(--p0)">0</div><div class="l">Follow-ups Due</div></div>
     </div>
 
     <div class="pipeline-filters">
@@ -491,7 +502,26 @@ let currentFilter='all';
 
 function today(){return new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}
 function todayISO(){return new Date().toISOString().split('T')[0]}
-function daysSince(d){if(!d)return 0;return Math.floor((new Date()-new Date(d))/(1000*60*60*24))}
+function daysSince(d){if(!d)return 0;const dt=new Date(d);if(isNaN(dt))return 0;return Math.floor((new Date()-dt)/(1000*60*60*24))}
+function lastTouch(l){for(const d of [l.last_action,l.updated_at,l.created_at]){if(!d)continue;const dt=new Date(d);if(!isNaN(dt))return dt;}return null}
+function touchDays(l){const t=lastTouch(l);return t?Math.floor((new Date()-t)/(1000*60*60*24)):0}
+const STATUS_LABEL={new:'New',email_drafted:'Drafted',email_sent:'Sent — waiting',replied:'🔥 Replied',qualified:'Qualified',call_booked:'Call Booked',signed:'Signed ✅',lost:'Lost ❌',not_interested:'Not Interested',bounced:'Bounced → DM',on_hold:'On Hold ⏸',skip:'Skip'};
+const STATUS_CLS={new:'s1',email_drafted:'s2',email_sent:'s2',replied:'s3',qualified:'s8',call_booked:'s6',signed:'s9',lost:'s10',not_interested:'s10',bounced:'s10',on_hold:'s11',skip:'s11'};
+function effStatus(l){
+  if(l.status&&l.status!=='new')return l.status;
+  const s=l.stage;
+  if(s===9)return 'signed';if(s===10)return 'lost';if(s===11)return 'on_hold';
+  if(s===7||s===8)return 'qualified';if(s===6)return 'call_booked';
+  if(s>=3&&s<=5)return 'replied';if(s===2)return 'email_sent';
+  return 'new';
+}
+function followupsDue(){
+  return leads.filter(l=>{
+    const s=effStatus(l);
+    if(!['email_drafted','email_sent','qualified','call_booked'].includes(s))return false;
+    return touchDays(l)>=5;
+  }).sort((a,b)=>touchDays(b)-touchDays(a));
+}
 function uid(){return 'lead-'+Date.now()+'-'+Math.random().toString(36).slice(2,7)}
 
 function getAlert(lead){
@@ -703,21 +733,34 @@ function renderClients(){
 
 function renderAlerts(){
   const zone=document.getElementById('alert-zone');
-  const alerts=leads.filter(l=>{
-    if(l.stage===9||l.stage===10)return false;
-    return getAlert(l)!==null&&getAlert(l).level==='red';
-  });
-  if(!alerts.length){zone.innerHTML='';return;}
-  let html=`<div class="alert-banner"><div class="alert-banner-title">🔴 ACTION NEEDED TODAY (${alerts.length})</div><div class="alert-list">`;
-  alerts.forEach(l=>{
-    const a=getAlert(l);
-    html+=`<div class="alert-item">
-      <span class="alert-name">${l.name}</span>
-      <span class="alert-msg">${a.msg}</span>
-      <button class="alert-act" onclick="scrollToLead('${l.id}')">View →</button>
-    </div>`;
-  });
-  html+=`</div></div>`;
+  const hot=leads.filter(l=>effStatus(l)==='replied').sort((a,b)=>lastTouch(b)-lastTouch(a));
+  const due=followupsDue();
+  let html='';
+  if(hot.length){
+    html+=`<div class="hot-zone"><div class="hot-title">🔥 HOT — THEY REPLIED, YOUR MOVE (${hot.length})</div>`;
+    hot.forEach(l=>{
+      const d=touchDays(l);
+      html+=`<div class="hot-card">
+        <div style="flex:1;min-width:220px">
+          <div class="hot-name">${l.name}</div>
+          <div class="hot-meta">${l.niche||''}</div>
+          <div class="note-text" onclick="this.classList.toggle('open')" style="margin-top:6px;max-width:none">${l.note||''}</div>
+        </div>
+        <div style="text-align:right">
+          <div class="hot-when">${d===0?'replied TODAY':'replied '+d+'d ago'}</div>
+          <button class="alert-act" style="margin-top:8px" onclick="scrollToLead('${l.id}')">Open ↓</button>
+        </div>
+      </div>`;
+    });
+    html+=`</div>`;
+  }
+  if(due.length){
+    html+=`<div class="fu-zone"><div class="fu-title">⏰ FOLLOW-UPS DUE (${due.length})</div>`;
+    due.forEach(l=>{
+      html+=`<div class="fu-item"><span style="font-weight:500">${l.name}</span><span style="color:var(--text3)">${STATUS_LABEL[effStatus(l)]||effStatus(l)} · ${touchDays(l)}d silent</span><button class="alert-act" onclick="scrollToLead('${l.id}')">View →</button></div>`;
+    });
+    html+=`</div>`;
+  }
   zone.innerHTML=html;
 }
 
@@ -738,24 +781,30 @@ function offerCls(offer){
 }
 
 function renderPipelineStats(){
-  document.getElementById('pl-total').textContent=leads.length;
-  document.getElementById('pl-active').textContent=leads.filter(l=>l.stage>=2&&l.stage<=8).length;
-  document.getElementById('pl-warm').textContent=leads.filter(l=>l.stage===3).length;
-  document.getElementById('pl-booked').textContent=leads.filter(l=>l.stage===6).length;
-  document.getElementById('pl-signed').textContent=leads.filter(l=>l.stage===9).length;
+  const eff=leads.map(l=>({l,s:effStatus(l)}));
+  const now=new Date();
+  const hot=eff.filter(x=>x.s==='replied').length;
+  const outreach=eff.filter(x=>{const c=new Date(x.l.created_at);return !isNaN(c)&&c.getMonth()===now.getMonth()&&c.getFullYear()===now.getFullYear()&&x.s!=='new'}).length;
+  const contacted=eff.filter(x=>['email_sent','replied','qualified','call_booked','signed','not_interested'].includes(x.s)).length;
+  const responded=eff.filter(x=>['replied','qualified','call_booked','signed','not_interested'].includes(x.s)).length;
+  document.getElementById('pl-hot').textContent=hot;
+  document.getElementById('pl-outreach').textContent=outreach;
+  document.getElementById('pl-resp').textContent=(contacted?Math.round(responded/contacted*100):0)+'%';
+  document.getElementById('pl-booked').textContent=eff.filter(x=>x.s==='call_booked').length;
+  document.getElementById('pl-due').textContent=followupsDue().length;
 }
 
 function getFilteredLeads(){
   if(currentFilter==='all')return leads;
-  if(currentFilter==='action')return leads.filter(l=>getAlert(l)&&getAlert(l).level==='red');
-  if(currentFilter==='active')return leads.filter(l=>l.stage>=2&&l.stage<=8);
-  if(currentFilter==='warm')return leads.filter(l=>l.stage===3);
+  if(currentFilter==='action'){const due=followupsDue();return leads.filter(l=>effStatus(l)==='replied'||due.includes(l));}
+  if(currentFilter==='active')return leads.filter(l=>['email_drafted','email_sent','replied','qualified','call_booked','bounced'].includes(effStatus(l)));
+  if(currentFilter==='warm')return leads.filter(l=>['replied','qualified'].includes(effStatus(l)));
   if(currentFilter==='GC')return leads.filter(l=>l.offer==='GC');
   if(currentFilter==='GC+')return leads.filter(l=>l.offer==='GC+');
   if(currentFilter==='DBA')return leads.filter(l=>l.offer==='DBA');
-  if(currentFilter==='signed')return leads.filter(l=>l.stage===9);
-  if(currentFilter==='lost')return leads.filter(l=>l.stage===10);
-  if(currentFilter==='hold')return leads.filter(l=>l.stage===11);
+  if(currentFilter==='signed')return leads.filter(l=>effStatus(l)==='signed');
+  if(currentFilter==='lost')return leads.filter(l=>['lost','not_interested'].includes(effStatus(l)));
+  if(currentFilter==='hold')return leads.filter(l=>['on_hold','skip'].includes(effStatus(l)));
   return leads;
 }
 
@@ -770,17 +819,17 @@ function renderLeads(){
     <th>Action</th><th>Days</th><th>Last Note</th><th>Actions</th>
   </tr></thead><tbody>`;
   filtered.forEach(l=>{
-    const days=daysSince(l.last_action||l.created_at);
+    const days=touchDays(l);
     const ab=getActionBadge(l);
     html+=`<tr id="lead-row-${l.id}">
       <td style="font-weight:500;white-space:nowrap">${l.name}</td>
       <td style="color:var(--text2);white-space:nowrap">${l.niche||'—'}</td>
       <td><span class="offer-pill ${offerCls(l.offer)}">${l.offer}</span></td>
       <td><span class="icp-pill ${icpCls(l.icp)}">${l.icp}</span></td>
-      <td><span class="stage-pill ${STAGE_CLS[l.stage]}">${STAGE_LABELS[l.stage]}</span></td>
+      <td><span class="stage-pill ${STATUS_CLS[effStatus(l)]||'s1'}">${STATUS_LABEL[effStatus(l)]||effStatus(l)}</span></td>
       <td><span class="action-badge ${ab.cls}">${ab.label}</span></td>
       <td style="color:var(--text3);white-space:nowrap">${days}d ago</td>
-      <td><span class="note-text" title="${l.note||''}">${l.note||'—'}</span></td>
+      <td><span class="note-text" onclick="this.classList.toggle('open')">${l.note||'—'}</span></td>
       <td>
         <div class="lead-actions">
           <button class="lead-action-btn" onclick="toggleEditPanel('${l.id}')">Edit</button>
@@ -897,7 +946,7 @@ function buildCandidates(){
   leads.forEach(l=>{
     if(l.stage===9||l.stage===10)return; // signed or lost — skip
     if(completedToday.includes('lead-'+l.id))return;
-    const days=daysSince(l.last_action||l.created_at);
+    const days=touchDays(l);
     let type,typeMult,R,U;
 
     if(l.stage===8){ // Proposal Sent = MONEY ON TABLE
