@@ -1285,10 +1285,13 @@ async function cycleStep(taskId){  let task,proj;
 
 async function init(){
   setSyncStatus('syncing');
-  await Promise.all([loadTasks(),loadLeads(),loadStrategy()]);
-  TASKS.forEach(t=>ensureTask(t.id));
-  renderBoard();updateStats();renderClients();renderLeads();
-  renderToday();
+  try{
+    await Promise.all([loadTasks(),loadLeads(),loadStrategy()]);
+    TASKS.forEach(t=>ensureTask(t.id));
+    renderBoard();updateStats();renderClients();renderLeads();
+    renderToday();
+    setSyncStatus('ok');
+  }catch(e){setSyncStatus('error');console.error(e);}
 }
 </script>
 </body>
