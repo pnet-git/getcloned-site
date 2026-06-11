@@ -480,7 +480,7 @@ const STAGES_CLIENT=[
 ];
 
 const CLIENTS=[
-  {id:'arfeen',name:'Arfeen Khan',status:'active',currentStage:6,waitingOn:'us',stuckSince:null,note:'Video input received 11 Jun. Next: ideas approval + production handoff.'},
+  {id:'arfeen',name:'Arfeen Khan',status:'active',currentStage:6,waitingOn:'you',stuckSince:null,note:'Video input received 11 Jun. Next: ideas approval + production handoff.'},
   {id:'madhu',name:'Dr. Madhu Sudan',status:'loop',currentStage:10,waitingOn:'live',stuckSince:null,note:'Reels publishing daily. Loop running.'},
   {id:'nirmal',name:'Nirmal Bansal',status:'active',currentStage:4,waitingOn:'client',stuckSince:'2026-05-13',note:'Waiting for audio input submission'},
 ];
@@ -629,7 +629,7 @@ function switchTab(tab,btn){
 
 function updateStats(){
   let done=0,wip=0,todo=0;
-  TASKS.forEach(t=>{const s=taskState[t.id]?.status||'todo';if(s==='done')done++;else if(s==='wip')wip++;else todo++;});
+  TASKS.forEach(t=>{const s=taskState[t.id]?.status||'todo';if(s==='done')done++;else if(s==='wip'||s==='awaiting')wip++;else todo++;});
   document.getElementById('s-total').textContent=TASKS.length;
   document.getElementById('s-done').textContent=done;
   document.getElementById('s-wip').textContent=wip;
@@ -666,6 +666,7 @@ function renderBoard(){
   const board=document.getElementById('board');board.innerHTML='';
   Object.entries(SECTIONS).forEach(([key,sec])=>{
     const tasks=TASKS.filter(t=>t.sec===key);
+    if(!tasks.length)return;
     const done=tasks.filter(t=>(taskState[t.id]?.status||'todo')==='done').length;
     const section=document.createElement('div');section.className='section';
     const header=document.createElement('div');header.className='sec-header '+sec.cls;
@@ -1009,14 +1010,14 @@ function buildCandidates(){
     candidates.push({
       id:'task-'+t.id,kind:'task',
       title:t.title,
-      type:t.priority_type,score:taskScore(t),days:0,
+      type:t.priority_type,score:taskScore(t),days:0,effort:Number(t.effort||2),
       meta:(t.vertical||'')+(t.project?' · '+t.project:'')+(t.client?' · '+t.client:''),
       why:esc?'🪤 Escape hatch. You are hiding — do the top money task first.':(t.sub||''),
       isHot:t.priority_type==='MOT',
     });
   });
 
-  candidates.sort((a,b)=>b.score-a.score);
+  candidates.sort((a,b)=>b.score-a.score||((a.effort||1)-(b.effort||1))||a.days-b.days);
   return candidates;
 }
 
