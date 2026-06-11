@@ -815,19 +815,17 @@ function renderLeads(){
   const filtered=getFilteredLeads();
   if(!filtered.length){container.innerHTML='<div class="empty-state">No leads in this filter.</div>';return;}
   let html=`<table class="leads-table"><thead><tr>
-    <th>Name</th><th>Niche</th><th>Offer</th><th>ICP</th><th>Stage</th>
-    <th>Action</th><th>Days</th><th>Last Note</th><th>Actions</th>
+    <th>Name</th><th>Niche</th><th>Offer</th><th>ICP</th><th>Status</th>
+    <th>Days</th><th>Last Note</th><th>Actions</th>
   </tr></thead><tbody>`;
   filtered.forEach(l=>{
     const days=touchDays(l);
-    const ab=getActionBadge(l);
     html+=`<tr id="lead-row-${l.id}">
       <td style="font-weight:500;white-space:nowrap">${l.name}</td>
-      <td style="color:var(--text2);white-space:nowrap">${l.niche||'—'}</td>
+      <td style="color:var(--text2);max-width:280px;line-height:1.5">${l.niche||'—'}</td>
       <td><span class="offer-pill ${offerCls(l.offer)}">${l.offer}</span></td>
-      <td><span class="icp-pill ${icpCls(l.icp)}">${l.icp}</span></td>
+      <td><span class="icp-pill ${icpCls(l.icp)}">${l.icp||'—'}</span></td>
       <td><span class="stage-pill ${STATUS_CLS[effStatus(l)]||'s1'}">${STATUS_LABEL[effStatus(l)]||effStatus(l)}</span></td>
-      <td><span class="action-badge ${ab.cls}">${ab.label}</span></td>
       <td style="color:var(--text3);white-space:nowrap">${days}d ago</td>
       <td><span class="note-text" onclick="this.classList.toggle('open')">${l.note||'—'}</span></td>
       <td>
