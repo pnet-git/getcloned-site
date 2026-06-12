@@ -295,6 +295,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.pipeline-stats{grid-template-columns:repeat(3,1fr)}}
 .task-score{font-size:12.5px;color:var(--gold,#c9a227);font-variant-numeric:tabular-nums;opacity:.85;align-self:center}
 .commit-locked{opacity:.38;pointer-events:auto}
+.pulse-strip{display:flex;flex-wrap:wrap;gap:6px 18px;padding:12px 18px;margin-bottom:16px;border:1px solid rgba(201,162,39,.25);border-radius:10px;background:rgba(201,162,39,.05);font-size:13px;color:var(--text2,#cfc9bd);letter-spacing:.2px}
+.pulse-strip b{color:var(--gold,#c9a227);font-variant-numeric:tabular-nums}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -330,6 +332,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
   </div>
 
   <div id="tab-today">
+    <div id="pulse-strip"></div>
     <div id="today-checkin"></div>
     <div id="today-onething"></div>
     <div id="today-queue"></div>
@@ -631,8 +634,9 @@ function switchTab(tab,btn){
 
 function updateStats(){
   let done=0,wip=0,todo=0;
-  TASKS.forEach(t=>{const s=taskState[t.id]?.status||'todo';if(s==='done')done++;else if(s==='wip'||s==='awaiting')wip++;else todo++;});
-  document.getElementById('s-total').textContent=TASKS.length;
+  const visible=TASKS.filter(t=>t.lane!=='backlog');
+  visible.forEach(t=>{const s=taskState[t.id]?.status||'todo';if(s==='done')done++;else if(s==='wip'||s==='awaiting')wip++;else todo++;});
+  document.getElementById('s-total').textContent=visible.length;
   document.getElementById('s-done').textContent=done;
   document.getElementById('s-wip').textContent=wip;
   document.getElementById('s-todo').textContent=todo;
@@ -668,7 +672,7 @@ function renderTask(t){
 function renderBoard(){
   const board=document.getElementById('board');board.innerHTML='';
   Object.entries(SECTIONS).forEach(([key,sec])=>{
-    const tasks=TASKS.filter(t=>t.sec===key);
+    const tasks=TASKS.filter(t=>t.sec===key&&t.lane!=='backlog');
     if(!tasks.length)return;
     const done=tasks.filter(t=>(taskState[t.id]?.status||'todo')==='done').length;
     const section=document.createElement('div');section.className='section';
@@ -708,7 +712,7 @@ function refreshTask(id){
 
 function updateSectionCounts(){
   Object.keys(SECTIONS).forEach(key=>{
-    const tasks=TASKS.filter(t=>t.sec===key);
+    const tasks=TASKS.filter(t=>t.sec===key&&t.lane!=='backlog');
     const done=tasks.filter(t=>(taskState[t.id]?.status||'todo')==='done').length;
     const el=document.getElementById('sc-'+key);if(el)el.textContent=done+'/'+tasks.length+' done';
   });
@@ -1261,7 +1265,7 @@ function renderProjectCards(list){
           <span class="sp-chevron ${open?'open':''}">&#8250;</span>
           <div class="sp-title">${p.name}</div>
         </div>
-        <div class="sp-badges">${mapBadge}<span class="sp-badge prio">${p.priority||'P1'}</span></div>
+        <div class="sp-badges">${mapBadge}${p.status==='planned'?'<span class="sp-badge" style="color:#8ab4f8;border-color:rgba(138,180,248,.35)">📋 PLANNED</span>':p.status==='on_hold'?'<span class="sp-badge" style="color:#f28b82;border-color:rgba(242,139,130,.35)">⏸ ON HOLD</span>':''}<span class="sp-badge prio">${p.priority||'P1'}</span></div>
       </div>
       <div class="sp-meta-row" onclick="toggleProject(${p.id})">
         <div class="sp-progress"><div class="sp-progress-bar" style="width:${pct}%"></div></div>
@@ -1328,13 +1332,27 @@ async function cycleStep(taskId){  let task,proj;
   }catch(e){setSyncStatus('error');console.error(e);}
 }
 
+function renderPulse(){
+  const el=document.getElementById('pulse-strip');if(!el)return;
+  const hot=leads.filter(l=>effStatus(l)==='replied').length;
+  const props=leads.filter(l=>['qualified','call_booked'].includes(effStatus(l))).length;
+  const pay=TASKS.filter(t=>t.lane==='scored'&&t.priority_type==='MOT'&&(taskState[t.id]?.status||'todo')!=='done').length;
+  let prom=0;(STRATEGY||[]).forEach(p=>{if(p.status!=='active')return;(p.tasks||[]).forEach(t=>{if(t.status!=='done'&&(t.detail||'').includes('PROMISED'))prom++;});});
+  el.innerHTML=`<div class="pulse-strip">
+    <span>💰 <b>${hot}</b> hot replies</span>
+    <span>📨 <b>${props}</b> proposals out</span>
+    <span>🏦 <b>${pay}</b> payment${pay===1?'':'s'} awaited</span>
+    <span>🤝 <b>${prom}</b> promise${prom===1?'':'s'} due this week</span>
+  </div>`;
+}
+
 async function init(){
   setSyncStatus('syncing');
   try{
     await Promise.all([loadTasks(),loadLeads(),loadStrategy()]);
     TASKS.forEach(t=>ensureTask(t.id));
     renderBoard();updateStats();renderClients();renderLeads();
-    renderToday();
+    renderToday();renderPulse();
     setSyncStatus('ok');
   }catch(e){setSyncStatus('error');console.error(e);}
 }
