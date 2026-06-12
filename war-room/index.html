@@ -297,6 +297,9 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 .commit-locked{opacity:.38;pointer-events:auto}
 .pulse-strip{display:flex;flex-wrap:wrap;gap:6px 18px;padding:12px 18px;margin-bottom:16px;border:1px solid rgba(201,162,39,.25);border-radius:10px;background:rgba(201,162,39,.05);font-size:13px;color:var(--text2,#cfc9bd);letter-spacing:.2px}
 .pulse-strip b{color:var(--gold,#c9a227);font-variant-numeric:tabular-nums}
+.client-card.collapsed .roadmap{display:none}
+.client-card.collapsed .client-chevron{transform:rotate(-90deg)}
+.client-chevron{margin-left:8px;color:var(--text3);font-size:12.5px;transition:transform .15s}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -326,7 +329,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
   <div class="tabs">
     <button class="tab active" onclick="switchTab('today',this)">🎯 TODAY</button>
     <button class="tab" onclick="switchTab('priorities',this)">PRIORITIES</button>
-    <button class="tab" onclick="switchTab('clients',this)">CLIENT DASHBOARD</button>
+    <button class="tab" onclick="switchTab('clients',this)">PROJECTS</button>
     <button class="tab" onclick="switchTab('pipeline',this)">LEAD PIPELINE</button>
     <button class="tab" onclick="switchTab('strategy',this)">🧠 STRATEGY</button>
   </div>
@@ -467,12 +470,18 @@ function taskScore(t){
   if((t.priority_type==='MOT'||t.priority_type==='RU')&&Number(t.effort??2)<=1)s+=2;
   return Math.round(s*10)/10;
 }
+function spTaskById(sid){let f;(STRATEGY||[]).forEach(p=>(p.tasks||[]).forEach(t=>{if(String(t.id)===String(sid))f=t;}));return f;}
+function blockersOf(t){return (t.blocked_by||'').split(',').map(s=>s.trim()).filter(Boolean);}
+function blockerDone(id){
+  if(id.startsWith('sp-')){const st=spTaskById(id.slice(3));return st?st.status==='done':true;}
+  const ts=taskState[id];return ts?ts.status==='done':true;
+}
 function taskEligible(t){
   const st=(taskState[t.id]&&taskState[t.id].status)||t.status||'todo';
   if(t.lane!=='scored')return false;
   if(st!=='todo'&&st!=='wip')return false;
   if(t.snooze_until&&new Date(t.snooze_until)>new Date())return false;
-  if(t.blocked_by&&taskState[t.blocked_by]&&taskState[t.blocked_by].status!=='done')return false;
+  if(t.blocked_by&&!blockersOf(t).every(blockerDone))return false;
   return true;
 }
 
@@ -669,18 +678,39 @@ function renderTask(t){
   return div;
 }
 
+function spScore(p){let s=(TYPE_W[p.mapping==='client'?'RU':'RB']||2)+3*1+2*0.5-2;if(p.priority==='P1')s+=2;return Math.round(s*10)/10;}
+function renderSpRow(t,p){
+  const div=document.createElement('div');div.className='task';
+  const stLabel=t.status==='in_progress'?'In progress':'To do';
+  const dotCls=t.status==='in_progress'?(DOT_CLS['wip']||''):(DOT_CLS['todo']||'');
+  div.innerHTML=`
+    <div class="task-main">
+      <div class="task-body"><div class="task-title">${t.title}</div><div class="task-sub">📂 ${p.name}${t.detail?' · '+t.detail:''}</div></div>
+      <div class="task-actions">
+        <span class="task-score">${spScore(p)}</span>
+        <button class="status-btn" onclick="spCycleFromBoard(${t.id})"><span class="dot ${dotCls}"></span>${stLabel}</button>
+      </div>
+    </div>`;
+  return div;
+}
+async function spCycleFromBoard(id){await cycleStep(id);renderBoard();renderPulse();renderToday();}
 function renderBoard(){
   const board=document.getElementById('board');board.innerHTML='';
+  const spAll=[];(STRATEGY||[]).forEach(p=>{if(p.status!=='active')return;(p.tasks||[]).forEach(t=>{if(t.status!=='done')spAll.push({t,p,v:p.vertical||'Marketing'});});});
   Object.entries(SECTIONS).forEach(([key,sec])=>{
     const tasks=TASKS.filter(t=>t.sec===key&&t.lane!=='backlog');
-    if(!tasks.length)return;
+    const sps=spAll.filter(x=>x.v===key);
+    if(!tasks.length&&!sps.length)return;
     const done=tasks.filter(t=>(taskState[t.id]?.status||'todo')==='done').length;
     const section=document.createElement('div');section.className='section';
     const header=document.createElement('div');header.className='sec-header '+sec.cls;
-    header.innerHTML=`<span class="sec-title">${sec.label}</span><span class="sec-count" id="sc-${key}">${done}/${tasks.length} done</span>`;
+    header.innerHTML=`<span class="sec-title">${sec.label}</span><span class="sec-count" id="sc-${key}">${done}/${tasks.length+sps.length} done</span>`;
     section.appendChild(header);
-    const sorted=[...tasks].sort((a,b)=>(b.lane==='commitment'?-1:taskScore(b))-(a.lane==='commitment'?-1:taskScore(a)));
-    sorted.forEach(t=>section.appendChild(renderTask(t)));
+    const rows=[
+      ...tasks.map(t=>({kind:'wt',score:(t.lane==='commitment'?-1:taskScore(t)),t})),
+      ...sps.map(x=>({kind:'sp',score:spScore(x.p),t:x.t,p:x.p}))
+    ].sort((a,b)=>b.score-a.score);
+    rows.forEach(r=>section.appendChild(r.kind==='wt'?renderTask(r.t):renderSpRow(r.t,r.p)));
     board.appendChild(section);
   });
   board.addEventListener('click',async function(e){
@@ -737,7 +767,7 @@ function renderClients(){
     }).join('');
     const card=document.createElement('div');card.className='client-card';
     card.innerHTML=`
-      <div class="client-card-header"><span class="client-name">${c.name}</span><span class="client-badge ${badgeClass}">${badgeLabel}</span></div>
+      <div class="client-card-header" style="cursor:pointer" onclick="this.parentElement.classList.toggle('collapsed')"><span class="client-name">${c.name}</span><span class="client-badge ${badgeClass}">${badgeLabel}</span><span class="client-chevron">▾</span></div>
       <div class="client-meta"><span class="waiting-tag ${waitingClass}">${waitingLabel}</span>${daysHtml}</div>
       <div class="roadmap"><div class="roadmap-title">Build Journey</div><div class="stage-list">${stagesHtml}</div><div style="font-size:12.5px;color:var(--text3);margin-top:10px;line-height:1.5">${c.note}</div></div>`;
     grid.appendChild(card);
@@ -1044,6 +1074,21 @@ function buildCandidates(){
     });
   });
 
+  // DEPENDENCY PASS — a blocked task's urgency flows upstream to its blockers
+  TASKS.forEach(t=>{
+    if(t.lane!=='scored')return;
+    const st=(taskState[t.id]?.status)||t.status||'todo';
+    if(st!=='todo'&&st!=='wip')return;
+    const open=blockersOf(t).filter(b=>!blockerDone(b));
+    if(!open.length)return;
+    const s=taskScore(t);
+    open.forEach(b=>{
+      const cid=b.startsWith('sp-')?b:'task-'+b;
+      const cand=candidates.find(c=>c.id===cid);
+      if(cand){if(s>cand.score)cand.score=s;cand.why='🔓 Unlocks: '+t.title+'. '+cand.why;}
+    });
+  });
+
   candidates.sort((a,b)=>b.score-a.score||((a.effort||1)-(b.effort||1))||a.days-b.days);
   return candidates;
 }
@@ -1193,26 +1238,57 @@ function renderQueue(){
   if(commits.length){
     const heavy=candidates.length&&candidates[0].score>=20;
     html+=heavy
-      ?`<div class="queue-title" style="margin-top:18px">🔁 DAILY COMMITMENTS — 🔒 locked: clear the money tasks above first</div>`
-      :`<div class="queue-title" style="margin-top:18px">🔁 DAILY COMMITMENTS — ✅ queue is light, run your dailies now</div>`;
-    commits.forEach(t=>{
-      const done=completedToday.includes('commit-'+t.id);
-      html+=`<div class="queue-item ${heavy&&!done?'commit-locked':''}" style="cursor:pointer;${done?'opacity:0.45':''}" onclick="toggleCommit('${t.id}')">
-        <span class="queue-rank">${done?'✓':'○'}</span>
-        <div class="queue-body">
-          <div class="queue-task" style="${done?'text-decoration:line-through':''}">${t.title}</div>
-          <div class="queue-meta">${t.sub||''}</div>
-        </div>
-      </div>`;
+      ?`<div class="queue-title" style="margin-top:18px">🔁 COMMITMENTS — 🔒 locked: clear the money tasks above first</div>`
+      :`<div class="queue-title" style="margin-top:18px">🔁 COMMITMENTS — ✅ queue is light, run them now</div>`;
+    [['daily','📅 Daily'],['weekly','🗓 Weekly — resets Monday'],['monthly','📆 Monthly — resets the 1st']].forEach(([cad,label])=>{
+      const list=commits.filter(t=>(t.cadence||'daily')===cad);
+      if(!list.length)return;
+      html+=`<div class="queue-meta" style="margin:10px 0 4px;letter-spacing:.6px;text-transform:uppercase">${label}</div>`;
+      list.forEach(t=>{
+        const done=commitDone(t);
+        html+=`<div class="queue-item ${heavy&&!done?'commit-locked':''}" style="cursor:pointer;${done?'opacity:0.45':''}" onclick="toggleCommit('${t.id}')">
+          <span class="queue-rank">${done?'✓':'○'}</span>
+          <div class="queue-body">
+            <div class="queue-task" style="${done?'text-decoration:line-through':''}">${t.title}</div>
+            <div class="queue-meta">${t.sub||''}</div>
+          </div>
+        </div>`;
+      });
     });
   }
   el.innerHTML=html;
 }
-function toggleCommit(id){
-  const key='commit-'+id;
-  const i=completedToday.indexOf(key);
-  if(i>=0){completedToday.splice(i,1);try{localStorage.setItem('gc_completed_'+todayISO(),JSON.stringify(completedToday));}catch(e){}}
-  else markCompletedToday(key);
+let COMMIT_EVENTS=[];
+async function loadCommitEvents(){
+  try{
+    const since=new Date();since.setDate(since.getDate()-35);
+    COMMIT_EVENTS=await sbFetch('/rest/v1/warroom_task_events?new_status=eq.done_commit&created_at=gte.'+since.toISOString()+'&select=task_id,created_at');
+  }catch(e){COMMIT_EVENTS=[];console.error('commit events',e);}
+}
+function periodStart(cad){
+  const d=new Date();d.setHours(0,0,0,0);
+  if(cad==='weekly'){const day=(d.getDay()+6)%7;d.setDate(d.getDate()-day);}
+  else if(cad==='monthly'){d.setDate(1);}
+  return d;
+}
+function commitDone(t){
+  const ps=periodStart(t.cadence||'daily');
+  return COMMIT_EVENTS.some(ev=>ev.task_id===t.id&&new Date(ev.created_at)>=ps);
+}
+async function toggleCommit(id){
+  const t=TASKS.find(x=>x.id===id);if(!t)return;
+  const ps=periodStart(t.cadence||'daily');
+  setSyncStatus('syncing');
+  try{
+    if(commitDone(t)){
+      await sbFetch('/rest/v1/warroom_task_events?task_id=eq.'+encodeURIComponent(id)+'&new_status=eq.done_commit&created_at=gte.'+ps.toISOString(),{method:'DELETE',headers:{'Prefer':'return=minimal'}});
+      COMMIT_EVENTS=COMMIT_EVENTS.filter(ev=>!(ev.task_id===id&&new Date(ev.created_at)>=ps));
+    }else{
+      await sbFetch('/rest/v1/warroom_task_events',{method:'POST',headers:{'Prefer':'return=minimal'},body:JSON.stringify({task_id:id,new_status:'done_commit',changed_by:'dashboard',note:(t.cadence||'daily')+' commitment done'})});
+      COMMIT_EVENTS.push({task_id:id,created_at:new Date().toISOString()});
+    }
+    setSyncStatus('ok');
+  }catch(e){setSyncStatus('error');console.error(e);}
   renderQueue();
 }
 
@@ -1349,7 +1425,7 @@ function renderPulse(){
 async function init(){
   setSyncStatus('syncing');
   try{
-    await Promise.all([loadTasks(),loadLeads(),loadStrategy()]);
+    await Promise.all([loadTasks(),loadLeads(),loadStrategy(),loadCommitEvents()]);
     TASKS.forEach(t=>ensureTask(t.id));
     renderBoard();updateStats();renderClients();renderLeads();
     renderToday();renderPulse();
