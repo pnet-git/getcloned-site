@@ -293,6 +293,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 
 .footer{text-align:center;font-size:12.5px;color:var(--text3);margin-top:40px;letter-spacing:1px}
 @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.pipeline-stats{grid-template-columns:repeat(3,1fr)}}
+.task-score{font-size:12.5px;color:var(--gold,#c9a227);font-variant-numeric:tabular-nums;opacity:.85;align-self:center}
+.commit-locked{opacity:.38;pointer-events:auto}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -651,6 +653,7 @@ function renderTask(t){
     <div class="task-main">
       <div class="task-body"><div class="task-title">${t.title}</div><div class="task-sub">${t.sub}</div>${logsHtml}</div>
       <div class="task-actions">
+        ${t.lane==='scored'?`<span class="task-score">${taskScore(t)}</span>`:''}
         <button class="status-btn" data-id="${t.id}"><span class="dot ${DOT_CLS[s]}"></span>${STATUS_LABELS[s]}</button>
         <button class="log-btn" data-logid="${t.id}">+ Log</button>
       </div>
@@ -672,7 +675,8 @@ function renderBoard(){
     const header=document.createElement('div');header.className='sec-header '+sec.cls;
     header.innerHTML=`<span class="sec-title">${sec.label}</span><span class="sec-count" id="sc-${key}">${done}/${tasks.length} done</span>`;
     section.appendChild(header);
-    tasks.forEach(t=>section.appendChild(renderTask(t)));
+    const sorted=[...tasks].sort((a,b)=>(b.lane==='commitment'?-1:taskScore(b))-(a.lane==='commitment'?-1:taskScore(a)));
+    sorted.forEach(t=>section.appendChild(renderTask(t)));
     board.appendChild(section);
   });
   board.addEventListener('click',async function(e){
@@ -990,6 +994,25 @@ function buildCandidates(){
     });
   }
 
+  // 2.5 STRATEGY PROJECT steps (active projects, open tasks)
+  (STRATEGY||[]).forEach(p=>{
+    if(p.status!=='active')return;
+    (p.tasks||[]).forEach(t=>{
+      if(t.status==='done')return;
+      if(completedToday.includes('sp-'+t.id))return;
+      const type=p.mapping==='client'?'RU':'RB';
+      let score=(TYPE_W[type]||2)+3*1+2*0.5-2;
+      if(p.priority==='P1')score+=2;
+      candidates.push({
+        id:'sp-'+t.id,kind:'strategy',
+        title:t.title,
+        type,score:Math.round(score*10)/10,days:0,effort:2,
+        meta:(p.vertical||'')+' · '+(p.client_name||'Internal')+' · '+p.name,
+        why:'Strategy step in '+p.name+'. Compounds toward the north star — but money tasks above always come first.',
+      });
+    });
+  });
+
   // 3. DAILY OUTREACH habit (if not done today)
   if(checkinState.outreach==='no'){
     candidates.push({
@@ -1129,6 +1152,14 @@ function completeOneThing(id){
     const tid=id.slice(5);
     if(taskState[tid]){const old=taskState[tid].status;taskState[tid].status='done';saveTask(tid,old);}
   }
+  if(id.startsWith('sp-')){
+    const sid=id.slice(3);let st;
+    STRATEGY.forEach(p=>p.tasks.forEach(t=>{if(String(t.id)===sid)st=t;}));
+    if(st){st.status='done';setSyncStatus('syncing');
+      sbFetch('/rest/v1/strategy_project_tasks?id=eq.'+sid,{method:'PATCH',body:JSON.stringify({status:'done',updated_at:new Date().toISOString()})})
+        .then(()=>setSyncStatus('ok')).catch(e=>{setSyncStatus('error');console.error(e);});
+      renderStrategy();}
+  }
   renderOneThing();
   renderQueue();
   updateStats();
@@ -1156,10 +1187,13 @@ function renderQueue(){
   }
   const commits=TASKS.filter(t=>t.lane==='commitment');
   if(commits.length){
-    html+=`<div class="queue-title" style="margin-top:18px">🔁 DAILY COMMITMENTS — separate lane, never compete</div>`;
+    const heavy=candidates.length&&candidates[0].score>=20;
+    html+=heavy
+      ?`<div class="queue-title" style="margin-top:18px">🔁 DAILY COMMITMENTS — 🔒 locked: clear the money tasks above first</div>`
+      :`<div class="queue-title" style="margin-top:18px">🔁 DAILY COMMITMENTS — ✅ queue is light, run your dailies now</div>`;
     commits.forEach(t=>{
       const done=completedToday.includes('commit-'+t.id);
-      html+=`<div class="queue-item" style="cursor:pointer;${done?'opacity:0.45':''}" onclick="toggleCommit('${t.id}')">
+      html+=`<div class="queue-item ${heavy&&!done?'commit-locked':''}" style="cursor:pointer;${done?'opacity:0.45':''}" onclick="toggleCommit('${t.id}')">
         <span class="queue-rank">${done?'✓':'○'}</span>
         <div class="queue-body">
           <div class="queue-task" style="${done?'text-decoration:line-through':''}">${t.title}</div>
@@ -1204,8 +1238,19 @@ async function loadStrategy(){
 function renderStrategy(){
   const c=document.getElementById('strategy-container');
   if(!STRATEGY.length){c.innerHTML='<div class="empty-state">No strategy projects yet.</div>';return;}
+  let html='<div class="queue-title" style="margin-bottom:14px">🎯 NORTH STAR: 100 clients or ₹1Cr/month — every project below feeds it</div>';
+  const VORDER=['Sales','Marketing','Delivery','Innovation','CCC','Support'];
+  const byVert={};
+  STRATEGY.forEach(p=>{const v=p.vertical||'Marketing';(byVert[v]=byVert[v]||[]).push(p);});
+  VORDER.filter(v=>byVert[v]).forEach(v=>{
+    html+=`<div class="queue-title" style="margin:18px 0 10px">${v==='Delivery'?'🚚':v==='Marketing'?'📣':v==='Sales'?'💰':'🧪'} ${v.toUpperCase()} — ${byVert[v].length} project${byVert[v].length>1?'s':''}</div>`;
+    html+=renderProjectCards(byVert[v]);
+  });
+  c.innerHTML=html;
+}
+function renderProjectCards(list){
   let html='';
-  STRATEGY.forEach(p=>{
+  list.forEach(p=>{
     const done=p.tasks.filter(t=>t.status==='done').length;
     const pct=p.tasks.length?Math.round(done/p.tasks.length*100):0;
     const mapBadge=p.mapping==='client'?`<span class="sp-badge client">&#128100; ${p.client_name||'Client'}</span>`:`<span class="sp-badge internal">&#127970; Internal</span>`;
@@ -1244,7 +1289,7 @@ function renderStrategy(){
     }
     html+=`</div>`;
   });
-  c.innerHTML=html;
+  return html;
 }
 
 function toggleProject(pid){
