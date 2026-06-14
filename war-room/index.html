@@ -17,6 +17,7 @@
   --text:#f2f2f5;--text2:#9a9aa8;--text3:#65656f;
   --gold:#C9A14A;--gold-light:#E5C77E;
   --cyan:#C9A14A;--cyan2:#E5C77E;
+  --teal:#3fd0c9;
   --p0:#fb7185;--p0bg:#1f0e12;
   --p1:#fbbf24;--p1bg:#1f1705;
   --p2:#4ade80;--p2bg:#0a1a0e;
@@ -25,8 +26,34 @@
   --radius:12px;--radius-lg:16px;
 }
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.5;font-size:14px;-webkit-font-smoothing:antialiased;min-height:100vh}
-#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh}
-.login-box{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:40px;width:360px;text-align:center}
+
+/* ============ IMAGE SLOTS — WORKFORCE: paste image URLs in the :root vars below ============ */
+/* Replace each url(...) with your Gemini image URL. Keep the gradient overlay in front. */
+:root{
+  --img-hero:url('images/hero.jpg');        /* Crown View banner — King over empire */
+  --img-kingdom:url('images/kingdom.jpg');  /* Kingdom banner — King at throne, map below */
+  --img-pipeline:url('images/pipeline.jpg');/* Pipeline banner — forces at the gate */
+  --img-council:url('images/council.jpg');  /* Council banner — empty council hall */
+  --img-vision:url('images/vision.jpg');    /* Vision banner — empire already realized */
+  --img-login:url('images/login.jpg');      /* Login background — hero variant */
+}
+.view-banner{position:relative;height:180px;border-radius:var(--radius-lg);overflow:hidden;margin-bottom:24px;display:flex;align-items:flex-end;border:1px solid var(--border2)}
+.view-banner::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+.view-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,0.25) 0%,rgba(10,10,12,0.55) 55%,rgba(10,10,12,0.95) 100%);z-index:1}
+.view-banner.b-hero::before{background-image:var(--img-hero)}
+.view-banner.b-kingdom::before{background-image:var(--img-kingdom)}
+.view-banner.b-pipeline::before{background-image:var(--img-pipeline)}
+.view-banner.b-council::before{background-image:var(--img-council)}
+.view-banner.b-vision::before{background-image:var(--img-vision)}
+.view-banner-text{position:relative;z-index:2;padding:20px 24px}
+.view-banner-kicker{font-size:11px;letter-spacing:2px;color:var(--gold-light);margin-bottom:4px;text-transform:uppercase}
+.view-banner-title{font-family:'Fraunces',serif;font-size:28px;font-weight:700;letter-spacing:-0.5px;line-height:1.1}
+.view-banner-sub{font-size:12.5px;color:var(--text2);margin-top:4px}
+
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;position:relative;overflow:hidden}
+#login-screen::before{content:'';position:absolute;inset:0;background-image:var(--img-login);background-size:cover;background-position:center;opacity:0.35;z-index:0}
+#login-screen::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,10,12,0.4),rgba(10,10,12,0.92));z-index:1}
+.login-box{position:relative;z-index:2;background:rgba(17,17,20,0.85);backdrop-filter:blur(8px);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:40px;width:360px;text-align:center}
 .login-box .brand{font-size:12px;color:var(--cyan);letter-spacing:2px;margin-bottom:8px}
 .login-box h1{font-family:'Fraunces',serif;font-size:30px;font-weight:700;letter-spacing:-0.5px;margin-bottom:6px}
 .login-box p{font-size:12px;color:var(--text3);margin-bottom:28px}
@@ -50,12 +77,10 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 .stat-num{font-family:'Fraunces',serif;font-size:36px;font-weight:700;line-height:1}
 .stat-label{font-size:12px;color:var(--text3);margin-top:6px;letter-spacing:1px;text-transform:uppercase}
 .section{margin-bottom:20px}
-.sec-header{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-radius:var(--radius);margin-bottom:8px;border-left:3px solid transparent}
-.sec-p0{background:var(--p0bg);border-left-color:var(--p0)}.sec-p1{background:var(--p1bg);border-left-color:var(--p1)}
-.sec-p2{background:var(--p2bg);border-left-color:var(--p2)}.sec-p3{background:var(--p3bg);border-left-color:var(--p3)}
-.sec-title{font-size:13px;font-weight:600;letter-spacing:1px}
-.sec-p0 .sec-title{color:var(--p0)}.sec-p1 .sec-title{color:var(--p1)}
-.sec-p2 .sec-title{color:var(--p2)}.sec-p3 .sec-title{color:var(--p3)}
+.sec-header{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-radius:var(--radius);margin-bottom:8px;border-left:3px solid transparent;background:var(--bg2)}
+.sec-money{background:var(--p2bg);border-left-color:var(--p2)}
+.sec-supply{background:var(--p3bg);border-left-color:var(--p3)}
+.sec-title{font-size:13px;font-weight:600;letter-spacing:1px;color:var(--text)}
 .sec-count{font-size:12.5px;color:var(--text3)}
 .task{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:6px}
 .task.is-done{opacity:0.5}.task.is-done .task-title{text-decoration:line-through;color:var(--text3)}
@@ -79,45 +104,41 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 .log-form-btns{display:flex;gap:6px}
 .log-form-btns button{font-size:12.5px;padding:5px 12px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text2)}
 .log-form-btns .save{border-color:var(--cyan);color:var(--cyan)}
-.client-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:28px}
-.client-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
-.client-card-header{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
-.client-name{font-family:'Fraunces',serif;font-size:18px;font-weight:700;letter-spacing:-0.3px}
-.client-badge{font-size:12.5px;padding:3px 8px;border-radius:4px;letter-spacing:1px;font-weight:500}
-.badge-active{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
-.badge-loop{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}
-.client-meta{padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.waiting-tag{font-size:12.5px;padding:3px 8px;border-radius:4px;letter-spacing:0.5px}
-.waiting-client{background:#1a0a0a;color:var(--p0);border:1px solid #3a1010}
-.waiting-you{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}
-.waiting-live{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
-.days-stuck{font-size:12.5px;color:var(--p0);font-weight:500}.days-live{font-size:12.5px;color:var(--done)}
-.roadmap{padding:16px 18px}
-.roadmap-title{font-size:12.5px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
-.stage-list{display:flex;flex-direction:column;gap:6px}
-.stage-item{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:6px;border:1px solid transparent}
-.stage-done{background:#0a1a12;border-color:#1a3a25}
-.stage-active{background:#0a0f1a;border-color:var(--cyan);box-shadow:0 0 8px rgba(201,161,74,0.10)}
-.stage-todo{background:transparent}
-.stage-num{font-size:11.5px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:500}
-.stage-num-done{background:#1a3a25;color:var(--done)}
-.stage-num-active{background:var(--cyan);color:#000}
-.stage-num-todo{background:var(--bg3);color:var(--text3)}
-.stage-label{font-size:12.5px}
-.stage-label-done{color:var(--text3)}.stage-label-active{color:var(--cyan);font-weight:500}.stage-label-todo{color:var(--text3)}
-.stage-loop{font-size:12.5px;color:var(--wip);margin-left:auto;letter-spacing:1px}
+
+/* MINISTRY CARD (Kingdom view) */
+.ministry-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:14px;overflow:hidden}
+.ministry-head{display:flex;align-items:center;gap:14px;padding:14px 18px;cursor:pointer;border-bottom:1px solid var(--border)}
+.ministry-head:hover{background:rgba(255,255,255,0.02)}
+.ministry-icon{font-size:22px;flex-shrink:0}
+.ministry-titlewrap{flex:1;min-width:0}
+.ministry-name{font-family:'Fraunces',serif;font-size:18px;font-weight:700;letter-spacing:-0.3px}
+.ministry-tier{font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+.tier-money{color:var(--p2)}.tier-supply{color:var(--p3)}
+.ministry-stat{font-size:12.5px;color:var(--text3);text-align:right;white-space:nowrap}
+.ministry-chevron{color:var(--text3);font-size:13px;transition:transform .15s;margin-left:4px}
+.ministry-card.collapsed .ministry-chevron{transform:rotate(-90deg)}
+.ministry-card.collapsed .ministry-body{display:none}
+.ministry-leaders{display:flex;gap:18px;padding:14px 18px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.leader-chip{display:flex;align-items:center;gap:10px}
+.leader-photo{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:var(--bg3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--gold);font-size:14px}
+.leader-photo.deputy{border-color:var(--border2);width:36px;height:36px;font-size:12px;color:var(--text2)}
+.leader-info{min-width:0}
+.leader-role{font-size:10px;letter-spacing:1px;color:var(--text3);text-transform:uppercase}
+.leader-name{font-size:13.5px;font-weight:500;color:var(--text)}
+.ministry-projects{padding:8px 18px 14px}
+.mp-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.mp-row:last-child{border-bottom:none}
+.mp-name{flex:1;font-size:13.5px;color:var(--text)}
+.mp-bar{width:80px;height:5px;background:var(--bg3);border-radius:5px;overflow:hidden;flex-shrink:0}
+.mp-bar-fill{height:100%;background:var(--cyan)}
+.mp-count{font-size:12px;color:var(--text3);width:64px;text-align:right;flex-shrink:0}
+.mp-badge{font-size:10px;letter-spacing:0.5px;padding:2px 7px;border-radius:4px;flex-shrink:0}
+.mpb-client{background:var(--p1bg);color:var(--p1);border:1px solid var(--p1)}
+.mpb-internal{background:var(--p3bg);color:var(--p3);border:1px solid var(--p3)}
+.mpb-planned{color:#8ab4f8;border:1px solid rgba(138,180,248,.35)}
+.mpb-hold{color:#f28b82;border:1px solid rgba(242,139,130,.35)}
 
 /* PIPELINE */
-.alert-banner{background:#1a0800;border:1px solid #3a1800;border-radius:var(--radius-lg);padding:16px 20px;margin-bottom:20px}
-.alert-banner-title{font-size:12.5px;color:var(--p0);letter-spacing:1px;margin-bottom:10px;font-weight:500}
-.alert-list{display:flex;flex-direction:column;gap:6px}
-.alert-item{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.alert-name{font-size:12px;font-weight:500;color:var(--text)}
-.alert-msg{font-size:12.5px;color:var(--p1)}
-.alert-act{font-size:12.5px;padding:3px 8px;border-radius:4px;background:#3a1800;color:var(--p0);border:1px solid #5a2800;cursor:pointer;font-family:inherit;white-space:nowrap}
-.alert-act:hover{background:#4a2000}
-
-.pipeline-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
 .pipeline-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px}
 .ps{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:10px;text-align:center}
 .ps .n{font-family:'Fraunces',serif;font-size:32px;font-weight:700;line-height:1}.ps .l{font-size:12px;color:var(--text3);margin-top:6px;letter-spacing:1px}
@@ -134,6 +155,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 .form-actions{display:flex;gap:8px}
 .form-actions button{font-size:12.5px;padding:7px 16px;border-radius:var(--radius);border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text2)}
 .form-actions .primary{border-color:var(--cyan);color:var(--cyan)}
+.pipeline-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
 .pipeline-filters{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
 .filter-btn{font-size:12.5px;padding:4px 10px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text3);letter-spacing:0.5px}
 .filter-btn:hover{border-color:var(--text2);color:var(--text2)}
@@ -142,96 +164,28 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 .leads-table th{font-size:12px;color:var(--text3);letter-spacing:1px;padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);text-transform:uppercase;white-space:nowrap}
 .leads-table td{font-size:13px;padding:11px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
 .leads-table tr:hover td{background:rgba(255,255,255,0.02)}
-/* STRATEGY */
-.sp-card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:20px;margin-bottom:18px}
-.sp-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
-.sp-title{font-family:'Fraunces',serif;font-size:22px;color:var(--text);font-weight:700;letter-spacing:-0.3px}
-.sp-badges{display:flex;gap:6px;flex-wrap:wrap}
-.sp-badge{font-size:12.5px;letter-spacing:1px;padding:4px 9px;border-radius:20px;text-transform:uppercase;white-space:nowrap}
-.sp-badge.internal{background:var(--p3bg);color:var(--p3);border:1px solid var(--p3)}
-.sp-badge.client{background:var(--p1bg);color:var(--p1);border:1px solid var(--p1)}
-.sp-badge.prio{background:var(--bg3);color:var(--text2);border:1px solid var(--border2)}
-.sp-desc{font-size:13.5px;color:var(--text2);line-height:1.65;margin-bottom:18px}
-.sp-progress{height:6px;background:var(--bg3);border-radius:6px;overflow:hidden;margin-bottom:16px}
-.sp-progress-bar{height:100%;background:var(--cyan);transition:width .3s}
-.sp-step{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);cursor:pointer}
-.sp-step:last-child{border-bottom:none}
-.sp-step:hover{background:rgba(255,255,255,0.02)}
-.sp-dot{flex:none;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;border:2px solid var(--todo);color:var(--text3)}
-.sp-step.done .sp-dot{background:var(--done);border-color:var(--done);color:#000}
-.sp-step.wip .sp-dot{border-color:var(--wip);color:var(--wip)}
-.sp-step-body{flex:1}
-.sp-step-title{font-size:16.5px;color:var(--text);font-weight:500}
-.sp-step.done .sp-step-title{color:var(--text3);text-decoration:line-through}
-.sp-detail-toggle{font-size:12px;color:var(--text3);margin-top:6px;display:inline-flex;align-items:center;gap:5px;cursor:pointer;user-select:none}
-.sp-detail-toggle:hover{color:var(--cyan)}
-.sp-step-detail{font-size:13.5px;color:var(--text2);line-height:1.65;margin-top:10px;display:none;padding-right:40px}
-.sp-step-detail.open{display:block}
-.sp-step-status{flex:none;font-size:12.5px;letter-spacing:1px;color:var(--text3);text-transform:uppercase}
-.sp-head{cursor:pointer}
-.sp-chevron{flex:none;font-size:20px;color:var(--text3);transition:transform .2s;display:inline-block}
-.sp-chevron.open{transform:rotate(90deg);color:var(--cyan)}
-.sp-meta-row{display:flex;align-items:center;gap:14px;margin-top:14px;cursor:pointer}
-.sp-meta-row .sp-progress{flex:1;margin-bottom:0}
-.sp-stepcount{flex:none;font-size:12px;color:var(--text3);letter-spacing:1px;white-space:nowrap}
-.sp-body{margin-top:18px;padding-top:4px;border-top:1px solid var(--border)}
-.sp-checklist{margin-top:12px;padding-left:2px}
-.sp-check{display:flex;align-items:flex-start;gap:10px;padding:7px 0;cursor:pointer}
-.sp-check:hover .sp-check-label{color:var(--text)}
-.sp-checkbox{flex:none;width:20px;height:20px;border-radius:6px;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:12px;color:#000;margin-top:1px}
-.sp-check.checked .sp-checkbox{background:var(--done);border-color:var(--done)}
-.sp-check-label{font-size:13.5px;color:var(--text2);line-height:1.5}
-.sp-check.checked .sp-check-label{color:var(--text3);text-decoration:line-through}
-.sp-step.wip .sp-step-status{color:var(--wip)}
-.sp-step.done .sp-step-status{color:var(--done)}
 .stage-pill{font-size:12.5px;padding:3px 7px;border-radius:4px;white-space:nowrap;letter-spacing:0.5px}
-.s1{background:#1a1a0a;color:#666;border:1px solid #2a2a1a}
-.s2{background:#1a1200;color:var(--p1);border:1px solid #2a2000}
-.s3{background:#1a1a00;color:#ffcc00;border:1px solid #2a2a00}
-.s4{background:#0a1a1a;color:var(--cyan);border:1px solid #0a2a2a}
-.s5{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}
-.s6{background:#0a0f1a;color:#aa88ff;border:1px solid #1a0f3a}
-.s7{background:#0f0a1a;color:#cc88ff;border:1px solid #2a0f3a}
-.s8{background:#1a0f00;color:#ffaa44;border:1px solid #3a2000}
-.s9{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
-.s10{background:#1a0a0a;color:var(--p0);border:1px solid #3a1010}
-.s11{background:#1a1a1a;color:#555;border:1px solid #2a2a2a}
+.s1{background:#1a1a0a;color:#666;border:1px solid #2a2a1a}.s2{background:#1a1200;color:var(--p1);border:1px solid #2a2000}
+.s3{background:#1a1a00;color:#ffcc00;border:1px solid #2a2a00}.s6{background:#0a0f1a;color:#aa88ff;border:1px solid #1a0f3a}
+.s8{background:#1a0f00;color:#ffaa44;border:1px solid #3a2000}.s9{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
+.s10{background:#1a0a0a;color:var(--p0);border:1px solid #3a1010}.s11{background:#1a1a1a;color:#555;border:1px solid #2a2a2a}
 .offer-pill{font-size:12.5px;padding:2px 7px;border-radius:4px;letter-spacing:0.5px}
-.offer-gc{background:#0a1a1a;color:var(--cyan);border:1px solid #0a2a2a}
-.offer-gcplus{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}
-.offer-dba{background:#1a0f00;color:#ffaa44;border:1px solid #3a2000}
+.offer-gc{background:#0a1a1a;color:var(--cyan);border:1px solid #0a2a2a}.offer-gcplus{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}.offer-dba{background:#1a0f00;color:#ffaa44;border:1px solid #3a2000}
 .icp-pill{font-size:12.5px;padding:2px 6px;border-radius:4px;font-weight:500}
-.icp-aplus{background:#0a1a0a;color:var(--done)}
-.icp-a{background:#0a1500;color:#88dd88}
-.icp-b{background:#1a1200;color:var(--p1)}
-.icp-other{background:#1a1a1a;color:#555}
-
-/* ACTION BADGES */
-.action-badge{font-size:12.5px;padding:2px 7px;border-radius:4px;white-space:nowrap;font-weight:500;letter-spacing:0.5px}
-.ab-red{background:#2a0808;color:var(--p0);border:1px solid #4a1010}
-.ab-yellow{background:#1a1200;color:var(--p1);border:1px solid #3a2800}
-.ab-green{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
-.ab-grey{background:#1a1a1a;color:#555;border:1px solid #2a2a2a}
-
+.icp-aplus{background:#0a1a0a;color:var(--done)}.icp-a{background:#0a1500;color:#88dd88}.icp-b{background:#1a1200;color:var(--p1)}.icp-other{background:#1a1a1a;color:#555}
 .note-text{font-size:12.5px;color:var(--text2);max-width:280px;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer;line-height:1.5}
 .note-text.open{-webkit-line-clamp:unset}
 .hot-zone{margin-bottom:20px}
 .hot-title{font-size:12px;letter-spacing:1.5px;color:#ff9f43;font-weight:600;margin-bottom:10px}
 .hot-card{background:linear-gradient(135deg,#1a1208,#0f0c06);border:1px solid #5a3a10;border-left:3px solid #ff9f43;border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;max-width:720px}
-.hot-name{font-size:15px;font-weight:600}
-.hot-meta{font-size:12.5px;color:var(--text2);margin-top:3px}
-.hot-when{font-size:12.5px;color:#ff9f43;white-space:nowrap;font-weight:500}
+.hot-name{font-size:15px;font-weight:600}.hot-meta{font-size:12.5px;color:var(--text2);margin-top:3px}.hot-when{font-size:12.5px;color:#ff9f43;white-space:nowrap;font-weight:500}
 .fu-zone{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:12px 16px;margin-bottom:20px}
 .fu-title{font-size:12px;letter-spacing:1.5px;color:var(--p1);font-weight:600;margin-bottom:6px}
 .fu-item{display:grid;grid-template-columns:minmax(160px,1fr) auto 90px;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
-.fu-item>span:nth-child(2){text-align:right}
-.fu-item>button{justify-self:end}
-.fu-item:last-child{border-bottom:none}
-.lead-actions{display:flex;gap:4px;flex-wrap:nowrap}
+.fu-item>span:nth-child(2){text-align:right}.fu-item>button{justify-self:end}.fu-item:last-child{border-bottom:none}
+.alert-act{font-size:12.5px;padding:3px 8px;border-radius:4px;background:#3a1800;color:var(--p0);border:1px solid #5a2800;cursor:pointer;font-family:inherit;white-space:nowrap}
 .lead-action-btn{font-size:12.5px;padding:3px 7px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text3);white-space:nowrap}
 .lead-action-btn:hover{border-color:var(--cyan);color:var(--cyan)}
-
-/* EDIT PANEL */
 .edit-panel{display:none;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:14px;margin-top:6px}
 .edit-panel.open{display:block}
 .edit-panel-title{font-size:12.5px;color:var(--cyan);letter-spacing:1px;margin-bottom:10px}
@@ -242,12 +196,11 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 .edit-btns{display:flex;gap:6px}
 .edit-btns button{font-size:12.5px;padding:5px 12px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text2)}
 .edit-btns .save{border-color:var(--cyan);color:var(--cyan)}
-
 .status-legend{display:none;font-size:12.5px;color:var(--text2);line-height:1.9;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;margin-bottom:14px}
 .status-legend.open{display:block}
 .empty-state{text-align:center;padding:40px;color:var(--text3);font-size:12px}
 
-/* TODAY TAB */
+/* CROWN VIEW (was TODAY) */
 .checkin-card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:18px 20px;margin-bottom:20px}
 .checkin-title{font-size:12.5px;color:var(--cyan);letter-spacing:1px;margin-bottom:14px}
 .checkin-q{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);flex-wrap:wrap}
@@ -258,18 +211,12 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 .checkin-opt:hover{border-color:var(--text2);color:var(--text2)}
 .checkin-opt.sel-yes{border-color:var(--p0);color:var(--p0);background:#1a0808}
 .checkin-opt.sel-no{border-color:var(--done);color:var(--done);background:#081a08}
-.checkin-done-btn{width:100%;margin-top:14px;font-size:12px;padding:10px;border-radius:var(--radius);border:1px solid var(--cyan);background:transparent;color:var(--cyan);cursor:pointer;font-family:inherit;letter-spacing:1px}
-.checkin-done-btn:hover{background:rgba(201,161,74,0.10)}
-
 .onething-card{background:linear-gradient(135deg,#161310,#14110a);border:1px solid var(--gold);border-radius:var(--radius-lg);padding:28px;margin-bottom:20px;box-shadow:0 0 24px rgba(201,161,74,0.10)}
 .onething-label{font-size:12.5px;color:var(--cyan);letter-spacing:2px;margin-bottom:14px}
 .onething-task{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--text);margin-bottom:10px;line-height:1.25}
 .onething-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
 .onething-tag{font-size:12.5px;padding:3px 10px;border-radius:5px;letter-spacing:0.5px}
-.ot-mot{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}
-.ot-ru{background:#1a0f00;color:var(--p1);border:1px solid #3a2000}
-.ot-rgh{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}
-.ot-rb{background:#1a1a1a;color:var(--text3);border:1px solid #2a2a2a}
+.ot-mot{background:#0a1a0a;color:var(--done);border:1px solid #1a3a1a}.ot-ru{background:#1a0f00;color:var(--p1);border:1px solid #3a2000}.ot-rgh{background:#0a0f1a;color:var(--wip);border:1px solid #0a1a3a}.ot-rb{background:#1a1a1a;color:var(--text3);border:1px solid #2a2a2a}
 .onething-why{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:18px}
 .onething-actions{display:flex;gap:10px;flex-wrap:wrap}
 .onething-done{font-size:12px;padding:10px 20px;border-radius:var(--radius);border:none;background:var(--cyan);color:#000;cursor:pointer;font-family:inherit;font-weight:500;letter-spacing:0.5px}
@@ -277,32 +224,54 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 .onething-why-btn{font-size:12px;padding:10px 16px;border-radius:var(--radius);border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;font-family:inherit}
 .onething-why-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 .onething-score{margin-left:auto;font-size:12.5px;color:var(--text3)}
-
 .emergency-card{background:#1a0606;border:1px solid var(--p0);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px;text-align:center}
 .emergency-card .et{font-size:14px;color:var(--p0);font-weight:500;margin-bottom:6px;letter-spacing:1px}
 .emergency-card .es{font-size:12px;color:var(--text2)}
-
 .queue-title{font-size:12.5px;color:var(--text3);letter-spacing:1px;margin-bottom:10px;text-transform:uppercase}
 .queue-item{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:6px}
 .queue-rank{font-size:13px;color:var(--text3);font-weight:500;width:20px;flex-shrink:0}
-.queue-body{flex:1;min-width:0}
-.queue-task{font-size:13px;color:var(--text);margin-bottom:2px}
-.queue-meta{font-size:12.5px;color:var(--text3)}
-.queue-tag{font-size:12.5px;padding:1px 6px;border-radius:3px;letter-spacing:0.5px;margin-left:6px}
-.queue-score{font-size:12.5px;color:var(--text3);flex-shrink:0}
+.queue-body{flex:1;min-width:0}.queue-task{font-size:13px;color:var(--text);margin-bottom:2px}.queue-meta{font-size:12.5px;color:var(--text3)}
+.queue-tag{font-size:12.5px;padding:1px 6px;border-radius:3px;letter-spacing:0.5px;margin-left:6px}.queue-score{font-size:12.5px;color:var(--text3);flex-shrink:0}
+.commit-locked{opacity:.38;pointer-events:auto}
+.pulse-strip{display:flex;flex-wrap:wrap;gap:6px 18px;padding:12px 18px;margin-bottom:16px;border:1px solid rgba(201,162,39,.25);border-radius:10px;background:rgba(201,162,39,.05);font-size:13px;color:var(--text2);letter-spacing:.2px}
+.pulse-strip b{color:var(--gold);font-variant-numeric:tabular-nums}
+.task-score{font-size:12.5px;color:var(--gold);font-variant-numeric:tabular-nums;opacity:.85;align-self:center}
+
+/* COUNCIL VIEW */
+.council-section{margin-bottom:32px}
+.council-section-title{font-family:'Fraunces',serif;font-size:20px;font-weight:700;margin-bottom:4px;letter-spacing:-0.3px}
+.council-section-sub{font-size:12.5px;color:var(--text3);margin-bottom:16px}
+.council-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.council-member{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 12px;text-align:center}
+.council-member.crown{border-color:var(--gold);box-shadow:0 0 16px rgba(201,161,74,0.08)}
+.council-member.visionary{border-color:#7c5cff;box-shadow:0 0 16px rgba(124,92,255,0.08)}
+.cm-photo{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--border2);background:var(--bg3);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--text2);font-size:20px}
+.council-member.crown .cm-photo{border-color:var(--gold);color:var(--gold)}
+.council-member.visionary .cm-photo{border-color:#7c5cff;color:#a98bff}
+.cm-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px}
+.cm-role{font-size:11px;color:var(--text3);letter-spacing:0.5px;line-height:1.4}
+.cm-tag{display:inline-block;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:10px;margin-top:8px}
+.cm-tag.lead{background:rgba(201,161,74,0.12);color:var(--gold)}
+.cm-tag.deputy{background:var(--bg3);color:var(--text3)}
+
+/* VISION VIEW */
+.vision-goal{background:linear-gradient(135deg,#14120a,#0f0d08);border:1px solid var(--gold);border-radius:var(--radius-lg);padding:32px;text-align:center;margin-bottom:24px;box-shadow:0 0 30px rgba(201,161,74,0.10)}
+.vision-goal-kicker{font-size:12px;letter-spacing:2px;color:var(--gold-light);margin-bottom:12px;text-transform:uppercase}
+.vision-goal-num{font-family:'Fraunces',serif;font-size:52px;font-weight:700;line-height:1;letter-spacing:-1px;margin-bottom:10px;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.vision-goal-line{font-size:14px;color:var(--text);margin-bottom:6px;font-weight:500}
+.vision-goal-sub{font-size:12.5px;color:var(--text3)}
+.vision-affirm{background:var(--bg2);border:1px solid var(--border2);border-left:3px solid #7c5cff;border-radius:var(--radius);padding:18px 20px;margin-bottom:14px}
+.vision-affirm-q{font-size:15px;color:var(--text);font-style:italic;line-height:1.6;font-family:'Fraunces',serif}
+.vision-affirm-by{font-size:11px;color:var(--text3);letter-spacing:1px;margin-top:8px;text-transform:uppercase}
+.vision-pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px}
+.vision-pillar{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.vision-pillar-icon{font-size:22px;margin-bottom:8px}
+.vision-pillar-title{font-size:13.5px;font-weight:600;margin-bottom:4px}
+.vision-pillar-text{font-size:12px;color:var(--text2);line-height:1.55}
 
 .footer{text-align:center;font-size:12.5px;color:var(--text3);margin-top:40px;letter-spacing:1px}
-@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.pipeline-stats{grid-template-columns:repeat(3,1fr)}}
-.task-score{font-size:12.5px;color:var(--gold,#c9a227);font-variant-numeric:tabular-nums;opacity:.85;align-self:center}
-.commit-locked{opacity:.38;pointer-events:auto}
-.pulse-strip{display:flex;flex-wrap:wrap;gap:6px 18px;padding:12px 18px;margin-bottom:16px;border:1px solid rgba(201,162,39,.25);border-radius:10px;background:rgba(201,162,39,.05);font-size:13px;color:var(--text2,#cfc9bd);letter-spacing:.2px}
-.pulse-strip b{color:var(--gold,#c9a227);font-variant-numeric:tabular-nums}
-.client-card.collapsed .roadmap{display:none}
-.client-card.collapsed .client-chevron{transform:rotate(-90deg)}
-.client-chevron{margin-left:8px;color:var(--text3);font-size:12.5px;transition:transform .15s}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.pipeline-stats{grid-template-columns:repeat(3,1fr)}.view-banner{height:130px}.view-banner-title{font-size:22px}}
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
@@ -327,35 +296,55 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('today',this)">🎯 TODAY</button>
-    <button class="tab" onclick="switchTab('priorities',this)">PRIORITIES</button>
-    <button class="tab" onclick="switchTab('clients',this)">PROJECTS</button>
-    <button class="tab" onclick="switchTab('pipeline',this)">LEAD PIPELINE</button>
-    <button class="tab" onclick="switchTab('strategy',this)">🧠 STRATEGY</button>
+    <button class="tab active" onclick="switchTab('crown',this)">👑 CROWN</button>
+    <button class="tab" onclick="switchTab('kingdom',this)">🗺️ KINGDOM</button>
+    <button class="tab" onclick="switchTab('pipeline',this)">🧲 PIPELINE</button>
+    <button class="tab" onclick="switchTab('council',this)">🏛️ COUNCIL</button>
+    <button class="tab" onclick="switchTab('vision',this)">🪞 VISION</button>
   </div>
 
-  <div id="tab-today">
+  <!-- ============ CROWN VIEW (was Today) ============ -->
+  <div id="tab-crown">
+    <div class="view-banner b-hero">
+      <div class="view-banner-text">
+        <div class="view-banner-kicker">The Crown · King · Naval · Jeff · Codie</div>
+        <div class="view-banner-title">Crown View</div>
+        <div class="view-banner-sub">Your one move today. The Crown points; the King decides.</div>
+      </div>
+    </div>
     <div id="pulse-strip"></div>
     <div id="today-checkin"></div>
     <div id="today-onething"></div>
     <div id="today-queue"></div>
   </div>
 
-  <div id="tab-priorities" style="display:none">
+  <!-- ============ KINGDOM VIEW (ministries + projects + faces) ============ -->
+  <div id="tab-kingdom" style="display:none">
+    <div class="view-banner b-kingdom">
+      <div class="view-banner-text">
+        <div class="view-banner-kicker">For the Cabinet · led by Ministers & Deputies</div>
+        <div class="view-banner-title">The Kingdom</div>
+        <div class="view-banner-sub">₹1Cr/month · ~40–60 recurring clients — every ministry feeds it</div>
+      </div>
+    </div>
     <div class="stats">
-      <div class="stat"><div class="stat-num" id="s-total" style="color:var(--cyan)">—</div><div class="stat-label">Total</div></div>
+      <div class="stat"><div class="stat-num" id="s-total" style="color:var(--cyan)">—</div><div class="stat-label">Tasks</div></div>
       <div class="stat"><div class="stat-num" id="s-done" style="color:var(--done)">—</div><div class="stat-label">Done</div></div>
       <div class="stat"><div class="stat-num" id="s-wip" style="color:var(--wip)">—</div><div class="stat-label">In Progress</div></div>
       <div class="stat"><div class="stat-num" id="s-todo" style="color:var(--todo)">—</div><div class="stat-label">To Do</div></div>
     </div>
-    <div id="board"><div class="empty-state">Loading...</div></div>
+    <div id="kingdom-container"><div class="empty-state">Loading the kingdom...</div></div>
   </div>
 
-  <div id="tab-clients" style="display:none">
-    <div class="client-grid" id="client-grid"></div>
-  </div>
-
+  <!-- ============ PIPELINE VIEW ============ -->
   <div id="tab-pipeline" style="display:none">
+    <div class="view-banner b-pipeline">
+      <div class="view-banner-text">
+        <div class="view-banner-kicker">Get Leads Ministry · the hunt</div>
+        <div class="view-banner-title">The Pipeline</div>
+        <div class="view-banner-sub">Track every lead. Never miss a follow-up.</div>
+      </div>
+    </div>
     <div class="pipeline-stats">
       <div class="ps"><div class="n" id="pl-hot" style="color:#ff9f43">0</div><div class="l">🔥 Hot Now</div></div>
       <div class="ps"><div class="n" id="pl-outreach" style="color:var(--cyan)">0</div><div class="l">Outreach This Month</div></div>
@@ -363,49 +352,26 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
       <div class="ps"><div class="n" id="pl-booked" style="color:#aa88ff">0</div><div class="l">Calls Booked</div></div>
       <div class="ps"><div class="n" id="pl-due" style="color:var(--p0)">0</div><div class="l">Follow-ups Due</div></div>
     </div>
-
     <div id="alert-zone"></div>
-
     <div class="pipeline-top">
       <div style="font-size:12.5px;color:var(--text3)">Track every lead. Never miss a follow up.</div>
       <button class="add-lead-btn" onclick="toggleAddForm()">+ Add Lead</button>
     </div>
-
     <div class="add-lead-form" id="add-lead-form">
       <h3>NEW LEAD</h3>
       <div class="form-grid">
         <div class="form-field"><label>Name *</label><input type="text" id="fl-name" placeholder="Dr. Neha Mehta"/></div>
         <div class="form-field"><label>Niche</label><input type="text" id="fl-niche" placeholder="Dermatologist"/></div>
-        <div class="form-field"><label>Offer</label>
-          <select id="fl-offer"><option value="GC">GC — GetCloned</option><option value="GC+">GC+ — GetCloned Plus</option><option value="DBA">DBA</option></select>
-        </div>
-        <div class="form-field"><label>Source</label>
-          <select id="fl-source"><option value="Outreach">Outreach</option><option value="Funnel">Funnel</option><option value="Ads">Ads</option><option value="Referral">Referral</option></select>
-        </div>
-        <div class="form-field"><label>Channel</label>
-          <select id="fl-channel"><option value="Email">Email</option><option value="Instagram">Instagram</option><option value="LinkedIn">LinkedIn</option><option value="Skool">Skool</option><option value="WhatsApp">WhatsApp</option></select>
-        </div>
-        <div class="form-field"><label>ICP Score</label>
-          <select id="fl-icp"><option value="A+">A+</option><option value="A">A</option><option value="B+">B+</option><option value="B">B</option><option value="DBA">DBA lead</option></select>
-        </div>
-        <div class="form-field"><label>Stage</label>
-          <select id="fl-stage">
-            <option value="1">1 — Identified</option><option value="2">2 — Contacted</option>
-            <option value="3">3 — Replied</option><option value="4">4 — Lead Captured</option>
-            <option value="5">5 — Case Study Watched</option><option value="6">6 — Call Booked</option>
-            <option value="7">7 — Strategy Call Done</option><option value="8">8 — Proposal Sent</option>
-            <option value="9">9 — Signed ✅</option><option value="10">10 — Lost ❌</option><option value="11">11 — On Hold ⏸</option>
-          </select>
-        </div>
+        <div class="form-field"><label>Offer</label><select id="fl-offer"><option value="GC">GC — GetCloned</option><option value="GC+">GC+ — GetCloned Plus</option><option value="DBA">DBA</option></select></div>
+        <div class="form-field"><label>Source</label><select id="fl-source"><option value="Outreach">Outreach</option><option value="Funnel">Funnel</option><option value="Ads">Ads</option><option value="Referral">Referral</option></select></div>
+        <div class="form-field"><label>Channel</label><select id="fl-channel"><option value="Email">Email</option><option value="Instagram">Instagram</option><option value="LinkedIn">LinkedIn</option><option value="Skool">Skool</option><option value="WhatsApp">WhatsApp</option></select></div>
+        <div class="form-field"><label>ICP Score</label><select id="fl-icp"><option value="A+">A+</option><option value="A">A</option><option value="B+">B+</option><option value="B">B</option><option value="DBA">DBA lead</option></select></div>
+        <div class="form-field"><label>Stage</label><select id="fl-stage"><option value="1">1 — Identified</option><option value="2">2 — Contacted</option><option value="3">3 — Replied</option><option value="4">4 — Lead Captured</option><option value="5">5 — Case Study Watched</option><option value="6">6 — Call Booked</option><option value="7">7 — Strategy Call Done</option><option value="8">8 — Proposal Sent</option><option value="9">9 — Signed ✅</option><option value="10">10 — Lost ❌</option><option value="11">11 — On Hold ⏸</option></select></div>
         <div class="form-field"><label>Action Date *</label><input type="date" id="fl-date"/></div>
         <div class="form-field"><label>Note</label><input type="text" id="fl-note" placeholder="What happened?"/></div>
       </div>
-      <div class="form-actions">
-        <button class="primary" onclick="addLead()">Save Lead</button>
-        <button onclick="toggleAddForm()">Cancel</button>
-      </div>
+      <div class="form-actions"><button class="primary" onclick="addLead()">Save Lead</button><button onclick="toggleAddForm()">Cancel</button></div>
     </div>
-
     <div class="pipeline-filters">
       <button class="filter-btn active" onclick="filterLeads('all',this)">All</button>
       <button class="filter-btn" onclick="filterLeads('action',this)">🔴 Needs Action</button>
@@ -417,95 +383,121 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
       <button class="filter-btn" onclick="filterLeads('signed',this)">Signed ✅</button>
       <button class="filter-btn" onclick="filterLeads('lost',this)">Lost ❌</button>
       <button class="filter-btn" onclick="filterLeads('hold',this)">On Hold ⏸</button>
-      <button class="filter-btn" onclick="document.getElementById('status-legend').classList.toggle('open')" title="What do statuses mean?">?</button>
     </div>
-
-    <div id="status-legend" class="status-legend">
-      <b>🔥 Replied</b> — they wrote back, ball is in YOUR court &nbsp;·&nbsp; <b>Proposal Out</b> — proposal/qualified, money closest &nbsp;·&nbsp; <b>Sent — waiting</b> — email out, their move &nbsp;·&nbsp; <b>Draft in Mail</b> — written, waiting for you to review &amp; send &nbsp;·&nbsp; <b>Not Contacted</b> — logged, no outreach yet &nbsp;·&nbsp; <b>Bounced → DM</b> — email failed, route via Instagram DM &nbsp;·&nbsp; <b>Skip</b> — triaged out (reason in note)
-    </div>
-
     <div id="leads-container"><div class="empty-state">Loading leads...</div></div>
   </div>
 
-  <div id="tab-strategy" style="display:none">
-    <div style="font-size:13px;color:var(--text3);margin-bottom:18px">Strategic initiatives — internal or client-mapped. Tap a step to change status. Tap "details" to expand.</div>
-    <div id="strategy-container"><div class="empty-state">Loading strategy projects...</div></div>
+  <!-- ============ COUNCIL VIEW ============ -->
+  <div id="tab-council" style="display:none">
+    <div class="view-banner b-council">
+      <div class="view-banner-text">
+        <div class="view-banner-kicker">The Royal Mastermind Council</div>
+        <div class="view-banner-title">The Council</div>
+        <div class="view-banner-sub">You do not rule alone. You rule with the greatest minds, made real.</div>
+      </div>
+    </div>
+    <div id="council-container"></div>
+  </div>
+
+  <!-- ============ VISION VIEW ============ -->
+  <div id="tab-vision" style="display:none">
+    <div class="view-banner b-vision">
+      <div class="view-banner-text">
+        <div class="view-banner-kicker">Guided by the Visionary Council</div>
+        <div class="view-banner-title">The Vision</div>
+        <div class="view-banner-sub">See it as already done. Speak from arrival, not from chase.</div>
+      </div>
+    </div>
+    <div id="vision-container"></div>
   </div>
 
   <div class="footer">GETCLONED.IN · INTERNAL · NOT FOR DISTRIBUTION</div>
 </div>
 
 <script>
+/* ============================================================
+   WORKFORCE: fill these TWO secrets locally before committing.
+   Do NOT commit real values into a shared/chat context.
+   ============================================================ */
 const PASS='100Clients@GetCloned';
 const SB_URL='https://waocacqbyppyosekpdoh.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indhb2NhY3FieXBweW9zZWtwZG9oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4NzM4MTQsImV4cCI6MjA5NTQ0OTgxNH0.7tVJdzQKo_R_Mx6VHdJRHWaTexbIqYi1j1uYpiwyfsM';
 
+/* ============================================================
+   COUNCIL & MINISTRY DATA — WORKFORCE: paste photo URLs into
+   each `photo:''` field. Leave blank to show initials.
+   ============================================================ */
+const MINISTRIES=[
+  {key:'Offers',icon:'🎯',name:'Offers',tier:'money',
+    leader:{name:'Alex Hormozi',photo:'images/hormozi.jpg'},deputies:[{name:'Sam Ovens',photo:'images/ovens.jpg'}]},
+  {key:'Get Leads',icon:'🧲',name:'Get Leads',tier:'money',
+    leader:{name:'Sabri Suby',photo:'images/sabri.jpg'},deputies:[{name:'Russell Brunson',photo:'images/brunson.jpg'}]},
+  {key:'Get Sales',icon:'💰',name:'Get Sales',tier:'money',
+    leader:{name:'Dan Kennedy',photo:'images/kennedy.jpg'},deputies:[{name:'Joanna Wiebe',photo:'images/wiebe.jpg'}]},
+  {key:'Keep Clients',icon:'🔄',name:'Keep Clients',tier:'money',
+    leader:{name:'Sam Ovens',photo:'images/ovens.jpg'},deputies:[{name:'Emily Weiss',photo:'images/weiss.jpg'}]},
+  {key:'Get Attention',icon:'📣',name:'Get Attention',tier:'supply',
+    leader:{name:'Gary Vaynerchuk',photo:'images/garyvee.jpg'},deputies:[{name:'MrBeast',photo:'images/mrbeast.jpg'},{name:'Seth Godin',photo:'images/seth.jpg'}]},
+  {key:'Run the Machine',icon:'⚙️',name:'Run the Machine',tier:'supply',
+    leader:{name:'Jeff Bezos',photo:'images/jeff.jpg'},deputies:[{name:'Dan Martell',photo:'images/martell.jpg'},{name:'Elon Musk',photo:'images/elon.jpg'}]},
+];
+const MINISTRY_ORDER=['Offers','Get Leads','Get Sales','Keep Clients','Get Attention','Run the Machine'];
+
+const CROWN_MEMBERS=[
+  {name:'Akassh Gupta',role:'The King · Final Authority',photo:'',tag:'lead'},
+  {name:'Oracle',role:'Runs sessions · Keeper of Context',photo:'',tag:''},
+  {name:'Naval Ravikant',role:'Prime Minister · Clarity & Leverage',photo:'',tag:'lead'},
+  {name:'Jeff Bezos',role:'Deputy PM · Systems & Scale',photo:'',tag:'deputy'},
+  {name:'Codie Sanchez',role:'Data Steward · Pulse',photo:'',tag:''},
+  {name:'Sun Tzu',role:'Guard · Strategy & Security',photo:'',tag:''},
+];
+const VISIONARY_MEMBERS=[
+  {name:'Napoleon Hill',role:'Lead Visionary · Definite Purpose',photo:'',tag:'lead'},
+  {name:'Bob Proctor',role:'Paradigm & Belief',photo:'',tag:''},
+  {name:'Joe Dispenza',role:'Identity Rewiring',photo:'',tag:''},
+  {name:'Mel Robbins',role:'Action–Belief Bridge',photo:'',tag:''},
+];
+const FC_PHOTOS={"James Clear": "images/clear.jpg", "Steve Jobs": "images/jobs.jpg", "Jake Paul": "images/jakepaul.jpg", "Logan Paul": "images/loganpaul.jpg", "Tony Robbins": "images/tony.jpg", "Siddharth Rajsekar": "images/siddharth.jpg", "Sam Altman": "images/altman.jpg", "Robin Sharma": "images/sharma.jpg", "Marie Forleo": "images/marie.jpg", "Alex Hormozi": "images/hormozi.jpg", "Russell Brunson": "images/brunson.jpg", "Sam Ovens": "images/ovens.jpg", "Dan Kennedy": "images/kennedy.jpg", "Elon Musk": "images/elon.jpg", "Dan Martell": "images/martell.jpg", "Seth Godin": "images/seth.jpg", "Sabri Suby": "images/sabri.jpg", "MrBeast": "images/mrbeast.jpg", "Gary Vaynerchuk": "images/garyvee.jpg", "Joanna Wiebe": "images/wiebe.jpg", "Emily Weiss": "images/weiss.jpg"};
+const FULL_COUNCIL=[
+  'Alex Hormozi','Russell Brunson','James Clear','Steve Jobs','Sam Ovens','Jake Paul','Logan Paul',
+  'Tony Robbins','Dan Kennedy','Elon Musk','Siddharth Rajsekar','Dan Martell','Sam Altman','Robin Sharma',
+  'Seth Godin','Sabri Suby','MrBeast','Gary Vaynerchuk','Joanna Wiebe','Marie Forleo','Emily Weiss'
+];
+
+const VISION_AFFIRMATIONS=[
+  {q:'We have already built the ₹1Cr/month empire. We operate from there — every decision flows from arrival, not chase.',by:'Napoleon Hill'},
+  {q:'The image of the empire comes first. Hold it daily, and reality moves to match the picture in your mind.',by:'Bob Proctor'},
+  {q:'Become — today — the person who already runs this empire. Then you do not try. You simply are.',by:'Joe Dispenza'},
+  {q:'Confidence is not a feeling you wait for. It is a decision you install every morning.',by:'Mel Robbins'},
+];
+const VISION_PILLARS=[
+  {icon:'🎯',title:'The Number',text:'₹1Cr/month by Dec 2026 — high margin, sustainable. ~40–60 recurring clients retained.'},
+  {icon:'⚔️',title:'The Blade',text:'We remove the expert\'s LABOR, not their IDENTITY.'},
+  {icon:'🔁',title:'The Engine',text:'Clone → Cinema → Funnels → Community. AIS makes it, polishes it, converts it, keeps it.'},
+  {icon:'🌍',title:'The Position',text:'THE go-to done-for-you system that amplifies an expert\'s identity, message & revenue — India + international.'},
+];
+
+/* ============================================================
+   v11 ENGINE — preserved. Reads `ministry` (falls back to vertical).
+   ============================================================ */
 const STAGE_LABELS=['','Identified','Contacted','Replied','Lead Captured','Case Study Watched','Call Booked','Strategy Call Done','Proposal Sent','Signed ✅','Lost ❌','On Hold ⏸'];
-const STAGE_CLS=['','s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11'];
-
-// Alert thresholds per stage (days before alert fires)
-const ALERT_RULES={
-  2:{days:3,msg:'Follow up — no reply in {d} days',level:'red'},
-  3:{days:2,msg:'Respond now — replied {d} days ago',level:'red'},
-  4:{days:1,msg:'Nurture — lead captured {d} days ago',level:'yellow'},
-  6:{days:1,msg:'Call was {d} days ago — update stage',level:'yellow'},
-  7:{days:2,msg:'Call done {d} days ago — send proposal',level:'red'},
-  8:{days:5,msg:'Proposal sent {d} days ago — follow up',level:'red'},
-  11:{days:14,msg:'On hold for {d} days — time to ping',level:'yellow'},
-};
-
+const ALERT_RULES={2:{days:3,msg:'Follow up — no reply in {d} days',level:'red'},3:{days:2,msg:'Respond now — replied {d} days ago',level:'red'},4:{days:1,msg:'Nurture — lead captured {d} days ago',level:'yellow'},6:{days:1,msg:'Call was {d} days ago — update stage',level:'yellow'},7:{days:2,msg:'Call done {d} days ago — send proposal',level:'red'},8:{days:5,msg:'Proposal sent {d} days ago — follow up',level:'red'},11:{days:14,msg:'On hold for {d} days — time to ping',level:'yellow'}};
 let TASKS=[];
-
-const SECTIONS={
-  Sales:{label:'💰 SALES',cls:'sec-p0'},
-  Delivery:{label:'📦 DELIVERY',cls:'sec-p1'},
-  Marketing:{label:'📣 MARKETING',cls:'sec-p2'},
-  Innovation:{label:'🧪 INNOVATION (escape-prone 🪤)',cls:'sec-p3'},
-  CCC:{label:'🧠 CCC (escape-prone 🪤)',cls:'sec-p3'},
-  Support:{label:'🛠 SUPPORT (escape-prone 🪤)',cls:'sec-p3'},
-};
 const TYPE_W={MOT:10,RU:7,RGH:4,RB:2,ESCAPE:0};
-function taskScore(t){
-  let s=(TYPE_W[t.priority_type]??2)+3*Number(t.relevance??1)+2*Number(t.urgency??0.5)+(t.blocks_others?2:0)+Number(t.strategic||0)-Number(t.effort??2);
-  if((t.priority_type==='MOT'||t.priority_type==='RU')&&Number(t.effort??2)<=1)s+=2;
-  return Math.round(s*10)/10;
-}
+function minOf(t){return t.ministry||t.vertical||'Run the Machine';}
+function taskScore(t){let s=(TYPE_W[t.priority_type]??2)+3*Number(t.relevance??1)+2*Number(t.urgency??0.5)+(t.blocks_others?2:0)+Number(t.strategic||0)-Number(t.effort??2);if((t.priority_type==='MOT'||t.priority_type==='RU')&&Number(t.effort??2)<=1)s+=2;return Math.round(s*10)/10;}
 function spTaskById(sid){let f;(STRATEGY||[]).forEach(p=>(p.tasks||[]).forEach(t=>{if(String(t.id)===String(sid))f=t;}));return f;}
 function blockersOf(t){return (t.blocked_by||'').split(',').map(s=>s.trim()).filter(Boolean);}
-function blockerDone(id){
-  if(id.startsWith('sp-')){const st=spTaskById(id.slice(3));return st?st.status==='done':true;}
-  const ts=taskState[id];return ts?ts.status==='done':true;
-}
-function taskEligible(t){
-  const st=(taskState[t.id]&&taskState[t.id].status)||t.status||'todo';
-  if(t.lane!=='scored')return false;
-  if(st!=='todo'&&st!=='wip')return false;
-  if(t.snooze_until&&new Date(t.snooze_until)>new Date())return false;
-  if(t.blocked_by&&!blockersOf(t).every(blockerDone))return false;
-  return true;
-}
+function blockerDone(id){if(id.startsWith('sp-')){const st=spTaskById(id.slice(3));return st?st.status==='done':true;}const ts=taskState[id];return ts?ts.status==='done':true;}
+function taskEligible(t){const st=(taskState[t.id]&&taskState[t.id].status)||t.status||'todo';if(t.lane!=='scored')return false;if(st!=='todo'&&st!=='wip')return false;if(t.snooze_until&&new Date(t.snooze_until)>new Date())return false;if(t.blocked_by&&!blockersOf(t).every(blockerDone))return false;return true;}
 
-const STAGES_CLIENT=[
-  {id:1,label:'Contract Signed'},{id:2,label:'Discovery Session'},
-  {id:3,label:'Content Strategy Locked'},{id:4,label:'Audio Input Received'},
-  {id:5,label:'Video Input Received'},{id:6,label:'Ideas Approved'},
-  {id:7,label:'Scripts Approved'},{id:8,label:'First Reel Delivered'},
-  {id:9,label:'Approved & Published'},{id:10,label:'Production Initiated',loop:true},
-];
-
-const CLIENTS=[
-  {id:'arfeen',name:'Arfeen Khan',status:'active',currentStage:6,waitingOn:'you',stuckSince:null,note:'Video input received 11 Jun. Next: ideas approval + production handoff.'},
-  {id:'madhu',name:'Dr. Madhu Sudan',status:'loop',currentStage:10,waitingOn:'live',stuckSince:null,note:'Reels publishing daily. Loop running.'},
-  {id:'nirmal',name:'Nirmal Bansal',status:'active',currentStage:4,waitingOn:'client',stuckSince:'2026-05-13',note:'Waiting for audio input submission'},
-];
+const STAGES_CLIENT=[{id:1,label:'Contract Signed'},{id:2,label:'Discovery Session'},{id:3,label:'Content Strategy Locked'},{id:4,label:'Audio Input Received'},{id:5,label:'Video Input Received'},{id:6,label:'Ideas Approved'},{id:7,label:'Scripts Approved'},{id:8,label:'First Reel Delivered'},{id:9,label:'Approved & Published'},{id:10,label:'Production Initiated',loop:true}];
 
 const STATUS_CYCLE=['todo','wip','awaiting','done'];
 const STATUS_LABELS={todo:'To do',wip:'In progress',awaiting:'Awaiting ⏳',done:'Done'};
 const DOT_CLS={todo:'dot-todo',wip:'dot-wip',awaiting:'dot-wip',done:'dot-done'};
 
-let taskState={};
-let leads=[];
-let currentFilter='all';
+let taskState={};let leads=[];let currentFilter='all';
 
 function today(){return new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}
 function todayISO(){return new Date().toISOString().split('T')[0]}
@@ -515,923 +507,158 @@ function touchDays(l){const t=lastTouch(l);return t?Math.floor((new Date()-t)/(1
 const STATUS_LABEL={new:'Not Contacted',email_drafted:'Draft in Mail',email_sent:'Sent — waiting',replied:'🔥 Replied',qualified:'Proposal Out',call_booked:'Call Booked',signed:'Signed ✅',lost:'Lost ❌',not_interested:'Not Interested',bounced:'Bounced → DM',on_hold:'On Hold ⏸',skip:'Skip'};
 const STATUS_CLS={new:'s1',email_drafted:'s2',email_sent:'s2',replied:'s3',qualified:'s8',call_booked:'s6',signed:'s9',lost:'s10',not_interested:'s10',bounced:'s10',on_hold:'s11',skip:'s11'};
 const STATUS_RANK={replied:0,signed:1,qualified:1,call_booked:1,email_sent:2,email_drafted:3,bounced:4,new:5,skip:6,on_hold:6,not_interested:7,lost:7};
-function sortByPriority(arr){
-  return arr.slice().sort((a,b)=>{
-    const ra=STATUS_RANK[effStatus(a)]??5, rb=STATUS_RANK[effStatus(b)]??5;
-    if(ra!==rb)return ra-rb;
-    if(effStatus(a)==='email_sent')return touchDays(b)-touchDays(a);
-    return lastTouch(b)-lastTouch(a);
-  });
-}
-function effStatus(l){
-  if(l.status&&l.status!=='new')return l.status;
-  const s=l.stage;
-  if(s===9)return 'signed';if(s===10)return 'lost';if(s===11)return 'on_hold';
-  if(s===7||s===8)return 'qualified';if(s===6)return 'call_booked';
-  if(s>=3&&s<=5)return 'replied';if(s===2)return 'email_sent';
-  return 'new';
-}
-function followupsDue(){
-  return leads.filter(l=>{
-    const s=effStatus(l);
-    if(!['email_drafted','email_sent','qualified','call_booked'].includes(s))return false;
-    return touchDays(l)>=5;
-  }).sort((a,b)=>touchDays(b)-touchDays(a));
-}
+function sortByPriority(arr){return arr.slice().sort((a,b)=>{const ra=STATUS_RANK[effStatus(a)]??5,rb=STATUS_RANK[effStatus(b)]??5;if(ra!==rb)return ra-rb;if(effStatus(a)==='email_sent')return touchDays(b)-touchDays(a);return lastTouch(b)-lastTouch(a);});}
+function effStatus(l){if(l.status&&l.status!=='new')return l.status;const s=l.stage;if(s===9)return 'signed';if(s===10)return 'lost';if(s===11)return 'on_hold';if(s===7||s===8)return 'qualified';if(s===6)return 'call_booked';if(s>=3&&s<=5)return 'replied';if(s===2)return 'email_sent';return 'new';}
+function followupsDue(){return leads.filter(l=>{const s=effStatus(l);if(!['email_drafted','email_sent','qualified','call_booked'].includes(s))return false;return touchDays(l)>=5;}).sort((a,b)=>touchDays(b)-touchDays(a));}
 function uid(){return 'lead-'+Date.now()+'-'+Math.random().toString(36).slice(2,7)}
 
-function getAlert(lead){
-  const rule=ALERT_RULES[lead.stage];
-  if(!rule)return null;
-  const days=daysSince(lead.last_action);
-  if(days>=rule.days){
-    return{msg:rule.msg.replace('{d}',days),level:rule.level,days};
-  }
-  if(days>=rule.days-1&&rule.days>1){
-    return{msg:'Follow up due soon — '+days+'d since last action',level:'yellow',days};
-  }
-  return null;
-}
+function setSyncStatus(s){const dot=document.getElementById('sync-dot');const txt=document.getElementById('sync-status');if(s==='ok'){dot.className='sync-dot';txt.textContent='Synced'}else if(s==='syncing'){dot.className='sync-dot syncing';txt.textContent='Saving...'}else{dot.className='sync-dot error';txt.textContent='Sync error'}}
 
-function getActionBadge(lead){
-  if(lead.stage===9)return{cls:'ab-green',label:'Signed ✅'};
-  if(lead.stage===10)return{cls:'ab-grey',label:'Lost'};
-  if(lead.stage===11){
-    const d=daysSince(lead.last_action);
-    return d>=14?{cls:'ab-yellow',label:'Ping now'}:{cls:'ab-grey',label:'On hold'};
-  }
-  const alert=getAlert(lead);
-  if(!alert)return{cls:'ab-green',label:'On track'};
-  if(alert.level==='red')return{cls:'ab-red',label:'Follow up now'};
-  return{cls:'ab-yellow',label:'Follow up soon'};
-}
+async function sbFetch(path,opts={}){const res=await fetch(SB_URL+path,{...opts,headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=representation',...(opts.headers||{})}});if(!res.ok)throw new Error(await res.text());const txt=await res.text();return txt?JSON.parse(txt):[];}
 
-function setSyncStatus(s){
-  const dot=document.getElementById('sync-dot');
-  const txt=document.getElementById('sync-status');
-  if(s==='ok'){dot.className='sync-dot';txt.textContent='Synced'}
-  else if(s==='syncing'){dot.className='sync-dot syncing';txt.textContent='Saving...'}
-  else{dot.className='sync-dot error';txt.textContent='Sync error'}
-}
+async function loadTasks(){try{const rows=await sbFetch('/rest/v1/warroom_tasks?select=*');TASKS=rows.map(r=>({...r,sec:minOf(r),sub:r.sub||''}));rows.forEach(r=>{taskState[r.id]={status:r.status||'todo',logs:r.logs||[]}});TASKS.sort((a,b)=>taskScore(b)-taskScore(a));}catch(e){TASKS=[];console.error('tasks load',e)}}
+async function saveTask(id,oldStatus){setSyncStatus('syncing');try{const s=taskState[id];await sbFetch('/rest/v1/warroom_tasks?id=eq.'+encodeURIComponent(id),{method:'PATCH',headers:{'Prefer':'return=minimal'},body:JSON.stringify({status:s.status,logs:s.logs,updated_at:new Date().toISOString()})});await sbFetch('/rest/v1/warroom_task_events',{method:'POST',headers:{'Prefer':'return=minimal'},body:JSON.stringify({task_id:id,old_status:oldStatus||null,new_status:s.status,changed_by:'dashboard'})});setSyncStatus('ok');document.getElementById('last-updated').textContent='Updated: '+today();}catch(e){setSyncStatus('error')}}
+async function loadLeads(){try{leads=await sbFetch('/rest/v1/pipeline_leads?select=*&order=created_at.desc');}catch(e){leads=[]}}
+async function saveLead(lead){setSyncStatus('syncing');try{await sbFetch('/rest/v1/pipeline_leads',{method:'POST',headers:{'Prefer':'resolution=merge-duplicates'},body:JSON.stringify({...lead,updated_at:new Date().toISOString()})});setSyncStatus('ok');}catch(e){setSyncStatus('error')}}
 
-async function sbFetch(path,opts={}){
-  const res=await fetch(SB_URL+path,{
-    ...opts,
-    headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=representation',...(opts.headers||{})}
-  });
-  if(!res.ok)throw new Error(await res.text());
-  const txt=await res.text();
-  return txt?JSON.parse(txt):[];
-}
-
-async function loadTasks(){
-  try{
-    const rows=await sbFetch('/rest/v1/warroom_tasks?select=*');
-    TASKS=rows.map(r=>({...r,sec:r.vertical,sub:r.sub||''}));
-    rows.forEach(r=>{taskState[r.id]={status:r.status||'todo',logs:r.logs||[]}});
-    TASKS.sort((a,b)=>taskScore(b)-taskScore(a));
-  }catch(e){TASKS=[];console.error('tasks load',e)}
-}
-
-async function saveTask(id,oldStatus){
-  setSyncStatus('syncing');
-  try{
-    const s=taskState[id];
-    await sbFetch('/rest/v1/warroom_tasks?id=eq.'+encodeURIComponent(id),{method:'PATCH',headers:{'Prefer':'return=minimal'},body:JSON.stringify({status:s.status,logs:s.logs,updated_at:new Date().toISOString()})});
-    await sbFetch('/rest/v1/warroom_task_events',{method:'POST',headers:{'Prefer':'return=minimal'},body:JSON.stringify({task_id:id,old_status:oldStatus||null,new_status:s.status,changed_by:'dashboard'})});
-    setSyncStatus('ok');
-    document.getElementById('last-updated').textContent='Updated: '+today();
-  }catch(e){setSyncStatus('error')}
-}
-
-async function loadLeads(){
-  try{
-    const rows=await sbFetch('/rest/v1/pipeline_leads?select=*&order=created_at.desc');
-    leads=rows;
-  }catch(e){leads=[]}
-}
-
-async function saveLead(lead){
-  setSyncStatus('syncing');
-  try{
-    await sbFetch('/rest/v1/pipeline_leads',{method:'POST',headers:{'Prefer':'resolution=merge-duplicates'},body:JSON.stringify({...lead,updated_at:new Date().toISOString()})});
-    setSyncStatus('ok');
-  }catch(e){setSyncStatus('error')}
-}
-
-function checkPw(){
-  if(document.getElementById('pw-input').value===PASS){
-    document.getElementById('login-screen').style.display='none';
-    document.getElementById('app').style.display='block';
-    init();
-  }else{
-    document.getElementById('pw-error').style.display='block';
-    document.getElementById('pw-input').value='';
-  }
-}
+function checkPw(){if(document.getElementById('pw-input').value===PASS){document.getElementById('login-screen').style.display='none';document.getElementById('app').style.display='block';init();}else{document.getElementById('pw-error').style.display='block';document.getElementById('pw-input').value='';}}
 document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPw()});
 
-function switchTab(tab,btn){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  ['today','priorities','clients','pipeline','strategy'].forEach(t=>{
-    document.getElementById('tab-'+t).style.display=t===tab?'block':'none';
-  });
-  if(tab==='today')renderToday();
-  if(tab==='strategy')renderStrategy();
-}
+function switchTab(tab,btn){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');['crown','kingdom','pipeline','council','vision'].forEach(t=>{document.getElementById('tab-'+t).style.display=t===tab?'block':'none';});if(tab==='crown')renderToday();if(tab==='kingdom')renderKingdom();if(tab==='council')renderCouncil();if(tab==='vision')renderVision();}
 
-function updateStats(){
-  let done=0,wip=0,todo=0;
-  const visible=TASKS.filter(t=>t.lane!=='backlog');
-  visible.forEach(t=>{const s=taskState[t.id]?.status||'todo';if(s==='done')done++;else if(s==='wip'||s==='awaiting')wip++;else todo++;});
-  document.getElementById('s-total').textContent=visible.length;
-  document.getElementById('s-done').textContent=done;
-  document.getElementById('s-wip').textContent=wip;
-  document.getElementById('s-todo').textContent=todo;
-  document.getElementById('last-updated').textContent='Updated: '+today();
-}
-
+function updateStats(){let done=0,wip=0,todo=0;const visible=TASKS.filter(t=>t.lane!=='backlog');visible.forEach(t=>{const s=taskState[t.id]?.status||'todo';if(s==='done')done++;else if(s==='wip'||s==='awaiting')wip++;else todo++;});document.getElementById('s-total').textContent=visible.length;document.getElementById('s-done').textContent=done;document.getElementById('s-wip').textContent=wip;document.getElementById('s-todo').textContent=todo;document.getElementById('last-updated').textContent='Updated: '+today();}
 function ensureTask(id){if(!taskState[id])taskState[id]={status:'todo',logs:[]}}
 
-function renderTask(t){
-  ensureTask(t.id);
-  const s=taskState[t.id].status;
-  const logs=taskState[t.id].logs||[];
-  const div=document.createElement('div');
-  div.className='task'+(s==='done'?' is-done':'');
-  div.id='task-'+t.id;
-  const logsHtml=logs.length?`<div class="task-logs">${logs.map(l=>`<span class="log-tag">${l}</span>`).join('')}</div>`:'';
-  div.innerHTML=`
-    <div class="task-main">
-      <div class="task-body"><div class="task-title">${t.title}</div><div class="task-sub">${t.sub}</div>${logsHtml}</div>
-      <div class="task-actions">
-        ${t.lane==='scored'?`<span class="task-score">${taskScore(t)}</span>`:''}
-        <button class="status-btn" data-id="${t.id}"><span class="dot ${DOT_CLS[s]}"></span>${STATUS_LABELS[s]}</button>
-        <button class="log-btn" data-logid="${t.id}">+ Log</button>
-      </div>
-    </div>
-    <div class="log-form" id="lf-${t.id}">
-      <input type="text" id="li-${t.id}" placeholder='e.g. "Sent 10 DMs"'/>
-      <div class="log-form-btns"><button class="save" data-saveid="${t.id}">Save</button><button data-cancelid="${t.id}">Cancel</button></div>
-    </div>`;
-  return div;
-}
-
-function spScore(p){let s=(TYPE_W[p.mapping==='client'?'RU':'RB']||2)+3*1+2*0.5-2;if(p.priority==='P1')s+=2;return Math.round(s*10)/10;}
-function renderSpRow(t,p){
-  const div=document.createElement('div');div.className='task';
-  const stLabel=t.status==='in_progress'?'In progress':'To do';
-  const dotCls=t.status==='in_progress'?(DOT_CLS['wip']||''):(DOT_CLS['todo']||'');
-  div.innerHTML=`
-    <div class="task-main">
-      <div class="task-body"><div class="task-title">${t.title}</div><div class="task-sub">📂 ${p.name}${t.detail?' · '+t.detail:''}</div></div>
-      <div class="task-actions">
-        <span class="task-score">${spScore(p)}</span>
-        <button class="status-btn" onclick="spCycleFromBoard(${t.id})"><span class="dot ${dotCls}"></span>${stLabel}</button>
-      </div>
-    </div>`;
-  return div;
-}
-async function spCycleFromBoard(id){await cycleStep(id);renderBoard();renderPulse();renderToday();}
-function renderBoard(){
-  const board=document.getElementById('board');board.innerHTML='';
-  const spAll=[];(STRATEGY||[]).forEach(p=>{if(p.status!=='active')return;(p.tasks||[]).forEach(t=>{if(t.status!=='done')spAll.push({t,p,v:p.vertical||'Marketing'});});});
-  Object.entries(SECTIONS).forEach(([key,sec])=>{
-    const tasks=TASKS.filter(t=>t.sec===key&&t.lane!=='backlog');
-    const sps=spAll.filter(x=>x.v===key);
-    if(!tasks.length&&!sps.length)return;
-    const done=tasks.filter(t=>(taskState[t.id]?.status||'todo')==='done').length;
-    const section=document.createElement('div');section.className='section';
-    const header=document.createElement('div');header.className='sec-header '+sec.cls;
-    header.innerHTML=`<span class="sec-title">${sec.label}</span><span class="sec-count" id="sc-${key}">${done}/${tasks.length+sps.length} done</span>`;
-    section.appendChild(header);
-    const rows=[
-      ...tasks.map(t=>({kind:'wt',score:(t.lane==='commitment'?-1:taskScore(t)),t})),
-      ...sps.map(x=>({kind:'sp',score:spScore(x.p),t:x.t,p:x.p}))
-    ].sort((a,b)=>b.score-a.score);
-    rows.forEach(r=>section.appendChild(r.kind==='wt'?renderTask(r.t):renderSpRow(r.t,r.p)));
-    board.appendChild(section);
-  });
-  board.addEventListener('click',async function(e){
-    const sb=e.target.closest('[data-id]');
-    if(sb){
-      const id=sb.dataset.id;const cur=taskState[id]?.status||'todo';
-      const next=STATUS_CYCLE[(STATUS_CYCLE.indexOf(cur)+1)%STATUS_CYCLE.length];
-      taskState[id].status=next;
-      if(next==='done'){taskState[id].logs=taskState[id].logs||[];if(!taskState[id].logs.find(l=>l.startsWith('✓')))taskState[id].logs.push('✓ Done: '+today());}
-      refreshTask(id);updateStats();updateSectionCounts();await saveTask(id,cur);return;
-    }
-    const lb=e.target.closest('[data-logid]');
-    if(lb){document.getElementById('lf-'+lb.dataset.logid).classList.toggle('open');return;}
-    const sv=e.target.closest('[data-saveid]');
-    if(sv){
-      const id=sv.dataset.saveid;const val=document.getElementById('li-'+id).value.trim();
-      if(val){taskState[id].logs=taskState[id].logs||[];taskState[id].logs.push(today()+': '+val);refreshTask(id);await saveTask(id);}
-      document.getElementById('lf-'+id).classList.remove('open');return;
-    }
-    const cl=e.target.closest('[data-cancelid]');
-    if(cl)document.getElementById('lf-'+cl.dataset.cancelid).classList.remove('open');
-  });
-}
-
-function refreshTask(id){
-  const t=TASKS.find(x=>x.id===id);if(!t)return;
-  const old=document.getElementById('task-'+id);if(old)old.replaceWith(renderTask(t));
-}
-
-function updateSectionCounts(){
-  Object.keys(SECTIONS).forEach(key=>{
-    const tasks=TASKS.filter(t=>t.sec===key&&t.lane!=='backlog');
-    const done=tasks.filter(t=>(taskState[t.id]?.status||'todo')==='done').length;
-    const el=document.getElementById('sc-'+key);if(el)el.textContent=done+'/'+tasks.length+' done';
-  });
-}
-
-function renderClients(){
-  const grid=document.getElementById('client-grid');grid.innerHTML='';
-  CLIENTS.forEach(c=>{
-    const days=c.stuckSince?daysSince(c.stuckSince):0;
-    const badgeClass=c.status==='loop'?'badge-loop':'badge-active';
-    const badgeLabel=c.status==='loop'?'LIVE — LOOPING':'ACTIVE';
-    const waitingClass=c.waitingOn==='client'?'waiting-client':c.waitingOn==='you'?'waiting-you':'waiting-live';
-    const waitingLabel=c.waitingOn==='client'?'⚠ WAITING ON CLIENT':c.waitingOn==='you'?'◎ WAITING ON YOU':'✓ LIVE';
-    const daysHtml=days>0?`<span class="days-stuck">${days}d overdue</span>`:`<span class="days-live">On track</span>`;
-    const stagesHtml=STAGES_CLIENT.map(s=>{
-      const isDone=s.id<c.currentStage,isActive=s.id===c.currentStage;
-      const cls=isDone?'stage-done':isActive?'stage-active':'stage-todo';
-      const numCls=isDone?'stage-num-done':isActive?'stage-num-active':'stage-num-todo';
-      const labelCls=isDone?'stage-label-done':isActive?'stage-label-active':'stage-label-todo';
-      const loopTag=s.loop&&isActive?`<span class="stage-loop">↺ LOOPS TO 3</span>`:'';
-      return `<div class="stage-item ${cls}"><span class="stage-num ${numCls}">${isDone?'✓':s.id}</span><span class="stage-label ${labelCls}">${s.label}</span>${loopTag}</div>`;
-    }).join('');
-    const card=document.createElement('div');card.className='client-card';
-    card.innerHTML=`
-      <div class="client-card-header" style="cursor:pointer" onclick="this.parentElement.classList.toggle('collapsed')"><span class="client-name">${c.name}</span><span class="client-badge ${badgeClass}">${badgeLabel}</span><span class="client-chevron">▾</span></div>
-      <div class="client-meta"><span class="waiting-tag ${waitingClass}">${waitingLabel}</span>${daysHtml}</div>
-      <div class="roadmap"><div class="roadmap-title">Build Journey</div><div class="stage-list">${stagesHtml}</div><div style="font-size:12.5px;color:var(--text3);margin-top:10px;line-height:1.5">${c.note}</div></div>`;
-    grid.appendChild(card);
-  });
-}
-
-function renderAlerts(){
-  const zone=document.getElementById('alert-zone');
-  const hot=leads.filter(l=>effStatus(l)==='replied').sort((a,b)=>lastTouch(b)-lastTouch(a));
-  const due=followupsDue();
-  let html='';
-  if(hot.length){
-    html+=`<div class="hot-zone"><div class="hot-title">🔥 HOT — THEY REPLIED, YOUR MOVE (${hot.length})</div>`;
-    hot.forEach(l=>{
-      const d=touchDays(l);
-      html+=`<div class="hot-card">
-        <div style="flex:1;min-width:220px">
-          <div class="hot-name">${l.name}</div>
-          <div class="hot-meta">${l.niche||''}</div>
-          <div class="note-text" onclick="this.classList.toggle('open')" style="margin-top:6px;max-width:none">${l.note||''}</div>
-        </div>
-        <div style="text-align:right">
-          <div class="hot-when">${d===0?'replied TODAY':'replied '+d+'d ago'}</div>
-          <button class="alert-act" style="margin-top:8px" onclick="scrollToLead('${l.id}')">Open ↓</button>
-        </div>
-      </div>`;
-    });
-    html+=`</div>`;
-  }
-  if(due.length){
-    html+=`<div class="fu-zone"><div class="fu-title">⏰ FOLLOW-UPS DUE (${due.length})</div>`;
-    due.forEach(l=>{
-      html+=`<div class="fu-item"><span style="font-weight:500">${l.name}</span><span style="color:var(--text3)">${STATUS_LABEL[effStatus(l)]||effStatus(l)} · ${touchDays(l)}d silent</span><button class="alert-act" onclick="scrollToLead('${l.id}')">View →</button></div>`;
-    });
-    html+=`</div>`;
-  }
-  zone.innerHTML=html;
-}
-
-function scrollToLead(id){
-  filterLeads('all',document.querySelector('.filter-btn'));
-  setTimeout(()=>{
-    const row=document.getElementById('lead-row-'+id);
-    if(row)row.scrollIntoView({behavior:'smooth',block:'center'});
-  },100);
-}
-
-function icpCls(icp){
-  if(icp==='A+')return 'icp-aplus';if(icp==='A')return 'icp-a';
-  if(icp==='B+'||icp==='B')return 'icp-b';return 'icp-other';
-}
-function offerCls(offer){
-  if(offer==='GC')return 'offer-gc';if(offer==='GC+')return 'offer-gcplus';return 'offer-dba';
-}
-
-function renderPipelineStats(){
-  const eff=leads.map(l=>({l,s:effStatus(l)}));
-  const now=new Date();
-  const hot=eff.filter(x=>x.s==='replied').length;
-  const outreach=eff.filter(x=>{const c=new Date(x.l.created_at);return !isNaN(c)&&c.getMonth()===now.getMonth()&&c.getFullYear()===now.getFullYear()&&x.s!=='new'}).length;
-  const contacted=eff.filter(x=>['email_sent','replied','qualified','call_booked','signed','not_interested'].includes(x.s)).length;
-  const responded=eff.filter(x=>['replied','qualified','call_booked','signed','not_interested'].includes(x.s)).length;
-  document.getElementById('pl-hot').textContent=hot;
-  document.getElementById('pl-outreach').textContent=outreach;
-  document.getElementById('pl-resp').textContent=(contacted?Math.round(responded/contacted*100):0)+'%';
-  document.getElementById('pl-booked').textContent=eff.filter(x=>x.s==='call_booked').length;
-  document.getElementById('pl-due').textContent=followupsDue().length;
-}
-
-function getFilteredLeads(){
-  if(currentFilter==='all')return leads.filter(l=>!['skip','lost','not_interested','on_hold'].includes(effStatus(l)));
-  if(currentFilter==='action'){const due=followupsDue();return leads.filter(l=>effStatus(l)==='replied'||due.includes(l));}
-  if(currentFilter==='active')return leads.filter(l=>['email_drafted','email_sent','replied','qualified','call_booked','bounced'].includes(effStatus(l)));
-  if(currentFilter==='warm')return leads.filter(l=>['replied','qualified'].includes(effStatus(l)));
-  if(currentFilter==='GC')return leads.filter(l=>l.offer==='GC');
-  if(currentFilter==='GC+')return leads.filter(l=>l.offer==='GC+');
-  if(currentFilter==='DBA')return leads.filter(l=>l.offer==='DBA');
-  if(currentFilter==='signed')return leads.filter(l=>effStatus(l)==='signed');
-  if(currentFilter==='lost')return leads.filter(l=>['lost','not_interested'].includes(effStatus(l)));
-  if(currentFilter==='hold')return leads.filter(l=>['on_hold','skip'].includes(effStatus(l)));
-  return leads;
-}
-
-function renderLeads(){
-  renderPipelineStats();
-  renderAlerts();
-  const container=document.getElementById('leads-container');
-  const filtered=sortByPriority(getFilteredLeads());
-  if(!filtered.length){container.innerHTML='<div class="empty-state">No leads in this filter.</div>';return;}
-  let html=`<table class="leads-table"><thead><tr>
-    <th>Name</th><th>Niche</th><th>Offer</th><th>ICP</th><th>Status</th>
-    <th>Days</th><th>Last Note</th><th>Actions</th>
-  </tr></thead><tbody>`;
-  filtered.forEach(l=>{
-    const days=touchDays(l);
-    html+=`<tr id="lead-row-${l.id}">
-      <td style="font-weight:500;white-space:nowrap">${l.name}</td>
-      <td style="color:var(--text2);max-width:280px;line-height:1.5">${l.niche||'—'}</td>
-      <td><span class="offer-pill ${offerCls(l.offer)}">${l.offer}</span></td>
-      <td><span class="icp-pill ${icpCls(l.icp)}">${l.icp||'—'}</span></td>
-      <td><span class="stage-pill ${STATUS_CLS[effStatus(l)]||'s1'}">${STATUS_LABEL[effStatus(l)]||effStatus(l)}</span></td>
-      <td style="color:var(--text3);white-space:nowrap">${days}d ago</td>
-      <td><span class="note-text" onclick="this.classList.toggle('open')">${l.note||'—'}</span></td>
-      <td>
-        <div class="lead-actions">
-          <button class="lead-action-btn" onclick="toggleEditPanel('${l.id}')">Edit</button>
-        </div>
-        <div class="edit-panel" id="ep-${l.id}">
-          <div class="edit-panel-title">UPDATE LEAD</div>
-          <div class="edit-grid">
-            <div class="edit-field"><label>Stage</label>
-              <select id="es-${l.id}">
-                ${STAGE_LABELS.slice(1).map((sl,i)=>`<option value="${i+1}" ${l.stage===i+1?'selected':''}>${i+1}. ${sl}</option>`).join('')}
-              </select>
-            </div>
-            <div class="edit-field"><label>Action Date</label>
-              <input type="date" id="ed-${l.id}" value="${l.last_action||todayISO()}"/>
-            </div>
-            <div class="edit-field"><label>Note</label>
-              <input type="text" id="en-${l.id}" value="${l.note||''}" placeholder="What happened?"/>
-            </div>
-          </div>
-          <div class="edit-btns">
-            <button class="save" onclick="saveLeadEdit('${l.id}')">Save</button>
-            <button onclick="toggleEditPanel('${l.id}')">Cancel</button>
-          </div>
-        </div>
-      </td>
-    </tr>`;
-  });
-  html+=`</tbody></table>`;
-  container.innerHTML=html;
-}
-
-function toggleEditPanel(id){
-  document.querySelectorAll('.edit-panel').forEach(ep=>{if(ep.id!=='ep-'+id)ep.classList.remove('open')});
-  document.getElementById('ep-'+id).classList.toggle('open');
-}
-
-async function saveLeadEdit(id){
-  const lead=leads.find(l=>l.id===id);if(!lead)return;
-  lead.stage=parseInt(document.getElementById('es-'+id).value);
-  lead.last_action=document.getElementById('ed-'+id).value;
-  lead.note=document.getElementById('en-'+id).value;
-  await saveLead(lead);
-  document.getElementById('ep-'+id).classList.remove('open');
-  renderLeads();
-}
-
-function filterLeads(filter,btn){
-  currentFilter=filter;
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-  renderLeads();
-}
-
-function toggleAddForm(){
-  const form=document.getElementById('add-lead-form');
-  form.classList.toggle('open');
-  if(form.classList.contains('open')){
-    document.getElementById('fl-date').value=todayISO();
-  }
-}
-
-async function addLead(){
-  const name=document.getElementById('fl-name').value.trim();
-  if(!name){alert('Name is required');return;}
-  const lead={
-    id:uid(),name,
-    niche:document.getElementById('fl-niche').value.trim(),
-    offer:document.getElementById('fl-offer').value,
-    source:document.getElementById('fl-source').value,
-    channel:document.getElementById('fl-channel').value,
-    icp:document.getElementById('fl-icp').value,
-    stage:parseInt(document.getElementById('fl-stage').value),
-    note:document.getElementById('fl-note').value.trim(),
-    last_action:document.getElementById('fl-date').value||todayISO(),
-    created_at:new Date().toISOString(),
-  };
-  leads.unshift(lead);
-  await saveLead(lead);
-  document.getElementById('add-lead-form').classList.remove('open');
-  ['fl-name','fl-niche','fl-note'].forEach(id=>{document.getElementById(id).value='';});
-  renderLeads();
-}
-
-// ═══════════════ TODAY — INTELLIGENCE LAYER ═══════════════
-// Scoring formula (from research):
-// Score = 10·MOT + 7·RU + 4·RGH + 2·RB + 3R + 2U + 2B + S − E
-// MOT=Money on table, RU=Revenue unblocking, RGH=Revenue habit, RB=Revenue building
-
-let checkinState={emergency:null,outreach:null,clientWaiting:null,date:null};
-let completedToday=[];
-
-function loadCheckin(){
-  try{
-    const saved=JSON.parse(localStorage.getItem('gc_checkin')||'{}');
-    if(saved.date===todayISO()){checkinState=saved;}
-    else{checkinState={emergency:null,outreach:null,clientWaiting:null,date:todayISO()};}
-    completedToday=JSON.parse(localStorage.getItem('gc_completed_'+todayISO())||'[]');
-  }catch(e){}
-}
-function saveCheckin(){
-  checkinState.date=todayISO();
-  try{localStorage.setItem('gc_checkin',JSON.stringify(checkinState));}catch(e){}
-}
-function markCompletedToday(id){
-  if(!completedToday.includes(id))completedToday.push(id);
-  try{localStorage.setItem('gc_completed_'+todayISO(),JSON.stringify(completedToday));}catch(e){}
-}
-
-// Build a scored candidate list from leads + priority tasks
-function buildCandidates(){
-  const candidates=[];
-
-  // 1. LEADS → scored by stage + days cold
-  leads.forEach(l=>{
-    const st=effStatus(l);
-    if(['signed','lost','not_interested','skip','on_hold','new'].includes(st))return;
-    if(completedToday.includes('lead-'+l.id))return;
-    const days=touchDays(l);
-    let type,typeMult,R,U;
-    if(st==='replied'){type='MOT';typeMult=10;R=5;U=Math.min(5,3+Math.floor(days/2));}
-    else if(st==='qualified'||st==='call_booked'){type='MOT';typeMult=10;R=5;U=Math.min(5,2+Math.floor(days/3));}
-    else if(st==='email_drafted'){type='MOT';typeMult=10;R=4;U=4;}
-    else if(st==='email_sent'){if(days<5)return;type='RGH';typeMult=4;R=3;U=Math.min(5,2+Math.floor(days/3));}
-    else if(st==='bounced'){type='RGH';typeMult=4;R=3;U=2;}
-    else {return;}
-    const B=0,S=1,E=1; // pipeline nudges are tiny-effort
-    const score=typeMult+3*R+2*U+2*B+S-E;
-    const verb=st==='email_drafted'?'Send drafted email to ':st==='replied'?'Reply to ':st==='bounced'?'Instagram DM ':'Follow up with ';
-    candidates.push({
-      id:'lead-'+l.id,
-      kind:'lead',
-      title:verb+l.name,
-      type,score,days,
-      meta:(l.niche||'')+' · '+(STATUS_LABEL[st]||st)+(l.offer?' · '+l.offer:''),
-      why:buildWhy(type,l,days),
-      isHot:st==='replied'||st==='qualified',
-    });
-  });
-
-  // 2. CLIENTS waiting on you (delivery = revenue unblocking)
-  if(checkinState.clientWaiting==='yes'){
-    CLIENTS.forEach(c=>{
-      if(c.waitingOn==='you'&&!completedToday.includes('client-'+c.id)){
-        const days=c.stuckSince?daysSince(c.stuckSince):0;
-        const score=7+3*4+2*Math.min(5,2+Math.floor(days/3))+2*1+2-1;
-        candidates.push({
-          id:'client-'+c.id,kind:'client',
-          title:'Move '+c.name+' forward',
-          type:'RU',score,days,
-          meta:'Client delivery · '+STAGES_CLIENT[c.currentStage-1].label,
-          why:c.name+' is blocked waiting on you. Delivery delays risk retention — and retention is revenue.',
-          isHot:true,
-        });
-      }
-    });
-  }
-
-  // 2.5 STRATEGY PROJECT steps (active projects, open tasks)
-  (STRATEGY||[]).forEach(p=>{
-    if(p.status!=='active')return;
-    (p.tasks||[]).forEach(t=>{
-      if(t.status==='done')return;
-      if(completedToday.includes('sp-'+t.id))return;
-      const type=p.mapping==='client'?'RU':'RB';
-      let score=(TYPE_W[type]||2)+3*1+2*0.5-2;
-      if(p.priority==='P1')score+=2;
-      candidates.push({
-        id:'sp-'+t.id,kind:'strategy',
-        title:t.title,
-        type,score:Math.round(score*10)/10,days:0,effort:2,
-        meta:(p.vertical||'')+' · '+(p.client_name||'Internal')+' · '+p.name,
-        why:'Strategy step in '+p.name+'. Compounds toward the north star — but money tasks above always come first.',
-      });
-    });
-  });
-
-  // 3. DAILY OUTREACH habit (if not done today)
-  if(checkinState.outreach==='no'){
-    candidates.push({
-      id:'habit-outreach',kind:'habit',
-      title:'Do your daily outreach — 10 DMs + 5 emails',
-      type:'RGH',score:4+3*3+2*5+0+1-2,days:0,
-      meta:'Sales habit · Fills tomorrow\'s pipeline',
-      why:'Outreach is your daily revenue-generating habit. Skip it and the pipeline dries up in 2 weeks. Non-negotiable.',
-      isHot:false,
-    });
-  }
-
-  // 4. SCORED WAR ROOM TASKS (live from Supabase)
-  TASKS.forEach(t=>{
-    if(!taskEligible(t))return;
-    if(completedToday.includes('task-'+t.id))return;
-    const esc=t.priority_type==='ESCAPE';
-    candidates.push({
-      id:'task-'+t.id,kind:'task',
-      title:t.title,
-      type:t.priority_type,score:taskScore(t),days:0,effort:Number(t.effort||2),
-      meta:(t.vertical||'')+(t.project?' · '+t.project:'')+(t.client?' · '+t.client:''),
-      why:esc?'🪤 Escape hatch. You are hiding — do the top money task first.':(t.sub||''),
-      isHot:t.priority_type==='MOT',
-    });
-  });
-
-  // DEPENDENCY PASS — a blocked task's urgency flows upstream to its blockers
-  TASKS.forEach(t=>{
-    if(t.lane!=='scored')return;
-    const st=(taskState[t.id]?.status)||t.status||'todo';
-    if(st!=='todo'&&st!=='wip')return;
-    const open=blockersOf(t).filter(b=>!blockerDone(b));
-    if(!open.length)return;
-    const s=taskScore(t);
-    open.forEach(b=>{
-      const cid=b.startsWith('sp-')?b:'task-'+b;
-      const cand=candidates.find(c=>c.id===cid);
-      if(cand){if(s>cand.score)cand.score=s;cand.why='🔓 Unlocks: '+t.title+'. '+cand.why;}
-    });
-  });
-
-  candidates.sort((a,b)=>b.score-a.score||((a.effort||1)-(b.effort||1))||a.days-b.days);
-  return candidates;
-}
-
-function buildWhy(type,lead,days){
-  if(type==='MOT'){
-    return 'Money on the table. '+lead.name+' is at "'+(STATUS_LABEL[effStatus(lead)]||'')+'" — '+days+' days since last action. This is the closest thing to cash you have. Close it.';
-  }
-  if(type==='RU'){
-    return lead.name+' replied and is waiting. '+days+' days cold. Every day silent kills the deal. Respond now.';
-  }
-  if(type==='RGH'){
-    return lead.name+' is early stage. Keep the pipeline moving — follow up to push them forward.';
-  }
-  return lead.name+' on hold for '+days+' days. Time to re-engage.';
-}
-
-function typeTagCls(type){
-  return type==='MOT'?'ot-mot':type==='RU'?'ot-ru':type==='RGH'?'ot-rgh':'ot-rb';
-}
-function typeTagLabel(type){
-  return type==='MOT'?'💰 Money on table':type==='RU'?'🔓 Revenue unblocking':type==='RGH'?'🔁 Revenue habit':'🏗 Revenue building';
-}
-
-function renderCheckin(){
-  const done=checkinState.emergency!==null&&checkinState.outreach!==null&&checkinState.clientWaiting!==null;
-  const el=document.getElementById('today-checkin');
-  function opt(field,val,label){
-    const sel=checkinState[field]===val;
-    const cls=sel?(val==='yes'?'sel-yes':'sel-no'):'';
-    return `<button class="checkin-opt ${cls}" onclick="setCheckin('${field}','${val}')">${label}</button>`;
-  }
-  el.innerHTML=`
-    <div class="checkin-card">
-      <div class="checkin-title">☀️ MORNING CHECK-IN — ${today()}</div>
-      <div class="checkin-q">
-        <span class="checkin-label">Any emergency today? (client critical / team blocker / personal)</span>
-        <div class="checkin-btns">${opt('emergency','yes','Yes')}${opt('emergency','no','No')}</div>
-      </div>
-      <div class="checkin-q">
-        <span class="checkin-label">Have you done your daily outreach yet?</span>
-        <div class="checkin-btns">${opt('outreach','yes','Yes')}${opt('outreach','no','Not yet')}</div>
-      </div>
-      <div class="checkin-q">
-        <span class="checkin-label">Any client waiting on YOU right now?</span>
-        <div class="checkin-btns">${opt('clientWaiting','yes','Yes')}${opt('clientWaiting','no','No')}</div>
-      </div>
-    </div>`;
-}
-
-function setCheckin(field,val){
-  checkinState[field]=val;
-  saveCheckin();
-  renderCheckin();
-  renderOneThing();
-  renderQueue();
-}
-
-function renderOneThing(){
-  const el=document.getElementById('today-onething');
-  const checkinDone=checkinState.emergency!==null&&checkinState.outreach!==null&&checkinState.clientWaiting!==null;
-
-  if(!checkinDone){
-    el.innerHTML=`<div class="onething-card" style="border-color:var(--border2);box-shadow:none">
-      <div class="onething-label">🎯 YOUR ONE THING</div>
-      <div class="onething-why" style="margin-bottom:0">Answer the 3 check-in questions above and I'll tell you exactly what to do first today.</div>
-    </div>`;
-    return;
-  }
-
-  // Emergency override
-  if(checkinState.emergency==='yes'){
-    el.innerHTML=`<div class="emergency-card">
-      <div class="et">⚠️ EMERGENCY MODE</div>
-      <div class="es">You flagged an emergency. Handle it first — it overrides everything. Once resolved, come back and switch it to "No" to get your next priority.</div>
-    </div>`;
-    return;
-  }
-
-  const candidates=buildCandidates();
-  if(!candidates.length){
-    el.innerHTML=`<div class="onething-card">
-      <div class="onething-label">🎯 YOUR ONE THING</div>
-      <div class="onething-task">You're clear. ✅</div>
-      <div class="onething-why">Nothing urgent in the queue. Good place to work on revenue-building — content, blogs, or strategy.</div>
-    </div>`;
-    return;
-  }
-
-  const top=candidates[0];
-  el.innerHTML=`<div class="onething-card">
-    <div class="onething-label">🎯 YOUR ONE THING — DO THIS FIRST</div>
-    <div class="onething-task">${top.title}</div>
-    <div class="onething-meta">
-      <span class="onething-tag ${typeTagCls(top.type)}">${typeTagLabel(top.type)}</span>
-      <span style="font-size:12.5px;color:var(--text3)">${top.meta}</span>
-      <span class="onething-score">Score: ${top.score}</span>
-    </div>
-    <div class="onething-why">${top.why}</div>
-    <div class="onething-actions">
-      <button class="onething-done" onclick="completeOneThing('${top.id}')">✓ Done — show next</button>
-      <button class="onething-why-btn" onclick="alert('Scoring: ${typeTagLabel(top.type)} base + urgency from ${top.days} days waiting. Money-on-table always ranks highest, then revenue-unblocking, then habits, then building.')">Why this?</button>
-    </div>
-  </div>`;
-}
-
-function completeOneThing(id){
-  markCompletedToday(id);
-  if(id.startsWith('task-')){
-    const tid=id.slice(5);
-    if(taskState[tid]){const old=taskState[tid].status;taskState[tid].status='done';saveTask(tid,old);}
-  }
-  if(id.startsWith('sp-')){
-    const sid=id.slice(3);let st;
-    STRATEGY.forEach(p=>p.tasks.forEach(t=>{if(String(t.id)===sid)st=t;}));
-    if(st){st.status='done';setSyncStatus('syncing');
-      sbFetch('/rest/v1/strategy_project_tasks?id=eq.'+sid,{method:'PATCH',body:JSON.stringify({status:'done',updated_at:new Date().toISOString()})})
-        .then(()=>setSyncStatus('ok')).catch(e=>{setSyncStatus('error');console.error(e);});
-      renderStrategy();}
-  }
-  renderOneThing();
-  renderQueue();
+/* ============ KINGDOM VIEW ============ */
+function spProgress(p){const done=(p.tasks||[]).filter(t=>t.status==='done').length;const tot=(p.tasks||[]).length;return{done,tot,pct:tot?Math.round(done/tot*100):0};}
+function renderKingdom(){
   updateStats();
-}
-
-function renderQueue(){
-  const el=document.getElementById('today-queue');
-  const checkinDone=checkinState.emergency!==null&&checkinState.outreach!==null&&checkinState.clientWaiting!==null;
-  if(!checkinDone||checkinState.emergency==='yes'){el.innerHTML='';return;}
-  const candidates=buildCandidates();
+  const c=document.getElementById('kingdom-container');
   let html='';
-  if(candidates.length>1){
-    const next=candidates.slice(1,5);
-    html+=`<div class="queue-title">Next in queue</div>`;
-    next.forEach((c,i)=>{
-      html+=`<div class="queue-item">
-        <span class="queue-rank">${i+2}</span>
-        <div class="queue-body">
-          <div class="queue-task">${c.title}<span class="queue-tag ${typeTagCls(c.type)}">${c.type}</span></div>
-          <div class="queue-meta">${c.meta}</div>
+  MINISTRY_ORDER.forEach(key=>{
+    const m=MINISTRIES.find(x=>x.key===key);if(!m)return;
+    const wt=TASKS.filter(t=>minOf(t)===key&&t.lane!=='backlog');
+    const wtDone=wt.filter(t=>(taskState[t.id]?.status||'todo')==='done').length;
+    const projs=(STRATEGY||[]).filter(p=>(p.ministry||'')===key);
+    const leaderInit=m.leader.name.split(' ').map(w=>w[0]).slice(0,2).join('');
+    let projRows='';
+    projs.forEach(p=>{
+      const pr=spProgress(p);
+      const badge=p.mapping==='client'?`<span class="mp-badge mpb-client">${p.client_name||'Client'}</span>`:`<span class="mp-badge mpb-internal">Internal</span>`;
+      const statusBadge=p.status==='planned'?'<span class="mp-badge mpb-planned">Planned</span>':p.status==='on_hold'?'<span class="mp-badge mpb-hold">On Hold</span>':'';
+      projRows+=`<div class="mp-row"><span class="mp-name">${p.name}</span>${badge}${statusBadge}<div class="mp-bar"><div class="mp-bar-fill" style="width:${pr.pct}%"></div></div><span class="mp-count">${pr.done}/${pr.tot}</span></div>`;
+    });
+    if(!projs.length&&wt.length){projRows=`<div class="mp-row"><span class="mp-name" style="color:var(--text3)">${wt.length} task${wt.length>1?'s':''} · no project mapped</span></div>`;}
+    if(!projs.length&&!wt.length){projRows=`<div class="mp-row"><span class="mp-name" style="color:var(--text3)">No active work yet</span></div>`;}
+    const depChips=m.deputies.map(d=>{const di=d.name.split(' ').map(w=>w[0]).slice(0,2).join('');return `<div class="leader-chip"><div class="leader-photo deputy">${d.photo?`<img src="${d.photo}" style="width:100%;height:100%;border-radius:50%;object-fit:cover"/>`:di}</div><div class="leader-info"><div class="leader-role">Deputy</div><div class="leader-name">${d.name}</div></div></div>`;}).join('');
+    html+=`<div class="ministry-card">
+      <div class="ministry-head" onclick="this.parentElement.classList.toggle('collapsed')">
+        <span class="ministry-icon">${m.icon}</span>
+        <div class="ministry-titlewrap"><div class="ministry-name">${m.name}</div><div class="ministry-tier ${m.tier==='money'?'tier-money':'tier-supply'}">${m.tier==='money'?'⚔ Money-maker':'🛡 Supply line'}</div></div>
+        <div class="ministry-stat">${wtDone}/${wt.length} tasks · ${projs.length} project${projs.length!==1?'s':''}</div>
+        <span class="ministry-chevron">▾</span>
+      </div>
+      <div class="ministry-body">
+        <div class="ministry-leaders">
+          <div class="leader-chip"><div class="leader-photo">${m.leader.photo?`<img src="${m.leader.photo}" style="width:100%;height:100%;border-radius:50%;object-fit:cover"/>`:leaderInit}</div><div class="leader-info"><div class="leader-role">Minister</div><div class="leader-name">${m.leader.name}</div></div></div>
+          ${depChips}
         </div>
-        <span class="queue-score">${c.score}</span>
-      </div>`;
-    });
-  }
-  const commits=TASKS.filter(t=>t.lane==='commitment');
-  if(commits.length){
-    const heavy=candidates.length&&candidates[0].score>=20;
-    html+=heavy
-      ?`<div class="queue-title" style="margin-top:18px">🔁 COMMITMENTS — 🔒 locked: clear the money tasks above first</div>`
-      :`<div class="queue-title" style="margin-top:18px">🔁 COMMITMENTS — ✅ queue is light, run them now</div>`;
-    [['daily','📅 Daily'],['weekly','🗓 Weekly — resets Monday'],['monthly','📆 Monthly — resets the 1st']].forEach(([cad,label])=>{
-      const list=commits.filter(t=>(t.cadence||'daily')===cad);
-      if(!list.length)return;
-      html+=`<div class="queue-meta" style="margin:10px 0 4px;letter-spacing:.6px;text-transform:uppercase">${label}</div>`;
-      list.forEach(t=>{
-        const done=commitDone(t);
-        html+=`<div class="queue-item ${heavy&&!done?'commit-locked':''}" style="cursor:pointer;${done?'opacity:0.45':''}" onclick="toggleCommit('${t.id}')">
-          <span class="queue-rank">${done?'✓':'○'}</span>
-          <div class="queue-body">
-            <div class="queue-task" style="${done?'text-decoration:line-through':''}">${t.title}</div>
-            <div class="queue-meta">${t.sub||''}</div>
-          </div>
-        </div>`;
-      });
-    });
-  }
-  el.innerHTML=html;
-}
-let COMMIT_EVENTS=[];
-async function loadCommitEvents(){
-  try{
-    const since=new Date();since.setDate(since.getDate()-35);
-    COMMIT_EVENTS=await sbFetch('/rest/v1/warroom_task_events?new_status=eq.done_commit&created_at=gte.'+since.toISOString()+'&select=task_id,created_at');
-  }catch(e){COMMIT_EVENTS=[];console.error('commit events',e);}
-}
-function periodStart(cad){
-  const d=new Date();d.setHours(0,0,0,0);
-  if(cad==='weekly'){const day=(d.getDay()+6)%7;d.setDate(d.getDate()-day);}
-  else if(cad==='monthly'){d.setDate(1);}
-  return d;
-}
-function commitDone(t){
-  const ps=periodStart(t.cadence||'daily');
-  return COMMIT_EVENTS.some(ev=>ev.task_id===t.id&&new Date(ev.created_at)>=ps);
-}
-async function toggleCommit(id){
-  const t=TASKS.find(x=>x.id===id);if(!t)return;
-  const ps=periodStart(t.cadence||'daily');
-  setSyncStatus('syncing');
-  try{
-    if(commitDone(t)){
-      await sbFetch('/rest/v1/warroom_task_events?task_id=eq.'+encodeURIComponent(id)+'&new_status=eq.done_commit&created_at=gte.'+ps.toISOString(),{method:'DELETE',headers:{'Prefer':'return=minimal'}});
-      COMMIT_EVENTS=COMMIT_EVENTS.filter(ev=>!(ev.task_id===id&&new Date(ev.created_at)>=ps));
-    }else{
-      await sbFetch('/rest/v1/warroom_task_events',{method:'POST',headers:{'Prefer':'return=minimal'},body:JSON.stringify({task_id:id,new_status:'done_commit',changed_by:'dashboard',note:(t.cadence||'daily')+' commitment done'})});
-      COMMIT_EVENTS.push({task_id:id,created_at:new Date().toISOString()});
-    }
-    setSyncStatus('ok');
-  }catch(e){setSyncStatus('error');console.error(e);}
-  renderQueue();
-}
-
-function renderToday(){
-  loadCheckin();
-  renderCheckin();
-  renderOneThing();
-  renderQueue();
-}
-
-// ═══════════════ STRATEGY PROJECTS ═══════════════
-let STRATEGY=[];
-const SP_OPEN=new Set();
-const SP_STATUS_CYCLE=['not_started','in_progress','done'];
-const SP_STATUS_LABEL={not_started:'To Do',in_progress:'In Progress',done:'Done'};
-
-async function loadStrategy(){
-  try{
-    const projects=await sbFetch('/rest/v1/strategy_projects?select=*&order=created_at.asc');
-    const tasks=await sbFetch('/rest/v1/strategy_project_tasks?select=*&order=step_order.asc');
-    const items=await sbFetch('/rest/v1/strategy_action_items?select=*&order=item_order.asc');
-    STRATEGY=projects.map(p=>({...p,tasks:tasks.filter(t=>t.project_id===p.id).map(t=>({...t,items:items.filter(i=>i.task_id===t.id)}))}));
-    if(STRATEGY.length&&SP_OPEN.size===0)SP_OPEN.add(STRATEGY[0].id);
-  }catch(e){STRATEGY=[];console.error('strategy load',e);}
-}
-
-function renderStrategy(){
-  const c=document.getElementById('strategy-container');
-  if(!STRATEGY.length){c.innerHTML='<div class="empty-state">No strategy projects yet.</div>';return;}
-  let html='<div class="queue-title" style="margin-bottom:14px">🎯 NORTH STAR: 100 clients or ₹1Cr/month — every project below feeds it</div>';
-  const VORDER=['Sales','Marketing','Delivery','Innovation','CCC','Support'];
-  const byVert={};
-  STRATEGY.forEach(p=>{const v=p.vertical||'Marketing';(byVert[v]=byVert[v]||[]).push(p);});
-  VORDER.filter(v=>byVert[v]).forEach(v=>{
-    html+=`<div class="queue-title" style="margin:18px 0 10px">${v==='Delivery'?'🚚':v==='Marketing'?'📣':v==='Sales'?'💰':'🧪'} ${v.toUpperCase()} — ${byVert[v].length} project${byVert[v].length>1?'s':''}</div>`;
-    html+=renderProjectCards(byVert[v]);
+        <div class="ministry-projects">${projRows}</div>
+      </div>
+    </div>`;
   });
   c.innerHTML=html;
 }
-function renderProjectCards(list){
-  let html='';
-  list.forEach(p=>{
-    const done=p.tasks.filter(t=>t.status==='done').length;
-    const pct=p.tasks.length?Math.round(done/p.tasks.length*100):0;
-    const mapBadge=p.mapping==='client'?`<span class="sp-badge client">&#128100; ${p.client_name||'Client'}</span>`:`<span class="sp-badge internal">&#127970; Internal</span>`;
-    const open=SP_OPEN.has(p.id);
-    html+=`<div class="sp-card">
-      <div class="sp-head" onclick="toggleProject(${p.id})">
-        <div style="display:flex;align-items:center;gap:12px;min-width:0">
-          <span class="sp-chevron ${open?'open':''}">&#8250;</span>
-          <div class="sp-title">${p.name}</div>
-        </div>
-        <div class="sp-badges">${mapBadge}${p.status==='planned'?'<span class="sp-badge" style="color:#8ab4f8;border-color:rgba(138,180,248,.35)">📋 PLANNED</span>':p.status==='on_hold'?'<span class="sp-badge" style="color:#f28b82;border-color:rgba(242,139,130,.35)">⏸ ON HOLD</span>':''}<span class="sp-badge prio">${p.priority||'P1'}</span></div>
-      </div>
-      <div class="sp-meta-row" onclick="toggleProject(${p.id})">
-        <div class="sp-progress"><div class="sp-progress-bar" style="width:${pct}%"></div></div>
-        <div class="sp-stepcount">${done}/${p.tasks.length} STEPS &middot; ${pct}%</div>
-      </div>`;
-    if(open){
-      html+=`<div class="sp-body">`;
-      if(p.description)html+=`<div class="sp-desc">${p.description}</div>`;
-      p.tasks.forEach(t=>{
-        const cls=t.status==='done'?'done':t.status==='in_progress'?'wip':'';
-        const dot=t.status==='done'?'&#10003;':t.step_order;
-        const items=t.items||[];
-        const itemsHtml=items.length?`<div class="sp-checklist">`+items.map(i=>`<div class="sp-check ${i.done?'checked':''}" onclick="toggleItem(${i.id})"><span class="sp-checkbox">${i.done?'&#10003;':''}</span><span class="sp-check-label">${i.title}</span></div>`).join('')+`</div>`:'';
-        html+=`<div class="sp-step ${cls}">
-          <div class="sp-dot" onclick="cycleStep(${t.id})" title="Click to change status">${dot}</div>
-          <div class="sp-step-body">
-            <div class="sp-step-title" onclick="cycleStep(${t.id})">${t.title}</div>
-            ${t.detail?`<div class="sp-detail-toggle" onclick="toggleDetail(${t.id})">&#9092; details</div><div class="sp-step-detail" id="spd-${t.id}">${t.detail}</div>`:''}
-            ${itemsHtml}
-          </div>
-          <div class="sp-step-status" onclick="cycleStep(${t.id})">${SP_STATUS_LABEL[t.status]}</div>
-        </div>`;
-      });
-      html+=`</div>`;
-    }
-    html+=`</div>`;
-  });
-  return html;
-}
 
-function toggleProject(pid){
-  if(SP_OPEN.has(pid))SP_OPEN.delete(pid);else SP_OPEN.add(pid);
-  renderStrategy();
-}
-
-async function toggleItem(itemId){
-  let item;
-  STRATEGY.forEach(p=>p.tasks.forEach(t=>(t.items||[]).forEach(i=>{if(i.id===itemId)item=i;})));
-  if(!item)return;
-  item.done=!item.done;
-  renderStrategy();
-  setSyncStatus('syncing');
-  try{
-    await sbFetch('/rest/v1/strategy_action_items?id=eq.'+itemId,{method:'PATCH',body:JSON.stringify({done:item.done,updated_at:new Date().toISOString()})});
-    setSyncStatus('ok');
-  }catch(e){setSyncStatus('error');console.error(e);}
-}
-
-function toggleDetail(taskId){
-  const el=document.getElementById('spd-'+taskId);
-  if(el)el.classList.toggle('open');
-}
-
-async function cycleStep(taskId){  let task,proj;
-  STRATEGY.forEach(p=>p.tasks.forEach(t=>{if(t.id===taskId){task=t;proj=p;}}));
-  if(!task)return;
-  const cur=SP_STATUS_CYCLE.indexOf(task.status);
-  task.status=SP_STATUS_CYCLE[(cur+1)%SP_STATUS_CYCLE.length];
-  renderStrategy();
-  setSyncStatus('syncing');
-  try{
-    await sbFetch('/rest/v1/strategy_project_tasks?id=eq.'+taskId,{method:'PATCH',body:JSON.stringify({status:task.status,updated_at:new Date().toISOString()})});
-    setSyncStatus('ok');
-  }catch(e){setSyncStatus('error');console.error(e);}
-}
-
-function renderPulse(){
-  const el=document.getElementById('pulse-strip');if(!el)return;
-  const hot=leads.filter(l=>effStatus(l)==='replied').length;
-  const props=leads.filter(l=>['qualified','call_booked'].includes(effStatus(l))).length;
-  const pay=TASKS.filter(t=>t.lane==='scored'&&t.priority_type==='MOT'&&(taskState[t.id]?.status||'todo')!=='done').length;
-  let prom=0;(STRATEGY||[]).forEach(p=>{if(p.status!=='active')return;(p.tasks||[]).forEach(t=>{if(t.status!=='done'&&(t.detail||'').includes('PROMISED'))prom++;});});
-  el.innerHTML=`<div class="pulse-strip">
-    <span>💰 <b>${hot}</b> hot replies</span>
-    <span>📨 <b>${props}</b> proposals out</span>
-    <span>🏦 <b>${pay}</b> payment${pay===1?'':'s'} awaited</span>
-    <span>🤝 <b>${prom}</b> promise${prom===1?'':'s'} due this week</span>
+/* ============ COUNCIL VIEW ============ */
+function memberCard(m,extraCls){
+  const init=m.name.split(' ').map(w=>w[0]).slice(0,2).join('');
+  const tag=m.tag==='lead'?'<span class="cm-tag lead">Lead</span>':m.tag==='deputy'?'<span class="cm-tag deputy">Deputy</span>':'';
+  return `<div class="council-member ${extraCls||''}">
+    <div class="cm-photo">${m.photo?`<img src="${m.photo}" style="width:100%;height:100%;border-radius:50%;object-fit:cover"/>`:init}</div>
+    <div class="cm-name">${m.name}</div><div class="cm-role">${m.role||''}</div>${tag}
   </div>`;
 }
-
-async function init(){
-  setSyncStatus('syncing');
-  try{
-    await Promise.all([loadTasks(),loadLeads(),loadStrategy(),loadCommitEvents()]);
-    TASKS.forEach(t=>ensureTask(t.id));
-    renderBoard();updateStats();renderClients();renderLeads();
-    renderToday();renderPulse();
-    setSyncStatus('ok');
-  }catch(e){setSyncStatus('error');console.error(e);}
+function renderCouncil(){
+  const c=document.getElementById('council-container');
+  let html='';
+  html+=`<div class="council-section"><div class="council-section-title">👑 The Crown</div><div class="council-section-sub">The seat of command. Final word rests with the King.</div><div class="council-grid">${CROWN_MEMBERS.map(m=>memberCard(m,'crown')).join('')}</div></div>`;
+  html+=`<div class="council-section"><div class="council-section-title">🪞 The Visionary Council</div><div class="council-section-sub">The guiding light — keeps the vision intact, the goal felt as already achieved.</div><div class="council-grid">${VISIONARY_MEMBERS.map(m=>memberCard(m,'visionary')).join('')}</div></div>`;
+  html+=`<div class="council-section"><div class="council-section-title">🏛️ The Cabinet — 6 Ministries</div><div class="council-section-sub">Each ministry led by a Minister and supported by Deputies.</div>`;
+  MINISTRY_ORDER.forEach(key=>{const m=MINISTRIES.find(x=>x.key===key);if(!m)return;
+    const members=[{name:m.leader.name,role:m.name+' · Minister',photo:m.leader.photo,tag:'lead'},...m.deputies.map(d=>({name:d.name,role:m.name+' · Deputy',photo:d.photo,tag:'deputy'}))];
+    html+=`<div style="margin-bottom:18px"><div style="font-size:13px;color:var(--text2);letter-spacing:1px;margin-bottom:10px">${m.icon} ${m.name.toUpperCase()}</div><div class="council-grid">${members.map(x=>memberCard(x,'')).join('')}</div></div>`;
+  });
+  html+=`</div>`;
+  html+=`<div class="council-section"><div class="council-section-title">🪑 The Full Council</div><div class="council-section-sub">The minds that line the walls — called when their domain is in play.</div><div class="council-grid">${FULL_COUNCIL.map(n=>memberCard({name:n,role:'',photo:FC_PHOTOS[n]||''},'')).join('')}</div></div>`;
+  c.innerHTML=html;
 }
+
+/* ============ VISION VIEW ============ */
+function renderVision(){
+  const c=document.getElementById('vision-container');
+  let html='';
+  html+=`<div class="vision-goal"><div class="vision-goal-kicker">The North Star · already ours</div><div class="vision-goal-num">₹1Cr / month</div><div class="vision-goal-line">by December 2026 · high margin · sustainable</div><div class="vision-goal-sub">~40–60 recurring clients retained · we operate as if it is already done</div></div>`;
+  html+=`<div class="vision-pillars">${VISION_PILLARS.map(p=>`<div class="vision-pillar"><div class="vision-pillar-icon">${p.icon}</div><div class="vision-pillar-title">${p.title}</div><div class="vision-pillar-text">${p.text}</div></div>`).join('')}</div>`;
+  html+=`<div class="queue-title">🪞 The Visionary Council speaks</div>`;
+  html+=VISION_AFFIRMATIONS.map(a=>`<div class="vision-affirm"><div class="vision-affirm-q">“${a.q}”</div><div class="vision-affirm-by">— ${a.by}</div></div>`).join('');
+  c.innerHTML=html;
+}
+
+/* ============ PIPELINE (preserved) ============ */
+function getAlert(lead){const rule=ALERT_RULES[lead.stage];if(!rule)return null;const days=daysSince(lead.last_action);if(days>=rule.days)return{msg:rule.msg.replace('{d}',days),level:rule.level,days};if(days>=rule.days-1&&rule.days>1)return{msg:'Follow up due soon — '+days+'d since last action',level:'yellow',days};return null;}
+function renderAlerts(){const zone=document.getElementById('alert-zone');const hot=leads.filter(l=>effStatus(l)==='replied').sort((a,b)=>lastTouch(b)-lastTouch(a));const due=followupsDue();let html='';if(hot.length){html+=`<div class="hot-zone"><div class="hot-title">🔥 HOT — THEY REPLIED, YOUR MOVE (${hot.length})</div>`;hot.forEach(l=>{const d=touchDays(l);html+=`<div class="hot-card"><div style="flex:1;min-width:220px"><div class="hot-name">${l.name}</div><div class="hot-meta">${l.niche||''}</div><div class="note-text" onclick="this.classList.toggle('open')" style="margin-top:6px;max-width:none">${l.note||''}</div></div><div style="text-align:right"><div class="hot-when">${d===0?'replied TODAY':'replied '+d+'d ago'}</div><button class="alert-act" style="margin-top:8px" onclick="scrollToLead('${l.id}')">Open ↓</button></div></div>`;});html+=`</div>`;}if(due.length){html+=`<div class="fu-zone"><div class="fu-title">⏰ FOLLOW-UPS DUE (${due.length})</div>`;due.forEach(l=>{html+=`<div class="fu-item"><span style="font-weight:500">${l.name}</span><span style="color:var(--text3)">${STATUS_LABEL[effStatus(l)]||effStatus(l)} · ${touchDays(l)}d silent</span><button class="alert-act" onclick="scrollToLead('${l.id}')">View →</button></div>`;});html+=`</div>`;}zone.innerHTML=html;}
+function scrollToLead(id){filterLeads('all',document.querySelector('.filter-btn'));setTimeout(()=>{const row=document.getElementById('lead-row-'+id);if(row)row.scrollIntoView({behavior:'smooth',block:'center'});},100);}
+function icpCls(icp){if(icp==='A+')return 'icp-aplus';if(icp==='A')return 'icp-a';if(icp==='B+'||icp==='B')return 'icp-b';return 'icp-other';}
+function offerCls(offer){if(offer==='GC')return 'offer-gc';if(offer==='GC+')return 'offer-gcplus';return 'offer-dba';}
+function renderPipelineStats(){const eff=leads.map(l=>({l,s:effStatus(l)}));const now=new Date();const hot=eff.filter(x=>x.s==='replied').length;const outreach=eff.filter(x=>{const c=new Date(x.l.created_at);return !isNaN(c)&&c.getMonth()===now.getMonth()&&c.getFullYear()===now.getFullYear()&&x.s!=='new'}).length;const contacted=eff.filter(x=>['email_sent','replied','qualified','call_booked','signed','not_interested'].includes(x.s)).length;const responded=eff.filter(x=>['replied','qualified','call_booked','signed','not_interested'].includes(x.s)).length;document.getElementById('pl-hot').textContent=hot;document.getElementById('pl-outreach').textContent=outreach;document.getElementById('pl-resp').textContent=(contacted?Math.round(responded/contacted*100):0)+'%';document.getElementById('pl-booked').textContent=eff.filter(x=>x.s==='call_booked').length;document.getElementById('pl-due').textContent=followupsDue().length;}
+function getFilteredLeads(){if(currentFilter==='all')return leads.filter(l=>!['skip','lost','not_interested','on_hold'].includes(effStatus(l)));if(currentFilter==='action'){const due=followupsDue();return leads.filter(l=>effStatus(l)==='replied'||due.includes(l));}if(currentFilter==='active')return leads.filter(l=>['email_drafted','email_sent','replied','qualified','call_booked','bounced'].includes(effStatus(l)));if(currentFilter==='warm')return leads.filter(l=>['replied','qualified'].includes(effStatus(l)));if(currentFilter==='GC')return leads.filter(l=>l.offer==='GC');if(currentFilter==='GC+')return leads.filter(l=>l.offer==='GC+');if(currentFilter==='DBA')return leads.filter(l=>l.offer==='DBA');if(currentFilter==='signed')return leads.filter(l=>effStatus(l)==='signed');if(currentFilter==='lost')return leads.filter(l=>['lost','not_interested'].includes(effStatus(l)));if(currentFilter==='hold')return leads.filter(l=>['on_hold','skip'].includes(effStatus(l)));return leads;}
+function renderLeads(){renderPipelineStats();renderAlerts();const container=document.getElementById('leads-container');const filtered=sortByPriority(getFilteredLeads());if(!filtered.length){container.innerHTML='<div class="empty-state">No leads in this filter.</div>';return;}let html=`<table class="leads-table"><thead><tr><th>Name</th><th>Niche</th><th>Offer</th><th>ICP</th><th>Status</th><th>Days</th><th>Last Note</th><th>Actions</th></tr></thead><tbody>`;filtered.forEach(l=>{const days=touchDays(l);html+=`<tr id="lead-row-${l.id}"><td style="font-weight:500;white-space:nowrap">${l.name}</td><td style="color:var(--text2);max-width:280px;line-height:1.5">${l.niche||'—'}</td><td><span class="offer-pill ${offerCls(l.offer)}">${l.offer}</span></td><td><span class="icp-pill ${icpCls(l.icp)}">${l.icp||'—'}</span></td><td><span class="stage-pill ${STATUS_CLS[effStatus(l)]||'s1'}">${STATUS_LABEL[effStatus(l)]||effStatus(l)}</span></td><td style="color:var(--text3);white-space:nowrap">${days}d ago</td><td><span class="note-text" onclick="this.classList.toggle('open')">${l.note||'—'}</span></td><td><div class="lead-actions"><button class="lead-action-btn" onclick="toggleEditPanel('${l.id}')">Edit</button></div><div class="edit-panel" id="ep-${l.id}"><div class="edit-panel-title">UPDATE LEAD</div><div class="edit-grid"><div class="edit-field"><label>Stage</label><select id="es-${l.id}">${STAGE_LABELS.slice(1).map((sl,i)=>`<option value="${i+1}" ${l.stage===i+1?'selected':''}>${i+1}. ${sl}</option>`).join('')}</select></div><div class="edit-field"><label>Action Date</label><input type="date" id="ed-${l.id}" value="${l.last_action||todayISO()}"/></div><div class="edit-field"><label>Note</label><input type="text" id="en-${l.id}" value="${l.note||''}" placeholder="What happened?"/></div></div><div class="edit-btns"><button class="save" onclick="saveLeadEdit('${l.id}')">Save</button><button onclick="toggleEditPanel('${l.id}')">Cancel</button></div></div></td></tr>`;});html+=`</tbody></table>`;container.innerHTML=html;}
+function toggleEditPanel(id){document.querySelectorAll('.edit-panel').forEach(ep=>{if(ep.id!=='ep-'+id)ep.classList.remove('open')});document.getElementById('ep-'+id).classList.toggle('open');}
+async function saveLeadEdit(id){const lead=leads.find(l=>l.id===id);if(!lead)return;lead.stage=parseInt(document.getElementById('es-'+id).value);lead.last_action=document.getElementById('ed-'+id).value;lead.note=document.getElementById('en-'+id).value;await saveLead(lead);document.getElementById('ep-'+id).classList.remove('open');renderLeads();}
+function filterLeads(filter,btn){currentFilter=filter;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');renderLeads();}
+function toggleAddForm(){const form=document.getElementById('add-lead-form');form.classList.toggle('open');if(form.classList.contains('open'))document.getElementById('fl-date').value=todayISO();}
+async function addLead(){const name=document.getElementById('fl-name').value.trim();if(!name){alert('Name is required');return;}const lead={id:uid(),name,niche:document.getElementById('fl-niche').value.trim(),offer:document.getElementById('fl-offer').value,source:document.getElementById('fl-source').value,channel:document.getElementById('fl-channel').value,icp:document.getElementById('fl-icp').value,stage:parseInt(document.getElementById('fl-stage').value),note:document.getElementById('fl-note').value.trim(),last_action:document.getElementById('fl-date').value||todayISO(),created_at:new Date().toISOString()};leads.unshift(lead);await saveLead(lead);document.getElementById('add-lead-form').classList.remove('open');['fl-name','fl-niche','fl-note'].forEach(id=>{document.getElementById(id).value='';});renderLeads();}
+
+/* ============ CROWN VIEW ENGINE (preserved TODAY logic) ============ */
+let checkinState={emergency:null,outreach:null,clientWaiting:null,date:null};
+let completedToday=[];
+function loadCheckin(){try{const saved=JSON.parse(localStorage.getItem('gc_checkin')||'{}');if(saved.date===todayISO())checkinState=saved;else checkinState={emergency:null,outreach:null,clientWaiting:null,date:todayISO()};completedToday=JSON.parse(localStorage.getItem('gc_completed_'+todayISO())||'[]');}catch(e){}}
+function saveCheckin(){checkinState.date=todayISO();try{localStorage.setItem('gc_checkin',JSON.stringify(checkinState));}catch(e){}}
+function markCompletedToday(id){if(!completedToday.includes(id))completedToday.push(id);try{localStorage.setItem('gc_completed_'+todayISO(),JSON.stringify(completedToday));}catch(e){}}
+const CLIENTS_WAIT=[{id:'arfeen',name:'Arfeen Khan',waitingOn:'you',currentStage:6,stuckSince:null}];
+function buildCandidates(){
+  const candidates=[];
+  leads.forEach(l=>{const st=effStatus(l);if(['signed','lost','not_interested','skip','on_hold','new'].includes(st))return;if(completedToday.includes('lead-'+l.id))return;const days=touchDays(l);let type,typeMult,R,U;if(st==='replied'){type='MOT';typeMult=10;R=5;U=Math.min(5,3+Math.floor(days/2));}else if(st==='qualified'||st==='call_booked'){type='MOT';typeMult=10;R=5;U=Math.min(5,2+Math.floor(days/3));}else if(st==='email_drafted'){type='MOT';typeMult=10;R=4;U=4;}else if(st==='email_sent'){if(days<5)return;type='RGH';typeMult=4;R=3;U=Math.min(5,2+Math.floor(days/3));}else if(st==='bounced'){type='RGH';typeMult=4;R=3;U=2;}else return;const B=0,S=1,E=1;const score=typeMult+3*R+2*U+2*B+S-E;const verb=st==='email_drafted'?'Send drafted email to ':st==='replied'?'Reply to ':st==='bounced'?'Instagram DM ':'Follow up with ';candidates.push({id:'lead-'+l.id,kind:'lead',title:verb+l.name,type,score,days,meta:(l.niche||'')+' · '+(STATUS_LABEL[st]||st)+(l.offer?' · '+l.offer:''),why:buildWhy(type,l,days),isHot:st==='replied'||st==='qualified'});});
+  (STRATEGY||[]).forEach(p=>{if(p.status!=='active')return;(p.tasks||[]).forEach(t=>{if(t.status==='done')return;if(completedToday.includes('sp-'+t.id))return;const type=p.mapping==='client'?'RU':'RB';let score=(TYPE_W[type]||2)+3*1+2*0.5-2;if(p.priority==='P1')score+=2;candidates.push({id:'sp-'+t.id,kind:'strategy',title:t.title,type,score:Math.round(score*10)/10,days:0,effort:2,meta:(p.ministry||'')+' · '+(p.client_name||'Internal')+' · '+p.name,why:'Strategy step in '+p.name+'. Compounds toward the north star — money tasks come first.'});});});
+  if(checkinState.outreach==='no'){candidates.push({id:'habit-outreach',kind:'habit',title:'Do your daily outreach — 10 DMs + 5 emails',type:'RGH',score:4+3*3+2*5+0+1-2,days:0,meta:'Get Leads · fills tomorrow\'s pipeline',why:'Outreach is your daily revenue habit. Skip it and the pipeline dries up. Non-negotiable.',isHot:false});}
+  TASKS.forEach(t=>{if(!taskEligible(t))return;if(completedToday.includes('task-'+t.id))return;candidates.push({id:'task-'+t.id,kind:'task',title:t.title,type:t.priority_type,score:taskScore(t),days:0,effort:Number(t.effort||2),meta:(minOf(t))+(t.project?' · '+t.project:'')+(t.client?' · '+t.client:''),why:(t.sub||''),isHot:t.priority_type==='MOT'});});
+  TASKS.forEach(t=>{if(t.lane!=='scored')return;const st=(taskState[t.id]?.status)||t.status||'todo';if(st!=='todo'&&st!=='wip')return;const open=blockersOf(t).filter(b=>!blockerDone(b));if(!open.length)return;const s=taskScore(t);open.forEach(b=>{const cid=b.startsWith('sp-')?b:'task-'+b;const cand=candidates.find(c=>c.id===cid);if(cand){if(s>cand.score)cand.score=s;cand.why='🔓 Unlocks: '+t.title+'. '+cand.why;}});});
+  candidates.sort((a,b)=>b.score-a.score||((a.effort||1)-(b.effort||1))||a.days-b.days);
+  return candidates;
+}
+function buildWhy(type,lead,days){if(type==='MOT')return 'Money on the table. '+lead.name+' is at "'+(STATUS_LABEL[effStatus(lead)]||'')+'" — '+days+' days since last action. Closest thing to cash. Close it.';if(type==='RU')return lead.name+' replied and is waiting. '+days+' days cold. Respond now.';if(type==='RGH')return lead.name+' is early stage. Keep the pipeline moving.';return lead.name+' on hold for '+days+' days. Re-engage.';}
+function typeTagCls(type){return type==='MOT'?'ot-mot':type==='RU'?'ot-ru':type==='RGH'?'ot-rgh':'ot-rb';}
+function typeTagLabel(type){return type==='MOT'?'💰 Money on table':type==='RU'?'🔓 Revenue unblocking':type==='RGH'?'🔁 Revenue habit':'🏗 Revenue building';}
+function renderCheckin(){const el=document.getElementById('today-checkin');function opt(field,val,label){const sel=checkinState[field]===val;const cls=sel?(val==='yes'?'sel-yes':'sel-no'):'';return `<button class="checkin-opt ${cls}" onclick="setCheckin('${field}','${val}')">${label}</button>`;}el.innerHTML=`<div class="checkin-card"><div class="checkin-title">☀️ MORNING CHECK-IN — ${today()}</div><div class="checkin-q"><span class="checkin-label">Any emergency today? (client critical / team blocker / personal)</span><div class="checkin-btns">${opt('emergency','yes','Yes')}${opt('emergency','no','No')}</div></div><div class="checkin-q"><span class="checkin-label">Have you done your daily outreach yet?</span><div class="checkin-btns">${opt('outreach','yes','Yes')}${opt('outreach','no','Not yet')}</div></div><div class="checkin-q"><span class="checkin-label">Any client waiting on YOU right now?</span><div class="checkin-btns">${opt('clientWaiting','yes','Yes')}${opt('clientWaiting','no','No')}</div></div></div>`;}
+function setCheckin(field,val){checkinState[field]=val;saveCheckin();renderCheckin();renderOneThing();renderQueue();}
+function renderOneThing(){const el=document.getElementById('today-onething');const checkinDone=checkinState.emergency!==null&&checkinState.outreach!==null&&checkinState.clientWaiting!==null;if(!checkinDone){el.innerHTML=`<div class="onething-card" style="border-color:var(--border2);box-shadow:none"><div class="onething-label">🎯 YOUR ONE THING</div><div class="onething-why" style="margin-bottom:0">Answer the 3 check-in questions above and the Crown will tell you exactly what to do first today.</div></div>`;return;}if(checkinState.emergency==='yes'){el.innerHTML=`<div class="emergency-card"><div class="et">⚠️ EMERGENCY MODE</div><div class="es">You flagged an emergency. Handle it first — it overrides everything. Once resolved, switch it to "No" for your next priority.</div></div>`;return;}const candidates=buildCandidates();if(!candidates.length){el.innerHTML=`<div class="onething-card"><div class="onething-label">🎯 YOUR ONE THING</div><div class="onething-task">You're clear. ✅</div><div class="onething-why">Nothing urgent. Good time for revenue-building — content, blogs, or strategy.</div></div>`;return;}const top=candidates[0];el.innerHTML=`<div class="onething-card"><div class="onething-label">🎯 YOUR ONE THING — DO THIS FIRST</div><div class="onething-task">${top.title}</div><div class="onething-meta"><span class="onething-tag ${typeTagCls(top.type)}">${typeTagLabel(top.type)}</span><span style="font-size:12.5px;color:var(--text3)">${top.meta}</span><span class="onething-score">Score: ${top.score}</span></div><div class="onething-why">${top.why}</div><div class="onething-actions"><button class="onething-done" onclick="completeOneThing('${top.id}')">✓ Done — show next</button><button class="onething-why-btn" onclick="alert('${typeTagLabel(top.type)} base + urgency from ${top.days} days waiting. Money-on-table ranks highest, then revenue-unblocking, then habits, then building.')">Why this?</button></div></div>`;}
+function completeOneThing(id){markCompletedToday(id);if(id.startsWith('task-')){const tid=id.slice(5);if(taskState[tid]){const old=taskState[tid].status;taskState[tid].status='done';saveTask(tid,old);}}if(id.startsWith('sp-')){const sid=id.slice(3);let st;STRATEGY.forEach(p=>p.tasks.forEach(t=>{if(String(t.id)===sid)st=t;}));if(st){st.status='done';setSyncStatus('syncing');sbFetch('/rest/v1/strategy_project_tasks?id=eq.'+sid,{method:'PATCH',body:JSON.stringify({status:'done',updated_at:new Date().toISOString()})}).then(()=>setSyncStatus('ok')).catch(e=>{setSyncStatus('error');});}}renderOneThing();renderQueue();updateStats();}
+function renderQueue(){const el=document.getElementById('today-queue');const checkinDone=checkinState.emergency!==null&&checkinState.outreach!==null&&checkinState.clientWaiting!==null;if(!checkinDone||checkinState.emergency==='yes'){el.innerHTML='';return;}const candidates=buildCandidates();let html='';if(candidates.length>1){const next=candidates.slice(1,5);html+=`<div class="queue-title">Next in queue</div>`;next.forEach((c,i)=>{html+=`<div class="queue-item"><span class="queue-rank">${i+2}</span><div class="queue-body"><div class="queue-task">${c.title}<span class="queue-tag ${typeTagCls(c.type)}">${c.type}</span></div><div class="queue-meta">${c.meta}</div></div><span class="queue-score">${c.score}</span></div>`;});}const commits=TASKS.filter(t=>t.lane==='commitment');if(commits.length){const heavy=candidates.length&&candidates[0].score>=20;html+=heavy?`<div class="queue-title" style="margin-top:18px">🔁 COMMITMENTS — 🔒 locked: clear the money tasks above first</div>`:`<div class="queue-title" style="margin-top:18px">🔁 COMMITMENTS — ✅ queue is light, run them now</div>`;[['daily','📅 Daily'],['weekly','🗓 Weekly — resets Monday'],['monthly','📆 Monthly — resets the 1st']].forEach(([cad,label])=>{const list=commits.filter(t=>(t.cadence||'daily')===cad);if(!list.length)return;html+=`<div class="queue-meta" style="margin:10px 0 4px;letter-spacing:.6px;text-transform:uppercase">${label}</div>`;list.forEach(t=>{const done=commitDone(t);html+=`<div class="queue-item ${heavy&&!done?'commit-locked':''}" style="cursor:pointer;${done?'opacity:0.45':''}" onclick="toggleCommit('${t.id}')"><span class="queue-rank">${done?'✓':'○'}</span><div class="queue-body"><div class="queue-task" style="${done?'text-decoration:line-through':''}">${t.title}</div><div class="queue-meta">${t.sub||''}</div></div></div>`;});});}el.innerHTML=html;}
+let COMMIT_EVENTS=[];
+async function loadCommitEvents(){try{const since=new Date();since.setDate(since.getDate()-35);COMMIT_EVENTS=await sbFetch('/rest/v1/warroom_task_events?new_status=eq.done_commit&created_at=gte.'+since.toISOString()+'&select=task_id,created_at');}catch(e){COMMIT_EVENTS=[];}}
+function periodStart(cad){const d=new Date();d.setHours(0,0,0,0);if(cad==='weekly'){const day=(d.getDay()+6)%7;d.setDate(d.getDate()-day);}else if(cad==='monthly')d.setDate(1);return d;}
+function commitDone(t){const ps=periodStart(t.cadence||'daily');return COMMIT_EVENTS.some(ev=>ev.task_id===t.id&&new Date(ev.created_at)>=ps);}
+async function toggleCommit(id){const t=TASKS.find(x=>x.id===id);if(!t)return;const ps=periodStart(t.cadence||'daily');setSyncStatus('syncing');try{if(commitDone(t)){await sbFetch('/rest/v1/warroom_task_events?task_id=eq.'+encodeURIComponent(id)+'&new_status=eq.done_commit&created_at=gte.'+ps.toISOString(),{method:'DELETE',headers:{'Prefer':'return=minimal'}});COMMIT_EVENTS=COMMIT_EVENTS.filter(ev=>!(ev.task_id===id&&new Date(ev.created_at)>=ps));}else{await sbFetch('/rest/v1/warroom_task_events',{method:'POST',headers:{'Prefer':'return=minimal'},body:JSON.stringify({task_id:id,new_status:'done_commit',changed_by:'dashboard',note:(t.cadence||'daily')+' commitment done'})});COMMIT_EVENTS.push({task_id:id,created_at:new Date().toISOString()});}setSyncStatus('ok');}catch(e){setSyncStatus('error');}renderQueue();}
+function renderToday(){loadCheckin();renderCheckin();renderOneThing();renderQueue();}
+
+/* ============ STRATEGY DATA LOAD (feeds Kingdom + Crown) ============ */
+let STRATEGY=[];
+async function loadStrategy(){try{const projects=await sbFetch('/rest/v1/strategy_projects?select=*&order=created_at.asc');const tasks=await sbFetch('/rest/v1/strategy_project_tasks?select=*&order=step_order.asc');const items=await sbFetch('/rest/v1/strategy_action_items?select=*&order=item_order.asc');STRATEGY=projects.map(p=>({...p,tasks:tasks.filter(t=>t.project_id===p.id).map(t=>({...t,items:items.filter(i=>i.task_id===t.id)}))}));}catch(e){STRATEGY=[];console.error('strategy load',e);}}
+
+function renderPulse(){const el=document.getElementById('pulse-strip');if(!el)return;const hot=leads.filter(l=>effStatus(l)==='replied').length;const props=leads.filter(l=>['qualified','call_booked'].includes(effStatus(l))).length;const pay=TASKS.filter(t=>t.lane==='scored'&&t.priority_type==='MOT'&&(taskState[t.id]?.status||'todo')!=='done').length;let prom=0;(STRATEGY||[]).forEach(p=>{if(p.status!=='active')return;(p.tasks||[]).forEach(t=>{if(t.status!=='done'&&(t.detail||'').includes('PROMISED'))prom++;});});el.innerHTML=`<div class="pulse-strip"><span>💰 <b>${hot}</b> hot replies</span><span>📨 <b>${props}</b> proposals out</span><span>🏦 <b>${pay}</b> payment${pay===1?'':'s'} awaited</span><span>🤝 <b>${prom}</b> promise${prom===1?'':'s'} due this week</span></div>`;}
+
+async function init(){setSyncStatus('syncing');try{await Promise.all([loadTasks(),loadLeads(),loadStrategy(),loadCommitEvents()]);TASKS.forEach(t=>ensureTask(t.id));updateStats();renderLeads();renderToday();renderPulse();renderCouncil();renderVision();setSyncStatus('ok');}catch(e){setSyncStatus('error');console.error(e);}}
 </script>
 </body>
 </html>
