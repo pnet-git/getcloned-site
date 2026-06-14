@@ -30,12 +30,12 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-
 /* ============ IMAGE SLOTS — WORKFORCE: paste image URLs in the :root vars below ============ */
 /* Replace each url(...) with your Gemini image URL. Keep the gradient overlay in front. */
 :root{
-  --img-hero:url('images/hero.jpg');        /* Crown View banner — King over empire */
-  --img-kingdom:url('images/kingdom.jpg');  /* Kingdom banner — King at throne, map below */
-  --img-pipeline:url('images/pipeline.jpg');/* Pipeline banner — forces at the gate */
-  --img-council:url('images/council.jpg');  /* Council banner — empty council hall */
-  --img-vision:url('images/vision.jpg');    /* Vision banner — empire already realized */
-  --img-login:url('images/login.jpg');      /* Login background — hero variant */
+  --img-hero:url('/war-room/images/hero.jpg');        /* Crown View banner — King over empire */
+  --img-kingdom:url('/war-room/images/kingdom.jpg');  /* Kingdom banner — King at throne, map below */
+  --img-pipeline:url('/war-room/images/pipeline.jpg');/* Pipeline banner — forces at the gate */
+  --img-council:url('/war-room/images/council.jpg');  /* Council banner — empty council hall */
+  --img-vision:url('/war-room/images/vision.jpg');    /* Vision banner — empire already realized */
+  --img-login:url('/war-room/images/login.jpg');      /* Login background — hero variant */
 }
 .view-banner{position:relative;height:180px;border-radius:var(--radius-lg);overflow:hidden;margin-bottom:24px;display:flex;align-items:flex-end;border:1px solid var(--border2)}
 .view-banner::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
@@ -429,17 +429,17 @@ const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZ
    ============================================================ */
 const MINISTRIES=[
   {key:'Offers',icon:'🎯',name:'Offers',tier:'money',
-    leader:{name:'Alex Hormozi',photo:'images/hormozi.jpg'},deputies:[{name:'Sam Ovens',photo:'images/ovens.jpg'}]},
+    leader:{name:'Alex Hormozi',photo:'/war-room/images/hormozi.jpg'},deputies:[{name:'Sam Ovens',photo:'/war-room/images/ovens.jpg'}]},
   {key:'Get Leads',icon:'🧲',name:'Get Leads',tier:'money',
-    leader:{name:'Sabri Suby',photo:'images/sabri.jpg'},deputies:[{name:'Russell Brunson',photo:'images/brunson.jpg'}]},
+    leader:{name:'Sabri Suby',photo:'/war-room/images/sabri.jpg'},deputies:[{name:'Russell Brunson',photo:'/war-room/images/brunson.jpg'}]},
   {key:'Get Sales',icon:'💰',name:'Get Sales',tier:'money',
-    leader:{name:'Dan Kennedy',photo:'images/kennedy.jpg'},deputies:[{name:'Joanna Wiebe',photo:'images/wiebe.jpg'}]},
+    leader:{name:'Dan Kennedy',photo:'/war-room/images/kennedy.jpg'},deputies:[{name:'Joanna Wiebe',photo:'/war-room/images/wiebe.jpg'}]},
   {key:'Keep Clients',icon:'🔄',name:'Keep Clients',tier:'money',
-    leader:{name:'Sam Ovens',photo:'images/ovens.jpg'},deputies:[{name:'Emily Weiss',photo:'images/weiss.jpg'}]},
+    leader:{name:'Sam Ovens',photo:'/war-room/images/ovens.jpg'},deputies:[{name:'Emily Weiss',photo:'/war-room/images/weiss.jpg'}]},
   {key:'Get Attention',icon:'📣',name:'Get Attention',tier:'supply',
-    leader:{name:'Gary Vaynerchuk',photo:'images/garyvee.jpg'},deputies:[{name:'MrBeast',photo:'images/mrbeast.jpg'},{name:'Seth Godin',photo:'images/seth.jpg'}]},
+    leader:{name:'Gary Vaynerchuk',photo:'/war-room/images/garyvee.jpg'},deputies:[{name:'MrBeast',photo:'/war-room/images/mrbeast.jpg'},{name:'Seth Godin',photo:'/war-room/images/seth.jpg'}]},
   {key:'Run the Machine',icon:'⚙️',name:'Run the Machine',tier:'supply',
-    leader:{name:'Jeff Bezos',photo:'images/jeff.jpg'},deputies:[{name:'Dan Martell',photo:'images/martell.jpg'},{name:'Elon Musk',photo:'images/elon.jpg'}]},
+    leader:{name:'Jeff Bezos',photo:'/war-room/images/jeff.jpg'},deputies:[{name:'Dan Martell',photo:'/war-room/images/martell.jpg'},{name:'Elon Musk',photo:'/war-room/images/elon.jpg'}]},
 ];
 const MINISTRY_ORDER=['Offers','Get Leads','Get Sales','Keep Clients','Get Attention','Run the Machine'];
 
@@ -457,7 +457,7 @@ const VISIONARY_MEMBERS=[
   {name:'Joe Dispenza',role:'Identity Rewiring',photo:'',tag:''},
   {name:'Mel Robbins',role:'Action–Belief Bridge',photo:'',tag:''},
 ];
-const FC_PHOTOS={"James Clear": "images/clear.jpg", "Steve Jobs": "images/jobs.jpg", "Jake Paul": "images/jakepaul.jpg", "Logan Paul": "images/loganpaul.jpg", "Tony Robbins": "images/tony.jpg", "Siddharth Rajsekar": "images/siddharth.jpg", "Sam Altman": "images/altman.jpg", "Robin Sharma": "images/sharma.jpg", "Marie Forleo": "images/marie.jpg", "Alex Hormozi": "images/hormozi.jpg", "Russell Brunson": "images/brunson.jpg", "Sam Ovens": "images/ovens.jpg", "Dan Kennedy": "images/kennedy.jpg", "Elon Musk": "images/elon.jpg", "Dan Martell": "images/martell.jpg", "Seth Godin": "images/seth.jpg", "Sabri Suby": "images/sabri.jpg", "MrBeast": "images/mrbeast.jpg", "Gary Vaynerchuk": "images/garyvee.jpg", "Joanna Wiebe": "images/wiebe.jpg", "Emily Weiss": "images/weiss.jpg"};
+const FC_PHOTOS={"James Clear": "/war-room/images/clear.jpg", "Steve Jobs": "/war-room/images/jobs.jpg", "Jake Paul": "/war-room/images/jakepaul.jpg", "Logan Paul": "/war-room/images/loganpaul.jpg", "Tony Robbins": "/war-room/images/tony.jpg", "Siddharth Rajsekar": "/war-room/images/siddharth.jpg", "Sam Altman": "/war-room/images/altman.jpg", "Robin Sharma": "/war-room/images/sharma.jpg", "Marie Forleo": "/war-room/images/marie.jpg", "Alex Hormozi": "/war-room/images/hormozi.jpg", "Russell Brunson": "/war-room/images/brunson.jpg", "Sam Ovens": "/war-room/images/ovens.jpg", "Dan Kennedy": "/war-room/images/kennedy.jpg", "Elon Musk": "/war-room/images/elon.jpg", "Dan Martell": "/war-room/images/martell.jpg", "Seth Godin": "/war-room/images/seth.jpg", "Sabri Suby": "/war-room/images/sabri.jpg", "MrBeast": "/war-room/images/mrbeast.jpg", "Gary Vaynerchuk": "/war-room/images/garyvee.jpg", "Joanna Wiebe": "/war-room/images/wiebe.jpg", "Emily Weiss": "/war-room/images/weiss.jpg"};
 const FULL_COUNCIL=[
   'Alex Hormozi','Russell Brunson','James Clear','Steve Jobs','Sam Ovens','Jake Paul','Logan Paul',
   'Tony Robbins','Dan Kennedy','Elon Musk','Siddharth Rajsekar','Dan Martell','Sam Altman','Robin Sharma',
