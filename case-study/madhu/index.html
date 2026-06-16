@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Clone That Outperformed the Creator — A GetCloned+ Case Study</title>
+<meta name="description" content="A 376K-follower expert stopped shooting. His clone took over — and built a recurring income system on autopilot. Since the clone took over: 1.2M views, watch time more than doubled, three dead platforms revived, leads and product sales flowing. He spends five minutes a week." />
+<meta property="og:title" content="The Clone That Outperformed the Creator — GetCloned+ Case Study" />
+<meta property="og:description" content="1.2M views. The expert never picked up a camera — and now spends 5 minutes a week." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #060504;
+  --bg-elevated: #0c0a08;
+  --bg-card: #110e0a;
+  --bg-card-hover: #181310;
+
+  --border: rgba(212, 175, 100, 0.14);
+  --border-strong: rgba(212, 175, 100, 0.30);
+
+  --text: #f2ece0;
+  --text-dim: #b0a690;
+  --text-muted: #6b6253;
+
+  --gold: #d4af64;
+  --gold-bright: #f0d28a;
+  --gold-deep: #b8923f;
+  --gold-glow: rgba(212, 175, 100, 0.28);
+  --gold-soft: rgba(212, 175, 100, 0.08);
+  --wine: #4a1f28;
+  --green: #6fae8e;
+
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+html::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(0deg, rgba(212,175,100,0.018) 0px, rgba(212,175,100,0.018) 1px, transparent 1px, transparent 3px);
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+.wrap { position: relative; z-index: 1; }
+
+/* ═══ NAVBAR ═══ */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  padding: 16px 32px; display: flex; justify-content: space-between; align-items: center;
+  background: rgba(6, 5, 4, 0.78); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.logo { font-family: var(--serif); font-weight: 700; font-size: 21px; letter-spacing: -0.02em; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.logo-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 14px var(--gold-glow), 0 0 6px var(--gold); }
+.logo-plus { color: var(--gold); font-weight: 700; }
+.nav-cta { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: var(--gold); color: var(--bg); padding: 11px 18px; border-radius: 5px; text-decoration: none; border: none; cursor: pointer; box-shadow: 0 0 24px var(--gold-glow); transition: all 0.18s; }
+.nav-cta:hover { background: var(--gold-bright); box-shadow: 0 0 32px var(--gold-glow); }
+
+/* ═══ HERO ═══ */
+.hero {
+  position: relative; padding: 96px 32px 84px; overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(212,175,100,0.10) 0%, transparent 60%), var(--bg);
+}
+.hero-inner { max-width: 1080px; margin: 0 auto; text-align: center; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase;
+  padding: 7px 16px 7px 14px; background: var(--gold-soft); border: 1px solid var(--border-strong); border-radius: 100px; margin-bottom: 30px;
+}
+.hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 10px var(--gold-glow); animation: pulse 2.4s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
+.hero-headline { font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 6.6vw, 82px); line-height: 1.0; letter-spacing: -0.03em; color: var(--text); margin: 0 auto 20px; max-width: 940px; }
+.hero-headline em { font-style: italic; font-weight: 400; color: var(--gold-bright); }
+.hero-headline-2 { font-family: var(--serif); font-weight: 400; font-style: italic; font-size: clamp(20px, 2.8vw, 32px); line-height: 1.2; color: var(--text-dim); margin: 0 auto 26px; max-width: 720px; }
+.hero-headline-2 em { color: var(--gold); font-style: italic; }
+
+.hero-sub { font-size: clamp(16px, 2vw, 20px); line-height: 1.6; color: var(--text-dim); max-width: 640px; margin: 0 auto 16px; }
+.hero-sub strong { color: var(--text); font-weight: 500; }
+.hero-meta { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--text-muted); margin-top: 24px; }
+.hero-meta span { color: var(--gold); }
+
+/* ═══ SECTION SHELL ═══ */
+.section { padding: 96px 32px; position: relative; }
+.section-inner { max-width: 1080px; margin: 0 auto; }
+.narrow { max-width: 760px; }
+
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; margin-bottom: 22px; }
+.eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); box-shadow: 0 0 8px var(--gold-glow); }
+.eyebrow.center { justify-content: center; }
+
+.section-title { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.06; letter-spacing: -0.025em; color: var(--text); margin-bottom: 26px; max-width: 760px; }
+.section-title em { font-style: italic; font-weight: 400; color: var(--gold-bright); }
+.center-h { text-align: center; }
+.center-h .section-title { margin-left: auto; margin-right: auto; }
+.center-h .section-lead { margin-left: auto; margin-right: auto; }
+
+.section-lead { font-size: 19px; line-height: 1.65; color: var(--text-dim); max-width: 640px; margin-bottom: 16px; }
+.section-lead strong { color: var(--text); font-weight: 500; }
+.section-lead em { font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 1.05em; }
+
+.s-elevated { background: radial-gradient(ellipse 55% 50% at 80% 30%, rgba(212,175,100,0.05) 0%, transparent 60%), var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+/* image placeholder helper */
+.imgslot { display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; text-align: center; background: repeating-linear-gradient(45deg, rgba(212,175,100,0.04) 0, rgba(212,175,100,0.04) 12px, transparent 12px, transparent 24px); padding: 16px; }
+
+/* ═══ THE WOUND ═══ */
+.wound-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.wound-points { list-style: none; margin-top: 30px; }
+.wound-points li { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 16px; line-height: 1.55; color: var(--text-dim); }
+.wound-points li:last-child { border-bottom: none; }
+.wound-points .mk { color: var(--gold); flex-shrink: 0; font-family: var(--mono); font-size: 13px; padding-top: 2px; }
+.wound-points strong { color: var(--text); font-weight: 600; }
+
+/* portrait — circle quote pulled from modak page */
+.portrait-quote {
+  position: relative; border-radius: 16px; border: 1px solid var(--border-strong);
+  background: linear-gradient(150deg, #14100a, #0a0806); padding: 40px 36px; overflow: hidden;
+  box-shadow: 0 30px 80px -24px rgba(0,0,0,0.8), 0 0 60px -30px var(--gold-glow);
+}
+.portrait-quote::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(var(--gold-bright), var(--gold-deep)); box-shadow: 0 0 18px var(--gold-glow); }
+.pq-mark { font-family: var(--serif); font-size: 56px; line-height: 0.6; color: var(--gold); opacity: 0.5; margin-bottom: 8px; }
+.pq-text { font-family: var(--serif); font-style: italic; font-size: 21px; line-height: 1.5; color: var(--text); margin-bottom: 26px; }
+.pq-text em { color: var(--gold-bright); font-style: italic; }
+.pq-attr { display: flex; align-items: center; gap: 16px; }
+.pq-photo { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--border-strong); }
+.pq-photo .imgslot { width: 100%; height: 100%; font-size: 8px; }
+.pq-name { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--text); }
+.pq-role { font-family: var(--mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.04em; margin-top: 4px; }
+
+/* ═══ THE TURN ═══ */
+.turn { background: var(--bg); border-bottom: 1px solid var(--border); }
+.turn-line { font-family: var(--serif); font-weight: 400; font-style: italic; font-size: clamp(26px, 4.4vw, 46px); line-height: 1.25; letter-spacing: -0.02em; color: var(--text); text-align: center; max-width: 880px; margin: 0 auto; }
+.turn-line em { color: var(--gold-bright); font-style: italic; }
+.turn-attr { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-align: center; margin-top: 34px; }
+
+/* ═══ HERO STAT BAND ═══ */
+.statband { background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(212,175,100,0.09) 0%, transparent 65%), var(--bg-elevated); border-bottom: 1px solid var(--border); }
+.statband .big-stat { text-align: center; margin-bottom: 56px; }
+.statband .big-num { font-family: var(--serif); font-weight: 500; font-size: clamp(64px, 13vw, 156px); line-height: 0.9; letter-spacing: -0.04em; color: var(--gold-bright); text-shadow: 0 0 60px var(--gold-glow); }
+.statband .big-label { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-top: 16px; }
+.statband .big-sub { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--text); margin-top: 18px; }
+.statband .big-sub strong { color: var(--gold-bright); font-style: normal; font-weight: 600; }
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; max-width: 920px; margin: 0 auto; }
+.stat { background: var(--bg-card); padding: 32px 18px; text-align: center; }
+.stat .n { font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 3.6vw, 40px); color: var(--gold-bright); line-height: 1; }
+.stat .l { font-family: var(--mono); font-size: 11px; color: var(--text-dim); margin-top: 12px; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.4; }
+.insight-note { text-align: center; margin-top: 30px; font-family: var(--mono); font-size: 12px; color: var(--text-muted); letter-spacing: 0.04em; }
+
+/* ═══ QUALITY PROOF ═══ */
+.watch-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.watch-bars { display: flex; flex-direction: column; gap: 22px; }
+.wb-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.wb-name { font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em; color: var(--text-dim); text-transform: uppercase; }
+.wb-val { font-family: var(--serif); font-size: 24px; font-weight: 600; }
+.wb-track { height: 12px; background: rgba(212,175,100,0.08); border-radius: 100px; overflow: hidden; border: 1px solid var(--border); }
+.wb-fill { height: 100%; border-radius: 100px; }
+.wb-fill.before { width: 41%; background: var(--text-muted); }
+.wb-fill.after { width: 100%; background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright)); box-shadow: 0 0 18px var(--gold-glow); }
+.wb.before .wb-val { color: var(--text-muted); }
+.wb.after .wb-val { color: var(--gold-bright); }
+.quality-points { list-style: none; margin-top: 30px; }
+.quality-points li { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 15.5px; line-height: 1.5; color: var(--text-dim); }
+.quality-points li:last-child { border-bottom: none; }
+.quality-points .ck { color: var(--green); flex-shrink: 0; font-weight: 700; }
+.quality-points strong { color: var(--text); font-weight: 600; }
+
+/* platform revival chips */
+.platforms { display: flex; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
+.plat { flex: 1; min-width: 140px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 14px; text-align: center; }
+.plat-shot { width: 100%; aspect-ratio: 1/1; border-radius: 8px; overflow: hidden; margin-bottom: 12px; border: 1px solid var(--border); }
+.plat-shot .imgslot { width: 100%; height: 100%; font-size: 8px; }
+.plat .pn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+.plat .ps { font-family: var(--serif); font-size: 15px; color: var(--text-muted); text-decoration: line-through; }
+.plat .pa { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--green); margin-top: 2px; }
+
+/* 5-min callout */
+.fivemin { margin-top: 44px; background: linear-gradient(135deg, var(--gold-soft), transparent); border: 1px solid var(--border-strong); border-radius: 16px; padding: 32px 34px; text-align: center; }
+.fivemin .big { font-family: var(--serif); font-size: clamp(24px, 3.4vw, 34px); font-weight: 500; color: var(--text); line-height: 1.2; }
+.fivemin .big em { font-style: italic; color: var(--gold-bright); }
+.fivemin .sub { font-size: 15px; color: var(--text-dim); margin-top: 12px; }
+
+/* ═══ RECEIPTS (reels) ═══ */
+.reel-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.reel { display: block; text-decoration: none; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: var(--bg-card); transition: transform 0.25s, border-color 0.25s; }
+.reel:hover { transform: translateY(-5px); border-color: var(--border-strong); }
+.reel-frame { position: relative; width: 100%; padding-bottom: 168%; background: linear-gradient(160deg, #1a140d, #0a0806); }
+.reel-frame .imgslot { position: absolute; inset: 0; }
+.reel-frame .play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--gold); background: rgba(6,5,4,0.5); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 18px var(--gold-glow); }
+.reel-frame .play::after { content: ''; width: 0; height: 0; border-left: 12px solid var(--gold); border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 3px; }
+.reel-stat { padding: 16px 16px 18px; text-align: center; }
+.reel-stat .v { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--gold-bright); }
+.reel-stat .m { font-family: var(--mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.05em; margin-top: 6px; text-transform: uppercase; }
+.reel-stat .open { font-family: var(--mono); font-size: 9px; color: var(--gold); letter-spacing: 0.08em; margin-top: 8px; text-transform: uppercase; opacity: 0; transition: opacity 0.2s; }
+.reel:hover .open { opacity: 1; }
+
+/* ═══ THE RIVER (engine) ═══ */
+.river { background: var(--bg); }
+.river-head { text-align: center; margin-bottom: 72px; }
+.river-head .eyebrow { justify-content: center; }
+.river-head .section-title { margin: 0 auto 18px; }
+.river-head .section-lead { margin: 0 auto; }
+
+.river-flow { position: relative; max-width: 880px; margin: 0 auto; }
+/* vertical flowing line */
+.river-flow::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; transform: translateX(-50%); background: linear-gradient(180deg, transparent, var(--border-strong) 8%, var(--border-strong) 92%, transparent); }
+.river-node { position: relative; display: flex; margin-bottom: 40px; }
+.river-node:last-child { margin-bottom: 0; }
+.river-node.left { justify-content: flex-start; }
+.river-node.right { justify-content: flex-end; }
+/* connector dot on the spine */
+.river-node::after { content: ''; position: absolute; top: 40px; left: 50%; transform: translate(-50%,-50%); width: 12px; height: 12px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 16px var(--gold-glow); z-index: 2; }
+
+.river-card { width: 46%; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform 0.25s, border-color 0.25s; text-decoration: none; color: inherit; display: block; }
+.river-card:hover { transform: translateY(-4px); border-color: var(--border-strong); box-shadow: 0 24px 60px -28px rgba(0,0,0,0.8), 0 0 40px -28px var(--gold-glow); }
+.river-frame { position: relative; width: 100%; padding-bottom: 56%; background: linear-gradient(150deg, #1a140d, #0a0806); border-bottom: 1px solid var(--border); }
+.river-frame .imgslot { position: absolute; inset: 0; }
+.river-frame .play { position: absolute; bottom: 14px; left: 14px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--gold); background: rgba(6,5,4,0.55); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 16px var(--gold-glow); }
+.river-frame .play::after { content: ''; width: 0; height: 0; border-left: 11px solid var(--gold); border-top: 7px solid transparent; border-bottom: 7px solid transparent; margin-left: 3px; }
+.river-frame .plus-badge { position: absolute; top: 12px; right: 12px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; color: var(--gold-bright); background: rgba(6,5,4,0.7); border: 1px solid var(--border-strong); border-radius: 100px; padding: 4px 10px; text-transform: uppercase; }
+.river-body { padding: 22px 24px 24px; }
+.river-step-n { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.river-step-n .tag-live { color: var(--green); border: 1px solid rgba(111,174,142,0.4); border-radius: 100px; padding: 2px 8px; font-size: 8px; }
+.river-step-n .tag-ext { color: var(--gold); border: 1px solid var(--border-strong); border-radius: 100px; padding: 2px 8px; font-size: 8px; }
+.river-name { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.12; }
+.river-desc { font-size: 14px; line-height: 1.55; color: var(--text-dim); }
+.river-link { font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 14px; opacity: 0; transition: opacity 0.2s; }
+.river-card:hover .river-link { opacity: 1; }
+.river-note { text-align: center; margin-top: 64px; font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--text); }
+.river-note em { color: var(--gold-bright); }
+
+/* ═══ BANK (numbers grid) ═══ */
+.bank { background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.bank-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 12px; }
+.bank-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 30px 22px; text-align: center; transition: all 0.25s; }
+.bank-card:hover { border-color: var(--border-strong); transform: translateY(-4px); }
+.bank-card.feature { border-color: var(--border-strong); background: linear-gradient(150deg, rgba(212,175,100,0.06), var(--bg-card)); }
+.bank-num { font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 4vw, 46px); color: var(--gold-bright); line-height: 1; }
+.bank-label { font-family: var(--mono); font-size: 11px; color: var(--text-dim); margin-top: 12px; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.4; }
+.bank-tag { font-family: var(--mono); font-size: 9px; color: var(--green); letter-spacing: 0.06em; margin-top: 10px; text-transform: uppercase; }
+.bank-tag.ext { color: var(--gold); }
+
+/* ═══ CONVERSION LAYER (clickable page snapshot) ═══ */
+.lp-shot { display: block; position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--border-strong); box-shadow: 0 30px 80px -24px rgba(0,0,0,0.8), 0 0 60px -30px var(--gold-glow); aspect-ratio: 16 / 10; margin-top: 24px; text-decoration: none; transition: transform 0.25s, border-color 0.25s; }
+.lp-shot:hover { transform: translateY(-4px); border-color: var(--gold); }
+.lp-shot .imgslot { width: 100%; height: 100%; }
+.lp-shot .visit { position: absolute; bottom: 16px; right: 16px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-bright); background: rgba(6,5,4,0.78); border: 1px solid var(--border-strong); border-radius: 100px; padding: 8px 16px; }
+
+/* ═══ WHY IT WORKED ═══ */
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 12px; }
+.why-item { padding: 30px 0 0; border-top: 1px solid var(--border-strong); }
+.why-num { font-family: var(--serif); font-style: italic; font-size: 38px; color: var(--gold); line-height: 1; margin-bottom: 16px; }
+.why-label { font-size: 15px; line-height: 1.55; color: var(--text-dim); }
+.why-label strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 6px; font-size: 16px; }
+
+/* ═══ CLOSE ═══ */
+.close { background: radial-gradient(ellipse 60% 70% at 50% 40%, rgba(212,175,100,0.10) 0%, transparent 60%), var(--bg-elevated); border-top: 1px solid var(--border); text-align: center; }
+.close-line { font-family: var(--serif); font-weight: 400; font-style: italic; font-size: clamp(28px, 4.6vw, 50px); line-height: 1.18; letter-spacing: -0.02em; color: var(--text); max-width: 820px; margin: 0 auto 18px; }
+.close-line em { color: var(--gold-bright); }
+.close-sub { font-size: 18px; color: var(--text-dim); max-width: 560px; margin: 0 auto 40px; }
+.hero-cta { display: inline-flex; align-items: center; gap: 12px; background: var(--gold); color: #1a1206; border: none; padding: 19px 38px; font-family: var(--mono); font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; cursor: pointer; border-radius: 6px; transition: all 0.2s; box-shadow: 0 0 32px var(--gold-glow), 0 8px 24px -8px rgba(212,175,100,0.4); }
+.hero-cta:hover { background: var(--gold-bright); transform: translateY(-2px); box-shadow: 0 0 48px var(--gold-glow); }
+.hero-cta .arrow { transition: transform 0.2s; font-size: 18px; }
+.hero-cta:hover .arrow { transform: translateX(4px); }
+.close-reassure { font-family: var(--mono); font-size: 12px; color: var(--text-muted); letter-spacing: 0.04em; margin-top: 22px; }
+
+/* ═══ FOOTER ═══ */
+.footer { padding: 64px 32px 44px; text-align: center; border-top: 1px solid var(--border); background: var(--bg); }
+.footer-logo { font-family: var(--serif); font-weight: 700; font-size: 21px; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.footer-tagline { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--text-dim); line-height: 1.5; margin-bottom: 26px; }
+.footer-tagline em { color: var(--gold); }
+.footer-divider { width: 56px; height: 1px; background: var(--border-strong); margin: 0 auto 24px; }
+.footer-meta { font-family: var(--mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.05em; }
+
+/* ═══ QUAL OVERLAY ═══ */
+.qual-overlay { position: fixed; inset: 0; z-index: 1000; background: radial-gradient(ellipse 70% 60% at 50% 30%, rgba(212,175,100,0.08) 0%, transparent 60%), rgba(5,4,3,0.98); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: none; opacity: 0; transition: opacity 0.4s ease; }
+.qual-overlay.open { display: flex; opacity: 1; overflow-y: auto; align-items: flex-start; justify-content: center; padding: 4vh 0; }
+.qual-inner { margin: auto; width: 100%; max-width: 680px; padding: 40px 32px; position: relative; display: flex; flex-direction: column; align-items: center; }
+.qual-close { position: absolute; top: -8px; right: 24px; background: none; border: none; color: var(--text-muted); font-size: 30px; cursor: pointer; transition: color 0.15s; }
+.qual-close:hover { color: var(--gold); }
+.qual-dots { display: flex; gap: 12px; margin-bottom: 44px; justify-content: center; }
+.qual-dots .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(212,175,100,0.18); transition: all 0.3s ease; }
+.qual-dots .dot.active { background: var(--gold); box-shadow: 0 0 12px var(--gold-glow); transform: scale(1.15); }
+.qual-dots .dot.done { background: var(--gold-deep); }
+.qual-step { display: none; width: 100%; text-align: center; animation: stepIn 0.4s ease; }
+.qual-step.active { display: block; }
+@keyframes stepIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.qual-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+.qual-q { font-family: var(--serif); font-size: clamp(26px, 4vw, 38px); font-weight: 500; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin: 0 auto 36px; max-width: 560px; }
+.qual-opts { display: flex; flex-direction: column; gap: 12px; max-width: 460px; margin: 0 auto; }
+.qual-opt { text-align: left; font-family: var(--sans); font-size: 16px; color: var(--text-dim); background: rgba(255,255,255,0.025); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px; cursor: pointer; transition: all 0.18s ease; line-height: 1.4; }
+.qual-opt:hover { border-color: var(--border-strong); background: var(--bg-card-hover); color: var(--text); transform: translateY(-1px); }
+.qual-opt.selected { border-color: var(--gold); background: var(--gold-soft); color: var(--text); box-shadow: 0 0 22px -6px var(--gold-glow); }
+.qual-final .qual-q { margin-bottom: 14px; }
+.qual-final-sub { font-size: 16px; color: var(--text-dim); margin-bottom: 36px; line-height: 1.6; }
+.qual-cal-step { display: none; width: 100%; max-width: 680px; }
+.qual-cal-step.active { display: block; }
+.qual-cal-head { text-align: center; font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--text); margin-bottom: 20px; }
+.qual-cal-head em { color: var(--gold); }
+#qualCalEmbed { min-width: 320px; width: 100%; min-height: 640px; border-radius: 12px; }
+
+/* ═══ MOTION + RESPONSIVE ═══ */
+.fade-up { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-up.in { opacity: 1; transform: none; }
+
+@media (max-width: 920px) {
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .bank-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 760px) {
+  .wound-grid { grid-template-columns: 1fr; gap: 40px; }
+  .watch-wrap { grid-template-columns: 1fr; gap: 36px; }
+  .reel-row { grid-template-columns: 1fr 1fr; }
+  .why-grid { grid-template-columns: 1fr; gap: 0; }
+  .why-item { border-top: 1px solid var(--border); }
+  /* river collapses to single column, line moves left */
+  .river-flow::before { left: 22px; }
+  .river-node { justify-content: flex-end !important; }
+  .river-node::after { left: 22px; }
+  .river-card { width: calc(100% - 52px); }
+}
+@media (max-width: 600px) {
+  .navbar { padding: 14px 18px; }
+  .hero { padding: 64px 20px 56px; }
+  .section { padding: 64px 20px; }
+  .bank-grid { grid-template-columns: 1fr 1fr; }
+  .qual-inner { padding: 32px 20px; }
+  #qualCalEmbed { min-height: 560px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { transition: none; opacity: 1; transform: none; }
+  .hero-eyebrow::before { animation: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <a href="#" class="logo"><span class="logo-dot"></span><span>GetCloned<span class="logo-plus">+</span></span></a>
+    <button class="nav-cta" onclick="openOverlay()">Book a Strategy Call →</button>
+  </nav>
+
+  <!-- ═══ S1 · HERO ═══ -->
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="hero-eyebrow">A GetCloned+ Case Study · Ayurveda &amp; Wellness</span>
+      <h1 class="hero-headline">The clone outperformed <em>the creator.</em></h1>
+      <p class="hero-headline-2">Then it built a <em>recurring income system</em> — on autopilot.</p>
+      <p class="hero-sub">A 376K-follower expert was done shooting content. So we cloned him. In the <strong>60 days</strong> that followed, his clone revived three dead platforms, more than doubled watch time, and turned attention into leads, appointments and product sales — <strong>and he spends five minutes a week.</strong></p>
+      <div class="hero-meta">PROVEN ON A LIVE PRACTICE · <span>60 DAYS</span> · CLONE-ONLY CONTENT · ZERO FOUNDER SHOOTING</div>
+    </div>
+  </header>
+
+  <!-- ═══ S2 · THE WOUND ═══ -->
+  <section class="section s-elevated">
+    <div class="section-inner wound-grid">
+      <div>
+        <span class="eyebrow">Where it started</span>
+        <h2 class="section-title">A real expert. A real <em>wall.</em></h2>
+        <p class="section-lead">He had the credentials, three clinics, 14+ years of practice, and an audience of 376,000. What he didn't have was the one thing the algorithm demands: the willingness to keep shooting.</p>
+        <ul class="wound-points">
+          <li><span class="mk">01</span><span><strong>The content stalled.</strong> Posting was inconsistent — because showing up on camera, day after day, was beneath the work he was actually trained to do.</span></li>
+          <li><span class="mk">02</span><span><strong>The reach plateaued.</strong> A 376K audience that wasn't being fed. YouTube and Facebook had gone quiet. Authority sitting idle.</span></li>
+          <li><span class="mk">03</span><span><strong>The leads leaked.</strong> Walk-ins and word-of-mouth — but almost nothing flowing from the digital presence he'd already built.</span></li>
+        </ul>
+      </div>
+      <div class="portrait-quote">
+        <div class="pq-mark">"</div>
+        <p class="pq-text">Akassh told me the shooting was the <em>one thing</em> stopping the whole engine from working. Then he said — I can just clone you. I haven't shot a single frame since.</p>
+        <div class="pq-attr">
+          <div class="pq-photo"><div class="imgslot">[ DR MADHU CIRCLE PHOTO — circle headshot, 256×256 ]</div></div>
+          <div>
+            <div class="pq-name">Dr. Madhu Sudan</div>
+            <div class="pq-role">India's Leading Sexologist · 14+ Years of Practice</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ S3 · THE TURN ═══ -->
+  <section class="section turn">
+    <div class="section-inner">
+      <p class="turn-line">So he stopped performing — and let his <em>clone</em> carry the message instead.</p>
+      <p class="turn-attr">— The decision that started the 60 days below</p>
+    </div>
+  </section>
+
+  <!-- ═══ S4 · HERO STAT BAND (60 days only) ═══ -->
+  <section class="section statband">
+    <div class="section-inner">
+      <div class="big-stat">
+        <span class="eyebrow center">Since the clone took over · every reel cloned</span>
+        <div class="big-num">1.2M</div>
+        <div class="big-label">Views — from content he never shot</div>
+        <div class="big-sub">across <strong>44 reels</strong>, every one produced by his clone</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="n">103K+</div><div class="l">Views · single best reel</div></div>
+        <div class="stat"><div class="n">9s → 22s</div><div class="l">Average watch time</div></div>
+        <div class="stat"><div class="n">3 / 3</div><div class="l">Platforms revived</div></div>
+        <div class="stat"><div class="n">5 min</div><div class="l">Of his time, per week</div></div>
+      </div>
+      <p class="insight-note">↑ Figures pulled from the practice's own Instagram &amp; platform insights. Screenshots walked through on the strategy call.</p>
+    </div>
+  </section>
+
+  <!-- ═══ S5 · QUALITY PROOF ═══ -->
+  <section class="section s-elevated">
+    <div class="section-inner">
+      <div class="watch-wrap">
+        <div>
+          <span class="eyebrow">The quality question, answered</span>
+          <h2 class="section-title">If a clone felt fake, people would <em>scroll.</em> They did the opposite.</h2>
+          <p class="section-lead">The real test of a clone isn't a screenshot. It's whether people <strong>stay, share, and save</strong> — and whether platforms that had gone silent come back to life. Every signal moved the right way.</p>
+          <ul class="quality-points">
+            <li><span class="ck">✓</span><span><strong>Watch time more than doubled</strong> — the audience didn't just see it, they stayed.</span></li>
+            <li><span class="ck">✓</span><span><strong>Shares, saves and comments climbed</strong> — the signals that tell the algorithm to keep pushing.</span></li>
+            <li><span class="ck">✓</span><span><strong>One point of contact, no agency.</strong> Batches sent for approval; he taps approve in about five minutes a week.</span></li>
+          </ul>
+        </div>
+        <div class="watch-bars">
+          <div class="wb before">
+            <div class="wb-top"><span class="wb-name">Before · filmed by hand</span><span class="wb-val">9s</span></div>
+            <div class="wb-track"><div class="wb-fill before"></div></div>
+          </div>
+          <div class="wb after">
+            <div class="wb-top"><span class="wb-name">After · cloned content</span><span class="wb-val">22s</span></div>
+            <div class="wb-track"><div class="wb-fill after"></div></div>
+          </div>
+          <div class="platforms">
+            <div class="plat"><div class="plat-shot"><div class="imgslot">[ IG SHOT ]</div></div><div class="pn">Instagram</div><div class="ps">slowing</div><div class="pa">alive · 1.2M</div></div>
+            <div class="plat"><div class="plat-shot"><div class="imgslot">[ YT SHOT ]</div></div><div class="pn">YouTube</div><div class="ps">dead</div><div class="pa">revived</div></div>
+            <div class="plat"><div class="plat-shot"><div class="imgslot">[ FB SHOT ]</div></div><div class="pn">Facebook</div><div class="ps">dead</div><div class="pa">revived</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="fivemin">
+        <div class="big">He used to lose days to filming, scripting and editing.<br>Now he gives the engine <em>five minutes a week.</em></div>
+        <div class="sub">One batch lands for approval. He taps yes. The clone does the rest — across every platform, every day.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ S6 · RECEIPTS (clickable reels) ═══ -->
+  <section class="section center-h">
+    <div class="section-inner">
+      <span class="eyebrow center">The receipts</span>
+      <h2 class="section-title" style="margin:0 auto 18px;">Not one viral fluke. A <em>pattern.</em></h2>
+      <p class="section-lead" style="margin:0 auto 48px;">Reel after reel crossed the 50,000 and 100,000 marks. Tap any one to watch the real, published clone content.</p>
+      <div class="reel-row">
+        <a class="reel" href="https://www.instagram.com/reel/DZSfKcqIMe7/" target="_blank" rel="noopener">
+          <div class="reel-frame"><div class="imgslot">[ REEL 1 SCREENSHOT — 1080&times;1920 ]</div><div class="play"></div></div>
+          <div class="reel-stat"><div class="v">100K+</div><div class="m">Views</div><div class="open">Watch on Instagram →</div></div>
+        </a>
+        <a class="reel" href="https://www.instagram.com/reel/DY9HTHdoqbf/" target="_blank" rel="noopener">
+          <div class="reel-frame"><div class="imgslot">[ REEL 2 SCREENSHOT — 1080&times;1920 ]</div><div class="play"></div></div>
+          <div class="reel-stat"><div class="v">77K+</div><div class="m">Views</div><div class="open">Watch on Instagram →</div></div>
+        </a>
+        <a class="reel" href="https://www.instagram.com/reel/DYmpV26In0N/" target="_blank" rel="noopener">
+          <div class="reel-frame"><div class="imgslot">[ REEL 3 SCREENSHOT — 1080&times;1920 ]</div><div class="play"></div></div>
+          <div class="reel-stat"><div class="v">77K+</div><div class="m">Views</div><div class="open">Watch on Instagram →</div></div>
+        </a>
+        <a class="reel" href="https://www.instagram.com/reel/DZKcXxttGXa/" target="_blank" rel="noopener">
+          <div class="reel-frame"><div class="imgslot">[ REEL 4 SCREENSHOT — 1080&times;1920 ]</div><div class="play"></div></div>
+          <div class="reel-stat"><div class="v">67K+</div><div class="m">Views</div><div class="open">Watch on Instagram →</div></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ S7 · THE RIVER (engine) ═══ -->
+  <section class="section river">
+    <div class="section-inner">
+      <div class="river-head">
+        <span class="eyebrow center">What's actually running</span>
+        <h2 class="section-title">This isn't a content service. It's an <em>engine.</em></h2>
+        <p class="section-lead">One idea from the expert flows all the way down — into reach, leads, sales, and recurring revenue. He's needed at the top. After that, it runs without him.</p>
+      </div>
+      <div class="river-flow">
+
+        <div class="river-node left">
+          <div class="river-card">
+            <div class="river-frame"><div class="imgslot">[ IMG: voice-note / idea capture ]</div></div>
+            <div class="river-body">
+              <div class="river-step-n">01 · INPUT <span class="tag-live">LIVE</span></div>
+              <div class="river-name">His Idea</div>
+              <div class="river-desc">One voice note. One thought. That's the only human input the system needs.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="river-node right">
+          <a class="river-card" href="https://www.instagram.com/reel/DZSfKcqIMe7/" target="_blank" rel="noopener">
+            <div class="river-frame"><div class="imgslot">[ THUMB: cloned reel ]</div><div class="play"></div></div>
+            <div class="river-body">
+              <div class="river-step-n">02 · PRODUCE <span class="tag-live">LIVE</span></div>
+              <div class="river-name">The Clone Produces</div>
+              <div class="river-desc">Scripts, shoots and edits in his face and voice — no camera, no studio, no shoot day.</div>
+              <div class="river-link">Watch a real one →</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="river-node left">
+          <div class="river-card">
+            <div class="river-frame">
+              <div class="imgslot">[ IMG: cinematic AI ad — sadhu offering Modak, Google-Flow style ]</div>
+              <div class="plus-badge">+ Cinematic Ad</div>
+            </div>
+            <div class="river-body">
+              <div class="river-step-n">03 · REACH <span class="tag-live">LIVE</span></div>
+              <div class="river-name">Content Reaches Everywhere</div>
+              <div class="river-desc">Daily across Instagram, YouTube and Facebook — plus cinematic AI ads that pre-sell before the click. 1.2M views since the clone took over.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="river-node right">
+          <a class="river-card" href="https://modak.drmadhusudan.com" target="_blank" rel="noopener">
+            <div class="river-frame"><div class="imgslot">[ SNAPSHOT: lead-magnet / assessment funnel ]</div></div>
+            <div class="river-body">
+              <div class="river-step-n">04 · CAPTURE <span class="tag-live">LIVE</span></div>
+              <div class="river-name">Leads Captured</div>
+              <div class="river-desc">A lead magnet and assessment funnel turn passive viewers into named, qualified leads — automatically.</div>
+              <div class="river-link">See the funnel →</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="river-node left">
+          <a class="river-card" href="https://modak.drmadhusudan.com" target="_blank" rel="noopener">
+            <div class="river-frame"><div class="imgslot">[ SNAPSHOT: modak.drmadhusudan.com product page ]</div></div>
+            <div class="river-body">
+              <div class="river-step-n">05 · REVENUE <span class="tag-live">LIVE</span></div>
+              <div class="river-name">Revenue Lands</div>
+              <div class="river-desc">Appointments booked and his signature product sold direct — straight off the content, no manual selling.</div>
+              <div class="river-link">See the live page →</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="river-node right">
+          <div class="river-card">
+            <div class="river-frame">
+              <div class="imgslot">[ IMG: course inside community — clone-taught lesson ]</div>
+              <div class="plus-badge">Extending</div>
+            </div>
+            <div class="river-body">
+              <div class="river-step-n">06 · COMPOUND <span class="tag-ext">EXTENDING</span></div>
+              <div class="river-name">Community &amp; Recurring Revenue</div>
+              <div class="river-desc">A subscription community with courses taught by his clone — recurring income that builds while he sleeps. Now being switched on.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p class="river-note">One idea in. <em>Reach, leads, sales, and recurring revenue out.</em></p>
+    </div>
+  </section>
+
+  <!-- ═══ S8 · THE BANK (numbers grid) ═══ -->
+  <section class="section bank">
+    <div class="section-inner center-h">
+      <span class="eyebrow center">Where it shows up in the bank</span>
+      <h2 class="section-title" style="margin:0 auto 18px;">Views are nice. <em>Revenue is the point.</em></h2>
+      <p class="section-lead" style="margin:0 auto 48px;">Reach that doesn't convert is just applause. Here's what the engine turned that attention into — while the expert focused on his clinics.</p>
+      <div class="bank-grid">
+        <div class="bank-card feature"><div class="bank-num">1,000+</div><div class="bank-label">Leads captured</div><div class="bank-tag">LIVE</div></div>
+        <div class="bank-card"><div class="bank-num">200+</div><div class="bank-label">Free assessments taken</div><div class="bank-tag">LIVE</div></div>
+        <div class="bank-card"><div class="bank-num">6+</div><div class="bank-label">Appointments booked</div><div class="bank-tag">LIVE</div></div>
+        <div class="bank-card"><div class="bank-num">₹5,000</div><div class="bank-label">Avg. per appointment</div><div class="bank-tag">LIVE</div></div>
+        <div class="bank-card"><div class="bank-num">13</div><div class="bank-label">Product units sold direct</div><div class="bank-tag">LIVE</div></div>
+        <div class="bank-card"><div class="bank-num">₹41,000</div><div class="bank-label">Direct product revenue</div><div class="bank-tag">LIVE</div></div>
+        <div class="bank-card"><div class="bank-num">+128%</div><div class="bank-label">Rise in link taps to book</div><div class="bank-tag">LIVE</div></div>
+        <div class="bank-card feature"><div class="bank-num">Recurring</div><div class="bank-label">Subscription community revenue</div><div class="bank-tag ext">SWITCHING ON</div></div>
+      </div>
+      <p class="insight-note">Every figure pulled from live platform &amp; funnel data. The recurring engine is being switched on now — the compounding layer of the system.</p>
+    </div>
+  </section>
+
+  <!-- ═══ S9 · CONVERSION LAYER (clickable page) ═══ -->
+  <section class="section">
+    <div class="section-inner narrow center-h" style="margin:0 auto;">
+      <span class="eyebrow center">The conversion layer</span>
+      <h2 class="section-title" style="margin:0 auto 18px;">The clone brings them in. The <em>funnel</em> closes them.</h2>
+      <p class="section-lead" style="margin:0 auto;">Behind the reels sits the part most people skip: a premium landing page built to turn a viewer into a buyer. Content without this is a leak. Together, they're the engine. This page is live — tap to see it.</p>
+    </div>
+    <div class="section-inner" style="max-width:900px;margin:0 auto;">
+      <a class="lp-shot" href="https://modak.drmadhusudan.com" target="_blank" rel="noopener">
+        <div class="imgslot">[ SNAPSHOT: modak.drmadhusudan.com — the live premium product page ]</div>
+        <span class="visit">Visit the live page →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ S10 · WHY IT WORKED ═══ -->
+  <section class="section s-elevated">
+    <div class="section-inner">
+      <span class="eyebrow">Why this worked when his own filming didn't</span>
+      <h2 class="section-title">The tool is 20%. The <em>engine</em> is 80%.</h2>
+      <p class="section-lead">Anyone can generate an AI video. Almost no one can build the system of strategy, story, distribution and conversion around it that turns a clone into revenue. That's the part that moved these numbers.</p>
+      <div class="why-grid">
+        <div class="why-item"><div class="why-num">01</div><div class="why-label"><strong>Consistency a human couldn't sustain.</strong> The clone never gets tired, never travels, never skips a week. Daily presence is what revived three platforms and compounded the reach.</div></div>
+        <div class="why-item"><div class="why-num">02</div><div class="why-label"><strong>Quality that held attention.</strong> Watch time 9s → 22s, with shares and saves climbing. Indistinguishable by design — and five minutes a week from him.</div></div>
+        <div class="why-item"><div class="why-num">03</div><div class="why-label"><strong>A path from view to revenue.</strong> Funnels, offers, a live product page and follow-up behind the content — so attention became leads, appointments and sales, not just applause.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ S11 · CLOSE ═══ -->
+  <section class="section close">
+    <div class="section-inner">
+      <span class="eyebrow center">Your move</span>
+      <p class="close-line">If a clone can do this for one expert in 60 days — <em>imagine what yours does in a year.</em></p>
+      <p class="close-sub">This is one engagement, mid-flight. The same engine can be built for your practice, your brand, your expertise. The strategy call is where we map exactly what that looks like for you.</p>
+      <button class="hero-cta" onclick="openOverlay()">Book a Strategy Call <span class="arrow">→</span></button>
+      <p class="close-reassure">A real working session — you leave with the plan, whether we build it together or not.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo"><span class="logo-dot"></span><span>GetCloned<span class="logo-plus">+</span></span></div>
+    <div class="footer-tagline">You ideate. Your clone produces.<br>The <em>engine</em> builds an audience — and revenue — you own.</div>
+    <div class="footer-divider"></div>
+    <div class="footer-meta">© 2026 GetCloned+ · Peepoye Network</div>
+  </footer>
+
+</div>
+
+<!-- ═══ QUAL OVERLAY ═══ -->
+<div class="qual-overlay" id="qualOverlay">
+  <div class="qual-inner">
+    <button class="qual-close" id="qualClose" aria-label="Close">&times;</button>
+    <div class="qual-dots" id="qualDots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+
+    <div class="qual-step active" data-step="1">
+      <div class="qual-eyebrow">Question 1 of 3</div>
+      <h2 class="qual-q">What best describes you?</h2>
+      <div class="qual-opts">
+        <button class="qual-opt" data-val="Established expert / practice">An established expert or practice with real credentials</button>
+        <button class="qual-opt" data-val="Coach / consultant">A coach or consultant with an audience and an offer</button>
+        <button class="qual-opt" data-val="Brand / product">A brand or product looking to scale content</button>
+        <button class="qual-opt" data-val="Just exploring">Just exploring what cloning can do</button>
+      </div>
+    </div>
+
+    <div class="qual-step" data-step="2">
+      <div class="qual-eyebrow">Question 2 of 3</div>
+      <h2 class="qual-q">What's the real bottleneck right now?</h2>
+      <div class="qual-opts">
+        <button class="qual-opt" data-val="No time to shoot">I don't have the time or appetite to keep shooting</button>
+        <button class="qual-opt" data-val="Inconsistent">I post, but it's inconsistent and stalling</button>
+        <button class="qual-opt" data-val="No conversion">I get views but they don't turn into revenue</button>
+        <button class="qual-opt" data-val="Strong offline silent online">Strong offline — nearly invisible online</button>
+      </div>
+    </div>
+
+    <div class="qual-step" data-step="3">
+      <div class="qual-eyebrow">Question 3 of 3</div>
+      <h2 class="qual-q">What would make this a win?</h2>
+      <div class="qual-opts">
+        <button class="qual-opt" data-val="Daily presence without me">Daily presence without me being in production</button>
+        <button class="qual-opt" data-val="Leads and appointments">A steady flow of leads and appointments</button>
+        <button class="qual-opt" data-val="Recurring revenue">A recurring revenue engine that runs without me</button>
+        <button class="qual-opt" data-val="All of it">Honestly — all of it</button>
+      </div>
+    </div>
+
+    <div class="qual-step qual-final" data-step="4">
+      <div class="qual-eyebrow">You're all set</div>
+      <h2 class="qual-q">Let's find a time.</h2>
+      <p class="qual-final-sub">We'll walk into the call already understanding where you are — so none of your time is wasted on basics.</p>
+      <button class="hero-cta" id="qualOpenBtn">Open the Calendar <span class="arrow">→</span></button>
+    </div>
+
+    <div class="qual-cal-step" data-step="5">
+      <div class="qual-cal-head">Pick a time that works — <em>your answers are already with us.</em></div>
+      <div id="qualCalEmbed"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "gcplus", {origin:"https://cal.com"});
+</script>
+
+<script>
+(function () {
+  // >>> SWAP: Cal.com booking link for the GetCloned+ strategy call <<<
+  var CAL_LINK = "akassh-ashok-gupta/getcloned-plus-strategy-call";
+  var answers = { 1: null, 2: null, 3: null };
+  var calLoaded = false;
+  var overlay = document.getElementById('qualOverlay');
+  var dots = document.querySelectorAll('#qualDots .dot');
+
+  window.openOverlay = function () { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; goToStep(1); };
+  function closeOverlay() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  document.getElementById('qualClose').addEventListener('click', closeOverlay);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeOverlay(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) closeOverlay(); });
+
+  function goToStep(n) {
+    document.querySelectorAll('.qual-step').forEach(function (s) { s.classList.toggle('active', s.getAttribute('data-step') == n); });
+    document.querySelectorAll('.qual-cal-step').forEach(function (s) { s.classList.toggle('active', s.getAttribute('data-step') == n); });
+    dots.forEach(function (d, i) {
+      d.classList.remove('active', 'done');
+      var stepIdx = i + 1;
+      if (n >= 4) { d.classList.add('done'); }
+      else if (stepIdx < n) { d.classList.add('done'); }
+      else if (stepIdx === n) { d.classList.add('active'); }
+    });
+  }
+
+  document.querySelectorAll('.qual-step[data-step]').forEach(function (step) {
+    var sNum = step.getAttribute('data-step');
+    if (sNum > 3) return;
+    step.querySelectorAll('.qual-opt').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        step.querySelectorAll('.qual-opt').forEach(function (b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        answers[sNum] = btn.getAttribute('data-val');
+        setTimeout(function () { goToStep(parseInt(sNum, 10) + 1); }, 280);
+      });
+    });
+  });
+
+  function buildCalConfig() {
+    return { "metadata[profile]": answers[1] || "", "metadata[bottleneck]": answers[2] || "", "metadata[win]": answers[3] || "", "utm_source": "madhu-case-study", "utm_medium": "qualification-gate" };
+  }
+  function initCal() {
+    if (window.Cal && !calLoaded) {
+      window.Cal.ns["gcplus"]("inline", { elementOrSelector: "#qualCalEmbed", calLink: CAL_LINK, config: buildCalConfig() });
+      window.Cal.ns["gcplus"]("ui", { theme: "dark", cssVarsPerTheme: { dark: { "cal-brand": "#d4af64" } }, hideEventTypeDetails: false, layout: "month_view" });
+      calLoaded = true; return true;
+    }
+    return calLoaded;
+  }
+  document.getElementById('qualOpenBtn').addEventListener('click', function () {
+    goToStep(5);
+    if (!initCal()) { var tries = 0; var iv = setInterval(function () { tries++; if (initCal() || tries > 50) clearInterval(iv); }, 150); }
+  });
+
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('in'); }); }, { threshold: .12 });
+  document.querySelectorAll('.section .section-inner > *').forEach(function (el) { el.classList.add('fade-up'); io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
