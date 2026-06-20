@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Proof Room — GetCloned</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#0A0E12; --paper:#FAF8F4; --cyan:#00FFD1; --mute:#7C8896;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { background:var(--ink); color:var(--paper); font-family:'Inter',-apple-system,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  body { overflow-x:hidden; }
+  a { color:var(--cyan); text-decoration:none; }
+
+  .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
+
+  /* header */
+  header { padding:40px 0 0; }
+  .topbar { display:flex; align-items:center; justify-content:space-between; }
+  .brand { display:flex; align-items:center; gap:12px; }
+  .brand img { height:34px; }
+  .brand .wm { font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--mute); font-weight:600; }
+  .conf { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--mute); }
+
+  /* hero */
+  .hero { padding:70px 0 50px; text-align:center; }
+  .kick { font-size:13px; letter-spacing:5px; text-transform:uppercase; color:var(--cyan); font-weight:700; margin-bottom:22px; }
+  .hero h1 { font-size:54px; line-height:1.05; font-weight:850; letter-spacing:-1.5px; margin-bottom:22px; }
+  .hero h1 .c { color:var(--cyan); }
+  .hero p { font-size:19px; line-height:1.6; color:#B8C2CC; max-width:680px; margin:0 auto; }
+
+  .divider { height:1px; background:linear-gradient(90deg,transparent,#1E2730,transparent); margin:30px 0; }
+
+  /* proof blocks */
+  .proofs { padding:30px 0 60px; display:flex; flex-direction:column; gap:60px; }
+  .proof { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+  .proof.rev .media { order:2; }
+  /* vertical 9:16 reel wrapper for Cloudinary iframes */
+  .proof .vwrap { position:relative; margin:0 auto; width:100%; max-width:300px; }
+  .proof .vwrap iframe { display:block; width:100%; aspect-ratio:9/16; border:0; border-radius:14px; background:#05080B; }
+  /* instagram profile card (photo + CTA) for proofs without an embed */
+  .proof .igcard { position:relative; display:block; aspect-ratio:9/16; border-radius:14px; overflow:hidden; border:1px solid #1A222B; background:#05080B; }
+  .proof .igcard img { width:100%; height:100%; object-fit:cover; display:block; }
+  .proof .igcard::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(5,8,11,.7), transparent 45%); }
+  .proof .igbadge { position:absolute; left:12px; bottom:12px; z-index:2; background:var(--cyan); color:var(--ink); font-weight:700; font-size:12px; letter-spacing:0.3px; padding:9px 15px; border-radius:100px; }
+  .proof .info h2 { font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--cyan); font-weight:700; margin-bottom:14px; }
+  .proof .info .big { font-size:30px; font-weight:800; line-height:1.18; letter-spacing:-0.5px; margin-bottom:16px; }
+  .proof .info p { font-size:16px; line-height:1.65; color:#B8C2CC; margin-bottom:14px; }
+  .proof .info .tag { display:inline-block; font-size:13px; color:var(--mute); border:1px solid #1E2730; border-radius:100px; padding:5px 14px; }
+  .proof .info .iglink { display:inline-block; margin-left:10px; font-size:13px; font-weight:600; color:var(--cyan); }
+  .proof .info .iglink:hover { text-decoration:underline; }
+
+  /* arfeen reels section */
+  .arfeen { padding:20px 0 60px; }
+  .arfeen .ahead { text-align:center; margin-bottom:42px; }
+  .arfeen .akick { font-size:13px; letter-spacing:5px; text-transform:uppercase; color:var(--cyan); font-weight:700; margin-bottom:16px; }
+  .arfeen .atitle { font-size:30px; font-weight:800; letter-spacing:-0.5px; margin-bottom:14px; }
+  .arfeen .atitle .c { color:var(--cyan); }
+  .arfeen .asub { font-size:16px; line-height:1.6; color:#B8C2CC; max-width:600px; margin:0 auto 18px; }
+  .arfeen .ahead .iglink { font-size:14px; font-weight:600; color:var(--cyan); }
+  .arfeen .ahead .iglink:hover { text-decoration:underline; }
+  .reel-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:28px; }
+  .reel-grid .reel { display:flex; flex-direction:column; }
+  .reel-grid .reel .vwrap { max-width:none; }
+  .reel-grid .rcap { margin-top:14px; }
+  .reel-grid .rcap strong { display:block; font-size:15px; font-weight:700; color:var(--paper); margin-bottom:5px; }
+  .reel-grid .rcap span { display:block; font-size:13px; line-height:1.5; color:#9AA6B2; }
+  .proof .info .stat { color:var(--cyan); font-weight:700; }
+
+  /* closing */
+  .closing { text-align:center; padding:50px 0 30px; border-top:1px solid #161D24; }
+  .closing .big { font-size:34px; font-weight:800; letter-spacing:-0.5px; margin-bottom:16px; }
+  .closing .big .c { color:var(--cyan); }
+  .closing p { font-size:17px; color:#B8C2CC; max-width:560px; margin:0 auto 26px; line-height:1.6; }
+  .cta { display:inline-block; background:var(--cyan); color:var(--ink); font-weight:700; font-size:15px; padding:15px 34px; border-radius:100px; letter-spacing:0.3px; }
+  footer { text-align:center; padding:40px 0 50px; color:var(--mute); font-size:12px; letter-spacing:1px; }
+  footer .mk { height:26px; opacity:0.5; margin-bottom:14px; }
+
+  @media (max-width:760px) {
+    .hero h1 { font-size:36px; }
+    .hero p { font-size:16px; }
+    .proof { grid-template-columns:1fr; gap:24px; }
+    .proof.rev .media { order:0; }
+    .proof .info .big { font-size:24px; }
+    .closing .big { font-size:26px; }
+  }
+</style>
+</head>
+<body oncontextmenu="return false;">
+<div class="wrap">
+
+  <header>
+    <div class="topbar">
+      <div class="brand"><img src="media/mark_cyan.svg" alt="GetCloned"><span class="wm">GetCloned</span></div>
+      <span class="conf">Proof Room</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="kick">This Already Works</div>
+    <h1>Don't take our word.<br><span class="c">Watch the proof.</span></h1>
+    <p>Every clone below is live and running right now — producing content, building authority, and earning revenue, without the founder ever touching a camera. This is the system we build.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="proofs">
+
+    <!-- PEEPOYE — instagram profile -->
+    <div class="proof">
+      <div class="media">
+        <div class="vwrap">
+          <a class="igcard" href="https://www.instagram.com/peepoye/" target="_blank" rel="noopener">
+            <img src="media/peepoye.jpg" alt="Peepoye on Instagram">
+            <span class="igbadge">@peepoye on Instagram →</span>
+          </a>
+        </div>
+      </div>
+      <div class="info">
+        <h2>Peepoye — our own brand</h2>
+        <div class="big">5M+ views. A single cloned reel crossed <span class="stat">1M+</span>.</div>
+        <p>Lakhs earned in brand collaborations — without touching a camera once. We ran the playbook on ourselves first, before we ever offered it to a client. See it live on the profile.</p>
+        <span class="tag">Built &amp; running</span>
+      </div>
+    </div>
+
+    <!-- DR MADHU — instagram profile -->
+    <div class="proof rev">
+      <div class="media">
+        <div class="vwrap">
+          <a class="igcard" href="https://www.instagram.com/dr._madhusudan_/" target="_blank" rel="noopener">
+            <img src="media/madhu.jpg" alt="Dr. Madhu on Instagram">
+            <span class="igbadge">@dr._madhusudan_ on Instagram →</span>
+          </a>
+        </div>
+      </div>
+      <div class="info">
+        <h2>Dr. Madhu — Ayurvedic doctor</h2>
+        <div class="big">His cloned reels now <span class="stat">outperform</span> his original content.</div>
+        <p>Two months in, he's stopped touching the camera. The old chain — paid ads → appointments → supplements — collapsed into: cloned reels → funnel → revenue. Now opening new funnels and recurring courses.</p>
+        <span class="tag">Built &amp; running</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ARFEEN KHAN — full reel section -->
+  <section class="arfeen">
+    <div class="ahead">
+      <div class="akick">Arfeen Khan · 4,000+ Coaches</div>
+      <div class="atitle">Built, live, and <span class="c">indistinguishable.</span></div>
+      <p class="asub">One of India's most respected coaches — his own sister couldn't tell it was a clone. From the first words it ever spoke, to the reels it now produces, to the stress test ordinary AI tools fail.</p>
+      <a class="iglink" href="https://www.instagram.com/arfeen.khan/" target="_blank" rel="noopener">@arfeen.khan on Instagram →</a>
+    </div>
+
+    <div class="reel-grid">
+
+      <!-- THE BUILD INTRO -->
+      <div class="reel">
+        <div class="vwrap">
+          <iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Arfeen_Build_Intro_degerx" style="width:100%; aspect-ratio:9/16; border:0; border-radius:14px;" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rcap">
+          <strong>The Build Intro</strong>
+          <span>The āhā moment — the clone speaks for the first time.</span>
+        </div>
+      </div>
+
+      <!-- PROOF REEL 1 — CARBON PRINT -->
+      <div class="reel">
+        <div class="vwrap">
+          <iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Reel_1_-_Your_Life_is_a_Carbon_print_xydzsh" style="width:100%; aspect-ratio:9/16; border:0; border-radius:14px;" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rcap">
+          <strong>"Your Life Is a Carbon Print"</strong>
+          <span>A fully cloned reel — face, voice, delivery, all synthetic.</span>
+        </div>
+      </div>
+
+      <!-- PROOF REEL 2 — WRONG QUESTION -->
+      <div class="reel">
+        <div class="vwrap">
+          <iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Reel_2_-_Your_Brain_Is_Answering_the_Wrong_Question_e8zaqf" style="width:100%; aspect-ratio:9/16; border:0; border-radius:14px;" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rcap">
+          <strong>"Your Brain Is Answering the Wrong Question"</strong>
+          <span>Scripted and produced end-to-end by the system — hands-off.</span>
+        </div>
+      </div>
+
+      <!-- THE INDISTINGUISHABILITY TEST -->
+      <div class="reel">
+        <div class="vwrap">
+          <iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Arfeen_Khan_Gold-Look_tylsgm" style="width:100%; aspect-ratio:9/16; border:0; border-radius:14px;" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rcap">
+          <strong>The Indistinguishability Test</strong>
+          <span>An anti-ageing prompt that distorts ordinary AI — ours holds.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="big">This is what we'd build <span class="c">for you.</span></div>
+    <p>A clone is the hook. The system is the engine — content on autopilot that becomes income on autopilot. The proof is above. The next move is a conversation.</p>
+    <a class="cta" href="mailto:akassh@getcloned.in">Start the conversation →</a>
+  </section>
+
+  <footer>
+    <img class="mk" src="media/mark_white.svg" alt="GetCloned"><br>
+    GetCloned.in · Confidential · The Cloning Guy
+  </footer>
+
+</div>
+
+<script>
+  // discourage casual saving: block drag + long-press save on videos
+  document.querySelectorAll('video').forEach(function(v){
+    v.setAttribute('oncontextmenu','return false;');
+    v.addEventListener('dragstart', function(e){ e.preventDefault(); });
+  });
+</script>
+</body>
+</html>
