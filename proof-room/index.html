@@ -53,14 +53,26 @@
   .vwrap iframe{ width:100%; aspect-ratio:9/16; border:0; border-radius:16px; background:#05080B; box-shadow:0 20px 60px rgba(0,0,0,.5); }
 
   /* the journey ladder (for madhu funnel) */
-  .ladder{ display:flex; flex-direction:column; gap:8px; margin:30px 0; }
-  .rung{ display:flex; align-items:center; gap:16px; background:#0E141A; border:1px solid #1A222B; border-radius:12px; padding:16px 20px; }
-  .rung .rn{ width:30px; height:30px; flex:none; border-radius:50%; background:rgba(0,255,209,.12); color:var(--cyan); font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center; }
-  .rung .rt{ font-size:15px; }
-  .rung .rt b{ color:var(--paper); font-weight:700; }
-  .rung.win{ background:#0d3322; border-color:#164034; }
-  .rung.win .rt b{ color:var(--cyan); }
-  .lad-arrow{ text-align:center; color:var(--cyan); font-size:18px; line-height:1; margin:-2px 0; opacity:.7; }
+  /* money journey — escalating, numbers as heroes, glowing spine */
+  .beforebar{ display:inline-flex; align-items:center; gap:10px; background:#160E0E; border:1px solid #3a1f1f; border-radius:100px; padding:9px 18px; margin:4px 0 26px; font-size:13.5px; color:#E0A0A0; }
+  .beforebar b{ color:#ff9b9b; font-weight:700; }
+  .journey{ position:relative; display:flex; flex-direction:column; gap:14px; margin:8px 0 4px; padding-left:8px; }
+  .jstep{ position:relative; display:grid; grid-template-columns:100px 1fr; gap:22px; align-items:center; background:#0E141A; border:1px solid #1A222B; border-radius:14px; padding:18px 22px; transition:all .2s; }
+  .jstep .jnum{ font-size:26px; font-weight:850; letter-spacing:-1px; color:var(--cyan); line-height:1; }
+  .jstep .jnum small{ display:block; font-size:10px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--mute); margin-top:5px; }
+  .jstep .jt b{ display:block; font-size:16px; color:var(--paper); font-weight:750; margin-bottom:3px; }
+  .jstep .jt span{ font-size:14px; line-height:1.5; color:#9AA6B2; }
+  /* escalating glow */
+  .jstep.s2{ border-color:#1f2d33; }
+  .jstep.s3{ border-color:#244039; }
+  .jstep.s4{ border-color:#235043; }
+  .jstep.s5{ border-color:#1f6b52; }
+  .jwin{ position:relative; display:grid; grid-template-columns:100px 1fr; gap:22px; align-items:center; background:linear-gradient(120deg,#0d3322,#0E141A); border:1.5px solid var(--cyan); border-radius:16px; padding:24px 22px; margin-top:4px; box-shadow:0 0 40px rgba(0,255,209,.15); }
+  .jwin .jnum{ font-size:34px; color:var(--cyan); line-height:1; }
+  .jwin .jnum small{ display:block; font-size:10px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#7fa295; margin-top:6px; white-space:nowrap; }
+  .jwin .jt b{ display:block; font-size:19px; color:var(--cyan); margin-bottom:4px; }
+  .jwin .jt span{ display:block; font-size:15px; line-height:1.5; color:#C9D9D2; }
+  .jcaret{ text-align:center; color:var(--cyan); font-size:16px; line-height:1; opacity:.5; margin:-7px 0; }
 
   /* avatars row (the pillar story) */
   .avatars{ margin:34px 0; }
@@ -174,21 +186,22 @@
       </div>
     </div>
 
-    <div class="bh" style="font-size:21px;margin:30px 0 6px;color:#fff">How the money actually flows:</div>
-    <div class="ladder">
-      <div class="rung"><div class="rn">1</div><div class="rt"><b>The clone produces</b> — daily reels, every platform.</div></div>
-      <div class="lad-arrow">↓</div>
-      <div class="rung"><div class="rn">2</div><div class="rt"><b>Views &amp; engagement</b> — shares and saves at scale.</div></div>
-      <div class="lad-arrow">↓</div>
-      <div class="rung"><div class="rn">3</div><div class="rt"><b>Assessment page</b> — the lead magnet that captures.</div></div>
-      <div class="lad-arrow">↓</div>
-      <div class="rung"><div class="rn">4</div><div class="rt"><b>Nurture</b> — leads warmed automatically.</div></div>
-      <div class="lad-arrow">↓</div>
-      <div class="rung"><div class="rn">5</div><div class="rt"><b>Modak</b> — the product, sold on autopilot.</div></div>
-      <div class="lad-arrow">↓</div>
-      <div class="rung win"><div class="rn">★</div><div class="rt"><b>Revenue, 24/7</b> — authority <em>and</em> income, hands-off.</div></div>
+    <div class="bh" style="font-size:22px;margin:36px 0 4px;color:#fff">How the system turned a doctor into a 24/7 business:</div>
+    <div class="beforebar">BEFORE: <b>only paid ads + a Google listing.</b> No content. No funnel. No system.</div>
+    <div class="journey">
+      <div class="jstep s1"><div class="jnum">5→30<small>reels / month</small></div><div class="jt"><b>The clone produces</b><span>Daily reels go out automatically — up from 5 a month to 30, every platform, zero camera time.</span></div></div>
+      <div class="jcaret">▼</div>
+      <div class="jstep s2"><div class="jnum">1M+<small>views</small></div><div class="jt"><b>The authority engine fires</b><span>Over a million views — trust and visibility compounding, all without him.</span></div></div>
+      <div class="jcaret">▼</div>
+      <div class="jstep s3"><div class="jnum">1,000+<small>leads</small></div><div class="jt"><b>The assessment captures</b><span>A lead-magnet funnel turns viewers into qualified leads — 1,000+ and counting.</span></div></div>
+      <div class="jcaret">▼</div>
+      <div class="jstep s4"><div class="jnum">Auto<small>nurture</small></div><div class="jt"><b>The nurture warms them</b><span>Every lead nurtured automatically, segmented by intent, warmed to buy.</span></div></div>
+      <div class="jcaret">▼</div>
+      <div class="jstep s5"><div class="jnum">Modak<small>product funnel</small></div><div class="jt"><b>The product gets offered</b><span>A product funnel presents Modak — his Ayurvedic supplement — to an audience already warmed.</span></div></div>
+      <div class="jcaret">▼</div>
+      <div class="jwin"><div class="jnum">15<small>sold &middot; week 1</small></div><div class="jt"><b>Revenue, on autopilot</b><span>15 sold in the first week. No ads, no clinic, no camera. The doctor sold in his sleep.</span></div></div>
     </div>
-    <p class="bp" style="max-width:680px">The doctor didn't become a content creator. He stayed a doctor — and a system now does the visibility, the lead capture, the nurture, and the selling, around the clock, while he sees patients.</p>
+    <p class="bp" style="max-width:700px;margin-top:22px">He didn't become a content creator. He stayed a doctor — and a system now runs the visibility, the lead capture, the nurture, and the selling, around the clock, in parallel, while he sees patients. <b style="color:#fff">Authority and income, both on autopilot.</b></p>
   </section>
 
   <!-- ===== CHAPTER 3 — AKASSH — THE FOUNDER ===== -->
