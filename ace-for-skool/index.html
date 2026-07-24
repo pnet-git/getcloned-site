@@ -30,6 +30,41 @@
   <meta name="twitter:image" content="https://getcloned.in/ace-for-skool/og.png">
   <meta name="twitter:image:alt" content="ACE for Skool — fill your Skool community on autopilot">
   <meta name="theme-color" content="#07090c">
+  <script>
+  /* This is a Figma "bundled" export: its runtime does
+     document.documentElement.replaceWith(...) which wipes this <head>
+     (favicon + title) after load. Re-assert them into the new <head>.
+     Runs on window timers/observer, which survive the DOM swap. */
+  (function () {
+    var ICONS = [
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/ace-for-skool/favicon-32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/ace-for-skool/favicon-16.png' },
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/ace-for-skool/favicon-180.png' }
+    ];
+    var TITLE = 'ACE for Skool — Fill Your Community on Autopilot | GetCloned';
+    function ensure() {
+      try {
+        var head = document.head || document.getElementsByTagName('head')[0];
+        if (head && !head.querySelector('link[rel~="icon"]')) {
+          ICONS.forEach(function (i) {
+            var l = document.createElement('link');
+            l.rel = i.rel;
+            if (i.type) l.type = i.type;
+            if (i.sizes) l.setAttribute('sizes', i.sizes);
+            l.href = i.href;
+            head.appendChild(l);
+          });
+        }
+        if (document.title !== TITLE) document.title = TITLE;
+      } catch (e) {}
+    }
+    ensure();
+    var n = 0, iv = setInterval(function () { ensure(); if (++n > 30) clearInterval(iv); }, 200);
+    try { new MutationObserver(ensure).observe(document, { childList: true, subtree: true }); } catch (e) {}
+    document.addEventListener('DOMContentLoaded', ensure);
+    window.addEventListener('load', ensure);
+  })();
+  </script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #faf9f5; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
