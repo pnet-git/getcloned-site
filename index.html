@@ -143,6 +143,45 @@
   .err{color:#ff6f61;font-size:13.5px;margin-top:11px;min-height:18px;}
   .note{font-size:12.5px;color:var(--faint);margin-top:15px;}
 
+  .eyebrow{
+    font-size:12px;letter-spacing:0.12em;color:var(--cyan);
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .panel{
+    background:var(--panel);
+    border:2px solid rgba(0,255,209,0.28);
+    border-radius:18px;
+    padding:28px 26px;
+    box-shadow:0 14px 40px rgba(0,0,0,0.35);
+  }
+  .panel h2{
+    font-size:clamp(22px,4vw,27px);
+    font-weight:700;line-height:1.16;letter-spacing:-0.02em;
+    margin:0 0 13px;text-wrap:balance;
+  }
+  .panel p{font-size:15px;line-height:1.6;color:var(--dim);margin:0 0 23px;}
+  .stats{display:flex;gap:10px;margin-bottom:25px;}
+  .stat{
+    flex:1;background:rgba(0,255,209,0.06);
+    border-radius:12px;padding:12px 8px;text-align:center;
+  }
+  .stat b{display:block;font-size:19px;font-weight:700;color:var(--cyan);}
+  .stat span{display:block;font-size:11px;color:var(--dim);margin-top:3px;}
+  .panel .go{width:100%;text-align:center;display:block;text-decoration:none;padding:15px;}
+  .socials{display:flex;gap:11px;flex-wrap:wrap;}
+  .soc{
+    flex:1;min-width:130px;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:rgba(255,255,255,0.04);
+    border:2px solid var(--line);
+    border-radius:999px;padding:13px 18px;
+    color:var(--text);text-decoration:none;
+    font-size:14.5px;font-weight:500;
+    transition:border-color .18s,transform .14s;
+  }
+  .soc:hover{border-color:var(--cyan);transform:translateY(-1px);}
+  .soc svg{width:15px;height:15px;fill:currentColor;flex:none;}
+
   footer{
     position:relative;z-index:2;
     padding:24px 30px 30px;
@@ -245,17 +284,37 @@
       <div class="err" id="err3"></div>
     </section>
 
-    <!-- STEP 4 : done -->
+    <!-- STEP 4 : other, answered -->
     <section class="step" id="s4">
-      <h1>We have noted your requirements.</h1>
-      <p class="sub">If we build something that fits what you are after, we will be in touch.</p>
+      <div class="panel">
+        <h2>We have noted your requirements.</h2>
+        <p>In the meantime, here is what we do. GetCloned builds a content engine on your cloned voice, face, and brain, then runs it on autopilot across your platforms. Experts, coaches, and founders use it to compound visibility, authority, and trust without ever touching content production.</p>
+        <div class="socials">
+          <a class="soc" href="https://www.linkedin.com/in/akasshagupta/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            LinkedIn
+          </a>
+          <a class="soc" href="https://www.instagram.com/akasshashokgupta/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38C1.36 2.67.94 3.34.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.12C21.33 1.36 20.66.94 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
+            Instagram
+          </a>
+        </div>
+      </div>
     </section>
 
-    <!-- STEP 5 : routing -->
+    <!-- STEP 5 : the answer panel -->
     <section class="step" id="s5">
-      <h1>Taking you there now.</h1>
-      <p class="sub" id="routing-sub">One moment.</p>
-      <div class="note">Not moving? <a href="#" id="manual" style="color:var(--cyan);text-decoration:none;">Click here</a>.</div>
+      <div class="eyebrow" id="p-eyebrow"></div>
+      <div class="panel">
+        <h2 id="p-head"></h2>
+        <p id="p-body"></p>
+        <div class="stats">
+          <div class="stat"><b>5M+</b><span>views, our page</span></div>
+          <div class="stat"><b>1M+</b><span>views in 60 days</span></div>
+          <div class="stat"><b>4,000+</b><span>coaches reached</span></div>
+        </div>
+        <a class="go" id="p-cta" href="#"></a>
+      </div>
     </section>
 
   </div>
@@ -277,6 +336,27 @@
 <script>
 (function(){
   var state = { email:'', option:null, route:null };
+
+  var PANELS = {
+    skool: {
+      eyebrow: 'For Skool community owners',
+      head: 'You built the community. We drive the traffic to it.',
+      body: 'We build a content engine that runs on your cloned voice, face, and brain, then deploy it on autopilot. It publishes for you 24/7 and pushes a steady stream of the right people to your Skool page, so you get visibility, authority, and members without lifting a finger. You stay the expert. We remove the labor.',
+      cta: 'See how ACE works'
+    },
+    dfy: {
+      eyebrow: 'Done for you, end to end',
+      head: 'Stop becoming the content creator. Grow as a mission leader.',
+      body: 'We build a content engine that runs on autopilot through your cloned voice, face, and brain. You never touch a camera or any part of content production, publishing, or distribution. Your visibility, authority, and trust compound daily, which scales your business without you being actively involved 24/7.',
+      cta: 'See the full breakdown'
+    },
+    getvisible: {
+      eyebrow: 'GetVisible for LinkedIn',
+      head: 'Stop planning to post. Start publishing on LinkedIn, on autopilot.',
+      body: 'We run one discovery session and your LinkedIn presence starts building every day. Auto generate, auto schedule, and auto publish, all matched to your growth goals. No more staring at a blank page wondering what to write.',
+      cta: 'Start with GetVisible'
+    }
+  };
 
   function show(id){
     document.querySelectorAll('.step').forEach(function(s){ s.classList.remove('on'); });
@@ -325,12 +405,15 @@
         return;
       }
 
+      var p = PANELS[state.option];
+      document.getElementById('p-eyebrow').textContent = p.eyebrow;
+      document.getElementById('p-head').textContent = p.head;
+      document.getElementById('p-body').textContent = p.body;
+      var cta = document.getElementById('p-cta');
+      cta.textContent = p.cta;
+      cta.setAttribute('href', state.route);
       show('s5');
-      document.getElementById('manual').setAttribute('href', state.route);
-      send({ email: state.email, selected_option: state.option, routed_to: state.route })
-        .then(function(){ window.location.href = state.route; });
-      // hard fallback in case the write hangs
-      setTimeout(function(){ window.location.href = state.route; }, 2500);
+      send({ email: state.email, selected_option: state.option, routed_to: state.route });
     });
   });
 
