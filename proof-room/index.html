@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Proof Room — GetCloned</title>
+<title>Proof Room · GetCloned</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="shortcut icon" href="/favicon.svg" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
@@ -82,6 +82,18 @@
   .avrow img{ width:130px; aspect-ratio:4/5; border-radius:12px; object-fit:cover; border:2px solid var(--cyan); margin-bottom:8px; display:block; }
   .avrow .avlabel{ font-size:11px; color:var(--mute); }
 
+  /* aggregate band — the machine-not-luck proof, above the fold */
+  .agg{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; max-width:740px; margin:36px auto 22px; }
+  .aggitem{ flex:1; min-width:172px; background:linear-gradient(160deg,#0d2a24,#0E141A); border:1px solid #1f6b52; border-radius:16px; padding:24px 18px; box-shadow:0 0 40px rgba(0,255,209,.10); }
+  .aggv{ font-size:46px; font-weight:850; color:var(--cyan); letter-spacing:-2px; line-height:1; margin-bottom:9px; }
+  .aggl{ font-size:12.5px; letter-spacing:1.5px; text-transform:uppercase; color:#9AA6B2; font-weight:600; line-height:1.35; }
+  .hero p.aggnote{ font-size:15.5px; line-height:1.62; color:#9AA6B2; max-width:670px; margin:0 auto 26px; }
+
+  /* quote block — the client's own words */
+  .kquote{ background:#0E141A; border-left:3px solid var(--cyan); border-radius:0 14px 14px 0; padding:22px 26px; margin:30px 0; max-width:720px; }
+  .kquote p{ font-size:19px; line-height:1.55; color:var(--paper); font-weight:600; font-style:italic; margin-bottom:9px; }
+  .kquote .kattr{ font-size:13px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mute); font-weight:600; }
+
   /* stat strip */
   .stats{ display:flex; gap:14px; flex-wrap:wrap; margin:24px 0; }
   .stat{ flex:1; min-width:140px; background:#0E141A; border:1px solid #1A222B; border-radius:14px; padding:20px; }
@@ -107,6 +119,9 @@
 
   @media (max-width:760px){
     .hero h1{ font-size:38px; }
+    .aggv{ font-size:36px; }
+    .aggitem{ min-width:120px; padding:18px 14px; }
+    .kquote p{ font-size:17px; }
     .chaptitle{ font-size:30px; }
     .beat{ grid-template-columns:1fr; gap:22px; }
     .beat.rev .bmedia{ order:0; }
@@ -126,35 +141,41 @@
   <section class="hero">
     <div class="kick">This Already Works</div>
     <h1>Don't take our word.<br><span class="c">Watch the proof.</span></h1>
-    <p>Three founders. Three systems running right now — building authority, capturing leads, and earning revenue, without anyone touching a camera. Scroll, and watch each story unfold.</p>
+    <p>Three founders. Three systems building authority, capturing leads and earning revenue, without anyone touching a camera.</p>
+    <div class="agg">
+      <div class="aggitem"><div class="aggv">192</div><div class="aggl">Cloned reels shipped</div></div>
+      <div class="aggitem"><div class="aggv">4.8M</div><div class="aggl">Total views</div></div>
+      <div class="aggitem"><div class="aggv">0</div><div class="aggl">Filmed on a camera</div></div>
+    </div>
+    <p class="aggnote">One viral clip reads as luck. 192 reels holding a steady 16k to 30k average reads as a machine. And the clone itself is only about a tenth of the work. The rest is strategy, scripting, publishing and the funnels underneath.</p>
     <div class="scrollcue">↓ Scroll to begin</div>
   </section>
 
   <!-- ===== CHAPTER 1 — ARFEEN — THE BUILD ===== -->
   <section class="chapter">
     <div class="chapnum">Chapter 01 · The Build</div>
-    <div class="chaptitle">Arfeen Khan — built, live, and <span class="c">indistinguishable.</span></div>
-    <p class="chaplede">One of India's most respected coaches, mentor to 4,000+ — his own sister couldn't tell it was a clone. Watch the system come alive, pass the test ordinary AI fails, and start producing.</p>
+    <div class="chaptitle">Arfeen Khan: built, live, and <span class="c">indistinguishable.</span></div>
+    <p class="chaplede">One of India's most respected coaches, mentor to 4,000+, and his own sister couldn't tell it was a clone. Watch the system come alive, pass the test ordinary AI fails, and start producing.</p>
     <a class="ig" href="https://www.instagram.com/arfeen.khan/" target="_blank" rel="noopener">@arfeen.khan on Instagram →</a>
 
     <div class="beat">
       <div class="bmedia"><div class="vwrap"><iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Arfeen_Build_Intro_degerx" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe></div></div>
-      <div class="binfo"><div class="bnum">Beat 1 · The āhā moment</div><div class="bh">The clone speaks for the first time.</div><div class="bp">The moment it came alive. This is the clip that made Arfeen call within the hour — the first time he saw himself, indistinguishable, saying words he never recorded.</div></div>
+      <div class="binfo"><div class="bnum">Beat 1 · The aha moment</div><div class="bh">The clone speaks for the first time.</div><div class="bp">The moment it came alive. This is the clip that made Arfeen call within the hour, the first time he saw himself, indistinguishable, saying words he never recorded.</div></div>
     </div>
 
     <div class="beat rev">
       <div class="bmedia"><div class="vwrap"><iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Arfeen_Khan_Gold-Look_tylsgm" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe></div></div>
-      <div class="binfo"><div class="bnum">Beat 2 · The stress test</div><div class="bh">We gave the clone an anti-ageing pill.</div><div class="bp">The test ordinary AI tools fail — push them to transform and the face distorts. Ours holds, flawlessly. This is the difference between a toy and a system.</div></div>
+      <div class="binfo"><div class="bnum">Beat 2 · The stress test</div><div class="bh">We gave the clone an anti-ageing pill.</div><div class="bp">The test ordinary AI tools fail: push them to transform and the face distorts. Ours holds, flawlessly. This is the difference between a toy and a system.</div></div>
     </div>
 
     <div class="beat">
       <div class="bmedia"><div class="vwrap"><iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Reel_1_-_Your_Life_is_a_Carbon_print_xydzsh" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe></div></div>
-      <div class="binfo"><div class="bnum">Beat 3 · It produces</div><div class="bh">"Your Life Is a Carbon Print."</div><div class="bp">A fully cloned reel — face, voice, delivery, all synthetic, all on-brand. Scripted and produced end-to-end by the system. Hands-off.</div></div>
+      <div class="binfo"><div class="bnum">Beat 3 · It produces</div><div class="bh">"Your Life Is a Carbon Print."</div><div class="bp">A fully cloned reel: face, voice, delivery, all synthetic, all on-brand. Scripted and produced end-to-end by the system. Hands-off.</div></div>
     </div>
 
     <div class="beat rev">
       <div class="bmedia"><div class="vwrap"><iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Reel_2_-_Your_Brain_Is_Answering_the_Wrong_Question_e8zaqf" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe></div></div>
-      <div class="binfo"><div class="bnum">Beat 4 · And again</div><div class="bh">"Your Brain Is Answering the Wrong Question."</div><div class="bp">Reel two. The engine doesn't tire, doesn't reschedule, doesn't need a studio. <b style="color:#fff">June 22: daily publishing begins.</b> We warm the algorithm with weeks of value — then map the funnels next month, and the content starts earning.</div></div>
+      <div class="binfo"><div class="bnum">Beat 4 · And again</div><div class="bh">"Your Brain Is Answering the Wrong Question."</div><div class="bp">Reel two. The engine doesn't tire, doesn't reschedule, doesn't need a studio. <b style="color:#fff">June 22: daily publishing begins.</b> We warm the algorithm with weeks of value, then map the funnels next month, and the content starts earning.</div></div>
     </div>
 
     <div class="stats">
@@ -167,18 +188,26 @@
   <!-- ===== CHAPTER 2 — DR MADHU — THE MONEY ===== -->
   <section class="chapter">
     <div class="chapnum">Chapter 02 · The Money</div>
-    <div class="chaptitle">Dr. Madhu — from paid ads to <span class="c">revenue on autopilot.</span></div>
-    <p class="chaplede">A doctor who once relied only on paid ads and a Google listing — and never made more than 5 reels in a month. Today, 30 cloned reels go out monthly, building trust, authority, leads, and revenue — digitally, 24/7, without him touching anything. This is the full system, not just a clone.</p>
+    <div class="chaptitle">Dr. Madhu, from paid ads to <span class="c">revenue on autopilot.</span></div>
+    <p class="chaplede">A wellness doctor with 375k followers who once relied only on paid ads and a Google listing, and never made more than 5 reels in a month. Today 30 cloned reels go out monthly, building trust, authority, leads and revenue, 24/7, without him touching anything. This is the full system, not just a clone.</p>
     <a class="ig" href="https://www.instagram.com/dr._madhusudan_/" target="_blank" rel="noopener">@dr._madhusudan_ on Instagram →</a>
 
     <div class="stats">
+      <div class="stat"><div class="sv">375k</div><div class="sl">Followers on Instagram</div></div>
+      <div class="stat"><div class="sv">86</div><div class="sl">Cloned reels shipped</div></div>
+      <div class="stat"><div class="sv">1.4M</div><div class="sl">Total views on cloned reels</div></div>
+      <div class="stat"><div class="sv">16k</div><div class="sl">Average views per reel</div></div>
       <div class="stat"><div class="sv">5,000+</div><div class="sl">Shares &amp; saves per reel</div></div>
-      <div class="stat"><div class="sv">5 → 30</div><div class="sl">Reels/month — up from 5, all cloned</div></div>
-      <div class="stat"><div class="sv">2 months</div><div class="sl">Since he last touched a camera</div></div>
+      <div class="stat"><div class="sv">5 → 30</div><div class="sl">Reels per month, all cloned</div></div>
+    </div>
+
+    <div class="kquote">
+      <p>"Content had never generated a single lead for me before this."</p>
+      <div class="kattr">Dr. Madhu Sudan, in his own words</div>
     </div>
 
     <div class="avatars">
-      <div class="al">One clone, many pillars — different avatars for different content</div>
+      <div class="al">One clone, many pillars: different avatars for different content</div>
       <div class="avrow">
         <div class="avitem"><img src="/proof-room/media/madhu_av1.jpg" alt="Madhu avatar 1"><div class="avlabel">Education</div></div>
         <div class="avitem"><img src="/proof-room/media/madhu_av2.jpg" alt="Madhu avatar 2"><div class="avlabel">Remedies</div></div>
@@ -189,19 +218,19 @@
     <div class="bh" style="font-size:22px;margin:36px 0 4px;color:#fff">How the system turned a doctor into a 24/7 business:</div>
     <div class="beforebar">BEFORE: <b>only paid ads + a Google listing.</b> No content. No funnel. No system.</div>
     <div class="journey">
-      <div class="jstep s1"><div class="jnum">5→30<small>reels / month</small></div><div class="jt"><b>The clone produces</b><span>Daily reels go out automatically — up from 5 a month to 30, every platform, zero camera time.</span></div></div>
+      <div class="jstep s1"><div class="jnum">5→30<small>reels / month</small></div><div class="jt"><b>The clone produces</b><span>Daily reels go out automatically, up from 5 a month to 30, every platform, zero camera time.</span></div></div>
       <div class="jcaret">▼</div>
-      <div class="jstep s2"><div class="jnum">1M+<small>views</small></div><div class="jt"><b>The authority engine fires</b><span>Over a million views — trust and visibility compounding, all without him.</span></div></div>
+      <div class="jstep s2"><div class="jnum">1.4M<small>views</small></div><div class="jt"><b>The authority engine fires</b><span>1.4 million views across 86 cloned reels. Trust and visibility compounding, all without him.</span></div></div>
       <div class="jcaret">▼</div>
-      <div class="jstep s3"><div class="jnum">1,000+<small>leads</small></div><div class="jt"><b>The assessment captures</b><span>A lead-magnet funnel turns viewers into qualified leads — 1,000+ and counting.</span></div></div>
+      <div class="jstep s3"><div class="jnum">1,000+<small>leads</small></div><div class="jt"><b>The assessment captures</b><span>A lead-magnet funnel turns viewers into qualified leads, 1,000+ and counting.</span></div></div>
       <div class="jcaret">▼</div>
       <div class="jstep s4"><div class="jnum">Auto<small>nurture</small></div><div class="jt"><b>The nurture warms them</b><span>Every lead nurtured automatically, segmented by intent, warmed to buy.</span></div></div>
       <div class="jcaret">▼</div>
-      <div class="jstep s5"><div class="jnum">Modak<small>product funnel</small></div><div class="jt"><b>The product gets offered</b><span>A product funnel presents Modak — his Ayurvedic supplement — to an audience already warmed.</span></div></div>
+      <div class="jstep s5"><div class="jnum">Modak<small>product funnel</small></div><div class="jt"><b>The product gets offered</b><span>A product funnel presents Modak, his Ayurvedic supplement, to an audience already warmed.</span></div></div>
       <div class="jcaret">▼</div>
       <div class="jwin"><div class="jnum">15<small>sold &middot; week 1</small></div><div class="jt"><b>Revenue, on autopilot</b><span>15 sold in the first week. No ads, no clinic, no camera. The doctor sold in his sleep.</span></div></div>
     </div>
-    <p class="bp" style="max-width:700px;margin-top:22px">He didn't become a content creator. He stayed a doctor — and a system now runs the visibility, the lead capture, the nurture, and the selling, around the clock, in parallel, while he sees patients. <b style="color:#fff">Authority and income, both on autopilot.</b></p>
+    <p class="bp" style="max-width:700px;margin-top:22px">He didn't become a content creator. He stayed a doctor, and a system now runs the visibility, the lead capture, the nurture and the selling, around the clock, in parallel, while he sees patients. <b style="color:#fff">Authority and income, both on autopilot.</b></p>
   </section>
 
   <!-- ===== CHAPTER 3 — AKASSH — THE FOUNDER ===== -->
@@ -211,7 +240,7 @@
       <img src="/proof-room/media/akassh.jpg" alt="Akassh Ashok Gupta">
       <div>
         <div class="chaptitle" style="margin-bottom:8px">Akassh Ashok Gupta</div>
-        <p class="chaplede" style="margin-bottom:0">The brain behind the system — and its first living proof. He didn't read about this in a deck. He built it on himself.</p>
+        <p class="chaplede" style="margin-bottom:0">The brain behind the system, and its first living proof. He didn't read about this in a deck. He built it on himself.</p>
       </div>
     </div>
 
@@ -219,7 +248,7 @@
       <div class="binfo">
         <div class="bnum">The consultant</div>
         <div class="bh">Two decades at the leadership table.</div>
-        <div class="bp">Senior consultant at Concentrix (NASDAQ-listed, ~$9.6B, serving 155+ Fortune Global 500) — delivering for American Express, Amazon UK, HSBC, Barclays across aviation, banking, and healthcare. <b style="color:#fff">IIM-Ahmedabad</b> Advanced Analytics. <b style="color:#fff">Lean Six Sigma Master Black Belt</b> (Motorola University lineage).</div>
+        <div class="bp">Senior consultant at Concentrix (NASDAQ-listed, ~$9.6B, serving 155+ Fortune Global 500), delivering for American Express, Amazon UK, HSBC, Barclays across aviation, banking and healthcare. <b style="color:#fff">IIM-Ahmedabad</b> Advanced Analytics. <b style="color:#fff">Lean Six Sigma Master Black Belt</b> (Motorola University lineage).</div>
       </div>
       <div class="bmedia">
         <div class="badges">
@@ -235,14 +264,14 @@
     <div class="beat rev">
       <div class="binfo">
         <div class="bnum">The creator</div>
-        <div class="bh">Then he went viral — and got the Gold Play Button.</div>
-        <div class="bp">Using his knack for data and the algorithms of social media, he built a YouTube channel past <b style="color:#fff">1,000,000+ subscribers</b>, crossed <b style="color:#fff">100K+ on every platform</b>, did celebrity podcasts, and built a founder-level name. The proof that he doesn't just understand the system — he <em>is</em> the system.</div>
+        <div class="bh">Then he went viral, and got the Gold Play Button.</div>
+        <div class="bp">Using his knack for data and the algorithms of social media, he built a YouTube channel past <b style="color:#fff">1.3M+ subscribers</b>, crossed <b style="color:#fff">100K+ on every platform</b>, did celebrity podcasts and built a founder-level name. The proof that he doesn't just understand the system. He <em>is</em> the system.</div>
       </div>
       <div class="bmedia">
         <div class="stats" style="flex-direction:column">
-          <div class="stat"><div class="sv">1M+</div><div class="sl">YouTube subscribers · Gold Play Button</div></div>
-          <div class="stat"><div class="sv">100K+</div><div class="sl">On every platform — FB, IG, X</div></div>
-          <div class="stat"><div class="sv">5M+</div><div class="sl">Views as Peepoye — one reel crossed 1M+</div></div>
+          <div class="stat"><div class="sv">1.3M+</div><div class="sl">YouTube subscribers · Gold Play Button</div></div>
+          <div class="stat"><div class="sv">100K+</div><div class="sl">On every platform: FB, IG, X</div></div>
+          <div class="stat"><div class="sv">1M+</div><div class="sl">Views on a single reel</div></div>
         </div>
       </div>
     </div>
@@ -250,21 +279,50 @@
     <div class="beat">
       <div class="binfo">
         <div class="bnum">The clone</div>
-        <div class="bh">Then he cloned himself — and disappeared from production.</div>
-        <div class="bp">He automated everything end-to-end and built the frameworks from real experience. <b style="color:#fff">Peepoye is now fully cloned</b> — content goes to every platform at the same time, he hasn't touched a camera in months, and the reels still cross millions. <em>"I don't just sell the clone — I am the clone."</em></div>
+        <div class="bh">Then he cloned himself, and disappeared from production.</div>
+        <div class="bp">He automated everything end-to-end and built the frameworks from real experience. <b style="color:#fff">Peepoye is now 100 percent cloned, and has been since April 2026.</b> Content goes to every platform at the same time, he has had zero camera time since, and the reels still cross millions. <em>"I don't just sell the clone. I am the clone."</em></div>
       </div>
       <div class="bmedia"><a class="igcard" href="https://www.instagram.com/peepoye/" target="_blank" rel="noopener" style="display:block;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid #1A222B;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.5)">
-        <img src="/proof-room/media/peepoye_goldplay.jpg" alt="Peepoye — YouTube Gold Play Button" style="width:100%;height:100%;object-fit:cover">
+        <img src="/proof-room/media/peepoye_goldplay.jpg" alt="Peepoye YouTube Gold Play Button" style="width:100%;height:100%;object-fit:cover">
         <span style="position:absolute;left:12px;bottom:12px;background:var(--cyan);color:var(--ink);font-weight:700;font-size:12px;padding:9px 15px;border-radius:100px">@peepoye on Instagram →</span>
       </a></div>
     </div>
 
-    <p class="chaplede" style="margin-top:24px"><b style="color:#fff">His thesis:</b> content is only the mechanism. The mission and the message matter most. So he built a product that enables missions that matter — with efficiency and scale that no founder's calendar could ever give them.</p>
+    <div class="stats">
+      <div class="stat"><div class="sv">106</div><div class="sl">Cloned reels shipped on his own channel</div></div>
+      <div class="stat"><div class="sv">3.4M</div><div class="sl">Total views on those reels</div></div>
+      <div class="stat"><div class="sv">30k</div><div class="sl">Average views per reel</div></div>
+      <div class="stat"><div class="sv">Zero</div><div class="sl">Camera time since April 2026</div></div>
+    </div>
+    <p class="bp" style="max-width:700px;margin-top:20px">This is the proof no one can call cherry-picked. It is not a client we selected to show you. It is his own channel, run in public, at volume, for months.</p>
+
+    <p class="chaplede" style="margin-top:24px"><b style="color:#fff">His thesis:</b> content is only the mechanism. The mission and the message matter most. So he built a product that enables missions that matter, with efficiency and scale that no founder's calendar could ever give them.</p>
+  </section>
+
+  <!-- ===== CHAPTER 4 — YOUR LADDER ===== -->
+  <section class="chapter">
+    <div class="chapnum">Chapter 04 · Your Ladder</div>
+    <div class="chaptitle">What this looks like <span class="c">inside your community.</span></div>
+    <p class="chaplede">There are only three ways to grow a community: run paid ads, make content, or do outreach. Ads stop the day you stop paying. Outreach stops the day you stop typing. Organic content is the one that compounds, and it is the one nobody can keep up with by hand. That is the exact job this engine takes off you.</p>
+
+    <div class="journey">
+      <div class="jstep s1"><div class="jnum">30<small>reels / month</small></div><div class="jt"><b>Your clone produces</b><span>Reels in your face and your voice, shipped on a schedule, with zero camera time from you.</span></div></div>
+      <div class="jcaret">▼</div>
+      <div class="jstep s2"><div class="jnum">Free<small>traffic</small></div><div class="jt"><b>Social media pulls</b><span>Strangers come toward you instead of you chasing them. No ad spend keeping the tap open.</span></div></div>
+      <div class="jcaret">▼</div>
+      <div class="jstep s3"><div class="jnum">CTA<small>on every reel</small></div><div class="jt"><b>The reels point somewhere</b><span>Every piece routes viewers to your community or your offer, never to a dead end.</span></div></div>
+      <div class="jcaret">▼</div>
+      <div class="jstep s4"><div class="jnum">New<small>members</small></div><div class="jt"><b>The room fills</b><span>Reach turns into people inside your walls, warmed by weeks of your own thinking before they arrive.</span></div></div>
+      <div class="jcaret">▼</div>
+      <div class="jwin"><div class="jnum">∞<small>compounding</small></div><div class="jt"><b>It keeps working after you stop</b><span>A reel published today still pulls members next month. That is the difference between owning an engine and renting attention.</span></div></div>
+    </div>
+
+    <p class="bp" style="max-width:720px;margin-top:22px">If your community is paid, this multiplies reach into members and monthly revenue. If it is still free or pre-revenue, it fills the room first and drives your book, course or program sales. <b style="color:#fff">Same engine, different rung.</b></p>
   </section>
 
   <section class="closing">
     <div class="big">This is what we'd build <span class="c">for you.</span></div>
-    <p>A clone is the hook. The system is the engine — content on autopilot that becomes income on autopilot. The proof is above. The next move is a conversation.</p>
+    <p>A clone is the hook. The system is the engine: content on autopilot that becomes income on autopilot. The proof is above. The next move is a conversation.</p>
     <div class="ctas">
       <a class="cta" href="https://wa.me/919624779149?text=Hi%20Akassh%2C%20I%20just%20watched%20the%20Proof%20Room%20%E2%80%94%20let%27s%20talk.">💬 Message on WhatsApp</a>
       <a class="cta cta2" href="mailto:akassh@getcloned.in?subject=Saw%20the%20Proof%20Room">Email instead</a>
