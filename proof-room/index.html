@@ -9,128 +9,191 @@
 <link rel="shortcut icon" href="/favicon.svg" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
 <style>
-  :root{ --ink:#0A0E12; --paper:#FAF8F4; --cyan:#00FFD1; --saffron:#E8A23D; --mute:#7C8896; }
+  :root{
+    --ink:#0A0E12; --panel:#0E141A; --line:#1A222B;
+    --paper:#FAF8F4; --cyan:#00FFD1; --saffron:#E8A23D;
+    --mute:#7C8896; --body:#B8C2CC;
+  }
   *{ margin:0; padding:0; box-sizing:border-box; }
-  html,body{ background:var(--ink); color:var(--paper); font-family:'Inter',-apple-system,Arial,sans-serif; -webkit-font-smoothing:antialiased; scroll-behavior:smooth; }
-  body{ overflow-x:hidden; }
+  html{ scroll-behavior:smooth; }
+  body{ background:var(--ink); color:var(--paper); font-family:'Inter',-apple-system,Arial,sans-serif;
+        -webkit-font-smoothing:antialiased; overflow-x:hidden; }
   a{ color:var(--cyan); text-decoration:none; }
   .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
-  .ph{ color:var(--saffron); } /* placeholder marker — swap these */
+
+  /* scroll progress */
+  #prog{ position:fixed; top:0; left:0; height:2px; width:0%; background:var(--cyan); z-index:99;
+         box-shadow:0 0 12px rgba(0,255,209,.6); transition:width .08s linear; }
+
+  /* scroll reveal — only hides when JS is confirmed running, so a JS failure
+     can never leave a prospect staring at a blank page */
+  .js .rv{ opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s ease; }
+  .js .rv.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ .js .rv{ opacity:1; transform:none; transition:none; } }
 
   /* header */
-  header{ padding:34px 0 0; }
+  header{ padding:30px 0 0; }
   .topbar{ display:flex; align-items:center; justify-content:space-between; }
   .brand{ display:flex; align-items:center; gap:12px; }
-  .brand img{ height:32px; }
-  .brand .wm{ font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--mute); font-weight:600; }
+  .brand img{ height:30px; }
+  .brand .wm{ font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--mute); font-weight:600; }
   .conf{ font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--mute); }
 
-  /* hero with proof above the fold */
-  .hero{ padding:64px 0 30px; text-align:center; }
-  .kick{ font-size:13px; letter-spacing:5px; text-transform:uppercase; color:var(--cyan); font-weight:700; margin-bottom:20px; }
-  .hero h1{ font-size:56px; line-height:1.04; font-weight:850; letter-spacing:-1.6px; margin-bottom:20px; }
+  /* hero */
+  .hero{ padding:70px 0 34px; text-align:center; }
+  .kick{ font-size:12px; letter-spacing:5px; text-transform:uppercase; color:var(--cyan); font-weight:700; margin-bottom:18px; }
+  .hero h1{ font-size:58px; line-height:1.03; font-weight:850; letter-spacing:-1.8px; margin-bottom:18px; }
   .hero h1 .c{ color:var(--cyan); }
-  .hero p{ font-size:19px; line-height:1.55; color:#B8C2CC; max-width:640px; margin:0 auto 26px; }
-  .scrollcue{ font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--mute); animation:bob 2s ease-in-out infinite; }
+  .hero .sub{ font-size:19px; line-height:1.5; color:var(--body); max-width:560px; margin:0 auto; }
+
+  .agg{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; max-width:740px; margin:38px auto 20px; }
+  .aggitem{ flex:1; min-width:172px; background:linear-gradient(160deg,#0d2a24,#0E141A);
+            border:1px solid #1f6b52; border-radius:16px; padding:26px 18px; box-shadow:0 0 40px rgba(0,255,209,.10); }
+  .aggv{ font-size:48px; font-weight:850; color:var(--cyan); letter-spacing:-2px; line-height:1; margin-bottom:9px; }
+  .aggl{ font-size:12.5px; letter-spacing:1.5px; text-transform:uppercase; color:#9AA6B2; font-weight:600; line-height:1.35; }
+  .oneline{ font-size:16px; color:#9AA6B2; max-width:600px; margin:0 auto; line-height:1.55; }
+  .scrollcue{ font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--mute);
+              animation:bob 2s ease-in-out infinite; margin-top:30px; }
   @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(6px);} }
 
-  /* chapter scaffold */
-  .chapter{ padding:80px 0 60px; border-top:1px solid #141B22; position:relative; }
-  .chapnum{ font-size:13px; letter-spacing:4px; text-transform:uppercase; color:var(--mute); font-weight:700; margin-bottom:10px; }
-  .chaptitle{ font-size:40px; font-weight:850; letter-spacing:-1px; line-height:1.08; margin-bottom:18px; }
+  /* chapters */
+  .chapter{ padding:78px 0 58px; border-top:1px solid #141B22; }
+  .chapnum{ font-size:12px; letter-spacing:4px; text-transform:uppercase; color:var(--mute); font-weight:700; margin-bottom:12px; }
+  .chaptitle{ font-size:40px; font-weight:850; letter-spacing:-1.1px; line-height:1.08; margin-bottom:14px; }
   .chaptitle .c{ color:var(--cyan); }
-  .chaplede{ font-size:18px; line-height:1.6; color:#B8C2CC; max-width:680px; margin-bottom:14px; }
-  .ig{ display:inline-block; font-size:14px; font-weight:600; color:var(--cyan); margin-bottom:8px; }
+  .lede{ font-size:17.5px; line-height:1.55; color:var(--body); max-width:600px; }
+  .ig{ display:inline-block; font-size:14px; font-weight:600; color:var(--cyan); }
   .ig:hover{ text-decoration:underline; }
 
-  /* story beats: alternating text + media */
-  .beat{ display:grid; grid-template-columns:1fr 1fr; gap:46px; align-items:center; margin:46px 0; }
-  .beat.rev .bmedia{ order:2; }
-  .beat .bnum{ font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--cyan); font-weight:700; margin-bottom:10px; }
-  .beat .bh{ font-size:25px; font-weight:800; letter-spacing:-0.4px; line-height:1.2; margin-bottom:12px; }
-  .beat .bp{ font-size:15.5px; line-height:1.65; color:#B8C2CC; }
-  .vwrap{ width:100%; max-width:280px; margin:0 auto; }
-  .vwrap iframe{ width:100%; aspect-ratio:9/16; border:0; border-radius:16px; background:#05080B; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+  /* person header: photo leads the section */
+  .person{ display:flex; gap:26px; align-items:center; flex-wrap:wrap; margin-bottom:26px; }
+  .person img.pf{ width:112px; height:112px; border-radius:50%; object-fit:cover; border:2px solid var(--cyan);
+                  box-shadow:0 0 34px rgba(0,255,209,.22); flex:none; }
+  .person .pmeta{ min-width:240px; flex:1; }
+  .person .pname{ font-size:30px; font-weight:850; letter-spacing:-.8px; line-height:1.1; margin-bottom:6px; }
+  .person .prole{ font-size:14.5px; color:var(--mute); margin-bottom:8px; }
+  .pill{ display:inline-block; font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase;
+         color:var(--ink); background:var(--cyan); border-radius:100px; padding:5px 12px; margin-bottom:10px; }
+  .pill.live{ background:var(--saffron); }
 
-  /* the journey ladder (for madhu funnel) */
-  /* money journey — escalating, numbers as heroes, glowing spine */
-  .beforebar{ display:inline-flex; align-items:center; gap:10px; background:#160E0E; border:1px solid #3a1f1f; border-radius:100px; padding:9px 18px; margin:4px 0 26px; font-size:13.5px; color:#E0A0A0; }
+  /* stat cards */
+  .stats{ display:flex; gap:12px; flex-wrap:wrap; margin:24px 0; }
+  .stat{ flex:1; min-width:140px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:19px; }
+  .stat .sv{ font-size:29px; font-weight:850; color:var(--cyan); letter-spacing:-1px; line-height:1; margin-bottom:6px; }
+  .stat .sl{ font-size:12.5px; color:#9AA6B2; line-height:1.4; }
+
+  /* THE A/B — the strongest asset on the page */
+  .ab{ margin:34px 0 10px; }
+  .ablabel{ font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:var(--saffron);
+            font-weight:700; margin-bottom:6px; }
+  .abtitle{ font-size:23px; font-weight:800; letter-spacing:-.4px; margin-bottom:6px; }
+  .abnote{ font-size:15px; color:#9AA6B2; margin-bottom:20px; max-width:620px; line-height:1.5; }
+  .abgrid{ display:grid; grid-template-columns:1fr 64px 1fr; gap:0; align-items:stretch; }
+  .abcard{ background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:24px; display:flex;
+           flex-direction:column; justify-content:space-between; }
+  .abcard.ours{ border-color:var(--cyan); background:linear-gradient(140deg,#0d2a24,#0E141A);
+                box-shadow:0 0 44px rgba(0,255,209,.14); }
+  .abtag{ font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--mute); margin-bottom:12px; }
+  .abcard.ours .abtag{ color:var(--cyan); }
+  .abh{ font-size:19px; font-weight:800; line-height:1.25; margin-bottom:8px; }
+  .abp{ font-size:14.5px; color:#9AA6B2; line-height:1.5; margin-bottom:20px; }
+  .abbtn{ display:inline-block; font-size:14px; font-weight:700; padding:12px 20px; border-radius:100px;
+          border:1px solid var(--line); color:var(--paper); align-self:flex-start; }
+  .abcard.ours .abbtn{ background:var(--cyan); color:var(--ink); border-color:var(--cyan); }
+  .abvs{ display:flex; align-items:center; justify-content:center; }
+  .abvs span{ font-size:12px; font-weight:850; letter-spacing:1px; color:var(--mute);
+              border:1px solid var(--line); background:var(--ink); border-radius:100px; padding:9px 4px; width:44px; text-align:center; }
+  .abverdict{ font-size:15px; color:var(--body); margin-top:18px; }
+  .abverdict b{ color:#fff; }
+
+  /* video beats */
+  .beats{ display:grid; grid-template-columns:1fr 1fr; gap:26px; margin:32px 0 8px; }
+  .vcard{ background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:16px; }
+  .vcard iframe{ width:100%; aspect-ratio:9/16; border:0; border-radius:12px; background:#05080B; display:block; }
+  .vcap{ margin-top:13px; }
+  .vcap .vt{ font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); font-weight:700; margin-bottom:5px; }
+  .vcap .vh{ font-size:16px; font-weight:750; line-height:1.3; margin-bottom:4px; }
+  .vcap .vp{ font-size:13.5px; color:#9AA6B2; line-height:1.45; }
+
+  /* reel cards (live links) */
+  .reels{ display:flex; gap:12px; flex-wrap:wrap; margin:26px 0; }
+  .reel{ flex:1; min-width:250px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px; }
+  .reel .rtag{ font-size:11px; letter-spacing:1.6px; text-transform:uppercase; color:var(--cyan); font-weight:700; margin-bottom:9px; }
+  .reel .rv2{ font-size:27px; font-weight:850; color:var(--paper); letter-spacing:-1px; line-height:1; margin-bottom:8px; }
+  .reel .rl{ font-size:13px; color:#9AA6B2; line-height:1.45; margin-bottom:13px; }
+
+  /* badges */
+  .badges{ display:flex; gap:8px; flex-wrap:wrap; margin:18px 0 0; }
+  .badge{ font-size:12.5px; color:#C9D1D9; background:var(--panel); border:1px solid var(--line);
+          border-radius:100px; padding:8px 15px; }
+
+  /* avatars */
+  .avatars{ margin:30px 0; }
+  .avatars .al{ font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--mute); font-weight:700; margin-bottom:13px; }
+  .avrow{ display:flex; gap:16px; flex-wrap:wrap; }
+  .avrow img{ width:126px; aspect-ratio:4/5; border-radius:12px; object-fit:cover; border:2px solid var(--cyan); margin-bottom:7px; display:block; }
+  .avrow .avlabel{ font-size:11px; color:var(--mute); text-align:center; }
+
+  /* quote */
+  .kquote{ background:var(--panel); border-left:3px solid var(--cyan); border-radius:0 14px 14px 0;
+           padding:22px 26px; margin:28px 0; max-width:700px; }
+  .kquote p{ font-size:20px; line-height:1.5; color:var(--paper); font-weight:600; font-style:italic; margin-bottom:9px; }
+  .kquote .kattr{ font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mute); font-weight:600; }
+
+  /* journey ladder */
+  .beforebar{ display:inline-flex; align-items:center; gap:10px; background:#160E0E; border:1px solid #3a1f1f;
+              border-radius:100px; padding:9px 18px; margin:4px 0 22px; font-size:13.5px; color:#E0A0A0; }
   .beforebar b{ color:#ff9b9b; font-weight:700; }
-  .journey{ position:relative; display:flex; flex-direction:column; gap:14px; margin:8px 0 4px; padding-left:8px; }
-  .jstep{ position:relative; display:grid; grid-template-columns:100px 1fr; gap:22px; align-items:center; background:#0E141A; border:1px solid #1A222B; border-radius:14px; padding:18px 22px; transition:all .2s; }
-  .jstep .jnum{ font-size:26px; font-weight:850; letter-spacing:-1px; color:var(--cyan); line-height:1; }
+  .journey{ display:flex; flex-direction:column; gap:12px; margin:6px 0 4px; }
+  .jstep{ display:grid; grid-template-columns:100px 1fr; gap:22px; align-items:center; background:var(--panel);
+          border:1px solid var(--line); border-radius:14px; padding:17px 22px; }
+  .jstep .jnum{ font-size:25px; font-weight:850; letter-spacing:-1px; color:var(--cyan); line-height:1; }
   .jstep .jnum small{ display:block; font-size:10px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--mute); margin-top:5px; }
   .jstep .jt b{ display:block; font-size:16px; color:var(--paper); font-weight:750; margin-bottom:3px; }
-  .jstep .jt span{ font-size:14px; line-height:1.5; color:#9AA6B2; }
-  /* escalating glow */
-  .jstep.s2{ border-color:#1f2d33; }
-  .jstep.s3{ border-color:#244039; }
-  .jstep.s4{ border-color:#235043; }
-  .jstep.s5{ border-color:#1f6b52; }
-  .jwin{ position:relative; display:grid; grid-template-columns:100px 1fr; gap:22px; align-items:center; background:linear-gradient(120deg,#0d3322,#0E141A); border:1.5px solid var(--cyan); border-radius:16px; padding:24px 22px; margin-top:4px; box-shadow:0 0 40px rgba(0,255,209,.15); }
-  .jwin .jnum{ font-size:34px; color:var(--cyan); line-height:1; }
+  .jstep .jt span{ font-size:13.5px; line-height:1.45; color:#9AA6B2; }
+  .jstep.s2{ border-color:#1f2d33; } .jstep.s3{ border-color:#244039; }
+  .jstep.s4{ border-color:#235043; } .jstep.s5{ border-color:#1f6b52; }
+  .jwin{ display:grid; grid-template-columns:100px 1fr; gap:22px; align-items:center;
+         background:linear-gradient(120deg,#0d3322,#0E141A); border:1.5px solid var(--cyan); border-radius:16px;
+         padding:23px 22px; margin-top:2px; box-shadow:0 0 40px rgba(0,255,209,.15); }
+  .jwin .jnum{ font-size:33px; color:var(--cyan); line-height:1; font-weight:850; letter-spacing:-1px; }
   .jwin .jnum small{ display:block; font-size:10px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#7fa295; margin-top:6px; white-space:nowrap; }
-  .jwin .jt b{ display:block; font-size:19px; color:var(--cyan); margin-bottom:4px; }
-  .jwin .jt span{ display:block; font-size:15px; line-height:1.5; color:#C9D9D2; }
-  .jcaret{ text-align:center; color:var(--cyan); font-size:16px; line-height:1; opacity:.5; margin:-7px 0; }
-
-  /* avatars row (the pillar story) */
-  .avatars{ margin:34px 0; }
-  .avatars .al{ font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--mute); font-weight:700; margin-bottom:14px; }
-  .avrow{ display:flex; gap:18px; flex-wrap:wrap; }
-  .avrow .avitem{ text-align:center; }
-  .avrow img{ width:130px; aspect-ratio:4/5; border-radius:12px; object-fit:cover; border:2px solid var(--cyan); margin-bottom:8px; display:block; }
-  .avrow .avlabel{ font-size:11px; color:var(--mute); }
-
-  /* aggregate band — the machine-not-luck proof, above the fold */
-  .agg{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; max-width:740px; margin:36px auto 22px; }
-  .aggitem{ flex:1; min-width:172px; background:linear-gradient(160deg,#0d2a24,#0E141A); border:1px solid #1f6b52; border-radius:16px; padding:24px 18px; box-shadow:0 0 40px rgba(0,255,209,.10); }
-  .aggv{ font-size:46px; font-weight:850; color:var(--cyan); letter-spacing:-2px; line-height:1; margin-bottom:9px; }
-  .aggl{ font-size:12.5px; letter-spacing:1.5px; text-transform:uppercase; color:#9AA6B2; font-weight:600; line-height:1.35; }
-  .hero p.aggnote{ font-size:15.5px; line-height:1.62; color:#9AA6B2; max-width:670px; margin:0 auto 26px; }
-
-  /* quote block — the client's own words */
-  .kquote{ background:#0E141A; border-left:3px solid var(--cyan); border-radius:0 14px 14px 0; padding:22px 26px; margin:30px 0; max-width:720px; }
-  .kquote p{ font-size:19px; line-height:1.55; color:var(--paper); font-weight:600; font-style:italic; margin-bottom:9px; }
-  .kquote .kattr{ font-size:13px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mute); font-weight:600; }
-
-  /* stat strip */
-  .stats{ display:flex; gap:14px; flex-wrap:wrap; margin:24px 0; }
-  .stat{ flex:1; min-width:140px; background:#0E141A; border:1px solid #1A222B; border-radius:14px; padding:20px; }
-  .stat .sv{ font-size:30px; font-weight:850; color:var(--cyan); letter-spacing:-1px; line-height:1; margin-bottom:6px; }
-  .stat .sl{ font-size:13px; color:#9AA6B2; line-height:1.4; }
-
-  /* founder badges */
-  .badges{ display:flex; gap:10px; flex-wrap:wrap; margin:22px 0; }
-  .badge{ font-size:13px; color:#C9D1D9; background:#0E141A; border:1px solid #1A222B; border-radius:100px; padding:9px 16px; }
-  .founderhero{ display:flex; gap:28px; align-items:center; margin-bottom:30px; flex-wrap:wrap; }
-  .founderhero img{ width:120px; height:120px; border-radius:50%; object-fit:cover; border:2px solid var(--cyan); }
+  .jwin .jt b{ display:block; font-size:19px; color:var(--cyan); margin-bottom:4px; font-weight:800; }
+  .jwin .jt span{ display:block; font-size:14.5px; line-height:1.45; color:#C9D9D2; }
+  .jcaret{ text-align:center; color:var(--cyan); font-size:15px; line-height:1; opacity:.45; margin:-6px 0; }
 
   /* closing */
-  .closing{ text-align:center; padding:80px 0 40px; border-top:1px solid #141B22; }
-  .closing .big{ font-size:40px; font-weight:850; letter-spacing:-1px; margin-bottom:18px; }
+  .closing{ text-align:center; padding:78px 0 40px; border-top:1px solid #141B22; }
+  .closing .big{ font-size:40px; font-weight:850; letter-spacing:-1px; margin-bottom:16px; }
   .closing .big .c{ color:var(--cyan); }
-  .closing p{ font-size:18px; color:#B8C2CC; max-width:580px; margin:0 auto 28px; line-height:1.6; }
+  .closing p{ font-size:17.5px; color:var(--body); max-width:540px; margin:0 auto 26px; line-height:1.55; }
   .ctas{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
   .cta{ display:inline-block; background:var(--cyan); color:var(--ink); font-weight:700; font-size:16px; padding:17px 38px; border-radius:100px; }
   .cta2{ background:transparent; color:var(--cyan); border:1px solid #1E2730; }
-  footer{ text-align:center; padding:44px 0 56px; color:var(--mute); font-size:12px; letter-spacing:1px; }
+  footer{ text-align:center; padding:42px 0 56px; color:var(--mute); font-size:12px; letter-spacing:1px; }
   footer .mk{ height:26px; opacity:.5; margin-bottom:14px; }
 
+  @media (max-width:860px){
+    .abgrid{ grid-template-columns:1fr; gap:14px; }
+    .abvs{ padding:2px 0; }
+    .abvs span{ width:auto; padding:6px 18px; }
+    .beats{ grid-template-columns:1fr; }
+  }
   @media (max-width:760px){
     .hero h1{ font-size:38px; }
     .aggv{ font-size:36px; }
     .aggitem{ min-width:120px; padding:18px 14px; }
+    .chaptitle{ font-size:29px; }
+    .person .pname{ font-size:25px; }
+    .person img.pf{ width:88px; height:88px; }
     .kquote p{ font-size:17px; }
-    .chaptitle{ font-size:30px; }
-    .beat{ grid-template-columns:1fr; gap:22px; }
-    .beat.rev .bmedia{ order:0; }
-    .closing .big{ font-size:30px; }
-    .founderhero img{ width:90px; height:90px; }
+    .closing .big{ font-size:29px; }
+    .jstep, .jwin{ grid-template-columns:78px 1fr; gap:16px; padding:15px 17px; }
   }
 </style>
 </head>
 <body oncontextmenu="return false;">
+<div id="prog"></div>
 <div class="wrap">
 
   <header><div class="topbar">
@@ -138,239 +201,247 @@
     <span class="conf">Proof Room</span>
   </div></header>
 
+  <!-- ===== HERO ===== -->
   <section class="hero">
-    <div class="kick">This Already Works</div>
+    <div class="kick">This already works</div>
     <h1>Don't take our word.<br><span class="c">Watch the proof.</span></h1>
-    <p>Three founders. Three systems building authority, capturing leads and earning revenue, without anyone touching a camera.</p>
+    <p class="sub">Live accounts. Real numbers. Nobody touched a camera.</p>
     <div class="agg">
       <div class="aggitem"><div class="aggv">188</div><div class="aggl">Cloned reels shipped</div></div>
       <div class="aggitem"><div class="aggv">6.3M</div><div class="aggl">Total views</div></div>
       <div class="aggitem"><div class="aggv">0</div><div class="aggl">Filmed on a camera</div></div>
     </div>
-    <p class="aggnote">One viral clip reads as luck. 188 reels holding a steady 20k to 45k average reads as a machine. And the clone itself is only about a tenth of the work. The rest is strategy, scripting, publishing and the funnels underneath. Every reel is cross-distributed to Instagram, Facebook and YouTube Shorts.</p>
-    <div class="scrollcue">↓ Scroll to begin</div>
+    <p class="oneline">One viral clip is luck. 188 reels holding 20k to 45k is a machine.</p>
+    <div class="scrollcue">↓ Start here</div>
   </section>
 
-  <!-- ===== SEE THEM LIVE — real reels, real numbers, clickable ===== -->
-  <section class="chapter" style="padding-top:56px">
-    <div class="chapnum">See it live · Real reels, real numbers</div>
-    <div class="chaptitle">Not screenshots. <span class="c">Open them yourself.</span></div>
-    <p class="chaplede">Every one of these was produced by the engine, cloned face and voice, zero camera time. Tap through and check the counts on the posts.</p>
-
-    <div class="stats" style="align-items:stretch">
-      <div class="stat" style="flex:1;min-width:250px">
-        <div class="sl" style="color:var(--cyan);font-weight:700;margin-bottom:8px">PEEPOYE · Social commentary</div>
-        <div class="sv" style="font-size:26px">1.2M views</div>
-        <div class="sl" style="margin:8px 0 12px">52.7k likes · 1,414 shares · 1,361 comments. A fully cloned reel.</div>
-        <a class="ig" href="https://www.instagram.com/p/DXRkVw-D-DY/" target="_blank" rel="noopener">Watch the reel →</a>
-      </div>
-      <div class="stat" style="flex:1;min-width:250px">
-        <div class="sl" style="color:var(--cyan);font-weight:700;margin-bottom:8px">DR. MADHU · Ayurveda x digestion</div>
-        <div class="sv" style="font-size:26px">323k+ views</div>
-        <div class="sl" style="margin:8px 0 12px">5k+ likes · 2,543 shares · 245 reposts. Cloned, sells on autopilot.</div>
-        <a class="ig" href="https://www.instagram.com/p/DaiFIhroxU1/" target="_blank" rel="noopener">Watch the reel →</a>
-      </div>
-    </div>
-
-    <div class="kquote" style="margin-top:26px">
-      <p style="font-style:normal;font-weight:700">Arfeen Khan, in his own voice, our sharpest build:</p>
-      <div class="stats" style="margin:14px 0 0">
-        <div class="stat" style="flex:1;min-width:220px">
-          <div class="sl" style="color:var(--cyan);font-weight:700;margin-bottom:6px">Story reel · approved by Arfeen</div>
-          <div class="sl" style="margin-bottom:10px">"His life ended at 19." Emotional, on-brand, fully cloned.</div>
-          <a class="ig" href="https://f.io/C0dsLr5W" target="_blank" rel="noopener">Watch on Frame.io →</a>
-        </div>
-        <div class="stat" style="flex:1;min-width:220px">
-          <div class="sl" style="color:var(--cyan);font-weight:700;margin-bottom:6px">Educational + lead magnet</div>
-          <div class="sl" style="margin-bottom:10px">Personality-test funnel. Compare ours to his original, the difference is obvious.</div>
-          <a class="ig" href="https://f.io/upFCHtZt" target="_blank" rel="noopener">Our version (Frame.io) →</a><br>
-          <a class="ig" href="https://www.instagram.com/p/DLXnb0NIAzp/" target="_blank" rel="noopener">His original on Instagram →</a>
-        </div>
-      </div>
-    </div>
-
-    <p class="chaplede" style="margin-top:20px;font-size:15px">Follow the accounts:
-      <a class="ig" href="https://www.instagram.com/peepoye/" target="_blank" rel="noopener">@peepoye</a> ·
-      <a class="ig" href="https://www.instagram.com/dr._madhusudan_/" target="_blank" rel="noopener">@dr._madhusudan_</a> ·
-      <a class="ig" href="https://www.instagram.com/arfeen.khan/" target="_blank" rel="noopener">@arfeen.khan</a>
-    </p>
-  </section>
-
-  <!-- ===== CHAPTER 1 — ARFEEN — THE BUILD ===== -->
+  <!-- ===== 01 — THE MAN (belief one: is this guy real) ===== -->
   <section class="chapter">
-    <div class="chapnum">Chapter 01 · The Build</div>
-    <div class="chaptitle">Arfeen Khan: built, live, and <span class="c">indistinguishable.</span></div>
-    <p class="chaplede">One of India's most respected coaches, 837k followers, mentor to 4,000+, and his own sister couldn't tell it was a clone. Watch the system come alive, pass the test ordinary AI fails, and start producing.</p>
-    <a class="ig" href="https://www.instagram.com/arfeen.khan/" target="_blank" rel="noopener">@arfeen.khan on Instagram →</a>
-
-    <div class="beat">
-      <div class="bmedia"><div class="vwrap"><iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Arfeen_Build_Intro_degerx" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe></div></div>
-      <div class="binfo"><div class="bnum">Beat 1 · The aha moment</div><div class="bh">The clone speaks for the first time.</div><div class="bp">The moment it came alive. This is the clip that made Arfeen call within the hour, the first time he saw himself, indistinguishable, saying words he never recorded.</div></div>
+    <div class="chapnum rv">01 · The man</div>
+    <div class="person rv">
+      <img class="pf" src="/proof-room/media/akassh.jpg" alt="Akassh Ashok Gupta">
+      <div class="pmeta">
+        <div class="pname">Akassh Ashok Gupta</div>
+        <div class="prole">Founder, GetCloned · 1.3M+ on YouTube · Gold Play Button</div>
+        <a class="ig" href="https://www.instagram.com/peepoye/" target="_blank" rel="noopener">@peepoye on Instagram →</a>
+      </div>
     </div>
 
-    <div class="beat rev">
-      <div class="bmedia"><div class="vwrap"><iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Arfeen_Khan_Gold-Look_tylsgm" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe></div></div>
-      <div class="binfo"><div class="bnum">Beat 2 · The stress test</div><div class="bh">We gave the clone an anti-ageing pill.</div><div class="bp">The test ordinary AI tools fail: push them to transform and the face distorts. Ours holds, flawlessly. This is the difference between a toy and a system.</div></div>
+    <p class="lede rv">He built the audience the hard way, on camera, for years. Then he built the machine and stopped filming. The channel never noticed.</p>
+
+    <div class="stats rv">
+      <div class="stat"><div class="sv">106</div><div class="sl">Cloned reels on his own channel</div></div>
+      <div class="stat"><div class="sv">4.7M</div><div class="sl">Views on those reels</div></div>
+      <div class="stat"><div class="sv">45k</div><div class="sl">Average per reel</div></div>
+      <div class="stat"><div class="sv">Zero</div><div class="sl">Camera time since April 2026</div></div>
     </div>
 
-    <div class="beat">
-      <div class="bmedia"><div class="vwrap"><iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Reel_1_-_Your_Life_is_a_Carbon_print_xydzsh" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe></div></div>
-      <div class="binfo"><div class="bnum">Beat 3 · It produces</div><div class="bh">"Your Life Is a Carbon Print."</div><div class="bp">A fully cloned reel: face, voice, delivery, all synthetic, all on-brand. Scripted and produced end-to-end by the system. Hands-off.</div></div>
+    <div class="kquote rv">
+      <p>"I don't just sell the clone. I am the clone."</p>
+      <div class="kattr">Peepoye has been 100 percent cloned since April 2026</div>
     </div>
 
-    <div class="beat rev">
-      <div class="bmedia"><div class="vwrap"><iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Reel_2_-_Your_Brain_Is_Answering_the_Wrong_Question_e8zaqf" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe></div></div>
-      <div class="binfo"><div class="bnum">Beat 4 · And again</div><div class="bh">"Your Brain Is Answering the Wrong Question."</div><div class="bp">Reel two. The engine doesn't tire, doesn't reschedule, doesn't need a studio. <b style="color:#fff">June 22: daily publishing begins.</b> We warm the algorithm with weeks of value, then map the funnels next month, and the content starts earning.</div></div>
+    <a class="rv" href="https://www.instagram.com/peepoye/" target="_blank" rel="noopener" style="display:block;max-width:560px;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid var(--line);position:relative;box-shadow:0 20px 60px rgba(0,0,0,.5);margin:6px 0 4px">
+      <img src="/proof-room/media/peepoye_goldplay.jpg" alt="Peepoye YouTube Gold Play Button" style="width:100%;height:100%;object-fit:cover">
+      <span style="position:absolute;left:12px;bottom:12px;background:var(--cyan);color:var(--ink);font-weight:700;font-size:12px;padding:9px 15px;border-radius:100px">See the channel →</span>
+    </a>
+
+    <div class="badges rv">
+      <span class="badge">Concentrix · Senior Consultant</span>
+      <span class="badge">Amex · Amazon · HSBC · Barclays</span>
+      <span class="badge">IIM-Ahmedabad · Advanced Analytics</span>
+      <span class="badge">Lean Six Sigma · Master Black Belt</span>
+      <span class="badge">1M+ views on a single reel</span>
     </div>
 
-    <div class="stats">
-      <div class="stat"><div class="sv">June 22</div><div class="sl">Daily reels begin</div></div>
-      <div class="stat"><div class="sv">2 → 30</div><div class="sl">Reels/month once live</div></div>
-      <div class="stat"><div class="sv">July 1</div><div class="sl">Funnels mapped, content starts earning</div></div>
+    <p class="lede rv" style="margin-top:22px">This is the proof nobody can call cherry-picked. It is not a client we chose to show you. It is his own channel, in public, at volume, for months.</p>
+  </section>
+
+  <!-- ===== 02 — THE QUALITY (Arfeen + the A/B) ===== -->
+  <section class="chapter">
+    <div class="chapnum rv">02 · The quality</div>
+    <div class="person rv">
+      <img class="pf" src="/proof-room/media/arfeen.jpg" alt="Arfeen Khan">
+      <div class="pmeta">
+        <span class="pill live">Live build</span>
+        <div class="pname">Arfeen Khan</div>
+        <div class="prole">Celebrity transformation coach · 837k on Instagram · mentor to 4,000+ coaches</div>
+        <a class="ig" href="https://www.instagram.com/arfeen.khan/" target="_blank" rel="noopener">@arfeen.khan on Instagram →</a>
+      </div>
+    </div>
+
+    <p class="lede rv">His own sister could not tell it was a clone.</p>
+
+    <!-- THE A/B: the strongest asset on the page -->
+    <div class="ab rv">
+      <div class="ablabel">Judge it yourself</div>
+      <div class="abtitle">Same idea. Same man. One was filmed, one was not.</div>
+      <div class="abnote">He published this himself first. We rebuilt it through the engine. Open both and decide which one you would put your name on.</div>
+
+      <div class="abgrid">
+        <div class="abcard">
+          <div>
+            <div class="abtag">His original</div>
+            <div class="abh">Filmed by Arfeen</div>
+            <div class="abp">Shot, edited and posted the normal way. His own hours, his own camera.</div>
+          </div>
+          <a class="abbtn" href="https://www.instagram.com/p/DLXnb0NIAzp/" target="_blank" rel="noopener">Watch on Instagram →</a>
+        </div>
+
+        <div class="abvs"><span>VS</span></div>
+
+        <div class="abcard ours">
+          <div>
+            <div class="abtag">Ours · fully cloned</div>
+            <div class="abh">Face and voice, no camera</div>
+            <div class="abp">Same message, rebuilt by the engine, with a personality-test lead magnet built into the funnel.</div>
+          </div>
+          <a class="abbtn" href="https://f.io/upFCHtZt" target="_blank" rel="noopener">Watch on Frame.io →</a>
+        </div>
+      </div>
+
+      <p class="abverdict">Most people cannot pick the clone. <b>The ones who can, pick it as the better one.</b></p>
+    </div>
+
+    <div class="beats rv">
+      <div class="vcard">
+        <iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Arfeen_Build_Intro_degerx" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        <div class="vcap">
+          <div class="vt">The moment it spoke</div>
+          <div class="vh">He called within the hour.</div>
+          <div class="vp">The first time he saw himself saying words he never recorded.</div>
+        </div>
+      </div>
+      <div class="vcard">
+        <iframe src="https://player.cloudinary.com/embed/?cloud_name=dvcmkibgp&public_id=Proof_Arfeen_Khan_Gold-Look_tylsgm" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        <div class="vcap">
+          <div class="vt">The stress test</div>
+          <div class="vh">We gave the clone an anti-ageing pill.</div>
+          <div class="vp">Push an ordinary AI tool to transform and the face falls apart. This one holds.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reels rv">
+      <div class="reel">
+        <div class="rtag">Story reel · approved by Arfeen</div>
+        <div class="rv2">"His life ended at 19"</div>
+        <div class="rl">Emotional, on brand, fully cloned. Scripted and produced end to end.</div>
+        <a class="ig" href="https://f.io/C0dsLr5W" target="_blank" rel="noopener">Watch on Frame.io →</a>
+      </div>
+      <div class="reel">
+        <div class="rtag">Where this is going</div>
+        <div class="rv2">2 → 30 reels a month</div>
+        <div class="rl">Daily publishing began 22 June. Funnels mapped 1 July. The engine does not tire or reschedule.</div>
+      </div>
     </div>
   </section>
 
-  <!-- ===== CHAPTER 2 — DR MADHU — THE MONEY ===== -->
+  <!-- ===== 03 — THE MONEY (Madhu) ===== -->
   <section class="chapter">
-    <div class="chapnum">Chapter 02 · The Money</div>
-    <div class="chaptitle">Dr. Madhu, from paid ads to <span class="c">revenue on autopilot.</span></div>
-    <p class="chaplede">A wellness doctor with 375k followers who once relied only on paid ads and a Google listing, and never made more than 5 reels in a month. Today 30 cloned reels go out monthly, building trust, authority, leads and revenue, 24/7, without him touching anything. This is the full system, not just a clone.</p>
-    <a class="ig" href="https://www.instagram.com/dr._madhusudan_/" target="_blank" rel="noopener">@dr._madhusudan_ on Instagram →</a>
-
-    <div class="stats">
-      <div class="stat"><div class="sv">374k</div><div class="sl">Followers on Instagram</div></div>
-      <div class="stat"><div class="sv">82</div><div class="sl">Cloned reels shipped</div></div>
-      <div class="stat"><div class="sv">1.6M</div><div class="sl">Total views on cloned reels</div></div>
-      <div class="stat"><div class="sv">20k</div><div class="sl">Average views per reel</div></div>
-      <div class="stat"><div class="sv">5,000+</div><div class="sl">Shares &amp; saves per reel</div></div>
-      <div class="stat"><div class="sv">5 → 30</div><div class="sl">Reels per month, all cloned</div></div>
+    <div class="chapnum rv">03 · The money</div>
+    <div class="person rv">
+      <img class="pf" src="/proof-room/media/madhu.jpg" alt="Dr. Madhu Sudan">
+      <div class="pmeta">
+        <div class="pname">Dr. Madhu Sudan</div>
+        <div class="prole">Ayurvedic wellness doctor · 374k on Instagram · full system, not just a clone</div>
+        <a class="ig" href="https://www.instagram.com/dr._madhusudan_/" target="_blank" rel="noopener">@dr._madhusudan_ on Instagram →</a>
+      </div>
     </div>
 
-    <div class="kquote">
+    <p class="lede rv">He never made more than 5 reels in a month. Now 30 go out without him.</p>
+
+    <div class="kquote rv">
       <p>"Content had never generated a single lead for me before this."</p>
       <div class="kattr">Dr. Madhu Sudan, in his own words</div>
     </div>
 
-    <div class="avatars">
-      <div class="al">One clone, many pillars: different avatars for different content</div>
+    <div class="stats rv">
+      <div class="stat"><div class="sv">82</div><div class="sl">Cloned reels shipped</div></div>
+      <div class="stat"><div class="sv">1.6M</div><div class="sl">Views on those reels</div></div>
+      <div class="stat"><div class="sv">20k</div><div class="sl">Average per reel</div></div>
+      <div class="stat"><div class="sv">5 → 30</div><div class="sl">Reels per month, all cloned</div></div>
+    </div>
+
+    <div class="reels rv">
+      <div class="reel">
+        <div class="rtag">Open it yourself</div>
+        <div class="rv2">323k+ views</div>
+        <div class="rl">5k+ likes · 2,543 shares · 245 reposts. Ayurveda and digestion. Fully cloned.</div>
+        <a class="ig" href="https://www.instagram.com/p/DaiFIhroxU1/" target="_blank" rel="noopener">Watch the reel →</a>
+      </div>
+      <div class="reel">
+        <div class="rtag">And on our own channel</div>
+        <div class="rv2">1.2M views</div>
+        <div class="rl">52.7k likes · 1,414 shares · 1,361 comments. A single cloned reel on Peepoye.</div>
+        <a class="ig" href="https://www.instagram.com/p/DXRkVw-D-DY/" target="_blank" rel="noopener">Watch the reel →</a>
+      </div>
+    </div>
+
+    <div class="avatars rv">
+      <div class="al">One clone, many pillars</div>
       <div class="avrow">
-        <div class="avitem"><img src="/proof-room/media/madhu_av1.jpg" alt="Madhu avatar 1"><div class="avlabel">Education</div></div>
-        <div class="avitem"><img src="/proof-room/media/madhu_av2.jpg" alt="Madhu avatar 2"><div class="avlabel">Remedies</div></div>
-        <div class="avitem"><img src="/proof-room/media/madhu_av3.jpg" alt="Madhu avatar 3"><div class="avlabel">Lifestyle</div></div>
+        <div class="avitem"><img src="/proof-room/media/madhu_av1.jpg" alt="Education pillar"><div class="avlabel">Education</div></div>
+        <div class="avitem"><img src="/proof-room/media/madhu_av2.jpg" alt="Remedies pillar"><div class="avlabel">Remedies</div></div>
+        <div class="avitem"><img src="/proof-room/media/madhu_av3.jpg" alt="Lifestyle pillar"><div class="avlabel">Lifestyle</div></div>
+        <div class="avitem"><img src="/proof-room/media/madhu_av4.jpg" alt="Clinic pillar"><div class="avlabel">Clinic</div></div>
       </div>
     </div>
 
-    <div class="bh" style="font-size:22px;margin:36px 0 4px;color:#fff">How the system turned a doctor into a 24/7 business:</div>
-    <div class="beforebar">BEFORE: <b>only paid ads + a Google listing.</b> No content. No funnel. No system.</div>
-    <div class="journey">
-      <div class="jstep s1"><div class="jnum">5→30<small>reels / month</small></div><div class="jt"><b>The clone produces</b><span>Daily reels go out automatically, up from 5 a month to 30, every platform, zero camera time.</span></div></div>
+    <div class="chaptitle rv" style="font-size:24px;margin:36px 0 4px">How a doctor became a 24/7 business</div>
+    <div class="beforebar rv">BEFORE: <b>paid ads and a Google listing.</b> No content. No funnel. No system.</div>
+    <div class="journey rv">
+      <div class="jstep s1"><div class="jnum">5→30<small>reels / month</small></div><div class="jt"><b>The clone produces</b><span>Daily reels, every platform, zero camera time.</span></div></div>
       <div class="jcaret">▼</div>
-      <div class="jstep s2"><div class="jnum">1.6M<small>views</small></div><div class="jt"><b>The authority engine fires</b><span>1.6 million views across 82 cloned reels. Trust and visibility compounding, all without him.</span></div></div>
+      <div class="jstep s2"><div class="jnum">1.6M<small>views</small></div><div class="jt"><b>Authority compounds</b><span>Across 82 cloned reels. Trust and visibility, all without him.</span></div></div>
       <div class="jcaret">▼</div>
-      <div class="jstep s3"><div class="jnum">1,000+<small>leads</small></div><div class="jt"><b>The assessment captures</b><span>A lead-magnet funnel turns viewers into qualified leads, 1,000+ and counting.</span></div></div>
+      <div class="jstep s3"><div class="jnum">1,000+<small>leads</small></div><div class="jt"><b>The assessment captures</b><span>A lead-magnet funnel turns viewers into qualified leads. <a href="https://assessment.drmadhusudan.com" target="_blank" rel="noopener">See it live →</a></span></div></div>
       <div class="jcaret">▼</div>
-      <div class="jstep s4"><div class="jnum">Auto<small>nurture</small></div><div class="jt"><b>The nurture warms them</b><span>Every lead nurtured automatically, segmented by intent, warmed to buy.</span></div></div>
+      <div class="jstep s4"><div class="jnum">Auto<small>nurture</small></div><div class="jt"><b>The nurture warms them</b><span>Segmented by intent, warmed to buy, hands off.</span></div></div>
       <div class="jcaret">▼</div>
-      <div class="jstep s5"><div class="jnum">Modak<small>product funnel</small></div><div class="jt"><b>The product gets offered</b><span>A product funnel presents Modak, his Ayurvedic supplement, to an audience already warmed.</span></div></div>
+      <div class="jstep s5"><div class="jnum">Modak<small>product funnel</small></div><div class="jt"><b>The product gets offered</b><span>His Ayurvedic supplement, to an audience already warmed. <a href="https://modak.drmadhusudan.com" target="_blank" rel="noopener">See it live →</a></span></div></div>
       <div class="jcaret">▼</div>
-      <div class="jwin"><div class="jnum">15<small>sold &middot; week 1</small></div><div class="jt"><b>Revenue, on autopilot</b><span>15 sold in the first week. No ads, no clinic, no camera. The doctor sold in his sleep.</span></div></div>
+      <div class="jwin"><div class="jnum">15<small>sold · week 1</small></div><div class="jt"><b>Revenue, on autopilot</b><span>No ads, no clinic, no camera. The doctor sold in his sleep.</span></div></div>
     </div>
-    <p class="bp" style="max-width:700px;margin-top:22px">He didn't become a content creator. He stayed a doctor, and a system now runs the visibility, the lead capture, the nurture and the selling, around the clock, in parallel, while he sees patients. <b style="color:#fff">Authority and income, both on autopilot.</b></p>
+
+    <p class="lede rv" style="margin-top:24px">He did not become a content creator. He stayed a doctor. Consultations now book themselves too: <a href="https://consult.drmadhusudan.com" target="_blank" rel="noopener">consult.drmadhusudan.com</a></p>
+
+    <p class="lede rv" style="margin-top:10px;font-size:15px;color:var(--mute)">Every funnel above is live. Open them.</p>
   </section>
 
-  <!-- ===== CHAPTER 3 — AKASSH — THE FOUNDER ===== -->
+  <!-- ===== 04 — YOUR LADDER ===== -->
   <section class="chapter">
-    <div class="chapnum">Chapter 03 · The Brain</div>
-    <div class="founderhero">
-      <img src="/proof-room/media/akassh.jpg" alt="Akassh Ashok Gupta">
-      <div>
-        <div class="chaptitle" style="margin-bottom:8px">Akassh Ashok Gupta</div>
-        <p class="chaplede" style="margin-bottom:0">The brain behind the system, and its first living proof. He didn't read about this in a deck. He built it on himself.</p>
-      </div>
-    </div>
+    <div class="chapnum rv">04 · Your ladder</div>
+    <div class="chaptitle rv">What this looks like <span class="c">inside your community.</span></div>
+    <p class="lede rv">Three ways to grow: ads, content, outreach. Ads stop when you stop paying. Outreach stops when you stop typing. Content is the one that compounds, and the one nobody can keep up with by hand.</p>
 
-    <div class="beat">
-      <div class="binfo">
-        <div class="bnum">The consultant</div>
-        <div class="bh">Two decades at the leadership table.</div>
-        <div class="bp">Senior consultant at Concentrix (NASDAQ-listed, ~$9.6B, serving 155+ Fortune Global 500), delivering for American Express, Amazon UK, HSBC, Barclays across aviation, banking and healthcare. <b style="color:#fff">IIM-Ahmedabad</b> Advanced Analytics. <b style="color:#fff">Lean Six Sigma Master Black Belt</b> (Motorola University lineage).</div>
-      </div>
-      <div class="bmedia">
-        <div class="badges">
-          <span class="badge">Concentrix · Senior Consultant</span>
-          <span class="badge">Fortune 100 clients</span>
-          <span class="badge">IIM-A · Advanced Analytics</span>
-          <span class="badge">LSS Master Black Belt</span>
-          <span class="badge">Amex · Amazon · HSBC · Barclays</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="beat rev">
-      <div class="binfo">
-        <div class="bnum">The creator</div>
-        <div class="bh">Then he went viral, and got the Gold Play Button.</div>
-        <div class="bp">Using his knack for data and the algorithms of social media, he built a YouTube channel past <b style="color:#fff">1.3M+ subscribers</b>, crossed <b style="color:#fff">100K+ on every platform</b>, did celebrity podcasts and built a founder-level name. The proof that he doesn't just understand the system. He <em>is</em> the system.</div>
-      </div>
-      <div class="bmedia">
-        <div class="stats" style="flex-direction:column">
-          <div class="stat"><div class="sv">1.3M+</div><div class="sl">YouTube subscribers · Gold Play Button</div></div>
-          <div class="stat"><div class="sv">100K+</div><div class="sl">On every platform: FB, IG, X</div></div>
-          <div class="stat"><div class="sv">1M+</div><div class="sl">Views on a single reel</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="beat">
-      <div class="binfo">
-        <div class="bnum">The clone</div>
-        <div class="bh">Then he cloned himself, and disappeared from production.</div>
-        <div class="bp">He automated everything end-to-end and built the frameworks from real experience. <b style="color:#fff">Peepoye is now 100 percent cloned, and has been since April 2026.</b> Content goes to every platform at the same time, he has had zero camera time since, and the reels still cross millions. <em>"I don't just sell the clone. I am the clone."</em></div>
-      </div>
-      <div class="bmedia"><a class="igcard" href="https://www.instagram.com/peepoye/" target="_blank" rel="noopener" style="display:block;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid #1A222B;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.5)">
-        <img src="/proof-room/media/peepoye_goldplay.jpg" alt="Peepoye YouTube Gold Play Button" style="width:100%;height:100%;object-fit:cover">
-        <span style="position:absolute;left:12px;bottom:12px;background:var(--cyan);color:var(--ink);font-weight:700;font-size:12px;padding:9px 15px;border-radius:100px">@peepoye on Instagram →</span>
-      </a></div>
-    </div>
-
-    <div class="stats">
-      <div class="stat"><div class="sv">106</div><div class="sl">Cloned reels shipped on his own channel</div></div>
-      <div class="stat"><div class="sv">4.7M</div><div class="sl">Total views on those reels</div></div>
-      <div class="stat"><div class="sv">45k</div><div class="sl">Average views per reel</div></div>
-      <div class="stat"><div class="sv">Zero</div><div class="sl">Camera time since April 2026</div></div>
-    </div>
-    <p class="bp" style="max-width:700px;margin-top:20px">This is the proof no one can call cherry-picked. It is not a client we selected to show you. It is his own channel, run in public, at volume, for months.</p>
-
-    <p class="chaplede" style="margin-top:24px"><b style="color:#fff">His thesis:</b> content is only the mechanism. The mission and the message matter most. So he built a product that enables missions that matter, with efficiency and scale that no founder's calendar could ever give them.</p>
-  </section>
-
-  <!-- ===== CHAPTER 4 — YOUR LADDER ===== -->
-  <section class="chapter">
-    <div class="chapnum">Chapter 04 · Your Ladder</div>
-    <div class="chaptitle">What this looks like <span class="c">inside your community.</span></div>
-    <p class="chaplede">There are only three ways to grow a community: run paid ads, make content, or do outreach. Ads stop the day you stop paying. Outreach stops the day you stop typing. Organic content is the one that compounds, and it is the one nobody can keep up with by hand. That is the exact job this engine takes off you.</p>
-
-    <div class="journey">
-      <div class="jstep s1"><div class="jnum">30<small>reels / month</small></div><div class="jt"><b>Your clone produces</b><span>Reels in your face and your voice, shipped on a schedule, with zero camera time from you.</span></div></div>
+    <div class="journey rv" style="margin-top:28px">
+      <div class="jstep s1"><div class="jnum">30<small>reels / month</small></div><div class="jt"><b>Your clone produces</b><span>Your face, your voice, on a schedule, with zero camera time from you.</span></div></div>
       <div class="jcaret">▼</div>
-      <div class="jstep s2"><div class="jnum">Free<small>traffic</small></div><div class="jt"><b>Social media pulls</b><span>Strangers come toward you instead of you chasing them. No ad spend keeping the tap open.</span></div></div>
+      <div class="jstep s2"><div class="jnum">Free<small>traffic</small></div><div class="jt"><b>Social media pulls</b><span>Strangers come toward you. No ad spend keeping the tap open.</span></div></div>
       <div class="jcaret">▼</div>
-      <div class="jstep s3"><div class="jnum">CTA<small>on every reel</small></div><div class="jt"><b>The reels point somewhere</b><span>Every piece routes viewers to your community or your offer, never to a dead end.</span></div></div>
+      <div class="jstep s3"><div class="jnum">CTA<small>on every reel</small></div><div class="jt"><b>Every reel points somewhere</b><span>Straight to your community or your offer. Never a dead end.</span></div></div>
       <div class="jcaret">▼</div>
-      <div class="jstep s4"><div class="jnum">New<small>members</small></div><div class="jt"><b>The room fills</b><span>Reach turns into people inside your walls, warmed by weeks of your own thinking before they arrive.</span></div></div>
+      <div class="jstep s4"><div class="jnum">New<small>members</small></div><div class="jt"><b>The room fills</b><span>Warmed by weeks of your own thinking before they arrive.</span></div></div>
       <div class="jcaret">▼</div>
-      <div class="jwin"><div class="jnum">∞<small>compounding</small></div><div class="jt"><b>It keeps working after you stop</b><span>A reel published today still pulls members next month. That is the difference between owning an engine and renting attention.</span></div></div>
+      <div class="jwin"><div class="jnum">∞<small>compounding</small></div><div class="jt"><b>It keeps working after you stop</b><span>A reel published today still pulls members next month.</span></div></div>
     </div>
 
-    <p class="bp" style="max-width:720px;margin-top:22px">If your community is paid, this multiplies reach into members and monthly revenue. If it is still free or pre-revenue, it fills the room first and drives your book, course or program sales. <b style="color:#fff">Same engine, different rung.</b></p>
+    <p class="lede rv" style="margin-top:22px">Paid community? This multiplies reach into members and monthly revenue. Free or pre-revenue? It fills the room first. <b style="color:#fff">Same engine, different rung.</b></p>
   </section>
 
   <section class="closing">
-    <div class="big">This is what we'd build <span class="c">for you.</span></div>
-    <p>A clone is the hook. The system is the engine: content on autopilot that becomes income on autopilot. The proof is above. The next move is a conversation.</p>
-    <div class="ctas">
-      <a class="cta" href="https://wa.me/919624779149?text=Hi%20Akassh%2C%20I%20just%20watched%20the%20Proof%20Room%20%E2%80%94%20let%27s%20talk.">💬 Message on WhatsApp</a>
-      <a class="cta cta2" href="mailto:akassh@getcloned.in?subject=Saw%20the%20Proof%20Room">Email instead</a>
+    <div class="big rv">This is what we'd build <span class="c">for you.</span></div>
+    <p class="rv">The clone is a tenth of the work. The rest is strategy, scripting, distribution and the funnels underneath. The proof is above. The next move is a conversation.</p>
+    <!-- BOOKING LINK LIVES HERE AND NOWHERE ELSE.
+         cal.com ACE Strategy Call, 30 min. Verified live 27 Jul 2026.
+         Deliberately a link, not an inline embed: this page is judged on weight
+         and an embed adds a third-party script to an asset a prospect is
+         evaluating. The Calendly links on the older pages of this site are
+         inactive and must not be used anywhere. -->
+    <div class="ctas rv">
+      <a class="cta" href="https://cal.com/akassh-ashok-gupta/ace-strategy-call" target="_blank" rel="noopener">Book a call</a>
+      <a class="cta cta2" href="mailto:akassh@peepoye.com?subject=Saw%20the%20Proof%20Room">akassh@peepoye.com</a>
     </div>
   </section>
 
@@ -380,5 +451,36 @@
   </footer>
 
 </div>
+
+<script>
+  // scroll progress
+  var prog = document.getElementById('prog');
+  function tick(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    prog.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }
+  document.addEventListener('scroll', tick, {passive:true});
+  tick();
+
+  // Scroll reveal.
+  // The .js class is added ONLY once the observer is live. Until then .rv elements
+  // are fully visible, so a script error or a blocked file can never hand a
+  // prospect a blank page.
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
+
+    document.documentElement.className += ' js';
+
+    document.querySelectorAll('.rv').forEach(function(el, i){
+      el.style.transitionDelay = (Math.min(i,6) * 40) + 'ms';
+      io.observe(el);
+    });
+  }
+</script>
 </body>
 </html>
