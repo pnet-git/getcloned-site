@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>The Strike Room | ACE Call Cockpit</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="shortcut icon" href="/favicon.svg" />
+<style>
+  :root{
+    --bg:#0d1016; --panel:#151922; --panel2:#1b2130; --line:#283040; --ink:#eef2f7;
+    --muted:#93a0b2; --gold:#c9a24a; --green:#33b07a; --red:#e2685f; --blue:#5b9bd5;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;font-size:15px}
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px 120px}
+
+  /* sticky top bar: the 3 client links + always-on numbers */
+  .bar{position:sticky;top:0;z-index:20;background:rgba(13,16,22,.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:14px}
+  .bar .row{max-width:960px;margin:0 auto;padding:0 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .brand{font-weight:800;letter-spacing:.5px;margin-right:6px}
+  .brand .g{color:var(--gold)}
+  .lnk{display:inline-block;background:var(--panel2);border:1px solid var(--line);color:var(--ink);text-decoration:none;padding:8px 12px;border-radius:9px;font-size:13px;font-weight:600}
+  .lnk:hover{border-color:var(--gold)}
+  .lnk.gold{background:var(--gold);color:#111;border-color:var(--gold)}
+
+  h1{font-size:19px;margin:6px 0 2px}
+  .sub{color:var(--muted);font-size:13px;margin:0 0 16px}
+
+  .phase{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:0 0 12px;overflow:hidden}
+  .phase>summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;align-items:center;gap:12px;font-weight:700}
+  .phase>summary::-webkit-details-marker{display:none}
+  .phase>summary .num{width:26px;height:26px;border-radius:50%;background:var(--gold);color:#111;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex:0 0 auto}
+  .phase>summary .t{flex:1}
+  .phase>summary .time{color:var(--muted);font-size:12px;font-weight:600}
+  .body{padding:2px 18px 18px}
+  .say{background:var(--panel2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0;font-style:italic}
+  .rule{background:rgba(226,104,95,.1);border:1px solid var(--red);border-radius:8px;padding:10px 14px;margin:10px 0;font-size:14px;color:#f0a59f}
+  .win{background:rgba(51,176,122,.1);border:1px solid var(--green);border-radius:8px;padding:10px 14px;margin:10px 0;font-size:14px;color:#8fdcb8}
+  ul{margin:8px 0;padding-left:20px}
+  li{margin:4px 0}
+  .q{color:var(--ink)}
+
+  /* number gate */
+  .gate{background:var(--panel2);border:1px dashed var(--gold);border-radius:12px;padding:14px;margin:12px 0}
+  .gate h4{margin:0 0 4px;color:var(--gold);font-size:14px}
+  .gate .hint{color:var(--muted);font-size:12px;margin-bottom:10px}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .fields label{font-size:12px;color:var(--muted);display:block;margin-bottom:3px}
+  .fields input{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:#0f131b;color:var(--ink);font-size:14px}
+  .fields input:focus{outline:none;border-color:var(--gold)}
+  .gatebtn{margin-top:10px;background:var(--green);color:#08130d;border:none;border-radius:8px;padding:9px 16px;font-weight:700;cursor:pointer}
+  .gatemsg{margin-top:8px;font-size:13px;font-weight:600}
+
+  /* objections */
+  .obj{border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--panel2)}
+  .obj>summary{cursor:pointer;list-style:none;padding:11px 14px;font-weight:700;color:#f0c777}
+  .obj>summary::-webkit-details-marker{display:none}
+  .obj .oc{padding:0 14px 14px}
+
+  .proofrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+  .proofrow .p{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px}
+  .proofrow .p b{color:var(--ink)} .proofrow .p span{color:var(--muted);font-size:12px}
+
+  footer{color:var(--muted);font-size:12px;text-align:center;margin-top:20px}
+  @media(max-width:640px){.fields,.proofrow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="row">
+    <span class="brand"><span class="g">&#9876;</span> STRIKE ROOM</span>
+    <a class="lnk" href="https://getcloned.in/ace-for-skool/" target="_blank" rel="noopener">Walkthrough</a>
+    <a class="lnk" href="https://getcloned.in/proof-room/" target="_blank" rel="noopener">Proof Room</a>
+    <a class="lnk gold" href="https://getcloned.in/ace-offer/" target="_blank" rel="noopener">Offer Page</a>
+    <a class="lnk" href="https://fathom.video/" target="_blank" rel="noopener">Fathom</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <h1>The Strike Room</h1>
+  <p class="sub">One screen to run an ACE call. Move top to bottom. Do NOT open the demo until the number gate is green. End on a pinned next step, every time.</p>
+
+  <!-- THE 3 LEAKS -->
+  <div class="rule">
+    <b>The 3 leaks that killed the last 3 calls. Do not repeat:</b>
+    <ul style="margin:6px 0 0">
+      <li>No pinned next step (ended on "give me a day" x3). <b>Never end open.</b></li>
+      <li>ROI asked, never answered. <b>Give the number from THEIR MRR + goal.</b></li>
+      <li>Price/affordability walked out alive. <b>Handle it live, do not accept "I'll think about it".</b></li>
+    </ul>
+  </div>
+
+  <!-- PHASE 0 -->
+  <details class="phase">
+    <summary><span class="num">0</span><span class="t">Before the call</span><span class="time">2 min</span></summary>
+    <div class="body">
+      <ul>
+        <li>Open Walkthrough, Proof Room, Offer Page in tabs (buttons up top).</li>
+        <li>Have one clone reel ready to screen-share (Arfeen output = sharpest; Madhu for doctors).</li>
+        <li>Fathom recording ON.</li>
+        <li>Know their niche + one specific piece of their content to reference.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- PHASE 1 -->
+  <details class="phase" open>
+    <summary><span class="num">1</span><span class="t">Open + take the frame</span><span class="time">0-3 min</span></summary>
+    <div class="body">
+      <p>Acknowledge the win first (high-status people need the win named before the offer). Then earn permission to diagnose.</p>
+      <div class="say">"Before I show you anything, is it okay if I ask a few questions to figure out where the actual bottleneck is? Otherwise I'd just be pitching you blind."</div>
+      <div class="win">This line held 20 min on the first call. Use it verbatim. Whoever asks the questions controls the frame.</div>
+    </div>
+  </details>
+
+  <!-- PHASE 2 - THE GATE -->
+  <details class="phase" open>
+    <summary><span class="num">2</span><span class="t">Money gate + diagnosis</span><span class="time">3-18 min</span></summary>
+    <div class="body">
+      <div class="rule"><b>GATE.</b> Do not move to the demo until every box below has a number. The last 3 calls demoed before diagnosing and pitched the wrong thing. Ask, then STOP talking.</div>
+      <ul class="q">
+        <li>How many members/clients do you have right now?</li>
+        <li>What's your price / tiers?</li>
+        <li>So what's your MRR right now?</li>
+        <li>Where do members come from today, content, referrals, ads, the Skool network?</li>
+        <li>How many hours a week go into content? On top of everything else?</li>
+        <li>Where do you want to be in 6-12 months, members or revenue? (the GOAL)</li>
+        <li>What are you spending on marketing now?</li>
+        <li>What's the real bottleneck, in your words?</li>
+      </ul>
+      <div class="gate">
+        <h4>Capture before you proceed</h4>
+        <div class="hint">Fill these live. The demo and the ROI math both use them.</div>
+        <div class="fields">
+          <div><label>Members</label><input data-g placeholder="e.g. 345" /></div>
+          <div><label>Price / tiers</label><input data-g placeholder="$17 / $37" /></div>
+          <div><label>MRR now</label><input data-g placeholder="$ / mo" /></div>
+          <div><label>Traffic source now</label><input data-g placeholder="ads? referrals?" /></div>
+          <div><label>Hours/wk on content</label><input data-g placeholder="e.g. 10" /></div>
+          <div><label>GOAL (6-12 mo)</label><input data-g placeholder="members / revenue" /></div>
+          <div><label>Marketing spend now</label><input data-g placeholder="$ / mo" /></div>
+          <div><label>Bottleneck (their words)</label><input data-g placeholder="quote them" /></div>
+        </div>
+        <button class="gatebtn" onclick="checkGate()">Check the gate</button>
+        <div class="gatemsg" id="gatemsg"></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- PHASE 3 -->
+  <details class="phase">
+    <summary><span class="num">3</span><span class="t">Name the wound</span><span class="time">18-25 min</span></summary>
+    <div class="body">
+      <p>Reflect their own numbers back. Add nothing new. Sell what they actually want (members/revenue), never "reach".</p>
+      <div class="say">"So the work is good, you've done [X], and it's costing you [hours]. And it's bringing in [their result]. The work isn't the problem. It just isn't travelling / your reach isn't converting to members."</div>
+      <div class="say">"You don't need a million followers. You need the right people who'd pay for [their offer] to actually find you."</div>
+      <div class="rule">Then STOP. Let it sit. Do not rescue the silence.</div>
+    </div>
+  </details>
+
+  <!-- PHASE 4 -->
+  <details class="phase">
+    <summary><span class="num">4</span><span class="t">Demo: show, do not tell</span><span class="time">25-33 min</span></summary>
+    <div class="body">
+      <div class="rule"><b>Hard cap 8 min.</b> Feature-monologues triggered feature-brain on every past call. Say the OUTCOME, show ONE thing, stop.</div>
+      <ul>
+        <li>Open the <a class="lnk" href="https://getcloned.in/ace-for-skool/" target="_blank" rel="noopener">Walkthrough</a>. Show the clone beside the original. Ask: "Can you tell that isn't them?"</li>
+        <li>Show the funnel + dashboard = they see REVENUE, not views.</li>
+        <li>Say "cloning" LATE and once. Sell the whole chain (strategy + scripting + production + publishing). Cloning is ~10%.</li>
+      </ul>
+      <div class="win">What lands every time: the side-by-side clone, and "he doesn't spend on ads either". Lead with those.</div>
+    </div>
+  </details>
+
+  <!-- PROOF (always) -->
+  <details class="phase" open>
+    <summary><span class="num">P</span><span class="t">Proof (the only numbers you may claim)</span><span class="time">on demand</span></summary>
+    <div class="body">
+      <div class="proofrow">
+        <div class="p"><b>Peepoye 1.3M</b><br><span>106 cloned reels, 3.4M views, 30k avg. Zero camera since April.</span></div>
+        <div class="p"><b>Dr. Madhu 375k</b><br><span>86 cloned reels, 1.4M views, 16k avg. Clone sells on autopilot.</span></div>
+        <div class="p"><b>Arfeen 875k</b><br><span>Clone in build now for his funnels. Sharpest output.</span></div>
+      </div>
+      <div class="rule">TRUTH RULE: only Peepoye, Madhu, Arfeen. Never cite a prospect as a client. Keep parity claims soft ("see for yourself") until a real side-by-side at their level exists.</div>
+      <p><b>Aggregate punch:</b> 192 cloned reels, 4.8M views, none filmed. The clone is ~10% of that, the rest is strategy, scripting, publishing.</p>
+    </div>
+  </details>
+
+  <!-- PHASE 5 -->
+  <details class="phase">
+    <summary><span class="num">5</span><span class="t">Offer + price</span><span class="time">33-38 min</span></summary>
+    <div class="body">
+      <ul>
+        <li>Stack the value OUT LOUD first (build + strategy + scripting + clone + 10 reels + funnel).</li>
+        <li>Reveal the FOMO: founding batch of 10, 1-2 per niche.</li>
+        <li>State the price ONCE: "$2,000 founding, month 1 is the full build plus 10 reels."</li>
+      </ul>
+      <div class="rule"><b>Then SILENCE.</b> Do not fill the gap. Do not offer a second option. Do not discount. Past calls self-negotiated before any objection and discounted air. On the Greg call the price landed then he kept talking through tiers and justification, no silence.</div>
+      <div class="rule">State it as ONE DOLLAR FIGURE, never a percentage: "$2,000 founding, $5,000 standard from September." Do NOT say "50% off", it invites math, and last time the math was wrong ($5k to $2k is 60%, not 50%).</div>
+      <div class="say">Anchor before the number, in THEIR math: "One or two new members a month covers this. At your [MRR/price], what does that look like over a year?"</div>
+      <div class="win">Fee is absorbed, clean $2,000, never a surcharge. Send the <a class="lnk gold" href="https://getcloned.in/ace-offer/" target="_blank" rel="noopener">Offer Page</a> to take payment (card or bank).</div>
+    </div>
+  </details>
+
+  <!-- PHASE 6 - OBJECTIONS -->
+  <details class="phase" open>
+    <summary><span class="num">6</span><span class="t">Objection killers</span><span class="time">as they come</span></summary>
+    <div class="body">
+      <p class="sub">Tap any objection for the punch. Built from real calls (Shubhra, Akshay, Greg).</p>
+
+      <details class="obj"><summary>"Let me think about it / give me a day"</summary><div class="oc">
+        <p>This is THE leak (3x). Do not accept it open.</p>
+        <div class="say">"Totally fair. Genuinely, what's the part you want to think through, the money, or whether it'll actually work for you?" [then handle THAT live]</div>
+        <div class="say">"Here's what I'll do. I'll hold your founding seat until [date/time]. Let's get 10 minutes then so you're not deciding in a vacuum, and I'll answer whatever's still open." [book it in the calendar NOW]</div>
+      </div></details>
+
+      <details class="obj"><summary>Price / "weighing my finances" / can't afford</summary><div class="oc">
+        <p>Handle LIVE. Never let it walk (killed Shubhra + Greg). Give the ROI number.</p>
+        <div class="say">"One or two new members a month covers the whole thing. You're at [members] at [price]. Fifty more over a year is [$]. This pays for itself and then some."</div>
+        <div class="say">Reason-why for the rate: "It's a founding-partner exchange, not a discount, you give a case study, I give the founding price." Then payment options (card or bank), do not drop the number.</div>
+      </div></details>
+
+      <details class="obj"><summary>"The algorithm burned me / it just stopped showing my stuff" (the PTSD wound)</summary><div class="oc">
+        <p>Greg's core wound, verbatim: "I got a little PTSD... Facebook just stopped showing my stuff." Validate the scar first, do NOT argue it away.</p>
+        <div class="say">"That's real, and it's exactly why one-platform organic is a trap. You fed one algorithm by hand and it turned the tap off. ACE runs you daily across five platforms at once, so you're never at the mercy of one feed again. And it's owned organic that compounds, not rented ads that stop the second you stop paying."</div>
+        <div class="rule">Do NOT promise recovery speed or specific view numbers (no data to back it). Sell the de-risk: never one platform, never by hand again.</div>
+      </div></details>
+
+      <details class="obj"><summary>Cash-constrained: "it's a lot for me right now"</summary><div class="oc">
+        <p>Greg: "baby on the way, haven't made money in three years... but I'm always willing to spend money to make money." Real constraint + real willingness. Give a lower-friction ENTRY, do not discount the price.</p>
+        <div class="say">"Totally hear you. Two ways to make this easy: one, we start with a deposit to lock your founding seat and split the rest over the build month. Two, you're already spending $25/day on ads the algorithm eats, redirect even part of that into this and it's close to cost-neutral, except this one you OWN."</div>
+        <div class="rule">Offer a deposit / split before you ever cut the price. Redirect-the-ad-spend is the cleanest reframe for anyone already paying for reach.</div>
+      </div></details>
+
+      <details class="obj"><summary>"I've tried things before and they didn't work"</summary><div class="oc">
+        <p>MOST dangerous objection, every expert has this scar. Do NOT defend, ASK.</p>
+        <div class="say">"What did you try, and where exactly did it break?" [listen]</div>
+        <div class="say">"That's the difference. A tool gives you a clip and you still do everything else. This is the whole chain, strategy, scripting, production, publishing, so the thing that failed you before, [their gap], is the exact thing we run."</div>
+      </div></details>
+
+      <details class="obj"><summary>"What's the ROI / the return?"</summary><div class="oc">
+        <p>Asked twice on the Akshay call, never answered (metaphor dodge). NEVER dodge. Use their numbers.</p>
+        <div class="say">"At [their price], you need [1-2] new members a month to break even. The engine runs daily across every platform. If it brings even [X] a month, that's [$] a year on a one-time [$2k] plus [retainer]. That's the ROI."</div>
+      </div></details>
+
+      <details class="obj"><summary>"I can just use HeyGen myself"</summary><div class="oc">
+        <p>Do not argue. Ask the 4 questions.</p>
+        <ul>
+          <li>Is your clone actually indistinguishable, or does it read as AI?</li>
+          <li>Are you cloning a talking head, or the whole business, frameworks and offers?</li>
+          <li>Does cloning alone solve it, or do you also need strategy, scripting, algorithm work?</li>
+          <li>Even with a perfect clone, will you still need someone editing and publishing per platform?</li>
+        </ul>
+        <div class="say">"Nobody wants a clip. They want the outcome the clip was supposed to deliver."</div>
+      </div></details>
+
+      <details class="obj"><summary>"Who owns the clone / IP?"</summary><div class="oc">
+        <div class="say">"It's your IP. I'm a blender to you." (Arfeen has a UAE company + agreement as precedent.) Worked cleanly before.</div>
+      </div></details>
+
+      <details class="obj"><summary>"My clients are premium, offers don't move them"</summary><div class="oc">
+        <p>Dropped entirely on the Akshay call. Reframe the funnel.</p>
+        <div class="say">"Then it's not a discount funnel, it's an assessment-and-consult path. The content builds trust and brings the right premium people to a real conversation, not a coupon."</div>
+      </div></details>
+
+      <details class="obj"><summary>"Is this ethical / authentic for me?"</summary><div class="oc">
+        <div class="say">"You approve every script, always, permanently. It stays in your voice and your values. The machine handles the mechanics, you keep the message and the mission."</div>
+        <div class="rule">For clinicians: approval is ALWAYS theirs, forever. Never say "Madhu doesn't approve anything" (contradiction flagged on the Akshay call).</div>
+      </div></details>
+
+      <details class="obj"><summary>"Can I take the clone elsewhere later?"</summary><div class="oc">
+        <div class="say">"Yes, after the engagement. It's yours, you'd only forgo the build cost. No lock-in on the asset itself."</div>
+      </div></details>
+    </div>
+  </details>
+
+  <!-- PHASE 7 - CLOSE -->
+  <details class="phase" open>
+    <summary><span class="num">7</span><span class="t">The close: pin a next step</span><span class="time">last 7 min</span></summary>
+    <div class="body">
+      <div class="rule"><b>NEVER end without ONE of these three:</b>
+        <ul style="margin:6px 0 0">
+          <li>Payment taken (send the Offer Page, card or bank).</li>
+          <li>A decision call BOOKED with a date + time (in the calendar before you hang up).</li>
+          <li>A deadline THEY name, with the next call already booked to hear it.</li>
+        </ul>
+      </div>
+      <p>The temperature check:</p>
+      <div class="say">"On a scale of 1 to 10, how ready do you feel to start?" [if not 10] "What would make it a 10?" [handle exactly that, then close again]</div>
+      <p>If they hesitate, ISOLATE then ASK immediately. Do NOT drift back into feature questions, that is exactly what lost the Greg deal (he isolated "is it just money?", Greg said yes, then Akassh answered 15 more minutes of Q&amp;A instead of closing):</p>
+      <div class="say">"Is it just the money, or is there something else holding you back?" [if just money] &rarr; go straight to the deposit / split + redirect-your-ad-spend close. Do not answer another feature question.</div>
+      <p>The assumptive close:</p>
+      <div class="say">"Want to grab one of the founding seats now? I can send the link, card or bank, whichever's easier."</div>
+      <div class="rule">"I'll send you the details" is NOT a close. If they need to think, you book the follow-up on the spot. Do not leave the call on a message you have to chase.</div>
+    </div>
+  </details>
+
+  <footer>The Strike Room &middot; internal &middot; sources: king_skill_sales, proof_stack_ace, offer_ace_skool_founding, build_ace_closing_stack</footer>
+</div>
+
+<script>
+  function checkGate(){
+    var inputs = document.querySelectorAll('input[data-g]');
+    var missing = 0;
+    inputs.forEach(function(i){
+      if(!i.value.trim()){ i.style.borderColor = '#e2685f'; missing++; }
+      else { i.style.borderColor = '#33b07a'; }
+    });
+    var msg = document.getElementById('gatemsg');
+    if(missing===0){ msg.style.color = '#33b07a'; msg.textContent = 'GATE GREEN. You have the numbers. Now you may demo.'; }
+    else { msg.style.color = '#e2685f'; msg.textContent = missing + ' still missing. Get these before you demo, do not skip.'; }
+  }
+</script>
+</body>
+</html>
