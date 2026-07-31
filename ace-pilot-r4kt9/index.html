@@ -6,41 +6,67 @@
 <meta name="robots" content="noindex, nofollow" />
 <title>ACE Founding Pilot | GetCloned</title>
 <link rel="icon" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,600&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0f1115; --panel:#171a21; --line:#272c36; --ink:#eef1f5; --muted:#9aa4b2;
-    --gold:#c9a24a; --green:#2f9e6d; --soft:#b7c0cc;
+    --gold:#c9a24a; --gold-soft:rgba(201,162,74,.14); --green:#2f9e6d; --soft:#b7c0cc;
+    --serif:'Fraunces',serif; --mono:'IBM Plex Mono',monospace;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+  body{margin:0;background:var(--bg);color:var(--ink);overflow-x:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
   .wrap{max-width:820px;margin:0 auto;padding:0 20px}
-  header{text-align:center;padding:56px 20px 30px}
-  .kicker{color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-size:12px;font-weight:700}
-  h1{font-size:34px;line-height:1.2;margin:14px 0 10px}
-  h1 .hl{color:var(--gold)}
-  .sub{color:var(--soft);font-size:18px;max-width:640px;margin:0 auto}
-  section{padding:34px 0;border-top:1px solid var(--line)}
-  h2{font-size:22px;margin:0 0 16px}
-  h2 .n{color:var(--gold);margin-right:8px}
+  header{position:relative;text-align:center;padding:68px 20px 34px;isolation:isolate}
+  header::before{content:'';position:absolute;top:-90px;left:50%;transform:translateX(-50%);
+    width:900px;height:560px;pointer-events:none;z-index:-1;
+    background:radial-gradient(closest-side,var(--gold-soft),rgba(201,162,74,.04) 45%,transparent 72%);
+    filter:blur(6px)}
+  .kicker{font-family:var(--mono);color:var(--gold);letter-spacing:.28em;text-transform:uppercase;font-size:11.5px;font-weight:600}
+  h1{font-size:clamp(28px,4.4vw,40px);line-height:1.18;letter-spacing:-.01em;margin:16px 0 12px;font-weight:700}
+  h1 .hl{color:var(--gold);font-family:var(--serif);font-style:italic;font-weight:600}
+  .sub{color:var(--soft);font-size:clamp(15px,1.7vw,17px);max-width:600px;margin:0 auto;line-height:1.65}
+  section{padding:40px 0;border-top:1px solid var(--line)}
+  h2{display:flex;align-items:center;gap:12px;font-size:clamp(19px,2.2vw,22px);margin:0 0 20px;letter-spacing:-.01em}
+  h2 .n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;min-width:28px;
+    font-family:var(--mono);font-size:12px;font-weight:700;color:var(--gold);
+    background:var(--gold-soft);border:1px solid rgba(201,162,74,.35);border-radius:8px}
   p{color:var(--soft)}
   .stack{list-style:none;padding:0;margin:0}
-  .stack li{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:15px}
+  .stack li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 2px;border-bottom:1px dashed var(--line);font-size:15px}
   .stack li:last-child{border-bottom:none}
-  .stack .v{color:var(--muted);white-space:nowrap}
-  .stack li.cut{opacity:.5}
-  .stack li.cut span:first-child{text-decoration:line-through}
-  .stack li.cut .v{color:#8a6b6b}
-  .price{background:linear-gradient(180deg,#1b1f27,#141821);border:1px solid var(--gold);border-radius:16px;padding:26px;text-align:center;margin-top:8px}
+  .stack li span:first-child{color:var(--ink)}
+  .stack .v{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    white-space:nowrap;padding:5px 11px;border-radius:999px;display:inline-flex;align-items:center;gap:5px}
+  .stack li:not(.cut) .v{color:var(--green);background:rgba(47,158,109,.12);border:1px solid rgba(47,158,109,.32)}
+  .stack li:not(.cut) .v::before{content:'✓';font-size:10px}
+  .stack li.cut span:first-child{text-decoration:line-through;color:var(--muted)}
+  .stack li.cut .v{color:var(--muted);background:rgba(154,164,178,.06);border:1px solid var(--line)}
+  .stack li.cut .v::before{content:'×';font-size:11px}
+  .price{background:linear-gradient(180deg,#1b1f27,#141821);border:1px solid var(--gold);border-radius:18px;
+    padding:32px 28px;text-align:center;margin-top:8px;position:relative;overflow:hidden;
+    box-shadow:0 24px 60px -24px rgba(201,162,74,.4),0 0 0 1px rgba(201,162,74,.06) inset}
+  .price::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent)}
   .price .was{color:var(--muted);text-decoration:line-through;font-size:16px}
-  .price .now{font-size:40px;font-weight:800;color:var(--gold);margin:4px 0}
+  .price .now{font-size:clamp(36px,6vw,44px);font-weight:800;color:var(--gold);margin:6px 0}
   .price .terms{color:var(--soft);font-size:14px}
-  .fomo{background:rgba(201,162,74,.1);border:1px solid var(--gold);border-radius:14px;padding:16px 20px;color:#e9d19b;font-size:15px}
+  .fomo{background:rgba(201,162,74,.1);border:1px solid var(--gold);border-radius:14px;padding:18px 22px;
+    color:#e9d19b;font-size:15px;box-shadow:0 14px 34px -18px rgba(201,162,74,.3)}
   .cta{text-align:center}
   .btn{display:inline-block;background:var(--gold);color:#111;font-weight:700;text-decoration:none;
-    padding:16px 34px;border-radius:12px;font-size:17px;margin:6px}
+    padding:17px 36px;border-radius:12px;font-size:17px;margin:6px;
+    box-shadow:0 16px 36px -12px rgba(201,162,74,.5);transition:transform .18s ease,box-shadow .18s ease}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 20px 44px -12px rgba(201,162,74,.6)}
   footer{text-align:center;color:var(--muted);font-size:13px;padding:34px 20px}
-  @media (max-width:640px){h1{font-size:27px}}
+  @media (max-width:640px){
+    header{padding:52px 18px 26px}
+    header::before{width:600px;height:420px;top:-70px}
+    .stack li{flex-wrap:wrap;row-gap:8px}
+    .price{padding:26px 20px}
+  }
 </style>
 </head>
 <body>
@@ -49,7 +75,7 @@
   <header>
     <div class="kicker">The ACE Founding Pilot</div>
     <h1>Your content, <span class="hl">on autopilot</span>. Your mission, <span class="hl">amplified</span>.</h1>
-    <p class="sub">This pilot rate exists because some experts are carrying a real mission, and we want to make them a force multiplier for it, not add another vendor bill.</p>
+    <p class="sub">This is the founding pilot rate, not a discount: your niche has no case study yet, so instead of full price for unproven ground, you get built at cost, because a mission like yours is worth backing before the proof exists.</p>
   </header>
 
   <section>
