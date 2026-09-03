@@ -4,5 +4,187 @@
       "memory": 128,
       "maxDuration": 10
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/get-dba-engine",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/get-dba-engine/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/get-dba-engine/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ace-video",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ace-video/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ace-video/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blueprint",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blueprint/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blueprint/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/offer-fbm",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/offer-fbm/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/offer-fbm/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/plus",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/plus/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/plus/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/lab.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/old-index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/old-index-v2.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/thank-you-blueprint",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/thank-you-blueprint/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/thank-you-blueprint/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ace-start",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ace-start/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ace-start/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ace-offer",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ace-offer/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ace-offer/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/offer-os-p9wnq2",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/offer-os-p9wnq2/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/offer-os-p9wnq2/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/strike-room-20stm3wv",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/strike-room-20stm3wv/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/strike-room-20stm3wv/:path*",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
 }

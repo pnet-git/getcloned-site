@@ -1,102 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url>
-    <loc>https://getcloned.in/</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://getcloned.in/ace-for-skool/</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <url>
-    <loc>https://getcloned.in/how-it-works/</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <url>
-    <loc>https://getcloned.in/case-study/video/</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://getcloned.in/stories/</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://getcloned.in/stories/the-king-and-the-messenger/</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://getcloned.in/blogs/</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://getcloned.in/blogs/why-content-production-is-killing-your-expertise/</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://getcloned.in/blogs/why-your-patients-arent-coming-back/</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://getcloned.in/blogs/how-this-doctor-gets-appointments-from-instagram/</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://getcloned.in/blogs/want-to-clone-yourself-for-content/</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://getcloned.in/blogs/movement-leaders-dont-need-an-ai-tool/</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://getcloned.in/privacy/</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://getcloned.in/terms/</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
+  <url><loc>https://getcloned.in/</loc></url>
+  <url><loc>https://getcloned.in/case-study/video/</loc></url>
+  <url><loc>https://getcloned.in/stories/</loc></url>
+  <url><loc>https://getcloned.in/stories/the-king-and-the-messenger/</loc></url>
+  <url><loc>https://getcloned.in/blogs/</loc></url>
+  <url><loc>https://getcloned.in/blogs/why-content-production-is-killing-your-expertise/</loc></url>
+  <url><loc>https://getcloned.in/blogs/why-your-patients-arent-coming-back/</loc></url>
+  <url><loc>https://getcloned.in/blogs/how-this-doctor-gets-appointments-from-instagram/</loc></url>
+  <url><loc>https://getcloned.in/blogs/want-to-clone-yourself-for-content/</loc></url>
+  <url><loc>https://getcloned.in/blogs/movement-leaders-dont-need-an-ai-tool/</loc></url>
+  <url><loc>https://getcloned.in/privacy/</loc></url>
+  <url><loc>https://getcloned.in/terms/</loc></url>
 </urlset>
