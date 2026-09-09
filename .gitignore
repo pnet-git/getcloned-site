@@ -1,3 +1,8 @@
 .DS_Store
 .vercel
 .env*
+
+# unused / duplicate root videos: pages use /media/reel-*.mp4 only
+reel-a.mp4
+reel-b.mp4
+reel-madhu-2.mp4
