@@ -20,6 +20,14 @@
 <meta name="twitter:title" content="GetCloned — you stop filming, your twin keeps posting">
 <meta name="twitter:description" content="We build a twin with your face, your voice and the way you think. It makes your videos every day. You approve. You own it. 212 reels this year, none filmed.">
 <meta name="twitter:image" content="https://getcloned.in/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"ProfessionalService","@id":"https://phantasylabs.com/#org","name":"PhantasyLabs","alternateName":["Phantasy Labs","PhantasyLabs by Peepoye Network"],"url":"https://phantasylabs.com/","logo":"https://phantasylabs.com/apple-touch-icon.png","description":"A video production and conversion agency in New Delhi. We make the videos and build the path that turns the people watching them into paying customers. For doctors, coaches, experts, creators, brands and small business owners. Three parts: the videos, the conversion bridge they land on, and one screen that tracks who watched and who paid.","foundingDate":"2026","parentOrganization":{"@type":"Organization","name":"Peepoye Network"},"founder":{"@type":"Person","name":"Akash Ashok Gupta","url":"https://akasshashokgupta.com/"},"address":{"@type":"PostalAddress","addressLocality":"New Delhi","addressCountry":"IN"},"contactPoint":{"@type":"ContactPoint","telephone":"+91-96257-79149","contactType":"sales","email":"hello@peepoye.com"},"sameAs":["https://getcloned.in/","https://akasshashokgupta.com/","https://www.instagram.com/peepoye/","https://www.youtube.com/@peepoye","https://www.linkedin.com/in/akasshagupta/"]},
+ {"@type":"WebSite","@id":"https://phantasylabs.com/#site","url":"https://phantasylabs.com/","name":"PhantasyLabs","publisher":{"@id":"https://phantasylabs.com/#org"}},
+ {"@type":"WebPage","@id":"https://getcloned.in/","url":"https://getcloned.in/","name":"GetCloned — you stop filming, your twin keeps posting","description":"We build a twin with your face, your voice and the way you think. It makes your videos every day. You approve. You own it. 212 reels this year, none filmed.","isPartOf":{"@id":"https://phantasylabs.com/#site"}}
+]}
+</script>
+<meta name="google-site-verification" content="HQfUOXV_S7yVdZE4zEnGn5ZJ1PpNFCjicF2NjA0D5AQ">
 <meta name="theme-color" content="#07080a">
 <link rel="canonical" href="https://getcloned.in/">
 <link rel="icon" href="https://phantasylabs.com/favicon.svg" type="image/svg+xml">
@@ -113,13 +121,37 @@ header nav a:hover,header nav a:focus-visible{color:var(--white);}
 .btn:hover,.btn:focus-visible{transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(180,154,255,.5);}
 .btn-ghost{background:transparent;color:var(--white);border:1px solid var(--line-bright);}
 :focus-visible{outline:2px solid var(--dream-b);outline-offset:3px;}
-@media (max-width:820px){header nav a:not(.btn){display:none;}}
+header .navlinks{display:flex;gap:22px;align-items:center;}
+/* THE PHONE MENU. Until 14 Sep 2026 the links were simply hidden under 820px and
+   nothing replaced them, so on a phone there was no way to reach any page from the top. */
+/* the bars are placed by hand so the open state is a real cross and not a chevron */
+.burger{display:none;width:42px;height:42px;padding:0;background:none;border:0;cursor:pointer;position:relative;}
+.burger span{position:absolute;left:11px;width:20px;height:2px;background:var(--white);border-radius:2px;
+  transition:transform .22s cubic-bezier(.2,.7,.3,1.4),opacity .14s;}
+.burger span:nth-child(1){top:14px;}
+.burger span:nth-child(2){top:20px;}
+.burger span:nth-child(3){top:26px;}
+.burger.is-open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.burger.is-open span:nth-child(2){opacity:0;}
+.burger.is-open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+@media (max-width:820px){
+  .burger{display:flex;}
+  header nav{gap:10px;}
+  /* solid, not translucent. The hero behind it was reading straight through the links. */
+  header .navlinks{position:absolute;left:0;right:0;top:100%;display:none;
+    flex-direction:column;align-items:stretch;gap:0;padding:2px 20px 14px;
+    background:var(--void);border-bottom:1px solid var(--line-bright);
+    box-shadow:0 22px 44px -18px rgba(0,0,0,.9);}
+  header .navlinks.open{display:flex;}
+  header .navlinks a{padding:15px 2px;font-size:16px;color:var(--white);
+    border-top:1px solid var(--line);}
+}
 
 /* section frame */
 section{position:relative;z-index:1;}
-.sec{padding:96px 0;border-top:1px solid var(--line);}
-.sec-head{max-width:720px;margin-bottom:46px;}
-.sec-head h2{font-size:clamp(28px,4vw,42px);line-height:1.08;margin:14px 0 0;}
+.sec{padding:118px 0;border-top:1px solid var(--line);}
+.sec-head{max-width:760px;margin-bottom:54px;}
+.sec-head h2{font-size:clamp(30px,3.8vw,44px);line-height:1.14;margin:16px 0 0;font-weight:400;letter-spacing:-0.025em;}
 .sec-head p{color:var(--dim);font-size:17px;margin-top:18px;max-width:60ch;}
 
 
@@ -133,7 +165,7 @@ section{position:relative;z-index:1;}
 .hero .sub b{color:var(--white);font-weight:600;}
 .doors{display:grid;gap:10px;max-width:460px;}
 .door{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px;text-decoration:none;
-  border-radius:16px;padding:15px 18px;transition:transform .2s cubic-bezier(.2,.7,.3,1.4),box-shadow .2s,border-color .2s;}
+  border-radius:9px;padding:15px 18px;transition:transform .2s cubic-bezier(.2,.7,.3,1.4),box-shadow .2s,border-color .2s;}
 .door.main{background:var(--white);color:var(--void);}
 .door.ghost{background:transparent;color:var(--white);border:1px solid var(--line-bright);}
 .door:hover,.door:focus-visible{transform:translateY(-2px);box-shadow:0 12px 34px -12px rgba(180,154,255,.55);}
@@ -147,7 +179,7 @@ section{position:relative;z-index:1;}
    Three rows come in one after another, then 97 dots go dim. Base state is
    the finished picture, the animation only replays it, so motion-off users
    see everything at rest. */
-.next{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px 20px 16px;
+.next{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px 16px;
   box-shadow:0 30px 70px -40px rgba(0,0,0,.95);}
 .next .hd{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line);}
 .next .hd .ph{width:26px;height:40px;border-radius:6px;border:1.5px solid var(--line-bright);position:relative;flex:none;}
@@ -156,7 +188,7 @@ section{position:relative;z-index:1;}
 .next .hd p{font-size:14px;color:var(--dim);line-height:1.35;}
 .next .hd p b{color:var(--white);}
 .rows{display:grid;gap:8px;margin-top:12px;}
-.row{display:grid;grid-template-columns:32px 40px minmax(0,1fr);gap:10px;align-items:center;padding:8px 12px;border-radius:12px;
+.row{display:grid;grid-template-columns:32px 40px minmax(0,1fr);gap:10px;align-items:center;padding:8px 12px;border-radius:8px;
   border:1px solid var(--line);animation:rowin .6s cubic-bezier(.2,.7,.3,1) backwards;}
 .row.r3{animation-delay:.4s;border-color:rgba(255,143,171,.45);background:linear-gradient(90deg,rgba(255,143,171,.14),transparent);}
 .row.r17{animation-delay:1.1s;border-color:rgba(255,184,107,.4);background:linear-gradient(90deg,rgba(255,184,107,.12),transparent);}
@@ -203,7 +235,7 @@ section{position:relative;z-index:1;}
 
 /* THE PROOF STRIP under the headline. The wow, with its context on it. */
 .proof{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:0;align-items:center;margin:16px 0 14px;
-  border:1px solid var(--line-bright);border-radius:16px;background:var(--panel);overflow:hidden;max-width:560px;}
+  border:1px solid var(--line-bright);border-radius:9px;background:var(--panel);overflow:hidden;max-width:560px;}
 .proof .pn{padding:10px 16px;border-right:1px solid var(--line);}
 .proof .pn b{display:block;font-size:clamp(26px,2.8vw,34px);font-weight:700;letter-spacing:-0.045em;line-height:1;font-variant-numeric:tabular-nums;}
 .proof .pn.a b{color:var(--white);} .proof .pn.b b{color:#5eead4;}
@@ -237,7 +269,7 @@ section{position:relative;z-index:1;}
 /* THE SIGNPOST, unchanged. */
 .signpost{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
 .sp{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--line);
-  border-radius:18px;padding:22px;transition:border-color .2s,transform .2s;}
+  border-radius:10px;padding:22px;transition:border-color .2s,transform .2s;}
 a.sp:hover,a.sp:focus-visible{border-color:var(--line-bright);transform:translateY(-3px);}
 .sp .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;margin-bottom:14px;background:rgba(94,234,212,.12);color:var(--dream-b);}
 .sp.here .ic{background:rgba(180,154,255,.14);color:var(--dream-a);} .sp.both .ic{background:rgba(255,184,107,.14);color:var(--dream-c);}
@@ -253,7 +285,7 @@ a.sp:hover,a.sp:focus-visible{border-color:var(--line-bright);transform:translat
 
 /* THE STORY. Beats 5 and 6: credit, the scene, the loss he cannot see. */
 .story{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;
-  background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;}
+  background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
 .st{background:var(--panel);padding:26px 24px;}
 .st .i{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;margin-bottom:14px;}
 .st .i svg{width:17px;height:17px;}
@@ -261,7 +293,7 @@ a.sp:hover,a.sp:focus-visible{border-color:var(--line-bright);transform:translat
 .st.scene .i{background:rgba(255,184,107,.13);color:var(--dream-c);}
 .st.loss .i{background:rgba(255,143,171,.13);color:var(--dream-d);}
 .st .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:8px;}
-.st .art{height:92px;border:1px solid var(--line);border-radius:12px;background:var(--void);margin-bottom:14px;overflow:hidden;position:relative;}
+.st .art{height:92px;border:1px solid var(--line);border-radius:8px;background:var(--void);margin-bottom:14px;overflow:hidden;position:relative;}
 .st .art svg{width:100%;height:100%;display:block;}
 .st p{font-size:15.5px;color:var(--dim);line-height:1.5;}
 @keyframes pop{0%,15%{opacity:0;transform:translateY(8px) scale(.9);}25%,80%{opacity:1;transform:none;}90%,100%{opacity:0;}}
@@ -273,7 +305,7 @@ a.sp:hover,a.sp:focus-visible{border-color:var(--line-bright);transform:translat
 
 /* THE HUNDRED. One picture for the one idea. */
 .hundred{display:none;margin-top:18px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:30px;align-items:center;
-  background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px 28px;}
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:26px 28px;}
 .dots{display:grid;grid-template-columns:repeat(20,12px);gap:6px;}
 .dots i{width:12px;height:12px;border-radius:50%;background:rgba(94,234,212,.55);display:block;}
 .dots i.hot{background:#ff8fab;box-shadow:0 0 12px rgba(255,143,171,.7);}
@@ -291,15 +323,15 @@ a.sp:hover,a.sp:focus-visible{border-color:var(--line-bright);transform:translat
 
 /* WHERE THE 97 GO. */
 .leaks{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
-.leak{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;}
-.leak-art{border:1px solid var(--line);border-radius:12px;background:var(--void);padding:8px;margin-bottom:15px;}
+.leak{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;}
+.leak-art{border:1px solid var(--line);border-radius:8px;background:var(--void);padding:8px;margin-bottom:15px;}
 .leak-art svg{width:100%;height:auto;display:block;}
 .leak h3{font-size:16.5px;margin-bottom:8px;line-height:1.25;}
 .leak p{font-size:14px;color:var(--dim);line-height:1.5;}
 
 /* WHAT CHANGES. The ladder, labelled as what happens to her. */
 .ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;align-items:stretch;position:relative;}
-.rung{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;position:relative;}
+.rung{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;position:relative;}
 .rung{display:flex;flex-direction:column;}
 .rung.r4{border-color:rgba(94,234,212,.36);background:linear-gradient(180deg,rgba(94,234,212,.08),var(--panel));}
 .rung .step{position:absolute;top:14px;right:16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);}
@@ -316,8 +348,8 @@ a.sp:hover,a.sp:focus-visible{border-color:var(--line-bright);transform:translat
 
 /* WHAT WE BUILD. Three things on one path, drawn. Beat 8. */
 .path3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;position:relative;}
-.p3{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;position:relative;}
-.p3 .art{height:110px;border:1px solid var(--line);border-radius:12px;background:var(--void);margin-bottom:16px;overflow:hidden;}
+.p3{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;position:relative;}
+.p3 .art{height:110px;border:1px solid var(--line);border-radius:8px;background:var(--void);margin-bottom:16px;overflow:hidden;}
 .p3 .art svg{width:100%;height:100%;display:block;}
 .p3 .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dream-a);margin-bottom:8px;}
 .p3:nth-child(2) .k{color:var(--dream-c);} .p3:nth-child(3) .k{color:var(--dream-b);}
@@ -343,7 +375,7 @@ a.sp:hover,a.sp:focus-visible{border-color:var(--line-bright);transform:translat
 
 /* PROOF. Case cards, unchanged shape. */
 .cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;}
-.case{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;}
+.case{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;}
 .case-top{display:flex;align-items:center;gap:14px;padding:20px 22px;border-bottom:1px solid var(--line);}
 .case-top img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;border:2px solid var(--line-bright);}
 .case-who .nm{font-size:15.5px;font-weight:600;letter-spacing:-0.02em;}
@@ -372,7 +404,7 @@ a.sp:hover,a.sp:focus-visible{border-color:var(--line-bright);transform:translat
 .founder .nums .n{font-size:23px;font-weight:700;letter-spacing:-0.04em;}
 .founder .nums .k{font-size:12px;color:var(--faint);margin-top:3px;}
 @media (max-width:820px){.founder{grid-template-columns:1fr;gap:26px;}}
-.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:16px;}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:16px;}
 .trust-cell{background:var(--panel);padding:24px 22px;}
 .trust-cell .i{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;margin-bottom:13px;background:rgba(94,234,212,.13);color:var(--dream-b);}
 .trust-cell .i svg{width:16px;height:16px;}
@@ -418,11 +450,11 @@ details .a p + p{margin-top:10px;}
 .field{margin-bottom:22px;}
 .field label{display:block;font-size:14.5px;font-weight:600;margin-bottom:10px;}
 .field .hint{display:block;font-size:13px;color:var(--faint);font-weight:400;margin-top:4px;}
-.field input,.field textarea{width:100%;background:var(--void);border:1px solid var(--line);border-radius:11px;color:var(--white);padding:13px 15px;font-family:inherit;font-size:15px;color-scheme:dark;}
+.field input,.field textarea{width:100%;background:var(--void);border:1px solid var(--line);border-radius:7px;color:var(--white);padding:13px 15px;font-family:inherit;font-size:15px;color-scheme:dark;}
 .field textarea{min-height:78px;resize:vertical;}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--dream-a);}
 .bands{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px;}
-.band-btn{background:var(--void);border:1px solid var(--line);border-radius:11px;color:var(--dim);padding:14px 12px;font-family:inherit;font-size:14.5px;cursor:pointer;transition:all .18s;min-height:48px;}
+.band-btn{background:var(--void);border:1px solid var(--line);border-radius:7px;color:var(--dim);padding:14px 12px;font-family:inherit;font-size:14.5px;cursor:pointer;transition:all .18s;min-height:48px;}
 .band-btn:hover{border-color:var(--line-bright);color:var(--white);}
 .band-btn[aria-pressed="true"]{border-color:var(--dream-a);color:var(--white);background:rgba(180,154,255,.10);}
 .gate .go{width:100%;padding:16px;font-size:16px;margin-top:8px;}
@@ -439,7 +471,14 @@ details .a p + p{margin-top:10px;}
   padding:13px 20px;border-radius:100px;box-shadow:0 14px 40px -12px rgba(37,211,102,.6);transition:transform .2s cubic-bezier(.2,.7,.3,1.4);}
 .wa-float:hover,.wa-float:focus-visible{transform:translateY(-3px);}
 .wa-float svg{width:19px;height:19px;flex:none;}
-@media (max-width:600px){.wa-float{right:14px;bottom:14px;padding:12px 16px;font-size:13.5px;}}
+/* On a phone it was 145px wide on a 390px screen, 37 percent of the width, parked on
+   top of the copy on every screen. A circle says the same thing and covers a tenth of it. */
+@media (max-width:600px){
+  .wa-float{right:14px;bottom:14px;width:54px;height:54px;padding:0;gap:0;
+    border-radius:50%;justify-content:center;}
+  .wa-float span{display:none;}
+  .wa-float svg{width:26px;height:26px;}
+}
 
 /* footer */
 footer{border-top:1px solid var(--line);padding:56px 0 70px;position:relative;z-index:1;}
@@ -449,7 +488,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px;position:relative;z-
 .foot nav a{color:var(--dim);font-size:13.5px;text-decoration:none;}
 .foot nav a:hover{color:var(--white);}
 .socials{display:flex;gap:10px;flex-wrap:wrap;}
-.socials a{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;border:1px solid var(--line);color:var(--dim);transition:color .2s,border-color .2s,transform .2s;}
+.socials a{width:38px;height:38px;border-radius:7px;display:grid;place-items:center;border:1px solid var(--line);color:var(--dim);transition:color .2s,border-color .2s,transform .2s;}
 .socials a:hover,.socials a:focus-visible{color:var(--white);border-color:var(--line-bright);transform:translateY(-2px);}
 .socials svg{width:17px;height:17px;}
 
@@ -487,14 +526,14 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px;position:relative;z-
 .logos{margin-top:34px;padding-top:26px;border-top:1px solid var(--line);}
 .logo-row{display:flex;flex-wrap:wrap;gap:14px 34px;align-items:center;margin-top:16px;}
 .logo-cell{height:34px;display:grid;place-items:center;}
-.logo-cell img{height:calc(30px * var(--s,1));width:auto;max-width:150px;filter:grayscale(1) brightness(1.7);opacity:.75;transition:opacity .2s,filter .2s;}
-.logo-cell:hover img{filter:none;opacity:1;}
+.logo-cell img{height:calc(30px * var(--s,1));width:auto;max-width:150px;filter:brightness(0) invert(1);opacity:.72;transition:opacity .2s;}
+.logo-cell:hover img{opacity:1;}
 .founder-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
 /* three doors, used on home */
 .doors3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
-.d3{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px;transition:border-color .2s,transform .2s;position:relative;}
+.d3{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px;transition:border-color .2s,transform .2s;position:relative;}
 .d3:hover,.d3:focus-visible{border-color:var(--line-bright);transform:translateY(-3px);}
-.d3 .ic{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;margin-bottom:16px;}
+.d3 .ic{width:40px;height:40px;border-radius:7px;display:grid;place-items:center;margin-bottom:16px;}
 .d3 .ic svg{width:19px;height:19px;}
 .d3.a .ic{background:rgba(180,154,255,.14);color:var(--dream-a);} .d3.b .ic{background:rgba(94,234,212,.13);color:var(--dream-b);} .d3.c .ic{background:rgba(255,184,107,.14);color:var(--dream-c);}
 .d3 .said{font-size:17px;font-weight:600;line-height:1.3;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em;}
@@ -504,11 +543,11 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px;position:relative;z-
 .d3 .go{margin-top:14px;font-size:13.5px;color:var(--dim);}
 /* the path picture: studios -> playback -> autopilot */
 .pathpic{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;position:relative;}
-.pp{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;position:relative;animation:rowin .6s cubic-bezier(.2,.7,.3,1) backwards;}
+.pp{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;position:relative;animation:rowin .6s cubic-bezier(.2,.7,.3,1) backwards;}
 .pp:nth-child(1){animation-delay:.2s;} .pp:nth-child(2){animation-delay:.7s;} .pp:nth-child(3){animation-delay:1.2s;}
 .pp .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;}
 .pp:nth-child(1) .k{color:var(--dream-a);} .pp:nth-child(2) .k{color:var(--dream-b);} .pp:nth-child(3) .k{color:var(--dream-c);}
-.pp .art{height:84px;border:1px solid var(--line);border-radius:12px;background:var(--void);margin-bottom:12px;overflow:hidden;}
+.pp .art{height:84px;border:1px solid var(--line);border-radius:8px;background:var(--void);margin-bottom:12px;overflow:hidden;}
 .pp .art svg{width:100%;height:100%;display:block;}
 .pp h3{font-size:15.5px;line-height:1.25;margin-bottom:5px;}
 .pp p{font-size:13px;color:var(--dim);line-height:1.45;}
@@ -517,7 +556,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px;position:relative;z-
 @media (max-width:760px){.pathpic{grid-template-columns:1fr;}.pp .go{display:none;}}
 /* proof tiles: three results, each linked */
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;}
-.tile{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px;transition:border-color .2s,transform .2s;}
+.tile{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px;transition:border-color .2s,transform .2s;}
 a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:translateY(-3px);}
 .tile .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:12px;}
 .tile .big{font-size:clamp(34px,4vw,48px);font-weight:700;letter-spacing:-0.045em;line-height:1;font-variant-numeric:tabular-nums;}
@@ -539,7 +578,7 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:tran
 .studio .faces{display:flex;gap:10px;margin:18px 26px 0;flex-wrap:wrap;}
 .studio .faces img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--line-bright);}
 .studio .cast{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 26px 0;}
-.studio .cast img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;border:1px solid var(--line);}
+.studio .cast img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:1px solid var(--line);}
 .studio ul{margin:18px 26px 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;}
 .studio li{position:relative;padding-left:24px;font-size:14.5px;color:var(--dim);line-height:1.45;}
 .studio li b{color:var(--white);}
@@ -549,7 +588,7 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:tran
 .sorter{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:stretch;}
 .sorter .q{grid-column:1/-1;order:-1;padding:6px 0 4px;}
 .sorter .q{text-align:center;font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(22px,2.6vw,30px);color:var(--white);}
-.sorter .ans{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px 22px;}
+.sorter .ans{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;}
 .sorter .ans .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;}
 .sorter .ans.real .k{color:var(--dream-a);} .sorter .ans.made .k{color:var(--dream-c);}
 .sorter .ans h3{font-size:19px;margin-bottom:6px;}
@@ -557,7 +596,7 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:tran
 @media (max-width:520px){.sorter{grid-template-columns:1fr;}}
 /* playback: the month, and the reels grid */
 .month{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
-.mo{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;animation:rowin .6s cubic-bezier(.2,.7,.3,1) backwards;}
+.mo{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;animation:rowin .6s cubic-bezier(.2,.7,.3,1) backwards;}
 .mo:nth-child(1){animation-delay:.2s;} .mo:nth-child(2){animation-delay:.6s;} .mo:nth-child(3){animation-delay:1s;} .mo:nth-child(4){animation-delay:1.4s;}
 .mo .n{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:38px;line-height:1;color:var(--dream-b);}
 .mo .n.you{color:var(--dream-c);}
@@ -567,19 +606,1001 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:tran
 @media (max-width:760px){.month{grid-template-columns:1fr 1fr;}}
 @media (max-width:460px){.month{grid-template-columns:1fr;}}
 .reels{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;}
-.reel{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel);}
+.reel{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--panel);}
 .reel video{width:100%;aspect-ratio:9/16;object-fit:cover;display:block;}
 .reel .m{padding:12px 14px;font-size:12.5px;color:var(--faint);border-top:1px solid var(--line);}
 .reel .m b{display:block;color:var(--white);font-size:13.5px;font-weight:600;margin-bottom:2px;}
 /* getcloned: levels */
 .levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
-.lv{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px;}
+.lv{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px;}
 .lv .i{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;margin-bottom:14px;background:rgba(180,154,255,.14);color:var(--dream-a);}
 .lv .i svg{width:18px;height:18px;}
 .lv h3{font-size:19px;margin-bottom:6px;}
 .lv p{font-size:14.5px;color:var(--dim);line-height:1.5;}
 .lv.top{border-color:rgba(94,234,212,.36);background:linear-gradient(180deg,rgba(94,234,212,.08),var(--panel));}
 .lv.top .i{background:rgba(94,234,212,.13);color:var(--dream-b);}
+
+/* ================= HOMEPAGE, rebuilt 13 Sep 2026 from the twelve locked rows ================= */
+.hero-plain{padding:96px 0 64px;}
+.hero-plain .wrap{max-width:860px;}
+.hero-plain h1{font-size:clamp(38px,6.4vw,74px);line-height:1.03;letter-spacing:-.02em;margin:18px 0 0;}
+.hero-plain .sub{font-size:clamp(16px,1.9vw,20px);line-height:1.6;color:var(--dim);max-width:46ch;margin-top:20px;}
+.hero-plain .sub b{color:var(--ink);}
+.hero-acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;}
+.sec-tight{padding:22px 0 34px;}
+.eyebrow.center{text-align:center;}
+.logo-row.big{justify-content:center;gap:18px 40px;margin-top:22px;}
+.logo-row.big .logo-cell{height:40px;}
+.logo-row.big .logo-cell img{height:calc(34px * var(--s,1));max-width:170px;}
+
+/* three things */
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px;align-items:stretch;}
+.th{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:32px;display:flex;flex-direction:column;gap:10px;}
+.th-n{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--grad);color:#07080a;font-weight:700;}
+.th h3{font-size:clamp(18px,2.2vw,22px);line-height:1.25;margin:4px 0 0;}
+.th p{color:var(--dim);line-height:1.6;margin:0;}
+
+/* where are you today */
+/* 13 Sep 2026: it sat left under a centred heading and was set bold while every other
+   heading on the page is light. Both were out of family. */
+.lead-q{font-size:clamp(17px,1.7vw,21px);margin:0 auto 30px;font-weight:400;text-align:center;
+  color:var(--dim);letter-spacing:-.01em;}
+.states{list-style:none;padding:0;margin:0;display:grid;gap:10px;max-width:62ch;}
+.states li{position:relative;padding-left:28px;color:var(--dim);line-height:1.55;font-size:clamp(15px,1.8vw,17px);}
+.states li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;border-radius:50%;background:var(--grad);}
+.states-foot{margin-top:22px;color:var(--dim);line-height:1.6;max-width:66ch;}
+.states-foot b{color:var(--ink);}
+
+/* the numbers */
+.nblock{margin-top:30px;padding-top:22px;border-top:1px solid var(--line);}
+.nblock:first-of-type{border-top:0;padding-top:0;margin-top:10px;}
+.nblock-h{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:0 0 16px;}
+.nrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:22px;}
+.nc{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:18px 18px 16px;}
+.nc.wide{min-width:0;}
+.nc b{display:block;font-size:clamp(22px,3vw,30px);line-height:1.1;letter-spacing:-.015em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.nc small{display:block;margin-top:7px;color:var(--dim);font-size:13.5px;line-height:1.45;}
+.nfoot{margin-top:12px;color:var(--dim);font-size:13.5px;line-height:1.5;}
+
+/* two rows that open their own page */
+.rows2{display:grid;gap:12px;}
+.r2{display:grid;grid-template-columns:190px 1fr auto;align-items:center;gap:18px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px 24px;transition:border-color .2s,transform .2s;}
+.r2:hover,.r2:focus-visible{border-color:var(--line-bright);transform:translateY(-2px);}
+.r2-k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);}
+.r2-t{color:var(--ink);line-height:1.5;}
+.r2 .ar{color:var(--dim);font-size:20px;}
+
+/* the founder strip */
+.fstrip{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:20px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px 24px;}
+.fstrip-pic img{width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;}
+.fstrip-txt .said{font-size:clamp(16px,2vw,19px);line-height:1.4;margin:8px 0 8px;}
+.fstrip-txt .who{color:var(--dim);margin:0;line-height:1.5;}
+.fstrip-txt .who b{color:var(--ink);}
+
+@media(max-width:760px){
+  .hero-plain{padding:70px 0 44px;}
+  .r2{grid-template-columns:1fr;gap:8px;}
+  .r2 .ar{display:none;}
+  .fstrip{grid-template-columns:56px 1fr;}
+  .fstrip-pic img{width:56px;height:56px;}
+  .fstrip-act{grid-column:1 / -1;}
+  .fstrip-act .btn{width:100%;text-align:center;}
+  .logo-row.big{gap:14px 26px;}
+  .logo-row.big .logo-cell{height:32px;}
+  .logo-row.big .logo-cell img{height:calc(26px * var(--s,1));max-width:130px;}
+}
+
+/* ================= ABOUT US, 13 Sep 2026 ================= */
+.pods{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;}
+.pod{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;padding-bottom:16px;transition:border-color .2s,transform .2s;}
+.pod:hover,.pod:focus-visible{border-color:var(--line-bright);transform:translateY(-3px);}
+.pod img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;}
+.pod-n{display:block;padding:14px 18px 0;font-weight:600;color:var(--ink);}
+.pod-w{display:block;padding:4px 18px 0;color:var(--dim);font-size:13.5px;}
+.career{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;}
+.cw{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px;}
+.cw b{display:block;color:var(--ink);line-height:1.3;}
+.cw small{display:block;margin-top:5px;color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.08em;}
+.links-row{display:flex;flex-wrap:wrap;gap:10px;}
+.lk{display:inline-block;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:10px 18px;color:var(--dim);font-size:14px;transition:border-color .2s,color .2s;}
+.lk:hover,.lk:focus-visible{border-color:var(--line-bright);color:var(--ink);}
+/* the two classes the new pages use, defined so nothing silently falls back */
+.btn.grad-btn{background:var(--grad);color:#07080a;border:0;}
+.sec.sec-band{background:rgba(255,255,255,.018);}
+
+/* two brands have a mascot and no wordmark, so the wall carries their name as type */
+.logo-cell.txt{font-family:'Inter Tight',sans-serif;font-weight:600;font-size:19px;letter-spacing:-.01em;color:rgba(255,255,255,.72);transition:color .2s;}
+.logo-cell:hover.txt{color:#fff;}
+.logo-row.big .logo-cell.txt{font-size:22px;}
+
+/* WHO HAS SAT WITH HIM. The Gautam treatment: the guest AND Akash in one pair, because a
+   famous face on its own proves nothing. Ruled by the King 13 Sep 2026. */
+.pods{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:22px;}
+.pod{display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;background:transparent;border:0;border-radius:0;padding:0;transition:transform .2s;}
+.pod:hover,.pod:focus-visible{transform:translateY(-3px);border-color:transparent;}
+.pod-pair{position:relative;width:150px;height:104px;}
+.pod-pair img{position:absolute;border-radius:50%;object-fit:cover;display:block;border:1px solid var(--line-bright);}
+.pod-pair .g{width:96px;height:96px;left:0;top:0;}
+.pod-pair .m{width:58px;height:58px;left:76px;top:40px;border:2px solid var(--void);}
+.pod-n{display:block;padding:14px 0 0;font-weight:600;color:var(--ink);}
+.pod-w{display:block;padding:4px 0 0;color:var(--dim);font-size:13.5px;}
+
+/* THE LOGO WALL. Two rows running opposite ways so more of the 22 read in one glance.
+   Ruled by the King 13 Sep 2026, after the treatment on his own site. */
+.logo-wall{position:relative;overflow:hidden;margin-top:22px;display:grid;gap:16px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);}
+.logo-wall .logo-row{display:flex;flex-wrap:nowrap;width:max-content;gap:0 56px;align-items:center;margin:0;}
+.logo-wall .r1{animation:cm-slide 96s linear infinite;}
+.logo-wall .r2{animation:cm-slide-rev 110s linear infinite;}
+@keyframes cm-slide-rev{from{transform:translateX(-50%);}to{transform:translateX(0);}}
+.logo-wall:hover .logo-row{animation-play-state:paused;}
+.logo-wall .logo-cell{height:62px;flex:none;}
+/* tall two line marks (Disney+ Hotstar, flo, MarketWolf) were being cut off by the row height */
+.logo-wall .logo-cell img{height:calc(36px * var(--s,1));max-height:58px;width:auto;max-width:180px;}
+@media (prefers-reduced-motion:reduce){.logo-wall{overflow-x:auto;mask-image:none;-webkit-mask-image:none;}.logo-wall .logo-row{animation:none;}}
+@media(max-width:760px){
+  .logo-wall{gap:12px;}
+  .logo-wall .logo-row{gap:0 34px;}
+  .logo-wall .r1{animation-duration:68s;} .logo-wall .r2{animation-duration:78s;}
+  .logo-wall .logo-cell{height:48px;}
+  .logo-wall .logo-cell img{height:calc(27px * var(--s,1));max-height:44px;max-width:130px;}
+  .logo-row.big .logo-cell.txt{font-size:18px;}
+}
+
+/* WHERE ARE YOU TODAY. One picture repeated six times, so the empty row is seen and not read.
+   Ruled by the King 13 Sep 2026: the five states were a wall of text. */
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:22px;margin-top:6px;}
+.sg{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:26px 26px 24px;}
+.sg-h{margin:0 0 16px;font-weight:600;color:var(--ink);line-height:1.35;font-size:16.5px;}
+.sg-row{display:grid;grid-template-columns:62px 1fr;align-items:center;gap:12px;margin-top:9px;}
+.sg-row span{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);}
+.sg-dots{display:flex;gap:6px;}
+.sg-dots i{width:11px;height:11px;border-radius:50%;border:1px solid var(--line-bright);background:transparent;}
+.sg-dots i.on{background:var(--grad);border-color:transparent;}
+.sg-note{margin:14px 0 0;color:var(--dim);font-size:13px;}
+.sg.us{border-color:transparent;background:linear-gradient(var(--panel),var(--panel)) padding-box,var(--grad) border-box;border:1px solid transparent;}
+.sg.us .sg-h{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+@media(max-width:520px){.sg-row{grid-template-columns:56px 1fr;gap:9px;}.sg-dots i{width:9px;height:9px;}}
+
+/* ================= LIGHT BANDS. 13 Sep 2026. =================
+   The site was one grey wash top to bottom, so nothing stood out because everything
+   looked the same. The dark stays the spine. Light bands cut it up. */
+.sec-light{
+  --panel:#ffffff; --panel-2:#f2f3f5;
+  --line:rgba(10,12,16,.10); --line-bright:rgba(10,12,16,.20);
+  --white:#0b0c0f; --dim:#5b6070; --faint:#8b9096;
+  background:#f4f4f6; color:#0b0c0f; position:relative; z-index:1;
+}
+.sec-light .grad{background:linear-gradient(100deg,#5b3df5 0%,#0d9488 55%,#c2571f 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.sec-light .th-n{background:linear-gradient(100deg,#5b3df5,#0d9488);color:#fff;}
+.sec-light .sg-dots i.on{background:linear-gradient(100deg,#5b3df5,#0d9488);}
+.sec-light .nc b{background:linear-gradient(100deg,#5b3df5 0%,#0d9488 55%,#c2571f 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.sec-light .btn-ghost{color:#0b0c0f;border-color:rgba(10,12,16,.22);}
+.sec-light .logo-cell img{filter:brightness(0);opacity:.62;}
+.sec-light .logo-cell:hover img{opacity:1;}
+.sec-light .logo-cell.txt{color:rgba(11,12,15,.72);}
+.sec-light .sg.us{background:linear-gradient(#fff,#fff) padding-box,linear-gradient(100deg,#5b3df5,#0d9488) border-box;}
+.sec-light .sg.us .sg-h{background:linear-gradient(100deg,#5b3df5,#0d9488);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.sec-light .logo-wall{-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);}
+
+/* ================= THE FILM STRIP. Real reels, playing. ================= */
+.strip-sec{overflow:hidden;}
+.strip{display:grid;gap:16px;margin-top:38px;}
+.strip-row{display:flex;gap:18px;width:max-content;}
+.strip-row.s1{animation:cm-slide 78s linear infinite;}
+.strip-row.s2{animation:cm-slide-rev 88s linear infinite;}
+.strip:hover .strip-row{animation-play-state:paused;}
+.fr{position:relative;flex:none;width:214px;aspect-ratio:9/14;border-radius:9px;overflow:hidden;
+  border:1px solid var(--line-bright);transform:rotate(var(--r,0deg));transition:transform .3s;
+  text-decoration:none;display:block;background:#000;}
+.fr:hover,.fr:focus-visible{transform:rotate(0deg) scale(1.05);z-index:2;}
+.fr video{width:100%;height:100%;object-fit:cover;display:block;}
+.fr .cap{position:absolute;left:9px;right:9px;bottom:9px;
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:#fff;background:rgba(7,8,10,.74);backdrop-filter:blur(6px);padding:6px 9px;border-radius:8px;line-height:1.4;}
+.strip-foot{margin-top:28px;color:var(--dim);text-align:center;}
+.strip-foot b{color:var(--white);}
+@media (prefers-reduced-motion:reduce){.strip-row{animation:none;}.strip{overflow-x:auto;}}
+@media(max-width:760px){.fr{width:150px;}.strip-row{gap:12px;}.strip-row.s1{animation-duration:52s;}.strip-row.s2{animation-duration:60s;}}
+
+/* ================= THE OBJECTIONS. Named out loud, with a picture each. ================= */
+.objs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+.obj{position:relative;border-radius:10px;overflow:hidden;min-height:330px;display:flex;flex-direction:column;justify-content:flex-end;
+  border:1px solid var(--line);}
+.obj img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+.obj:before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(7,8,10,.25) 0%,rgba(7,8,10,.82) 58%,rgba(7,8,10,.95) 100%);}
+.obj .in{position:relative;z-index:2;padding:24px;}
+.obj h3{color:#fff;font-size:clamp(19px,2.4vw,23px);line-height:1.25;margin:0 0 10px;}
+.obj p{color:rgba(255,255,255,.82);line-height:1.6;margin:0;font-size:15px;}
+.obj .mark{position:relative;z-index:2;margin:24px 24px 0;width:34px;height:34px;border-radius:10px;
+  background:rgba(255,255,255,.14);display:grid;place-items:center;color:#fff;font-weight:600;font-size:15px;}
+
+/* ================= THE FLOODED HERO. 13 Sep 2026 =================
+   The hero was an empty dark box on a site that sells video. It is now flooded with
+   the work itself: vertical columns, half going down, half going up, heavily dimmed. */
+.hero-flood{position:relative;overflow:hidden;padding:150px 0 118px;min-height:min(90vh,860px);display:flex;align-items:center;}
+.vwall{position:absolute;inset:-6% -2%;z-index:0;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;
+  transform:rotate(-4deg) scale(1.16);opacity:.5;}
+.vcol{overflow:hidden;}
+.vtrack{display:flex;flex-direction:column;gap:16px;}
+.vcol.d .vtrack{animation:vslide 46s linear infinite;}
+.vcol.u .vtrack{animation:vslide-rev 54s linear infinite;}
+@keyframes vslide{from{transform:translateY(0);}to{transform:translateY(-50%);}}
+@keyframes vslide-rev{from{transform:translateY(-50%);}to{transform:translateY(0);}}
+.vtrack video{width:100%;aspect-ratio:9/15;object-fit:cover;border-radius:8px;display:block;}
+.hero-flood:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 80% at 18% 50%,rgba(7,8,10,.97) 0%,rgba(7,8,10,.90) 38%,rgba(7,8,10,.62) 68%,rgba(7,8,10,.80) 100%);}
+.hero-flood .wrap{position:relative;z-index:2;}
+@media (prefers-reduced-motion:reduce){.vtrack{animation:none!important;}}
+@media(max-width:820px){
+  .hero-flood{padding:120px 0 86px;min-height:auto;}
+  .vwall{grid-template-columns:repeat(3,1fr);opacity:.38;transform:rotate(-5deg) scale(1.3);}
+  .hero-flood:after{background:linear-gradient(180deg,rgba(7,8,10,.86) 0%,rgba(7,8,10,.93) 55%,rgba(7,8,10,.98) 100%);}
+}
+
+/* the three reels you can actually press, with sound */
+/* 13 Sep 2026: a 9:16 reel stretched to a full column is 760px tall and swallows the screen.
+   A reel is a phone object. Show it at phone scale and centre the row. */
+.plays{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,258px));justify-content:center;gap:30px;}
+.play{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line-bright);background:#000;}
+.play video{width:100%;aspect-ratio:9/16;object-fit:cover;display:block;}
+.play .m{padding:16px 18px;background:var(--panel);}
+.play .m b{display:block;color:var(--white);font-weight:600;}
+.play .m span{display:block;color:var(--dim);font-size:13.5px;margin-top:3px;}
+
+/* ================================================================
+   SECTION BY SECTION, UNDER framework_premium_page_look.
+   Every section names ONE thing at full strength. Everything else drops.
+   The boxes come off. A border around everything is what made it read as a template.
+   13 Sep 2026.
+   ================================================================ */
+
+/* --- THE REELS. The one loud thing is the video. So the card around it goes. --- */
+.plays{gap:30px;}
+.play{border:0;background:transparent;border-radius:0;}
+.play video{border-radius:10px;border:1px solid var(--line);}
+.play .m{background:transparent;padding:16px 2px 0;}
+.play .m b{font-weight:500;}
+.play .m span{color:var(--faint);}
+
+/* --- WHAT WE DO. The one loud thing is the sentence. The boxes go, a hairline stays. --- */
+.three{gap:0;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.th{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;
+  padding:34px 34px 40px 0;gap:0;position:relative;}
+.th + .th{padding-left:34px;}
+.th-n{width:auto;height:auto;background:none;color:var(--faint);font-size:12px;font-weight:500;
+  letter-spacing:.18em;margin-bottom:20px;display:block;}
+.sec-light .th-n{background:none;color:#9aa0ad;}
+.th h3{font-weight:400;font-size:clamp(20px,2.4vw,25px);line-height:1.25;margin:0 0 14px;letter-spacing:-.02em;}
+.th p{font-size:15.5px;}
+@media(min-width:900px){.th{border-left:0;} .th + .th{border-left:1px solid var(--line);}}
+
+/* --- WHERE ARE YOU TODAY. The one loud thing is the empty row of dots. --- */
+.sg{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:28px 0 32px;}
+.stages{gap:0 44px;}
+.sg-h{font-weight:400;font-size:17px;color:var(--dim);margin-bottom:20px;}
+.sg-dots i{border-color:var(--line-bright);}
+.sg-dots i.on{background:var(--white);border-color:transparent;}
+.sec-light .sg-dots i.on{background:#0b0c0f;}
+.sg-note{color:var(--faint);}
+.sg.us{background:transparent;border:0;border-top:2px solid transparent;
+  border-image:linear-gradient(90deg,var(--dream-a),var(--dream-b)) 1;}
+.sg.us .sg-h{color:var(--white);font-weight:500;}
+.sec-light .sg.us .sg-h{background:none;color:#0b0c0f;}
+.sg.us .sg-dots i.on{background:var(--grad);}
+
+/* --- THE NUMBERS. The one loud thing is the number. Tiles off, hairlines on. --- */
+.nrow{gap:0;}
+.nc{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:26px 26px 30px 0;}
+.nc + .nc{padding-left:26px;}
+@media(min-width:900px){.nc + .nc{border-left:1px solid var(--line);}}
+.nc b{font-size:clamp(26px,3.4vw,38px);font-weight:400;letter-spacing:-.03em;}
+.nc small{color:var(--faint);font-size:13px;margin-top:10px;}
+.nblock{margin-top:52px;padding-top:0;border-top:0;}
+.nblock-h{color:var(--faint);margin-bottom:6px;}
+.nfoot{color:var(--faint);margin-top:20px;}
+
+/* --- THE FOUNDER. The one loud thing is the line he said. --- */
+.fstrip{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:40px 0 0;
+  align-items:start;gap:28px;}
+.fstrip-pic img{width:64px;height:64px;}
+.fstrip-txt .said{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;
+  font-size:clamp(21px,2.8vw,30px);line-height:1.3;letter-spacing:-.02em;margin:10px 0 12px;}
+.fstrip-txt .who{color:var(--faint);}
+
+/* --- THE LOGOS. Support, never loud. Quieter and with room. --- */
+.sec-tight{padding:54px 0 58px;}
+.logo-wall .logo-cell img{opacity:.5;}
+.logo-wall .logo-cell:hover img{opacity:.95;}
+.eyebrow.center{color:var(--faint);}
+
+/* --- THE OBJECTIONS. Already atmosphere. Just take the box edge off. --- */
+.obj{border:0;}
+
+/* --- THE ABOUT PAGE, same pass. Boxes off, one loud thing each. --- */
+.pod{background:transparent;border:0;border-radius:0;padding:0;}
+.pod img{border-radius:10px;}
+.pod-n{padding:16px 0 0;font-weight:500;}
+.pod-w{padding:3px 0 0;color:var(--faint);}
+.cw{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:22px 0 26px;}
+.cw b{font-weight:400;font-size:17px;}
+.cw small{color:var(--faint);}
+.career{gap:0 34px;}
+.lk{background:transparent;border:1px solid var(--line);color:var(--faint);}
+.lk:hover,.lk:focus-visible{color:var(--white);border-color:var(--line-bright);}
+.founder{gap:44px;}
+.founder-pic img{border-radius:10px;}
+.founder .said{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;
+  font-size:clamp(22px,3vw,34px);line-height:1.28;letter-spacing:-.02em;margin:14px 0 16px;}
+.founder h2{font-weight:400;}
+.founder .who{color:var(--faint);}
+
+/* --- THE ROWS THAT OPEN THEIR OWN PAGE. Quiet. --- */
+.r2{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:26px 4px;}
+.r2:hover,.r2:focus-visible{transform:none;border-color:var(--line);}
+.r2:hover .r2-t{color:var(--white);}
+.r2-t{color:var(--dim);transition:color .2s;}
+
+/* ================================================================
+   MEASURED AGAINST emotorad.com, 13 Sep 2026. EVERY SECTION CARRIES MEDIA.
+   Their sections run 890 to 1040px tall, headings centred at 40px weight 400,
+   and not one section is text on a flat ground. Their objection block alone
+   runs four videos. Removing our boxes was the wrong fix. Filling them is the fix.
+   ================================================================ */
+.sec-tall{padding:130px 0;}
+.sec-head.center{max-width:820px;margin-left:auto;margin-right:auto;text-align:center;}
+.sec-head.center h2{font-size:clamp(30px,3.9vw,46px);}
+.sec-head.center p{margin-left:auto;margin-right:auto;}
+
+/* media cards: the work runs behind, the words sit on it */
+.mcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
+.mc{position:relative;border-radius:10px;overflow:hidden;min-height:460px;display:flex;
+  flex-direction:column;justify-content:flex-end;background:#07080a;}
+.mc video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.55;}
+.mc:before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(7,8,10,.30) 0%,rgba(7,8,10,.80) 52%,rgba(7,8,10,.96) 100%);}
+.mc-in{position:relative;z-index:2;padding:34px;}
+.mc-n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.55);display:block;margin-bottom:16px;}
+.mc h3{color:#fff;font-weight:400;font-size:clamp(21px,2.5vw,27px);line-height:1.24;letter-spacing:-.02em;margin:0 0 12px;}
+.mc p{color:rgba(255,255,255,.78);font-size:15.5px;line-height:1.6;margin:0;}
+
+/* a flooded section: the work behind, dimmed, the numbers on top */
+.sec-flood{position:relative;overflow:hidden;border-top:1px solid var(--line);}
+.sec-flood > .vwall{opacity:.34;}
+.sec-flood:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(7,8,10,.94) 0%,rgba(7,8,10,.88) 40%,rgba(7,8,10,.94) 100%);}
+.sec-flood > .wrap{position:relative;z-index:2;}
+
+/* the objection cards run video now, same as theirs */
+.obj{min-height:420px;}
+.obj video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.62;}
+
+/* the stage cards get their structure back, because empty hairlines read as unfinished */
+.stages{gap:20px;}
+.sg{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:28px;}
+.sg-h{color:var(--white);font-weight:500;font-size:16.5px;}
+.sec-light .sg{background:#fff;}
+.sg.us{border:1px solid transparent;border-image:none;
+  background:linear-gradient(var(--panel),var(--panel)) padding-box,var(--grad) border-box;}
+.sec-light .sg.us{background:linear-gradient(#fff,#fff) padding-box,linear-gradient(100deg,#5b3df5,#0d9488) border-box;}
+
+@media(max-width:820px){
+  .sec-tall{padding:86px 0;}
+  .mc{min-height:380px;} .mc-in{padding:26px;}
+  .obj{min-height:340px;}
+}
+
+/* --- THE STRATEGY CALL. The last section was a grey box floating on black, and it is
+   the section that makes the money. Flooded like the hero, the heading carried outside
+   the card, and the man who takes the call shown at the top of it. 13 Sep 2026. --- */
+#talk .gate{max-width:640px;border-radius:10px;padding:0;background:rgba(13,15,19,.86);
+  backdrop-filter:blur(14px);border:1px solid var(--line-bright);overflow:hidden;}
+.gate-face{display:flex;align-items:center;gap:14px;padding:22px 30px;border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.03);}
+.gate-face img{width:46px;height:46px;border-radius:50%;object-fit:cover;}
+.gate-face b{display:block;font-weight:500;color:var(--white);font-size:15.5px;}
+.gate-face span{display:block;color:var(--faint);font-size:13px;margin-top:2px;}
+#talk .gate-intro,#talk #gate-form{padding:30px;}
+#talk .sec-head{margin-bottom:38px;}
+#talk .gate h2{display:none;}
+#talk .gate .lead{display:none;}
+
+/* --- WORK WITH US. Text one side, the work the other. Their "How we started" shape. --- */
+.band{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.band-txt h2{font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.18;letter-spacing:-.025em;margin:16px 0 18px;}
+.band-txt p{color:var(--dim);line-height:1.65;margin-bottom:28px;max-width:44ch;}
+.band-pic{border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:#07080a;}
+.band-pic video{width:100%;height:100%;object-fit:cover;display:block;}
+@media(max-width:860px){.band{grid-template-columns:1fr;gap:32px;}.band-pic{aspect-ratio:16/10;}}
+
+/* the faces row earns a full section, not a thin strip */
+#proof{padding-top:120px;padding-bottom:120px;}
+
+/* --- LET THE WORK BE SEEN. Measured 13 Sep 2026: every video on emotorad.com runs at
+   opacity 1 with no filter. Ours were at 0.5 to 0.62, so the work was invisible.
+   The gradient does the work of keeping type readable, not the opacity. --- */
+.mc video,.mc img{opacity:1;}
+.mc:before{background:linear-gradient(180deg,rgba(7,8,10,.05) 0%,rgba(7,8,10,.34) 40%,rgba(7,8,10,.90) 74%,rgba(7,8,10,.97) 100%);}
+.obj video{opacity:1;}
+.obj:before{background:linear-gradient(180deg,rgba(7,8,10,.06) 0%,rgba(7,8,10,.38) 42%,rgba(7,8,10,.90) 76%,rgba(7,8,10,.97) 100%);}
+.mc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;z-index:0;}
+
+/* the hero: the work should be readable on the right, not a smear */
+/* 0.65, ruled by the King 13 Sep 2026. EMotorad runs ONE horizontal video full bleed,
+   so full opacity is readable there. Ours is a strip of many vertical videos with edges
+   and motion between them, which is visual noise. A strip needs dimming. One video does not. */
+.vwall{opacity:.65;}
+.hero-flood:after{background:
+  linear-gradient(90deg,rgba(7,8,10,.97) 0%,rgba(7,8,10,.92) 34%,rgba(7,8,10,.55) 60%,rgba(7,8,10,.30) 100%),
+  linear-gradient(180deg,rgba(7,8,10,.55) 0%,rgba(7,8,10,0) 26%,rgba(7,8,10,0) 72%,rgba(7,8,10,.72) 100%);}
+.sec-flood > .vwall{opacity:.5;}
+.sec-flood:after{background:
+  linear-gradient(180deg,rgba(7,8,10,.90) 0%,rgba(7,8,10,.78) 38%,rgba(7,8,10,.78) 62%,rgba(7,8,10,.92) 100%);}
+@media(max-width:820px){
+  .vwall{opacity:.42;}
+  .hero-flood:after{background:linear-gradient(180deg,rgba(7,8,10,.80) 0%,rgba(7,8,10,.90) 52%,rgba(7,8,10,.97) 100%);}
+}
+
+/* --- HERO, SECTION ONE. The King, 13 Sep 2026: move the words to the left where it is
+   dimmer, and let the videos play visible on the right. The words were sitting in the
+   middle, on top of the brightest part of the strip. --- */
+.hero-flood{padding:0;align-items:stretch;}
+.hero-flood .wrap{max-width:1220px;width:100%;display:flex;align-items:center;
+  min-height:min(88vh,840px);padding-top:120px;padding-bottom:70px;}
+.hero-in{max-width:510px;}
+/* smaller, 13 Sep 2026. Oversized type in a narrow column reads shouty, not premium.
+   Size reads confident only while it still sits comfortably in its column. */
+.hero-flood h1{font-size:clamp(33px,4.1vw,53px);line-height:1.06;letter-spacing:-.025em;margin:16px 0 0;max-width:none;}
+.hero-flood .sub{font-size:clamp(15px,1.25vw,17px);line-height:1.62;color:var(--dim);max-width:42ch;margin:22px 0 0;}
+.hero-flood .sub b{color:var(--white);font-weight:600;}
+/* the wash: heavy on the left so the words read, almost nothing on the right so the work shows */
+.hero-flood:after{background:
+  linear-gradient(90deg,rgba(7,8,10,.97) 0%,rgba(7,8,10,.95) 32%,rgba(7,8,10,.74) 48%,rgba(7,8,10,.30) 66%,rgba(7,8,10,.10) 100%),
+  linear-gradient(180deg,rgba(7,8,10,.60) 0%,rgba(7,8,10,0) 22%,rgba(7,8,10,0) 74%,rgba(7,8,10,.80) 100%);}
+.hero-flood .vwall{opacity:.80;transform:rotate(-4deg) scale(1.18) translateX(4%);}
+@media(max-width:900px){
+  .hero-flood .wrap{min-height:auto;padding-top:104px;padding-bottom:64px;}
+  .hero-in{max-width:none;}
+  .hero-flood .vwall{opacity:.42;transform:rotate(-5deg) scale(1.32);}
+  .hero-flood:after{background:linear-gradient(180deg,rgba(7,8,10,.84) 0%,rgba(7,8,10,.92) 52%,rgba(7,8,10,.98) 100%);}
+}
+
+@media(max-width:700px){.plays{grid-template-columns:repeat(auto-fit,minmax(0,220px));gap:22px;}}
+
+/* --- SECTION B, THE CLONE CRAWLER. One row, small, so many can be seen and more added.
+   Sits well apart from the craft section: craft is judged first, the reveal comes second. --- */
+.crawl{position:relative;overflow:hidden;margin:8px 0 46px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+.crawl-row{display:flex;gap:16px;width:max-content;animation:cm-slide 92s linear infinite;}
+.crawl:hover .crawl-row{animation-play-state:paused;}
+.cr{position:relative;flex:none;width:176px;aspect-ratio:9/16;border-radius:9px;overflow:hidden;
+  border:1px solid var(--line);background:#000;text-decoration:none;display:block;transition:transform .25s;}
+.cr:hover,.cr:focus-visible{transform:translateY(-5px) scale(1.03);z-index:2;border-color:var(--line-bright);}
+.cr video{width:100%;height:100%;object-fit:cover;display:block;}
+.cr .cap{position:absolute;left:8px;right:8px;bottom:8px;font-family:'JetBrains Mono',monospace;
+  font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#fff;
+  background:rgba(7,8,10,.72);backdrop-filter:blur(5px);padding:5px 8px;border-radius:6px;}
+@media (prefers-reduced-motion:reduce){.crawl-row{animation:none;}.crawl{overflow-x:auto;}}
+@media(max-width:700px){.cr{width:132px;}.crawl-row{gap:12px;animation-duration:64s;}}
+
+/* --- THE CRAFT BAND. Under the strip. The work scrolls past, and underneath it the page
+   names what actually goes into one of them, one line at a time. 13 Sep 2026. --- */
+.craftband{text-align:center;margin:34px auto 46px;max-width:820px;min-height:96px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.cb-lead{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:16px;}
+.cb-line{font-size:clamp(21px,2.9vw,33px);font-weight:400;line-height:1.24;letter-spacing:-.022em;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  transition:opacity .42s ease,transform .42s ease;}
+.cb-line.out{opacity:0;transform:translateY(9px);}
+@media (prefers-reduced-motion:reduce){.cb-line{transition:none;}}
+
+/* --- THE PROOF. A face wall with follower counts is not proof. What we did, per person,
+   with the number it produced.
+   13 Sep 2026, second pass: TYPE NEVER GOES OVER A REEL. A reel already carries burned in
+   captions of its own, so an overlay puts our words on top of their words and both lose.
+   The work sits on top, the words sit underneath on a solid ground, with a clean edge between. --- */
+.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px;margin-top:52px;}
+/* 13 Sep 2026: a 9:16 reel forced into a 5:4 box crops most of the frame away. The card goes
+   horizontal instead, so the reel keeps its own shape and the whole card gets shorter. */
+.rc{display:flex;flex-direction:row;align-items:stretch;border-radius:10px;overflow:hidden;text-decoration:none;
+  background:var(--panel);border:1px solid var(--line);transition:transform .25s,border-color .25s;}
+.rc:hover,.rc:focus-visible{transform:translateY(-4px);border-color:var(--line-bright);}
+.rc-med{position:relative;width:116px;flex:none;aspect-ratio:9/16;overflow:hidden;background:#000;}
+.rc video,.rc img{width:100%;height:100%;object-fit:cover;display:block;}
+.rc-in{padding:18px 20px;display:flex;flex-direction:column;justify-content:center;min-width:0;}
+.rc-who{display:block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:8px;}
+.rc-big{display:block;color:var(--white);font-weight:500;font-size:clamp(15.5px,1.25vw,17.5px);
+  line-height:1.28;letter-spacing:-.02em;margin-bottom:7px;}
+.rc-sub{display:block;color:var(--dim);font-size:12.8px;line-height:1.48;}
+.rc-go{display:block;margin-top:11px;font-size:12px;color:var(--dream-b);}
+@media(max-width:700px){.rc-med{width:96px;}.rc-in{padding:16px 16px;}}
+
+
+/* --- 13 Sep 2026: the same fault as the proof cards, in two more places. Type was sitting
+   over reels that carry their own captions, and 9:16 frames were cropped into tall boxes.
+   Both card types take the shape the King approved: the work keeps its own 9:16 column on
+   the left, the words sit beside it on solid ground. --- */
+.objs,.mcards{grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px;}
+.obj,.mc{display:flex;flex-direction:row;align-items:stretch;min-height:0;border-radius:10px;
+  overflow:hidden;background:var(--panel);border:1px solid var(--line);justify-content:flex-start;}
+.obj:before,.mc:before{display:none;}
+.obj video,.obj img,.mc video,.mc img{position:static;inset:auto;width:116px;flex:none;
+  aspect-ratio:9/16;height:auto;object-fit:cover;object-position:top center;opacity:1;z-index:0;}
+.obj .in,.mc-in{position:relative;z-index:2;padding:18px 20px;display:flex;flex-direction:column;
+  justify-content:center;min-width:0;}
+.obj .mark{position:absolute;top:14px;left:130px;margin:0;width:24px;height:24px;border-radius:7px;
+  background:rgba(255,255,255,.08);font-size:11px;color:var(--faint);}
+.obj .in{padding-top:44px;}
+.obj h3,.mc h3{color:var(--white);font-weight:500;font-size:clamp(15.5px,1.25vw,17.5px);
+  line-height:1.28;letter-spacing:-.02em;margin:0 0 8px;}
+.obj p,.mc p{color:var(--dim);font-size:12.8px;line-height:1.5;margin:0;}
+.mc-n{color:var(--faint);font-size:9px;letter-spacing:.12em;margin-bottom:8px;}
+.sec-light .obj,.sec-light .mc{background:#fff;}
+.sec-light .obj h3,.sec-light .mc h3{color:#0b0c0f;}
+@media(max-width:700px){
+  .obj video,.obj img,.mc video,.mc img{width:96px;}
+  .obj .in,.mc-in{padding:16px;}
+  .obj .mark{left:110px;}
+}
+
+/* --- THE NUMBERS. 13 Sep 2026: the moving strip behind it was unreadable, you could read a
+   reel's own caption through the figures. A wall of video may sit behind ONE short headline
+   in a heavily washed zone, never behind a grid of small labels. The numbers are the visual. --- */
+#work .nblock{margin-top:44px;}
+#work .nblock:first-of-type{margin-top:8px;}
+#work .nc b{font-size:clamp(24px,2.9vw,34px);}
+#work .nc{padding:22px 22px 24px 0;}
+#work .nc + .nc{padding-left:22px;}
+#work .nfoot{font-size:12.5px;margin-top:16px;max-width:78ch;}
+#work .nblock-h{margin-bottom:2px;}
+
+/* --- THE ENGINE. Five stations, and the fifth closes the circle back to production.
+   Same shape as the loop on the Dr Gautam proposal, which the King asked for here.
+   13 Sep 2026. --- */
+.engine{position:relative;height:262px;margin:6px 0 44px;border:1px solid var(--line);border-radius:12px;
+  overflow:hidden;background:
+    radial-gradient(120% 160% at 6% 0%,rgba(180,154,255,.14),transparent 58%),
+    radial-gradient(110% 150% at 94% 0%,rgba(94,234,212,.12),transparent 58%),
+    var(--panel);}
+.sec-light .engine{background:
+    radial-gradient(120% 160% at 6% 0%,rgba(91,61,245,.09),transparent 58%),
+    radial-gradient(110% 150% at 94% 0%,rgba(13,148,136,.09),transparent 58%),#fff;}
+.eng-track{position:absolute;left:10%;right:10%;top:64px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--line-bright) 10%,var(--line-bright) 90%,transparent);}
+/* the arc drops BELOW the labels. It was cutting straight through them. 13 Sep 2026. */
+.eng-arc{position:absolute;left:0;right:0;top:152px;width:100%;height:64px;pointer-events:none;}
+.eng-arc path{fill:none;stroke:var(--line-bright);stroke-width:1.4;stroke-dasharray:5 6;
+  vector-effect:non-scaling-stroke;}
+.est{position:absolute;top:36px;width:19%;text-align:center;transform:translateX(-50%);}
+.es1{left:10%}.es2{left:30%}.es3{left:50%}.es4{left:70%}.es5{left:90%}
+.est .ic{width:54px;height:54px;margin:0 auto;border-radius:50%;border:1px solid var(--line);
+  background:var(--void);display:grid;place-items:center;transition:all .4s;}
+.sec-light .est .ic{background:#fff;}
+.est .ic svg{width:24px;height:24px;stroke:var(--dim);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.est .lab{font-size:12.5px;color:var(--dim);margin-top:12px;line-height:1.35;}
+.eng-walk{position:absolute;top:14px;left:10%;width:26px;height:33px;transform:translateX(-50%);z-index:2;
+  animation:engwalk 15s ease-in-out infinite;}
+.eng-walk svg{width:100%;height:100%;stroke:var(--dream-b);fill:var(--void);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.sec-light .eng-walk svg{fill:#fff;stroke:#0d9488;}
+@keyframes engwalk{0%,11%{left:10%}20%,31%{left:30%}40%,51%{left:50%}60%,71%{left:70%}80%,94%{left:90%}100%{left:90%;opacity:0}}
+.es1 .ic{animation:englit 15s ease-in-out infinite}
+.es2 .ic{animation:englit 15s ease-in-out infinite;animation-delay:3s}
+.es3 .ic{animation:englit 15s ease-in-out infinite;animation-delay:6s}
+.es4 .ic{animation:englit 15s ease-in-out infinite;animation-delay:9s}
+.es5 .ic{animation:englit 15s ease-in-out infinite;animation-delay:12s}
+@keyframes englit{0%,3%{border-color:var(--line);box-shadow:none}
+  7%,18%{border-color:var(--dream-b);box-shadow:0 0 0 7px rgba(94,234,212,.09)}
+  26%,100%{border-color:var(--line);box-shadow:none}}
+.eng-back{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-size:12px;color:var(--faint);}
+@media (prefers-reduced-motion:reduce){.eng-walk,.est .ic{animation:none}.est .ic{border-color:var(--line-bright)}}
+@media(max-width:860px){
+  .engine{height:auto;padding:24px 16px 20px;}
+  .eng-track,.eng-arc,.eng-walk{display:none;}
+  .est{position:static;transform:none;width:auto;text-align:left;display:grid;
+    grid-template-columns:44px 1fr;gap:14px;align-items:center;padding:11px 0;border-top:1px solid var(--line);}
+  .est:first-of-type{border-top:0;}
+  .est .ic{width:44px;height:44px;margin:0;}
+  .est .lab{margin-top:0;font-size:13.5px;}
+  .eng-back{position:static;text-align:left;margin-top:14px;}
+}
+
+/* --- THE THREE PARTS. Icons, not photographs. The King rejected pictures here on 13 Sep 2026:
+   the animation above already carries the process, so a photograph only repeats it. --- */
+.mc-ic{width:52px;flex:none;display:grid;place-items:start center;padding:20px 0 0 20px;}
+.mc-ic svg{width:26px;height:26px;stroke:var(--dream-b);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.sec-light .mc-ic svg{stroke:#0d9488;}
+.mc{align-items:flex-start;}
+.mc .mc-in{padding:18px 22px 20px 10px;}
+
+
+/* --- the three parts, named once, and the ask right under the engine. 13 Sep 2026 --- */
+.eng-parts{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px;
+  margin:30px 0 0;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim);}
+.eng-parts i{width:20px;height:1px;background:var(--line-bright);display:inline-block;}
+.eng-act{text-align:center;margin-top:34px;}
+.eng-act small{display:block;margin-top:12px;color:var(--faint);font-size:13px;}
+
+/* the arrowhead on the return arc, so the direction of the loop is not a guess. 13 Sep 2026 */
+.eng-arrow{position:absolute;left:10%;top:146px;transform:translateX(-50%);width:16px;height:16px;z-index:2;}
+.eng-arrow svg{width:100%;height:100%;fill:none;stroke:var(--line-bright);stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){.eng-arrow{display:none;}}
+
+/* --- an icon on every maturity stage, so the state is recognised before it is read.
+   Drawn, not generated: they have to sit in the same family as the engine stations. 13 Sep 2026 --- */
+.sg-ic{display:grid;place-items:center;width:38px;height:38px;border-radius:9px;
+  border:1px solid var(--line);margin-bottom:16px;}
+.sg-ic svg{width:19px;height:19px;fill:none;stroke:var(--dim);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.sg.us .sg-ic{border-color:transparent;background:linear-gradient(var(--panel),var(--panel)) padding-box,var(--grad) border-box;border:1px solid transparent;}
+.sg.us .sg-ic svg{stroke:var(--dream-b);}
+.sec-light .sg.us .sg-ic{background:linear-gradient(#fff,#fff) padding-box,linear-gradient(100deg,#5b3df5,#0d9488) border-box;}
+
+/* ================================================================
+   ALIGNMENT AND TYPE SWEEP, everything below the fold. 13 Sep 2026.
+   One rule: a section heading is centred, a data grid stays left inside its own
+   container, and ANY standalone line of prose under a centred heading is centred too.
+   Mixed alignment inside one section is what reads as sloppy.
+   ================================================================ */
+.states-foot{text-align:center;max-width:70ch;margin-left:auto;margin-right:auto;margin-top:34px;
+  font-size:15.5px;line-height:1.65;}
+#work .nfoot,.nfoot{text-align:center;max-width:76ch;margin-left:auto;margin-right:auto;}
+#work .nblock-h{text-align:center;}
+#work .nrow{max-width:1000px;margin-left:auto;margin-right:auto;}
+.strip-foot{max-width:70ch;margin-left:auto;margin-right:auto;}
+
+/* the accent border was running into orange on its right edge and reading as gold.
+   two stops, the same pair used on the icons. */
+.sg.us{background:linear-gradient(var(--panel),var(--panel)) padding-box,
+  linear-gradient(100deg,var(--dream-a),var(--dream-b)) border-box;}
+.sg.us .sg-ic{background:linear-gradient(var(--panel),var(--panel)) padding-box,
+  linear-gradient(100deg,var(--dream-a),var(--dream-b)) border-box;}
+
+/* the stage cards were leaving a long empty tail under the last row */
+#who{padding-bottom:96px;}
+.stages{margin-bottom:0;}
+
+/* the band and the founder strip: one column of prose, one object, both aligned to the same baseline */
+.band-txt .eyebrow{display:block;margin-bottom:4px;}
+.fstrip{align-items:center;}
+.fstrip-txt{min-width:0;}
+
+/* every card title on the site sits at one weight and one size */
+.rc-big,.obj h3,.mc h3,.sg-h,.play .m b{font-weight:500;}
+
+/* --- THE RECORD. Numbers have to hit. Tiles, icons, a hairline grid, and the figure
+   counting up as it comes into view. 13 Sep 2026, after a one out of ten. --- */
+.stts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;
+  border-top:1px solid var(--line);margin-top:10px;}
+.stts.two{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));max-width:860px;margin-left:auto;margin-right:auto;}
+.stt{padding:34px 28px 38px;border-bottom:1px solid var(--line);}
+.stt + .stt{border-left:1px solid var(--line);}
+.stt-ic{display:grid;place-items:center;width:34px;height:34px;border-radius:8px;
+  border:1px solid var(--line);margin-bottom:22px;}
+.stt-ic svg{width:17px;height:17px;fill:none;stroke:var(--faint);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.stt-v{display:block;font-size:clamp(32px,3.9vw,50px);font-weight:500;line-height:1;
+  letter-spacing:-.035em;color:var(--white);font-variant-numeric:tabular-nums;}
+.stt.big .stt-v{background:linear-gradient(100deg,#5b3df5,#0d9488);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.stt-l{display:block;margin-top:14px;color:var(--dim);font-size:13.5px;line-height:1.5;max-width:26ch;}
+.stts-note{text-align:center;max-width:74ch;margin:22px auto 0;color:var(--faint);font-size:13px;line-height:1.55;}
+.stts-kick{text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--faint);margin:64px 0 4px;}
+.stts-out{text-align:center;max-width:70ch;margin:18px auto 0;color:var(--dim);font-size:16px;line-height:1.7;}
+@media(max-width:640px){.stt{padding:26px 20px 30px;}.stt + .stt{border-left:0;}}
+
+/* --- WHO IS BEHIND THIS. The man in a circle, the brand numbers beside him. --- */
+.cred{display:grid;grid-template-columns:236px 1fr;gap:56px;align-items:center;}
+.cred-pic img{width:236px;height:236px;border-radius:50%;object-fit:cover;display:block;
+  border:1px solid var(--line-bright);}
+.cred-txt h2{font-weight:400;font-size:clamp(26px,3.2vw,38px);line-height:1.18;letter-spacing:-.025em;margin:16px 0 16px;}
+.cred-txt p{color:var(--dim);line-height:1.65;max-width:52ch;}
+.cred-nums{display:flex;flex-wrap:wrap;gap:18px 52px;margin-top:30px;padding-top:26px;border-top:1px solid var(--line);}
+.cred-nums b{display:block;font-size:clamp(26px,3vw,36px);font-weight:500;line-height:1;letter-spacing:-.03em;
+  color:var(--white);font-variant-numeric:tabular-nums;}
+.cred-nums small{display:block;margin-top:9px;color:var(--faint);font-size:13px;line-height:1.5;max-width:24ch;}
+.cred-acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;}
+@media(max-width:820px){
+  .cred{grid-template-columns:1fr;gap:28px;text-align:center;}
+  .cred-pic img{width:160px;height:160px;margin:0 auto;}
+  .cred-txt p{margin-left:auto;margin-right:auto;}
+  .cred-nums{justify-content:center;text-align:center;}
+  .cred-nums small{margin-left:auto;margin-right:auto;}
+  .cred-acts{justify-content:center;}
+}
+
+/* --- THE REALITY CHECK. Facts, sourced and dated, not a defence of ourselves. 13 Sep 2026 --- */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--line);}
+.fct{padding:34px 30px 38px;border-bottom:1px solid var(--line);}
+.fct + .fct{border-left:1px solid var(--line);}
+.fct-ic{display:grid;place-items:center;width:34px;height:34px;border-radius:8px;border:1px solid var(--line);margin-bottom:22px;}
+.fct-ic svg{width:17px;height:17px;fill:none;stroke:var(--faint);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.fct-v{display:block;font-size:clamp(34px,4.4vw,56px);font-weight:500;line-height:1;letter-spacing:-.04em;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums;}
+.fct-l{display:block;margin-top:16px;color:var(--dim);font-size:14.5px;line-height:1.55;max-width:30ch;}
+.fct-s{display:block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:9.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--faint);}
+.facts-foot{text-align:center;max-width:74ch;margin:42px auto 0;color:var(--dim);font-size:16px;line-height:1.7;}
+.facts-foot b{color:var(--white);font-weight:600;}
+@media(max-width:640px){.fct{padding:26px 22px 30px;}.fct + .fct{border-left:0;}}
+
+/* the platform marks under the following figure. A number with no platforms under it proves nothing. */
+.socs{display:flex;gap:9px;margin-top:14px;}
+.soc{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);display:grid;place-items:center;
+  transition:border-color .2s,color .2s;color:var(--faint);}
+.soc:hover,.soc:focus-visible{border-color:var(--line-bright);color:var(--white);}
+.soc svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.cred-nums{align-items:flex-start;}
+.cred-nums > div:first-child{min-width:230px;}
+.cred-txt p b{color:var(--white);font-weight:600;}
+
+/* the source line sits at the bottom of every fact card, so three cards of different
+   text lengths still line up along one edge. 13 Sep 2026 */
+.fct{display:flex;flex-direction:column;}
+.fct-s{margin-top:auto;padding-top:16px;}
+.fct-l{margin-bottom:4px;}
+
+/* --- two proof cards, bigger. Six read as clutter and only two carry a case study.
+   More go in as more case studies are built. 13 Sep 2026 --- */
+.results.two{grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:24px;}
+.results.two .rc-med{width:172px;}
+.results.two .rc-in{padding:28px 30px;}
+.results.two .rc-big{font-size:clamp(19px,1.9vw,24px);margin-bottom:11px;}
+.results.two .rc-sub{font-size:14.5px;line-height:1.55;}
+.results.two .rc-who{font-size:10px;margin-bottom:13px;}
+.results.two .rc-go{font-size:13.5px;margin-top:16px;}
+@media(max-width:560px){.results.two .rc-med{width:116px;}.results.two .rc-in{padding:20px;}}
+
+/* --- the proof becomes a scroller, all static portraits. More go in as case studies finish.
+   13 Sep 2026 --- */
+.results.scroll{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x proximity;
+  padding-bottom:8px;scrollbar-width:thin;
+  -webkit-mask-image:linear-gradient(90deg,#000 0,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,#000 0,#000 92%,transparent);}
+.results.scroll .rc{flex:none;width:min(440px,84vw);scroll-snap-align:start;}
+.results.scroll .rc-med{width:170px;}
+.results.scroll .rc-in{padding:26px 28px;}
+.results.scroll .rc-big{font-size:clamp(18px,1.8vw,23px);margin-bottom:10px;}
+.results.scroll .rc-sub{font-size:14px;line-height:1.55;}
+.results.scroll .rc-who{font-size:10px;margin-bottom:12px;}
+.results.scroll::-webkit-scrollbar{height:6px;}
+.results.scroll::-webkit-scrollbar-thumb{background:var(--line-bright);border-radius:99px;}
+.results-hint{text-align:center;margin-top:22px;color:var(--faint);font-size:12.5px;}
+@media(max-width:560px){.results.scroll .rc-med{width:116px;}.results.scroll .rc-in{padding:20px;}}
+
+/* --- BRANDS AND COMPANIES. The strip on the right, inside a box, on a light ground.
+   And the logo wall repeats here, smaller. 13 Sep 2026 --- */
+.band-wall{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:#07080a;
+  border:1px solid var(--line);}
+.vwall.lite{position:absolute;inset:-8%;grid-template-columns:repeat(3,1fr);gap:12px;opacity:1;
+  transform:rotate(-4deg) scale(1.2);}
+.vwall.lite video{border-radius:6px;}
+.logo-wall.small{margin-top:18px;gap:12px;}
+.logo-wall.small .logo-cell{height:34px;}
+.logo-wall.small .logo-cell img{height:calc(24px * var(--s,1));max-width:130px;}
+.logo-wall.small .logo-row{gap:0 40px;}
+.logo-wall.small .logo-cell.txt{font-size:16px;}
+.brands-again{margin-top:78px;}
+@media(max-width:860px){.band-wall{aspect-ratio:16/11;}.brands-again{margin-top:52px;}}
+
+/* the faces row is scrolled by hand, not by itself. The King, 13 Sep 2026: the movement
+   did not sit well. Anything a visitor is meant to READ should wait for him. */
+.cm-row.manual{overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:8px;scrollbar-width:thin;}
+.cm-row.manual .cm-track{animation:none;gap:34px;}
+.cm-row.manual .cm-face{scroll-snap-align:start;}
+.cm-row.manual::-webkit-scrollbar{height:6px;}
+.cm-row.manual::-webkit-scrollbar-thumb{background:var(--line-bright);border-radius:99px;}
+
+/* --- THE CALL CARD. It was too tall and the buttons too big. 13 Sep 2026 --- */
+#talk .gate-intro,#talk #gate-form{padding:24px 26px;}
+.gate-face{padding:16px 26px;}
+.gate-face img{width:40px;height:40px;}
+.gate-intro .why-call{gap:9px;margin-top:18px;}
+.gate-intro .why-call li{font-size:14.5px;grid-template-columns:24px minmax(0,1fr);gap:11px;}
+.gate-intro .why-call .i{width:24px;height:24px;border-radius:7px;}
+.gate-intro .why-call .i svg{width:13px;height:13px;}
+.gate-intro .first{margin-top:18px;padding-top:15px;font-size:14px;}
+.gate .start{padding:13px 18px;font-size:15px;margin-top:13px;}
+.gate .start small{font-size:11.5px;margin-top:2px;}
+#talk .btn-wa{padding:12px 18px;font-size:14.5px;}
+#talk .gate-intro > div:last-child{margin-top:15px!important;padding-top:15px!important;}
+#talk{padding-top:104px;padding-bottom:104px;}
+
+/* ================= THE FOOTER. A website needs a spine. 13 Sep 2026 ================= */
+.site-foot{border-top:1px solid var(--line);background:var(--void);padding:74px 0 34px;position:relative;z-index:1;}
+.sf-grid{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:44px;}
+.sf-brand .logo{font-size:19px;margin-bottom:16px;display:inline-block;}
+.sf-brand p{color:var(--faint);font-size:13.5px;line-height:1.65;max-width:36ch;}
+.sf-brand p b{color:var(--dim);font-weight:500;}
+.sf-social{display:flex;gap:9px;margin-top:20px;}
+.sf-social a{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);display:grid;place-items:center;color:var(--faint);transition:color .2s,border-color .2s;}
+.sf-social a:hover{color:var(--white);border-color:var(--line-bright);}
+.sf-social svg{width:15px;height:15px;}
+.sf-h{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;}
+.sf-col a{display:block;color:var(--dim);text-decoration:none;font-size:13.5px;line-height:1.5;margin-bottom:11px;transition:color .2s;}
+.sf-col a:hover{color:var(--white);}
+.sf-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:56px;padding-top:24px;
+  border-top:1px solid var(--line);color:var(--faint);font-size:12.5px;}
+@media(max-width:900px){.sf-grid{grid-template-columns:1fr 1fr;gap:34px;}.sf-brand{grid-column:1 / -1;}}
+@media(max-width:520px){.sf-grid{grid-template-columns:1fr;}}
+
+/* the legal pages */
+.legal-sec{padding-top:132px;}
+.legal{max-width:720px;margin:0 auto;}
+.legal h1{font-size:clamp(30px,4vw,44px);font-weight:400;letter-spacing:-.03em;margin:14px 0 0;}
+.legal-date{color:var(--faint);font-size:13px;margin:14px 0 40px;padding-bottom:24px;border-bottom:1px solid var(--line);}
+.legal h3{font-size:17px;font-weight:500;margin:36px 0 10px;}
+.legal p{color:var(--dim);line-height:1.75;font-size:15.5px;}
+/* the repeat logo wall sits in a narrower box than the first one. 13 Sep 2026 */
+.logo-wall.small{max-width:880px;margin-left:auto;margin-right:auto;}
+/* smaller frames on the brands strip: five columns instead of three, and a shorter box.
+   It was eating the whole right half. 13 Sep 2026 */
+.band{grid-template-columns:1.05fr .95fr;}
+.band-wall{aspect-ratio:16/11;max-height:392px;}
+.vwall.lite{grid-template-columns:repeat(5,1fr);gap:8px;transform:rotate(-4deg) scale(1.26);}
+.vwall.lite video{border-radius:5px;}
+@media(max-width:860px){.band-wall{aspect-ratio:16/10;max-height:300px;}.vwall.lite{grid-template-columns:repeat(4,1fr);}}
+/* the footer logo sat lower than the column headings because it is bigger type.
+   Align the tops, not the boxes. 13 Sep 2026 */
+.sf-grid{align-items:start;}
+.sf-brand .logo{line-height:1;display:block;margin:-3px 0 18px;}
+.sf-h{line-height:1;margin-top:2px;}
+/* the unit always drops to its own line, and it carries less weight than the figure.
+   The number is the thing being read. 13 Sep 2026 */
+.stt-v{font-weight:600;}
+.stt-u{display:block;font-style:normal;font-weight:300;letter-spacing:-.03em;margin-top:2px;}
+.stt.big .stt-u{background:linear-gradient(100deg,#5b3df5,#0d9488);-webkit-background-clip:text;background-clip:text;color:transparent;}
+/* the proof scroller: room above it, and it snaps one proof to the next instead of
+   drifting between two. 13 Sep 2026 */
+.results.scroll{scroll-snap-type:x mandatory;margin-top:66px;padding:4px 0 16px;scroll-padding-left:0;}
+.results.scroll .rc{scroll-snap-align:center;scroll-snap-stop:always;}
+#proof .cm-row.manual{padding-bottom:14px;}
+@media(max-width:700px){.results.scroll{margin-top:44px;}}
+
+/* --- ONE FIELD BEFORE WHATSAPP. A tap with no name is not a lead. 13 Sep 2026 --- */
+.wa-ask{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px;
+  background:rgba(4,5,7,.72);backdrop-filter:blur(6px);}
+.wa-card{width:100%;max-width:400px;background:var(--panel);border:1px solid var(--line-bright);
+  border-radius:12px;padding:30px 28px 26px;position:relative;}
+.wa-x{position:absolute;top:12px;right:14px;background:none;border:0;color:var(--faint);font-size:24px;
+  line-height:1;cursor:pointer;padding:4px 8px;}
+.wa-x:hover{color:var(--white);}
+.wa-eye{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 12px;}
+.wa-card h3{font-size:21px;font-weight:500;letter-spacing:-.02em;margin:0 0 8px;}
+.wa-sub{color:var(--dim);font-size:14px;margin:0 0 20px;line-height:1.5;}
+.wa-card input{width:100%;background:var(--void);border:1px solid var(--line-bright);border-radius:9px;
+  color:var(--white);font-family:inherit;font-size:16px;padding:13px 15px;margin-bottom:14px;}
+.wa-card input:focus{outline:none;border-color:var(--dream-b);}
+.wa-card .btn-wa{width:100%;justify-content:center;padding:13px;}
+.wa-skip{display:block;width:100%;background:none;border:0;color:var(--faint);font-family:inherit;
+  font-size:13px;margin-top:14px;cursor:pointer;padding:4px;}
+.wa-skip:hover{color:var(--dim);}
+
+/* --- ONE PROOF AT A TIME, with an arrow either side. 13 Sep 2026 --- */
+.carou{position:relative;display:flex;align-items:center;gap:14px;margin-top:60px;}
+.carou .results.scroll{margin-top:0;flex:1;min-width:0;-webkit-mask-image:none;mask-image:none;
+  scrollbar-width:none;padding:2px 0 4px;}
+.carou .results.scroll::-webkit-scrollbar{display:none;}
+.carou .results.scroll .rc{width:100%;}
+.carou-b{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-bright);
+  background:var(--panel);color:var(--dim);display:grid;place-items:center;cursor:pointer;
+  transition:color .2s,border-color .2s,opacity .2s;}
+.carou-b:hover{color:var(--white);border-color:var(--white);}
+.carou-b:disabled{opacity:.3;cursor:default;}
+.carou-b svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+.carou .rc-med{width:230px;}
+.carou .rc-in{padding:32px 36px;}
+.carou .rc-big{font-size:clamp(20px,2.1vw,26px);}
+.carou .rc-sub{font-size:15px;}
+@media(max-width:700px){
+  .carou{gap:8px;margin-top:40px;}
+  .carou-b{width:34px;height:34px;}
+  .carou .rc-med{width:116px;}
+  .carou .rc-in{padding:20px;}
+}
+/* the logo still read low against the small caps headings, and the floating WhatsApp
+   button was covering the last line of the footer. 13 Sep 2026 */
+.sf-brand .logo{margin:-7px 0 18px;}
+.sf-base{justify-content:flex-start;gap:6px 22px;padding-bottom:64px;}
+@media(max-width:760px){.sf-base{padding-bottom:78px;}}
+/* hidden must win over display. Setting the flag was working, the box just kept showing. */
+[hidden]{display:none!important;}
+/* the box around the strip was killing the cinematic feel, the columns were too far apart
+   and the text was pinned to the far left. 13 Sep 2026 */
+.band{max-width:1040px;margin:0 auto;grid-template-columns:1fr 1fr;gap:46px;}
+.band-wall{border:0;background:transparent;border-radius:0;overflow:visible;
+  -webkit-mask-image:radial-gradient(122% 112% at 50% 50%,#000 52%,rgba(0,0,0,.55) 78%,transparent 96%);
+          mask-image:radial-gradient(122% 112% at 50% 50%,#000 52%,rgba(0,0,0,.55) 78%,transparent 96%);}
+.vwall.lite{inset:-10%;}
+@media(max-width:860px){.band{max-width:none;gap:30px;}}
+
+/* --- A VIDEO WALL NEEDS A DARK GROUND. On white the gaps between clips become white
+   slivers and it reads as scattered cards. So the wall gets its own black block that
+   bleeds to the edge of the screen, the way Glido's hero does, while the words stay on
+   the light side. 13 Sep 2026 --- */
+.band{align-items:stretch;gap:56px;}
+.band-txt{align-self:center;}
+.band-wall{background:#07080a;border-radius:0;overflow:hidden;aspect-ratio:auto;max-height:none;
+  min-height:480px;margin-right:calc(50% - 50vw);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%);
+          mask-image:linear-gradient(90deg,transparent,#000 4%);}
+.vwall.lite{inset:-6%;grid-template-columns:repeat(6,1fr);gap:10px;transform:rotate(-4deg) scale(1.22);}
+@media(max-width:860px){
+  .band-wall{margin-right:0;min-height:300px;
+    -webkit-mask-image:none;mask-image:none;border-radius:10px;}
+  .vwall.lite{grid-template-columns:repeat(4,1fr);}
+}
+/* the faces move on their own again, like the logos. King's call, 13 Sep 2026. */
+#proof .cm-row{overflow:hidden;}
+/* the proof card was running the full width and the arrows sat unevenly. */
+.carou{max-width:1000px;margin:60px auto 0;}
+.carou .results.scroll .rc{width:100%;}
+/* the proof card was too wide and too tall, which threw the arrows out of balance
+   with it. 13 Sep 2026 */
+.carou{max-width:840px;gap:18px;}
+.carou .rc-med{width:168px;}
+.carou .rc-in{padding:26px 30px;}
+.carou .rc-big{font-size:clamp(18px,1.7vw,22px);}
+.carou .rc-sub{font-size:14px;}
+.carou-b{width:40px;height:40px;}
+@media(max-width:900px){.carou{max-width:none;}}
+/* the craft strip was crammed: more air between the reels, so fewer are on screen
+   at once and each one gets read. 13 Sep 2026 */
+.crawl-row{gap:36px;}
+@media(max-width:700px){.crawl-row{gap:20px;}}
+/* both arrows share one centre, and both buttons sit on the same line. 13 Sep 2026 */
+.carou{align-items:center;}
+.carou-b{align-self:center;display:flex;align-items:center;justify-content:center;padding:0;line-height:0;}
+.carou-b svg{display:block;}
+
+/* --- BRANDS AND COMPANIES, flooded like the hero. The work runs behind the whole section,
+   the wash is heavy on the left so the words read, and nothing is boxed. 13 Sep 2026 --- */
+.band-flood{position:relative;overflow:hidden;border-top:1px solid var(--line);}
+.band-flood > .vwall{position:absolute;inset:-6% -2%;z-index:0;display:grid;
+  grid-template-columns:repeat(6,1fr);gap:12px;opacity:.65;transform:rotate(-4deg) scale(1.2) translateX(6%);}
+.band-flood:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(7,8,10,.97) 0%,rgba(7,8,10,.95) 34%,rgba(7,8,10,.72) 50%,rgba(7,8,10,.28) 70%,rgba(7,8,10,.10) 100%),
+    linear-gradient(180deg,rgba(7,8,10,.55) 0%,rgba(7,8,10,0) 22%,rgba(7,8,10,0) 66%,rgba(7,8,10,.92) 100%);}
+.band-flood > .wrap{position:relative;z-index:2;}
+.band-in{max-width:520px;}
+.band-in h2{font-weight:400;font-size:clamp(27px,3.3vw,40px);line-height:1.18;letter-spacing:-.025em;margin:16px 0 18px;}
+.band-in p{color:var(--dim);line-height:1.65;margin-bottom:28px;}
+.band-in p b{color:var(--white);font-weight:600;}
+@media(max-width:860px){
+  .band-in{max-width:none;}
+  .band-flood > .vwall{opacity:.4;grid-template-columns:repeat(4,1fr);transform:rotate(-5deg) scale(1.34);}
+  .band-flood:after{background:linear-gradient(180deg,rgba(7,8,10,.84) 0%,rgba(7,8,10,.93) 55%,rgba(7,8,10,.97) 100%);}
+}
+/* the proof band goes light, so the flooded brands section below it lands as a hard cut.
+   13 Sep 2026 */
+.sec-light .cm-row{-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+                           mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);}
+.sec-light .cm-nm,.sec-light .cm-ct{color:#0b0c0f;}
+.sec-light .cm-ring img,.sec-light .cm-ini{background:#e9eaee;}
+.sec-light .carou-b{background:#fff;color:#5b6070;border-color:rgba(10,12,16,.2);}
+.sec-light .carou-b:hover{color:#0b0c0f;border-color:#0b0c0f;}
+.sec-light .rc-go{color:#0d9488;}
+/* the repeat logo band, on its own light ground, nothing behind it. 13 Sep 2026 */
+#brands-again{padding:62px 0 66px;}
+#brands-again .eyebrow{display:block;margin-bottom:4px;}
+/* the words were sitting right against the photo edge. 13 Sep 2026 */
+.carou .rc-in{padding:30px 40px 30px 44px;}
+@media(max-width:560px){.carou .rc-in{padding:20px;}}
+/* the card was too wide, leaving a field of empty space beside short copy. 13 Sep 2026 */
+.carou{max-width:730px;}
+.carou .rc-med{width:150px;}
+.carou .rc-in{padding:26px 30px 26px 34px;}
+.carou .rc-big{font-size:clamp(18px,1.6vw,21px);}
 
 </style>
 </head>
@@ -589,11 +1610,16 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:tran
   <div class="bar">
     <a class="logo" href="https://phantasylabs.com/">Phantasy<span>Labs</span></a>
     <nav>
-      <a href="https://phantasylabs.com/studios/">Studios</a>
-      <a href="https://phantasylabs.com/playback/">Playback</a>
-      <a href="https://phantasylabs.com/autopilot/">Autopilot</a>
-      <a href="#proof">Who we work with</a>
+      <div class="navlinks" id="navlinks">
+        <a href="https://phantasylabs.com/case-studies/">Case studies</a>
+        <a href="https://phantasylabs.com/about/">About us</a>
+        <a href="https://phantasylabs.com/blog/">Blog</a>
+        <a href="https://phantasylabs.com/contact/">Contact</a>
+      </div>
       <a class="btn" href="#talk">Book a call</a>
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navlinks">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
   </div>
 </header>
@@ -729,33 +1755,31 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:tran
     </div>
     <div class="cm-row">
       <div class="cm-track">
-<a class="cm-face" href="https://www.instagram.com/dr._madhusudan_/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/madhusudan.jpg" alt="Dr Madhusudan" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'DM'}))"></span><span class="cm-nm">Dr Madhusudan</span><span class="cm-ct">373K</span><span class="cm-cat">Ayurveda</span></a>
-<a class="cm-face" href="https://www.instagram.com/arfeen.khan/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/arfeen.jpg" alt="Arfeen Khan" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AK'}))"></span><span class="cm-nm">Arfeen Khan</span><span class="cm-ct">834K</span><span class="cm-cat">Coach</span></a>
-<a class="cm-face" href="https://www.instagram.com/peepoye/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/peepoye.jpg" alt="Peepoye" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'P'}))"></span><span class="cm-nm">Peepoye</span><span class="cm-ct">1.2M</span><span class="cm-cat">Our own channel</span></a>
-<a class="cm-face" href="https://www.instagram.com/ruchikokcha/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/ruchi.jpg" alt="Ruchi Kokcha" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'RK'}))"></span><span class="cm-nm">Ruchi Kokcha</span><span class="cm-ct">110K</span><span class="cm-cat">Author</span></a>
-<a class="cm-face" href="https://www.instagram.com/drarjunsabharwal/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/arjun.jpg" alt="Dr Arjun Sabharwal" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AS'}))"></span><span class="cm-nm">Dr Arjun Sabharwal</span><span class="cm-ct">69K</span><span class="cm-cat">Nephrology</span></a>
-<a class="cm-face" href="https://www.instagram.com/realestatewidabhay/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/abhay.jpg" alt="Abhay Rikhi" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AR'}))"></span><span class="cm-nm">Abhay Rikhi</span><span class="cm-ct">7.4K</span><span class="cm-cat">Real estate</span></a>
-<a class="cm-face" href="https://www.instagram.com/iventurescapitalofficial/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/nirmal.jpg" alt="Nirmal Bansal" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'NB'}))"></span><span class="cm-nm">Nirmal Bansal</span><span class="cm-ct">Wealth</span><span class="cm-cat">iVentures Capital</span></a>
-<a class="cm-face" href="https://www.instagram.com/p/DcLjk69P1mK/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/shubhi.jpg" alt="Shubhi Mittal" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'SM'}))"></span><span class="cm-nm">Shubhi Mittal</span><span class="cm-ct">251K</span><span class="cm-cat">views, 2nd reel</span></a>
-<a class="cm-face" href="https://www.instagram.com/akasshashokgupta/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/akassh.jpg" alt="Akash Gupta" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AG'}))"></span><span class="cm-nm">Akash Gupta</span><span class="cm-ct">1.2K</span><span class="cm-cat">Founder</span></a>
-<a class="cm-face" href="https://www.instagram.com/dr._madhusudan_/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/madhusudan.jpg" alt="Dr Madhusudan" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'DM'}))"></span><span class="cm-nm">Dr Madhusudan</span><span class="cm-ct">373K</span><span class="cm-cat">Ayurveda</span></a>
-<a class="cm-face" href="https://www.instagram.com/arfeen.khan/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/arfeen.jpg" alt="Arfeen Khan" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AK'}))"></span><span class="cm-nm">Arfeen Khan</span><span class="cm-ct">834K</span><span class="cm-cat">Coach</span></a>
-<a class="cm-face" href="https://www.instagram.com/peepoye/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/peepoye.jpg" alt="Peepoye" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'P'}))"></span><span class="cm-nm">Peepoye</span><span class="cm-ct">1.2M</span><span class="cm-cat">Our own channel</span></a>
-<a class="cm-face" href="https://www.instagram.com/ruchikokcha/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/ruchi.jpg" alt="Ruchi Kokcha" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'RK'}))"></span><span class="cm-nm">Ruchi Kokcha</span><span class="cm-ct">110K</span><span class="cm-cat">Author</span></a>
-<a class="cm-face" href="https://www.instagram.com/drarjunsabharwal/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/arjun.jpg" alt="Dr Arjun Sabharwal" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AS'}))"></span><span class="cm-nm">Dr Arjun Sabharwal</span><span class="cm-ct">69K</span><span class="cm-cat">Nephrology</span></a>
-<a class="cm-face" href="https://www.instagram.com/realestatewidabhay/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/abhay.jpg" alt="Abhay Rikhi" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AR'}))"></span><span class="cm-nm">Abhay Rikhi</span><span class="cm-ct">7.4K</span><span class="cm-cat">Real estate</span></a>
-<a class="cm-face" href="https://www.instagram.com/iventurescapitalofficial/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/nirmal.jpg" alt="Nirmal Bansal" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'NB'}))"></span><span class="cm-nm">Nirmal Bansal</span><span class="cm-ct">Wealth</span><span class="cm-cat">iVentures Capital</span></a>
-<a class="cm-face" href="https://www.instagram.com/p/DcLjk69P1mK/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/shubhi.jpg" alt="Shubhi Mittal" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'SM'}))"></span><span class="cm-nm">Shubhi Mittal</span><span class="cm-ct">251K</span><span class="cm-cat">views, 2nd reel</span></a>
-<a class="cm-face" href="https://www.instagram.com/akasshashokgupta/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/akassh.jpg" alt="Akash Gupta" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AG'}))"></span><span class="cm-nm">Akash Gupta</span><span class="cm-ct">1.2K</span><span class="cm-cat">Founder</span></a>
+<a class="cm-face" href="https://www.instagram.com/dr._madhusudan_/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/madhusudan.jpg" alt="Dr Madhusudan" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'DM'}))"></span><span class="cm-nm">Dr Madhusudan</span><span class="cm-ct">373K</span><span class="cm-cat">Ayurveda</span></a>
+<a class="cm-face" href="https://www.instagram.com/arfeen.khan/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/arfeen.jpg" alt="Arfeen Khan" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AK'}))"></span><span class="cm-nm">Arfeen Khan</span><span class="cm-ct">834K</span><span class="cm-cat">Coach</span></a>
+<a class="cm-face" href="https://www.instagram.com/peepoye/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/peepoye.jpg" alt="Peepoye" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'P'}))"></span><span class="cm-nm">Peepoye</span><span class="cm-ct">1.2M</span><span class="cm-cat">Our own channel</span></a>
+<a class="cm-face" href="https://www.instagram.com/ruchikokcha/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/ruchi.jpg" alt="Ruchi Kokcha" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'RK'}))"></span><span class="cm-nm">Ruchi Kokcha</span><span class="cm-ct">110K</span><span class="cm-cat">Author</span></a>
+<a class="cm-face" href="https://www.instagram.com/drarjunsabharwal/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/arjun.jpg" alt="Dr Arjun Sabharwal" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AS'}))"></span><span class="cm-nm">Dr Arjun Sabharwal</span><span class="cm-ct">69K</span><span class="cm-cat">Nephrology</span></a>
+<a class="cm-face" href="https://www.instagram.com/realestatewidabhay/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/abhay.jpg" alt="Abhay Rikhi" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AR'}))"></span><span class="cm-nm">Abhay Rikhi</span><span class="cm-ct">7.4K</span><span class="cm-cat">Real estate</span></a>
+<a class="cm-face" href="https://www.instagram.com/nirmal.bansal81/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/nirmal.jpg" alt="Nirmal Bansal" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'NB'}))"></span><span class="cm-nm">Nirmal Bansal</span><span class="cm-ct">Wealth</span><span class="cm-cat">iVentures Capital</span></a>
+<a class="cm-face" href="https://www.instagram.com/p/DcLjk69P1mK/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/shubhi.jpg" alt="Shubhi Mittal" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'SM'}))"></span><span class="cm-nm">Shubhi Mittal</span><span class="cm-ct">251K</span><span class="cm-cat">views, 2nd reel</span></a>
+<a class="cm-face" href="https://www.instagram.com/akasshashokgupta/" target="_blank" rel="noopener"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/akassh.jpg" alt="Akash Gupta" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AG'}))"></span><span class="cm-nm">Akash Gupta</span><span class="cm-ct">1.2K</span><span class="cm-cat">Founder</span></a>
+<a class="cm-face" href="https://www.instagram.com/dr._madhusudan_/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/madhusudan.jpg" alt="Dr Madhusudan" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'DM'}))"></span><span class="cm-nm">Dr Madhusudan</span><span class="cm-ct">373K</span><span class="cm-cat">Ayurveda</span></a>
+<a class="cm-face" href="https://www.instagram.com/arfeen.khan/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/arfeen.jpg" alt="Arfeen Khan" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AK'}))"></span><span class="cm-nm">Arfeen Khan</span><span class="cm-ct">834K</span><span class="cm-cat">Coach</span></a>
+<a class="cm-face" href="https://www.instagram.com/peepoye/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/peepoye.jpg" alt="Peepoye" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'P'}))"></span><span class="cm-nm">Peepoye</span><span class="cm-ct">1.2M</span><span class="cm-cat">Our own channel</span></a>
+<a class="cm-face" href="https://www.instagram.com/ruchikokcha/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/ruchi.jpg" alt="Ruchi Kokcha" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'RK'}))"></span><span class="cm-nm">Ruchi Kokcha</span><span class="cm-ct">110K</span><span class="cm-cat">Author</span></a>
+<a class="cm-face" href="https://www.instagram.com/drarjunsabharwal/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/arjun.jpg" alt="Dr Arjun Sabharwal" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AS'}))"></span><span class="cm-nm">Dr Arjun Sabharwal</span><span class="cm-ct">69K</span><span class="cm-cat">Nephrology</span></a>
+<a class="cm-face" href="https://www.instagram.com/realestatewidabhay/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/abhay.jpg" alt="Abhay Rikhi" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AR'}))"></span><span class="cm-nm">Abhay Rikhi</span><span class="cm-ct">7.4K</span><span class="cm-cat">Real estate</span></a>
+<a class="cm-face" href="https://www.instagram.com/nirmal.bansal81/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/nirmal.jpg" alt="Nirmal Bansal" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'NB'}))"></span><span class="cm-nm">Nirmal Bansal</span><span class="cm-ct">Wealth</span><span class="cm-cat">iVentures Capital</span></a>
+<a class="cm-face" href="https://www.instagram.com/p/DcLjk69P1mK/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/shubhi.jpg" alt="Shubhi Mittal" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'SM'}))"></span><span class="cm-nm">Shubhi Mittal</span><span class="cm-ct">251K</span><span class="cm-cat">views, 2nd reel</span></a>
+<a class="cm-face" href="https://www.instagram.com/akasshashokgupta/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="cm-ring"><img src="https://phantasylabs.com/media/clients/akassh.jpg" alt="Akash Gupta" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'cm-ini',textContent:'AG'}))"></span><span class="cm-nm">Akash Gupta</span><span class="cm-ct">1.2K</span><span class="cm-cat">Founder</span></a>
       </div>
     </div>
     <div class="logos">
       <p class="eyebrow">Brands that have paid Peepoye Network to reach their audience</p>
       <div class="logo-row">
-<span class="logo-cell" style="--s:1.15"><img src="https://phantasylabs.com/media/logos/flo-mattress.svg" alt="Flo Mattress" loading="lazy"></span>
-<span class="logo-cell" style="--s:0.72"><img src="https://phantasylabs.com/media/logos/ghc-by-mars.png" alt="GHC by Mars" loading="lazy"></span>
-<span class="logo-cell" style="--s:1"><img src="https://phantasylabs.com/media/logos/toothsi.svg" alt="MakeO toothsi" loading="lazy"></span>
-<span class="logo-cell" style="--s:0.9"><img src="https://phantasylabs.com/media/logos/paisalo-digital.svg" alt="Paisalo Digital" loading="lazy"></span>
+<div class="logo-row r1"><span class="logo-cell" style="--s:0.93"><img src="https://phantasylabs.com/media/logos/odoo.png" alt="Odoo" decoding="async"></span><span class="logo-cell" style="--s:0.75"><img src="https://phantasylabs.com/media/logos/paisalo-digital.png" alt="Paisalo Digital" decoding="async"></span><span class="logo-cell" style="--s:1.6"><img src="https://phantasylabs.com/media/logos/flo-mattress.png" alt="Flo Mattress" decoding="async"></span><span class="logo-cell" style="--s:1.57"><img src="https://phantasylabs.com/media/logos/marketwolf.png" alt="MarketWolf" decoding="async"></span><span class="logo-cell" style="--s:0.8"><img src="https://phantasylabs.com/media/logos/astrotalk.png" alt="AstroTalk" decoding="async"></span><span class="logo-cell" style="--s:0.9"><img src="https://phantasylabs.com/media/logos/toothsi.png" alt="MakeO toothsi" decoding="async"></span><span class="logo-cell txt">Schmooze</span><span class="logo-cell" style="--s:0.65"><img src="https://phantasylabs.com/media/logos/coinswitch.png" alt="CoinSwitch" decoding="async"></span><span class="logo-cell" style="--s:1.55"><img src="https://phantasylabs.com/media/logos/fleek.png" alt="Fleek" decoding="async"></span><span class="logo-cell" style="--s:0.89"><img src="https://phantasylabs.com/media/logos/univest.png" alt="Univest" decoding="async"></span><span class="logo-cell" style="--s:0.78"><img src="https://phantasylabs.com/media/logos/kiwi.png" alt="Kiwi" decoding="async"></span><span class="logo-cell" style="--s:1.34"><img src="https://phantasylabs.com/media/logos/the-times-group.png" alt="The Times Group" decoding="async"></span><span class="logo-cell" style="--s:0.93" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/odoo.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:0.75" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/paisalo-digital.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:1.6" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/flo-mattress.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:1.57" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/marketwolf.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:0.8" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/astrotalk.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:0.9" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/toothsi.png" alt="" decoding="async"></span><span class="logo-cell txt" aria-hidden="true">Schmooze</span><span class="logo-cell" style="--s:0.65" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/coinswitch.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:1.55" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/fleek.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:0.89" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/univest.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:0.78" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/kiwi.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:1.34" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/the-times-group.png" alt="" decoding="async"></span></div>
+<div class="logo-row r2"><span class="logo-cell" style="--s:1.25"><img src="https://phantasylabs.com/media/logos/lenskart.png" alt="Lenskart" decoding="async"></span><span class="logo-cell" style="--s:1.22"><img src="https://phantasylabs.com/media/logos/vantara.png" alt="Vantara" decoding="async"></span><span class="logo-cell" style="--s:1.6"><img src="https://phantasylabs.com/media/logos/disney-hotstar.png" alt="Disney+ Hotstar" decoding="async"></span><span class="logo-cell" style="--s:0.9"><img src="https://phantasylabs.com/media/logos/skool.png" alt="Skool" decoding="async"></span><span class="logo-cell" style="--s:1.0"><img src="https://phantasylabs.com/media/logos/guardio-white.png" alt="Guardio" decoding="async"></span><span class="logo-cell" style="--s:0.85"><img src="https://phantasylabs.com/media/logos/kukufm.png" alt="Kuku FM" decoding="async"></span><span class="logo-cell txt">Cambly</span><span class="logo-cell" style="--s:1.09"><img src="https://phantasylabs.com/media/logos/bhanzu.png" alt="Bhanzu" decoding="async"></span><span class="logo-cell" style="--s:1.34"><img src="https://phantasylabs.com/media/logos/nxtwave.png" alt="NxtWave" decoding="async"></span><span class="logo-cell" style="--s:0.8"><img src="https://phantasylabs.com/media/logos/ghc-by-mars.png" alt="GHC by Mars" decoding="async"></span><span class="logo-cell" style="--s:0.65"><img src="https://phantasylabs.com/media/logos/emotorad.png" alt="EMotorad" decoding="async"></span><span class="logo-cell" style="--s:1.0"><img src="https://phantasylabs.com/media/logos/wisprflow.png" alt="Wispr Flow" decoding="async"></span><span class="logo-cell" style="--s:1.25" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/lenskart.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:1.22" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/vantara.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:1.6" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/disney-hotstar.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:0.9" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/skool.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:1.0" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/guardio-white.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:0.85" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/kukufm.png" alt="" decoding="async"></span><span class="logo-cell txt" aria-hidden="true">Cambly</span><span class="logo-cell" style="--s:1.09" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/bhanzu.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:1.34" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/nxtwave.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:0.8" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/ghc-by-mars.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:0.65" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/emotorad.png" alt="" decoding="async"></span><span class="logo-cell" style="--s:1.0" aria-hidden="true"><img src="https://phantasylabs.com/media/logos/wisprflow.png" alt="" decoding="async"></span></div>
       </div>
     </div>
   </div>
@@ -813,7 +1837,7 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:tran
         </div>
         <div class="founder-acts">
           <a class="btn" href="#talk">Talk to him</a>
-          <a class="btn btn-ghost" href="https://akasshashokgupta.com" target="_blank" rel="noopener">More about Akash, and his newsletter &rarr;</a>
+          <a class="btn btn-ghost" href="https://akasshashokgupta.com" target="_blank" rel="noopener">More about Akash &rarr;</a>
         </div>
       </div>
     </div>
@@ -842,26 +1866,53 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:tran
   </div>
 </section>
 
+
 <!-- THE GATE. Beat 10, the talk door. The reason and the bait first, then
      one question at a time, then the calendar. -->
-<section class="sec" id="talk">
+<section class="sec sec-flood sec-tall" id="talk">
+<!-- SHARED PART: a different set of work behind this section. 13 Sep 2026. -->
+<div class="vwall" aria-hidden="true">
+  <div class="vcol u"><div class="vtrack">
+    <video src="https://phantasylabs.com/media/reels/wall/arfeen-born-to-play-small.mp4" poster="https://phantasylabs.com/media/reels/arfeen-born-to-play-small.jpg" autoplay muted loop playsinline preload="none"></video>
+    <video src="https://phantasylabs.com/media/reels/wall/drmadhu-reel-2.mp4" poster="https://phantasylabs.com/media/reels/drmadhu-reel-2.jpg" autoplay muted loop playsinline preload="none"></video>
+  </div></div>
+  <div class="vcol u"><div class="vtrack">
+    <video src="https://phantasylabs.com/media/reels/wall/akassh-klarna-ai-tech.mp4" poster="https://phantasylabs.com/media/reels/akassh-klarna-ai-tech.jpg" autoplay muted loop playsinline preload="none"></video>
+    <video src="https://phantasylabs.com/media/reels/wall/arfeen-argument-won.mp4" poster="https://phantasylabs.com/media/reels/arfeen-argument-won.jpg" autoplay muted loop playsinline preload="none"></video>
+  </div></div>
+  <div class="vcol u"><div class="vtrack">
+    <video src="https://phantasylabs.com/media/reels/wall/drmadhu-stomachissue-medical.mp4" poster="https://phantasylabs.com/media/reels/drmadhu-stomachissue-medical.jpg" autoplay muted loop playsinline preload="none"></video>
+    <video src="https://phantasylabs.com/media/reels/wall/shubhi-251k.mp4" poster="https://phantasylabs.com/media/reels/shubhi-251k.jpg" autoplay muted loop playsinline preload="none"></video>
+  </div></div>
+  <div class="vcol u"><div class="vtrack">
+    <video src="https://phantasylabs.com/media/reels/wall/peepoye-fifa-globalevents.mp4" poster="https://phantasylabs.com/media/reels/peepoye-fifa-globalevents.jpg" autoplay muted loop playsinline preload="none"></video>
+    <video src="https://phantasylabs.com/media/reels/wall/abhayrikhi-realestate.mp4" poster="https://phantasylabs.com/media/reels/abhayrikhi-realestate.jpg" autoplay muted loop playsinline preload="none"></video>
+  </div></div>
+</div>
+
   <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Talk to Akash</span>
+      <h2>Thirty minutes. <span class="grad">You leave with a list of what to fix.</span></h2>
+      <p>This is not a sales call. Akash opens your videos and your page with you, and shows you where people are falling off.</p>
+    </div>
     <div class="gate">
+      <div class="gate-face">
+        <img src="https://phantasylabs.com/media/clients/akassh.jpg" alt="Akash Gupta">
+        <div><b>Akash Gupta</b><span>He takes the call himself</span></div>
+      </div>
 
       <div id="gate-intro" class="gate-intro">
-        <span class="eyebrow">Talk to Akash</span>
-        <h2 style="margin-top:14px">30 minutes. You leave with a list of what to fix.</h2>
-        <p class="lead" style="margin-bottom:0">This is not a sales call. Akash looks at your videos and your page with you, and shows you where your 97 are leaving.</p>
         <ul class="why-call">
-          <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span><span>He opens your Instagram or YouTube <b>live on the call</b></span></li>
-          <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><span>He shows you <b>where people fall off</b> after your video</span></li>
-          <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span>You leave with <b>what to fix, in order.</b> Even if we never work together</span></li>
+          <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span><span>He opens your channel <b>live on the call</b></span></li>
+          <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><span>He shows you <b>where people fall off</b></span></li>
+          <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span>You leave with <b>what to fix, in order</b></span></li>
         </ul>
-        <p class="first"><b>First, five quick questions.</b> So the call starts with your business, not with us asking what you do.</p>
-        <button class="btn start" id="start" type="button">Start the five questions &rarr;<small>Under a minute. Then you pick a time.</small></button>
+        <p class="first"><b>Five quick questions first,</b> so the call starts with your business.</p>
+        <button class="btn start" id="start" type="button">Start the five questions &rarr;<small>Under a minute, then pick a time</small></button>
         <div style="margin-top:18px;padding-top:18px;border-top:1px solid var(--line);text-align:center">
-          <p style="color:var(--faint);font-size:14px;margin-bottom:12px">In a hurry, or would rather just type?</p>
-          <a class="btn btn-wa" style="width:100%" href="https://wa.me/919625779149?text=Hi%20Akash%2C%20I%20saw%20GetCloned%20and%20I%20want%20to%20know%20more." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.4.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1112 20.2z"/></svg><span>Message us on WhatsApp</span></a>
+          <p style="color:var(--faint);font-size:13px;margin-bottom:10px">Or just type</p>
+          <a class="btn btn-wa" style="width:100%" href="https://wa.me/919625779149?text=Hi%20Akash%2C%20I%20saw%20GetCloned%20and%20I%20want%20to%20know%20more." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.4.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1112 20.2z"/></svg><span>WhatsApp</span></a>
         </div>
       </div>
 
@@ -929,26 +1980,93 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:tran
 </section>
 
 
-<footer>
-  <div class="wrap foot">
-    <p>&copy; 2026 Phantasy Labs. A Peepoye Network company.<br><a href="https://wa.me/919625779149" target="_blank" rel="noopener" style="color:var(--dim);text-decoration:none">WhatsApp +91 96257 79149</a></p>
-    <nav>
-      <a href="https://phantasylabs.com/studios/">Studios</a>
-      <a href="https://phantasylabs.com/playback/">Playback</a>
-      <a href="https://phantasylabs.com/autopilot/">Autopilot</a>
-      <a href="https://getcloned.in/">GetCloned</a>
-      <a href="https://akasshashokgupta.com" target="_blank" rel="noopener">Akash Gupta</a>
-    </nav>
-    <div class="socials">
-      <a href="https://www.youtube.com/@peepoye" target="_blank" rel="noopener" aria-label="Peepoye on YouTube" title="Peepoye on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 00-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 002.4 7.2 26 26 0 002 12a26 26 0 00.4 4.8 2.5 2.5 0 001.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 001.8-1.8A26 26 0 0022 12a26 26 0 00-.4-4.8zM10 15V9l5.2 3z"/></svg></a>
-      <a href="https://www.instagram.com/peepoye/" target="_blank" rel="noopener" aria-label="Peepoye on Instagram" title="Peepoye on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-      <a href="https://www.instagram.com/akasshashokgupta/" target="_blank" rel="noopener" aria-label="Akash on Instagram" title="Akash on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-      <a href="https://www.linkedin.com/in/akasshagupta/" target="_blank" rel="noopener" aria-label="Akash on LinkedIn" title="Akash on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C21.4 8.75 22 11 22 14.1V21h-4v-6.1c0-1.45-.03-3.32-2.06-3.32-2.06 0-2.38 1.58-2.38 3.21V21h-4z"/></svg></a>
-      <a href="https://akasshashokgupta.com" target="_blank" rel="noopener" aria-label="Akash Gupta website" title="Akash Gupta, website and newsletter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg></a>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="sf-grid">
+      <div class="sf-brand">
+        <a class="logo" href="https://phantasylabs.com/">Phantasy<span>Labs</span></a>
+        <p>A video production and conversion agency. We make the videos, build the way people buy, and show you what came back. Part of <b>Peepoye Network</b>, Gurugram, India.</p>
+        <div class="sf-social">
+          <a href="https://www.youtube.com/@peepoye" target="_blank" rel="noopener" aria-label="Peepoye on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 00-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 002.4 7.2 26 26 0 002 12a26 26 0 00.4 4.8 2.5 2.5 0 001.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 001.8-1.8A26 26 0 0022 12a26 26 0 00-.4-4.8zM10 15V9l5.2 3z"/></svg></a>
+          <a href="https://www.instagram.com/akasshashokgupta/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.linkedin.com/in/akasshagupta/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C21.4 8.75 22 11 22 14.1V21h-4v-6.1c0-1.45-.03-3.32-2.06-3.32-2.06 0-2.38 1.58-2.38 3.21V21h-4z"/></svg></a>
+          <a href="https://x.com/akasshagupta" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+          <a href="https://www.facebook.com/akasshagupta" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M15 3h-2a4 4 0 0 0-4 4v3H6v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h2z"/></svg></a>
+        </div>
+      </div>
+      <div class="sf-col">
+        <p class="sf-h">Company</p>
+        <a href="https://phantasylabs.com/about/">About us</a>
+        <a href="https://phantasylabs.com/contact/">Contact</a>
+        <a href="https://akasshashokgupta.com" target="_blank" rel="noopener">Akash Gupta</a>
+        <a href="https://www.youtube.com/@peepoye" target="_blank" rel="noopener">Peepoye</a>
+      </div>
+      <div class="sf-col">
+        <p class="sf-h">The work</p>
+        <a href="https://phantasylabs.com/case-studies/">All of them</a>
+        <a href="https://phantasylabs.com/walkthrough/ayurveda-casestudy/">Dr Madhusudan</a>
+        <a href="https://phantasylabs.com/walkthrough/kidney-casestudy/">Dr Arjun Sabharwal</a>
+      </div>
+      <div class="sf-col">
+        <p class="sf-h">Legal</p>
+        <a href="https://phantasylabs.com/privacy/">Privacy</a>
+        <a href="https://phantasylabs.com/terms/">Terms</a>
+        <a href="https://phantasylabs.com/refund/">Refund and cancellation</a>
+        <a href="https://phantasylabs.com/shipping/">Delivery</a>
+      </div>
+      <div class="sf-col">
+        <p class="sf-h">Talk to us</p>
+        <a href="https://wa.me/919625779149" target="_blank" rel="noopener">WhatsApp 96257 79149</a>
+        <a href="mailto:hello@peepoye.com">hello@peepoye.com</a>
+        <a href="#talk">Book a strategy call</a>
+      </div>
+    </div>
+    <div class="sf-base">
+      <span>&copy; 2026 Phantasy Labs. A Peepoye Network company. GSTIN 06AJPPG1539C1ZH.</span>
+      <span>Gurugram, Haryana, India</span>
     </div>
   </div>
 </footer>
 
+<!-- Vercel Web Analytics. Without this there is no record of a single visit. 13 Sep 2026.
+     It still needs the toggle switched on in the Vercel project, Analytics tab. -->
+<script defer src="/_vercel/insights/script.js"></script>
+<!-- MICROSOFT CLARITY. Session recordings and heat maps, free with no traffic limit.
+     Added 14 Sep 2026. Vercel counts how many people came; this shows what they did,
+     how far down they read, and where they tapped something that was never a button.
+     The project id lives in build.py as clarity_id, so a second site gets its own
+     by setting @clarity_id in its page. Named on /privacy/ the same day it went on. -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "yi5936x33d");
+</script>
+
+<script>
+/* THE PHONE MENU. Under 820px the links live in a panel that this opens.
+   Built 14 Sep 2026, because before it there was no way to reach any page from a phone. */
+(function(){
+  var b=document.getElementById('burger'), n=document.getElementById('navlinks');
+  if(!b||!n) return;
+  function set(open){
+    n.classList.toggle('open',open);
+    b.classList.toggle('is-open',open);
+    b.setAttribute('aria-expanded',open?'true':'false');
+  }
+  b.addEventListener('click',function(){ set(!n.classList.contains('open')); });
+  n.addEventListener('click',function(e){ if(e.target.closest('a')) set(false); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') set(false); });
+  /* a link tapped, the page resized past the breakpoint, or a tap outside: all close it */
+  window.addEventListener('resize',function(){ if(window.innerWidth>820) set(false); });
+  document.addEventListener('click',function(e){
+    if(!n.classList.contains('open')) return;
+    if(e.target.closest('header')) return;
+    set(false);
+  });
+})();
+</script>
 <script>
 /* Count the two proof numbers up on load. Off when the reader asked for less motion. */
 (function(){
@@ -1019,11 +2137,187 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:tran
   }
 })();
 </script>
+<script>
+/* 29 videos on one page will cook a laptop. Only the ones on screen are allowed to run.
+   13 Sep 2026. */
+(function(){
+  var vids=[].slice.call(document.querySelectorAll('video[autoplay]'));
+  if(!vids.length) return;
+  if(!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){ var p=v.play(); if(p&&p.catch){p.catch(function(){});} }
+      else { v.pause(); }
+    });
+  },{rootMargin:'220px 0px'});
+  vids.forEach(function(v){ v.pause(); io.observe(v); });
+})();
+</script>
+<script>
+/* the craft, named one line at a time under the strip. The King's list, 13 Sep 2026. */
+(function(){
+  var el=document.getElementById('cb-line'); if(!el) return;
+  var lines=[
+    'A content plan built around what you sell',
+    'The hook that stops the scroll',
+    'The script, written from your own brain',
+    'Ideas taken from what your market is already asking',
+    'Storytelling, so it is watched to the end',
+    'Subtitles that keep them reading',
+    'B-roll that looks expensive',
+    'A voice that still has your texture in it',
+    'The cut, timed so they stay',
+    'Published when the platform pushes it',
+    'A call to action built into the video',
+    'A bridge from the video to the payment',
+    'A clone that shoots it so you never have to',
+    'And it goes out every week without you'
+  ];
+  var i=0, paused=false;
+  var io=new IntersectionObserver(function(es){paused=!es[0].isIntersecting;},{threshold:0});
+  io.observe(el);
+  setInterval(function(){
+    if(paused) return;
+    el.classList.add('out');
+    setTimeout(function(){ i=(i+1)%lines.length; el.textContent=lines[i]; el.classList.remove('out'); },430);
+  },2600);
+})();
+</script>
+<script>
+/* Numbers settle as they come into view. Decimals, a prefix and a suffix all supported.
+   13 Sep 2026: the King asked for numbers that move and settle, because that is what
+   makes a figure land instead of sitting there. */
+(function(){
+  var els=[].slice.call(document.querySelectorAll('[data-to]'));
+  if(!els.length) return;
+  var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fmt(el,v){
+    var d=parseInt(el.getAttribute('data-dec')||'0',10);
+    var pre=el.getAttribute('data-pre')||'', suf=el.getAttribute('data-suf')||'';
+    var n=d?v.toFixed(d):Math.round(v).toLocaleString('en-IN');
+    return pre+n+suf;
+  }
+  function run(el){
+    var to=parseFloat(el.getAttribute('data-to')), t0=null;
+    if(still){ el.innerHTML=fmt(el,to); return; }
+    function step(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/1500,1); p=1-Math.pow(1-p,3);
+      el.innerHTML=fmt(el,to*p); if(p<1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  /* THE REAL NUMBER IS ALREADY IN THE PAGE. The builder writes it there.
+     So anything that never runs this script, an AI crawler most of all, reads the truth.
+     We only blank a figure that is below the fold, and only after this script is
+     definitely alive. Found 14 Sep 2026: every figure was a literal 0 in the HTML,
+     so without scripts the page said 0 brands have paid us to make videos that sell. */
+  if(!('IntersectionObserver' in window)) return;
+  els.forEach(function(el){
+    var r=el.getBoundingClientRect();
+    if(r.top > (window.innerHeight||0)) el.innerHTML=fmt(el,0);
+  });
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ run(e.target); io.unobserve(e.target); } });
+  },{threshold:.4});
+  els.forEach(function(el){ io.observe(el); });
+  /* And a net under it. If a figure is still sitting at zero after eight seconds,
+     something went wrong and the honest number goes back on screen. */
+  setTimeout(function(){
+    els.forEach(function(el){
+      var to=parseFloat(el.getAttribute('data-to'));
+      if(el.innerHTML===fmt(el,0) && to!==0){ el.innerHTML=fmt(el,to); io.unobserve(el); }
+    });
+  },8000);
+})();
+</script>
+<script>
+/* WHATSAPP: one field, then the app opens with the name already in the message.
+   A tap with no name is not a lead, and the Slack alert carries the name too.
+   The window is opened inside the click, so no popup blocker sees it. 13 Sep 2026 */
+(function(){
+  var box=document.getElementById('wa-ask'), inp=document.getElementById('wa-name');
+  var go=document.getElementById('wa-go'), skip=document.getElementById('wa-skip'), x=document.getElementById('wa-x');
+  if(!box) return;
+  var page=(location.pathname||'/').replace(/\/$/,'')||'/';
+  var pending=null;
+  function known(){ try{ return localStorage.getItem('pl_name')||''; }catch(e){ return ''; } }
+  function remember(n){ try{ localStorage.setItem('pl_name', n); }catch(e){} }
+  function tell(name){
+    try{
+      var body=JSON.stringify({page:page, spot:pending?pending.spot:'unknown', name:name||''});
+      if(navigator.sendBeacon){ navigator.sendBeacon('/api/wa', new Blob([body],{type:'application/json'})); }
+      else { fetch('/api/wa',{method:'POST',headers:{'Content-Type':'application/json'},body:body,keepalive:true}).catch(function(){}); }
+    }catch(e){}
+  }
+  function open(name){
+    var url=pending.href, n=(name||'').trim();
+    if(n){
+      var msg='Hi Akash, this is '+n+'. I saw the PhantasyLabs site and I want to know more.';
+      url=url.split('?')[0]+'?text='+encodeURIComponent(msg);
+    }
+    tell(n);
+    window.open(url,'_blank','noopener');
+    close();
+  }
+  function close(){ box.hidden=true; pending=null; document.documentElement.style.overflow=''; }
+  document.addEventListener('click', function(e){
+    var a=e.target.closest && e.target.closest('a[href*="wa.me"]');
+    if(!a) return;
+    e.preventDefault();
+    pending={ href:a.href,
+      spot: a.classList.contains('wa-float') ? 'floating button'
+          : a.closest('#talk') ? 'the call card'
+          : a.closest('footer') ? 'footer' : 'in the page' };
+    var n=known();
+    if(n){ open(n); return; }
+    box.hidden=false; document.documentElement.style.overflow='hidden';
+    setTimeout(function(){ inp.focus(); }, 60);
+  }, true);
+  go.addEventListener('click', function(){ var n=inp.value.trim(); if(n) remember(n); open(n); });
+  inp.addEventListener('keydown', function(e){ if(e.key==='Enter'){ go.click(); } });
+  skip.addEventListener('click', function(){ open(''); });
+  x.addEventListener('click', close);
+  box.addEventListener('click', function(e){ if(e.target===box) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !box.hidden) close(); });
+})();
+</script>
+<script>
+/* one proof card at a time, an arrow either side. 13 Sep 2026 */
+(function(){
+  var t=document.getElementById('pf-track'), p=document.getElementById('pf-prev'), n=document.getElementById('pf-next');
+  if(!t||!p||!n) return;
+  function step(){ var c=t.querySelector('.rc'); return c ? c.getBoundingClientRect().width + 20 : t.clientWidth; }
+  function sync(){
+    p.disabled = t.scrollLeft < 8;
+    n.disabled = t.scrollLeft + t.clientWidth >= t.scrollWidth - 8;
+  }
+  p.addEventListener('click', function(){ t.scrollBy({left:-step(), behavior:'smooth'}); });
+  n.addEventListener('click', function(){ t.scrollBy({left: step(), behavior:'smooth'}); });
+  t.addEventListener('scroll', sync, {passive:true});
+  window.addEventListener('resize', sync);
+  sync();
+})();
+</script>
 
 <a class="wa-float" href="https://wa.me/919625779149?text=Hi%20Akash%2C%20I%20saw%20GetCloned%20and%20I%20want%20to%20know%20more." target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.4.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1112 20.2z"/></svg>
   <span>WhatsApp us</span>
 </a>
+
+<!-- One field before WhatsApp opens. A tap with no name is not a lead. 13 Sep 2026. -->
+<div class="wa-ask" id="wa-ask" hidden>
+  <div class="wa-card" role="dialog" aria-modal="true" aria-labelledby="wa-ask-h">
+    <button class="wa-x" id="wa-x" type="button" aria-label="Close">&times;</button>
+    <p class="wa-eye">Before we open WhatsApp</p>
+    <h3 id="wa-ask-h">What should Akash call you?</h3>
+    <p class="wa-sub">So your message arrives with your name on it.</p>
+    <input id="wa-name" type="text" autocomplete="name" placeholder="Dr Jyoti Mishra">
+    <button class="btn btn-wa" id="wa-go" type="button">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.4.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1112 20.2z"/></svg>
+      <span>Open WhatsApp</span>
+    </button>
+    <button class="wa-skip" id="wa-skip" type="button">Just open it</button>
+  </div>
+</div>
 
 </body>
 </html>
