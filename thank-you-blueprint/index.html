@@ -31,7 +31,7 @@
   .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 1.8s ease-in-out infinite}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(0.85)}}
   .hero h1{font-family:var(--serif);font-size:clamp(36px,5.5vw,54px);font-weight:700;line-height:1.05;letter-spacing:-.022em;margin-bottom:20px}
-  .hero h1 em{font-style:italic;color:var(--cyan)}
+  .hero h1 em{font-style:normal;color:var(--cyan)}
   .hero p{font-size:17px;color:var(--text-dim);max-width:520px;margin:0 auto 36px;line-height:1.7}
 
   /* STEPS */
@@ -60,7 +60,7 @@
   .confirmation.show{display:block}
   .confirm-icon{font-size:52px;margin-bottom:24px}
   .confirmation h2{font-family:var(--serif);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1.1;margin-bottom:16px}
-  .confirmation h2 em{font-style:italic;color:var(--cyan)}
+  .confirmation h2 em{font-style:normal;color:var(--cyan)}
   .confirmation p{font-size:16px;color:var(--text-dim);line-height:1.7;margin-bottom:12px;max-width:480px;margin-left:auto;margin-right:auto}
   .confirm-card{background:var(--bg-card);border:1px solid var(--border-strong);border-radius:14px;padding:28px 32px;margin:32px auto;max-width:480px;text-align:left}
   .confirm-card .item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--border)}
@@ -68,7 +68,7 @@
   .confirm-card .item-icon{font-size:18px;margin-top:2px;flex-shrink:0}
   .confirm-card .item-text{font-size:14px;color:var(--text-dim);line-height:1.5}
   .confirm-card .item-text strong{color:var(--text);display:block;margin-bottom:2px}
-  .sig{margin-top:40px;font-family:var(--serif);font-style:italic;font-size:18px;color:var(--text-dim)}
+  .sig{margin-top:40px;font-family:'Inter Tight',system-ui,sans-serif;font-style:normal;font-size:18px;color:var(--text-dim);font-weight:700}
   .sig strong{color:var(--text);font-style:normal}
 
   /* GUARANTEE STRIP */
@@ -80,6 +80,7 @@
     .cal-container{min-height:600px}
   }
 </style>
+<style>em{font-style:normal}</style>
 </head>
 <body>
 

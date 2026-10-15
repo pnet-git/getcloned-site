@@ -97,9 +97,9 @@ html::before {
 @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
 
 .hero-headline { font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 6.6vw, 82px); line-height: 1.0; letter-spacing: -0.03em; color: var(--text); margin: 0 auto 20px; max-width: 940px; }
-.hero-headline em { font-style: italic; font-weight: 400; color: var(--gold-bright); }
-.hero-headline-2 { font-family: var(--serif); font-weight: 400; font-style: italic; font-size: clamp(20px, 2.8vw, 32px); line-height: 1.2; color: var(--text-dim); margin: 0 auto 26px; max-width: 720px; }
-.hero-headline-2 em { color: var(--gold); font-style: italic; }
+.hero-headline em { font-style:normal; font-weight: 400; color: var(--gold-bright); }
+.hero-headline-2 { font-family:'Inter Tight',system-ui,sans-serif; font-weight:700; font-style:normal; font-size: clamp(20px, 2.8vw, 32px); line-height: 1.2; color: var(--text-dim); margin: 0 auto 26px; max-width: 720px; }
+.hero-headline-2 em { color: var(--gold); font-style:normal; }
 
 .hero-sub { font-size: clamp(16px, 2vw, 20px); line-height: 1.6; color: var(--text-dim); max-width: 640px; margin: 0 auto 16px; }
 .hero-sub strong { color: var(--text); font-weight: 500; }
@@ -116,14 +116,14 @@ html::before {
 .eyebrow.center { justify-content: center; }
 
 .section-title { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.06; letter-spacing: -0.025em; color: var(--text); margin-bottom: 26px; max-width: 760px; }
-.section-title em { font-style: italic; font-weight: 400; color: var(--gold-bright); }
+.section-title em { font-style:normal; font-weight: 400; color: var(--gold-bright); }
 .center-h { text-align: center; }
 .center-h .section-title { margin-left: auto; margin-right: auto; }
 .center-h .section-lead { margin-left: auto; margin-right: auto; }
 
 .section-lead { font-size: 19px; line-height: 1.65; color: var(--text-dim); max-width: 640px; margin-bottom: 16px; }
 .section-lead strong { color: var(--text); font-weight: 500; }
-.section-lead em { font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 1.05em; }
+.section-lead em { font-family:'Inter Tight',system-ui,sans-serif; font-style:normal; color: var(--gold); font-size: 1.05em;font-weight:700}
 
 .s-elevated { background: radial-gradient(ellipse 55% 50% at 80% 30%, rgba(212,175,100,0.05) 0%, transparent 60%), var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
@@ -146,8 +146,8 @@ html::before {
 }
 .portrait-quote::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(var(--gold-bright), var(--gold-deep)); box-shadow: 0 0 18px var(--gold-glow); }
 .pq-mark { font-family: var(--serif); font-size: 56px; line-height: 0.6; color: var(--gold); opacity: 0.5; margin-bottom: 8px; }
-.pq-text { font-family: var(--serif); font-style: italic; font-size: 21px; line-height: 1.5; color: var(--text); margin-bottom: 26px; }
-.pq-text em { color: var(--gold-bright); font-style: italic; }
+.pq-text { font-family:'Inter Tight',system-ui,sans-serif; font-style:normal; font-size: 21px; line-height: 1.5; color: var(--text); margin-bottom: 26px;font-weight:700}
+.pq-text em { color: var(--gold-bright); font-style:normal; }
 .pq-attr { display: flex; align-items: center; gap: 16px; }
 .pq-photo { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--border-strong); }
 .pq-photo .imgslot { width: 100%; height: 100%; font-size: 8px; }
@@ -156,8 +156,8 @@ html::before {
 
 /* ═══ THE TURN ═══ */
 .turn { background: var(--bg); border-bottom: 1px solid var(--border); }
-.turn-line { font-family: var(--serif); font-weight: 400; font-style: italic; font-size: clamp(26px, 4.4vw, 46px); line-height: 1.25; letter-spacing: -0.02em; color: var(--text); text-align: center; max-width: 880px; margin: 0 auto; }
-.turn-line em { color: var(--gold-bright); font-style: italic; }
+.turn-line { font-family:'Inter Tight',system-ui,sans-serif; font-weight:700; font-style:normal; font-size: clamp(26px, 4.4vw, 46px); line-height: 1.25; letter-spacing: -0.02em; color: var(--text); text-align: center; max-width: 880px; margin: 0 auto; }
+.turn-line em { color: var(--gold-bright); font-style:normal; }
 .turn-attr { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-align: center; margin-top: 34px; }
 
 /* ═══ HERO STAT BAND ═══ */
@@ -165,7 +165,7 @@ html::before {
 .statband .big-stat { text-align: center; margin-bottom: 56px; }
 .statband .big-num { font-family: var(--serif); font-weight: 500; font-size: clamp(64px, 13vw, 156px); line-height: 0.9; letter-spacing: -0.04em; color: var(--gold-bright); text-shadow: 0 0 60px var(--gold-glow); }
 .statband .big-label { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-top: 16px; }
-.statband .big-sub { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--text); margin-top: 18px; }
+.statband .big-sub { font-family:'Inter Tight',system-ui,sans-serif; font-style:normal; font-size: 20px; color: var(--text); margin-top: 18px;font-weight:700}
 .statband .big-sub strong { color: var(--gold-bright); font-style: normal; font-weight: 600; }
 .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; max-width: 920px; margin: 0 auto; }
 .stat { background: var(--bg-card); padding: 32px 18px; text-align: center; }
@@ -203,7 +203,7 @@ html::before {
 /* 5-min callout */
 .fivemin { margin-top: 44px; background: linear-gradient(135deg, var(--gold-soft), transparent); border: 1px solid var(--border-strong); border-radius: 16px; padding: 32px 34px; text-align: center; }
 .fivemin .big { font-family: var(--serif); font-size: clamp(24px, 3.4vw, 34px); font-weight: 500; color: var(--text); line-height: 1.2; }
-.fivemin .big em { font-style: italic; color: var(--gold-bright); }
+.fivemin .big em { font-style:normal; color: var(--gold-bright); }
 .fivemin .sub { font-size: 15px; color: var(--text-dim); margin-top: 12px; }
 
 /* ═══ RECEIPTS (reels) ═══ */
@@ -252,7 +252,7 @@ html::before {
 .river-desc { font-size: 14px; line-height: 1.55; color: var(--text-dim); }
 .river-link { font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 14px; opacity: 0; transition: opacity 0.2s; }
 .river-card:hover .river-link { opacity: 1; }
-.river-note { text-align: center; margin-top: 64px; font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--text); }
+.river-note { text-align: center; margin-top: 64px; font-family:'Inter Tight',system-ui,sans-serif; font-style:normal; font-size: 22px; color: var(--text);font-weight:700}
 .river-note em { color: var(--gold-bright); }
 
 /* ═══ BANK (numbers grid) ═══ */
@@ -275,13 +275,13 @@ html::before {
 /* ═══ WHY IT WORKED ═══ */
 .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 12px; }
 .why-item { padding: 30px 0 0; border-top: 1px solid var(--border-strong); }
-.why-num { font-family: var(--serif); font-style: italic; font-size: 38px; color: var(--gold); line-height: 1; margin-bottom: 16px; }
+.why-num { font-family:'Inter Tight',system-ui,sans-serif; font-style:normal; font-size: 38px; color: var(--gold); line-height: 1; margin-bottom: 16px;font-weight:700}
 .why-label { font-size: 15px; line-height: 1.55; color: var(--text-dim); }
 .why-label strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 6px; font-size: 16px; }
 
 /* ═══ CLOSE ═══ */
 .close { background: radial-gradient(ellipse 60% 70% at 50% 40%, rgba(212,175,100,0.10) 0%, transparent 60%), var(--bg-elevated); border-top: 1px solid var(--border); text-align: center; }
-.close-line { font-family: var(--serif); font-weight: 400; font-style: italic; font-size: clamp(28px, 4.6vw, 50px); line-height: 1.18; letter-spacing: -0.02em; color: var(--text); max-width: 820px; margin: 0 auto 18px; }
+.close-line { font-family:'Inter Tight',system-ui,sans-serif; font-weight:700; font-style:normal; font-size: clamp(28px, 4.6vw, 50px); line-height: 1.18; letter-spacing: -0.02em; color: var(--text); max-width: 820px; margin: 0 auto 18px; }
 .close-line em { color: var(--gold-bright); }
 .close-sub { font-size: 18px; color: var(--text-dim); max-width: 560px; margin: 0 auto 40px; }
 .hero-cta { display: inline-flex; align-items: center; gap: 12px; background: var(--gold); color: #1a1206; border: none; padding: 19px 38px; font-family: var(--mono); font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; cursor: pointer; border-radius: 6px; transition: all 0.2s; box-shadow: 0 0 32px var(--gold-glow), 0 8px 24px -8px rgba(212,175,100,0.4); }
@@ -293,7 +293,7 @@ html::before {
 /* ═══ FOOTER ═══ */
 .footer { padding: 64px 32px 44px; text-align: center; border-top: 1px solid var(--border); background: var(--bg); }
 .footer-logo { font-family: var(--serif); font-weight: 700; font-size: 21px; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 18px; }
-.footer-tagline { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--text-dim); line-height: 1.5; margin-bottom: 26px; }
+.footer-tagline { font-family:'Inter Tight',system-ui,sans-serif; font-style:normal; font-size: 18px; color: var(--text-dim); line-height: 1.5; margin-bottom: 26px;font-weight:700}
 .footer-tagline em { color: var(--gold); }
 .footer-divider { width: 56px; height: 1px; background: var(--border-strong); margin: 0 auto 24px; }
 .footer-meta { font-family: var(--mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.05em; }
@@ -321,7 +321,7 @@ html::before {
 .qual-final-sub { font-size: 16px; color: var(--text-dim); margin-bottom: 36px; line-height: 1.6; }
 .qual-cal-step { display: none; width: 100%; max-width: 680px; }
 .qual-cal-step.active { display: block; }
-.qual-cal-head { text-align: center; font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--text); margin-bottom: 20px; }
+.qual-cal-head { text-align: center; font-family:'Inter Tight',system-ui,sans-serif; font-style:normal; font-size: 20px; color: var(--text); margin-bottom: 20px;font-weight:700}
 .qual-cal-head em { color: var(--gold); }
 #qualCalEmbed { min-width: 320px; width: 100%; min-height: 640px; border-radius: 12px; }
 
@@ -358,6 +358,7 @@ html::before {
   .hero-eyebrow::before { animation: none; }
 }
 </style>
+<style>em{font-style:normal}</style>
 </head>
 <body>
 <div class="wrap">

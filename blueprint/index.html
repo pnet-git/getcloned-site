@@ -66,7 +66,7 @@ section{padding:88px 0;position:relative}
 .s-ancient p{color:rgba(245,230,200,0.75)}
 .s-ancient .div-label{color:rgba(201,161,74,0.5)}
 .s-ancient .div-label::before,.s-ancient .div-label::after{background:var(--ancient-border)}
-.ancient-quote{font-family:var(--serif);font-style:italic;font-size:clamp(22px,3.6vw,34px);color:#f5e6c8;line-height:1.35;text-align:center;max-width:760px;margin:0 auto 32px}
+.ancient-quote{font-family:'Inter Tight',system-ui,sans-serif;font-style:normal;font-size:clamp(22px,3.6vw,34px);color:#f5e6c8;line-height:1.35;text-align:center;max-width:760px;margin:0 auto 32px;font-weight:700}
 .ancient-quote .gold{color:var(--ancient-gold);font-style:normal;font-weight:600}
 .ancient-mantra{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:40px 0}
 .mantra-item{background:rgba(201,161,74,0.06);border:1px solid var(--ancient-border);border-radius:12px;padding:24px 22px}
@@ -76,7 +76,7 @@ section{padding:88px 0;position:relative}
 .ancient-img-wrap{border-radius:14px;overflow:hidden;border:1px solid var(--ancient-border);aspect-ratio:16/9;background:#12090a}
 .ancient-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
 .ancient-brand-promise{text-align:center;margin-top:32px;padding:28px 32px;background:rgba(139,21,56,0.12);border:1px solid rgba(139,21,56,0.3);border-radius:14px}
-.ancient-brand-promise .promise{font-family:var(--serif);font-size:clamp(20px,3vw,28px);color:#f5e6c8;font-style:italic;margin-bottom:6px}
+.ancient-brand-promise .promise{font-family:'Inter Tight',system-ui,sans-serif;font-size:clamp(20px,3vw,28px);color:#f5e6c8;font-style:normal;margin-bottom:6px;font-weight:700}
 .ancient-brand-promise .sub{font-family:var(--mono);font-size:12px;color:var(--ancient-gold);letter-spacing:2px;text-transform:uppercase}
 .btn-ancient{display:inline-flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:15px;color:var(--ancient-bg);background:var(--ancient-gold);padding:16px 34px;border-radius:9px;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 20px rgba(201,161,74,0.3)}
 .btn-ancient:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,161,74,0.4)}
@@ -102,7 +102,7 @@ p strong{color:var(--text);font-weight:600}
 .btn-sub{display:block;font-family:var(--mono);font-size:12.5px;color:var(--text-muted);margin-top:15px;letter-spacing:.4px}
 .two-btn{display:flex;flex-direction:column;align-items:center;gap:14px;max-width:580px;margin:0 auto}
 .btn-yes{width:100%}
-.btn-no{width:100%;background:transparent;color:var(--text-muted);border:1px solid rgba(255,255,255,0.1);font-family:var(--mono);font-size:13px;font-weight:400;font-style:italic;padding:14px 24px;border-radius:9px;cursor:pointer;transition:color .2s,border-color .2s;line-height:1.4}
+.btn-no{width:100%;background:transparent;color:var(--text-muted);border:1px solid rgba(255,255,255,0.1);font-family:var(--mono);font-size:13px;font-weight:400;font-style:normal;padding:14px 24px;border-radius:9px;cursor:pointer;transition:color .2s,border-color .2s;line-height:1.4}
 .btn-no:hover{color:var(--text-dim);border-color:rgba(255,255,255,0.18)}
 
 /* ============ HERO ============ */
@@ -118,18 +118,18 @@ p strong{color:var(--text);font-weight:600}
 .hero-stage-label{position:absolute;top:24px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);background:rgba(5,5,5,0.75);padding:7px 18px;border-radius:20px;border:1px solid rgba(0,240,200,0.35);white-space:nowrap;backdrop-filter:blur(4px);z-index:2}
 .hero-content{position:relative;z-index:1;padding:40px 24px 72px;max-width:820px;margin:0 auto}
 /* Solid dark card so text is always readable regardless of image beneath */
-.sage-reveal{font-family:var(--serif);font-style:italic;font-size:clamp(20px,3vw,28px);line-height:1.4;color:var(--text);background:rgba(5,5,5,0.82);border:1px solid var(--border-strong);border-radius:16px;padding:34px 32px;margin-bottom:40px;position:relative;backdrop-filter:blur(8px)}
+.sage-reveal{font-family:'Inter Tight',system-ui,sans-serif;font-style:normal;font-size:clamp(20px,3vw,28px);line-height:1.4;color:var(--text);background:rgba(5,5,5,0.82);border:1px solid var(--border-strong);border-radius:16px;padding:34px 32px;margin-bottom:40px;position:relative;backdrop-filter:blur(8px);font-weight:700}
 .sage-reveal::before{content:'';position:absolute;top:-1px;left:-1px;width:26px;height:26px;border-top:1px solid var(--cyan);border-left:1px solid var(--cyan);border-top-left-radius:16px;box-shadow:0 0 12px var(--cyan-glow)}
 .sage-reveal::after{content:'';position:absolute;bottom:-1px;right:-1px;width:26px;height:26px;border-bottom:1px solid var(--cyan);border-right:1px solid var(--cyan);border-bottom-right-radius:16px;box-shadow:0 0 12px var(--cyan-glow)}
 .sage-reveal .pop{color:var(--cyan);font-style:normal;font-weight:600}
 .sage-attr{font-family:var(--mono);font-size:11.5px;color:var(--text-muted);letter-spacing:1.5px;margin-top:16px;display:block}
-.hero h1{margin-bottom:22px}.hero h1 .cyan{font-style:italic}
+.hero h1{margin-bottom:22px}.hero h1 .cyan{font-style:normal}
 .hero-sub{max-width:640px;margin:0 auto 36px;font-size:clamp(17px,2.2vw,20px);color:var(--text-dim)}
 
 /* ============ EPIPHANY BRIDGE ============ */
 .epiphany{text-align:center;padding:72px 0}
 .epiphany-line{font-family:var(--serif);font-size:clamp(22px,3.8vw,36px);font-weight:600;line-height:1.2;max-width:760px;margin:0 auto 24px;color:var(--text)}
-.epiphany-line .cyan{font-style:italic}
+.epiphany-line .cyan{font-style:normal}
 .epiphany-sub{font-size:clamp(16px,2vw,19px);color:var(--text-dim);max-width:640px;margin:0 auto 36px}
 
 /* ============ OUTCOMES ============ */
@@ -140,7 +140,7 @@ p strong{color:var(--text);font-weight:600}
 .ocard .oimg img{width:100%;height:100%;object-fit:cover;display:block}
 .ocard .obody{padding:24px}
 .ocard h3{font-size:21px;margin-bottom:6px}
-.ocard .moment{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--cyan);margin-bottom:10px;display:block}
+.ocard .moment{font-family:'Inter Tight',system-ui,sans-serif;font-style:normal;font-size:15px;color:var(--cyan);margin-bottom:10px;display:block;font-weight:700}
 .ocard p{font-size:15px;margin-bottom:0}
 
 /* ============ CLONE GAME ============ */
@@ -186,7 +186,7 @@ p strong{color:var(--text);font-weight:600}
 .step .snum{font-family:var(--mono);font-size:12px;color:var(--cyan);letter-spacing:1px;margin-bottom:14px}
 .step h3{font-size:19px;margin-bottom:8px}
 .step p{font-size:14.5px;margin-bottom:0;line-height:1.55}
-.step .feel{display:block;margin-top:14px;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--cyan);border-top:1px solid var(--border);padding-top:12px}
+.step .feel{display:block;margin-top:14px;font-family:'Inter Tight',system-ui,sans-serif;font-style:normal;font-size:15px;color:var(--cyan);border-top:1px solid var(--border);padding-top:12px;font-weight:700}
 
 /* ============ WOUND / PSYCH ============ */
 .wound-list{list-style:none;margin:28px 0}
@@ -197,14 +197,14 @@ p strong{color:var(--text);font-weight:600}
 .label-tag.hit{border-color:var(--cyan);color:var(--cyan);background:var(--cyan-soft)}
 .reframe-card{background:linear-gradient(135deg,rgba(0,240,200,0.06),transparent);border:1px solid var(--border-strong);border-radius:16px;padding:38px 34px;text-align:center;max-width:720px;margin:0 auto}
 .reframe-card .big-line{font-family:var(--serif);font-size:clamp(22px,3.8vw,36px);color:var(--text);line-height:1.25;margin-bottom:18px;font-weight:600}
-.reframe-card .big-line .cyan{font-style:italic}
+.reframe-card .big-line .cyan{font-style:normal}
 .reframe-card p{font-size:17px;max-width:580px;margin:0 auto 16px}
 .escapes{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:32px 0}
 .escape{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:22px 20px;position:relative;overflow:hidden}
 .escape::after{content:'✗';position:absolute;top:14px;right:16px;font-size:20px;color:rgba(255,80,80,0.4);font-family:var(--mono)}
 .escape .etitle{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:6px;color:var(--text)}
 .escape p{font-size:15px;margin:0;line-height:1.5}
-.escape-close{text-align:center;margin-top:8px;font-family:var(--serif);font-style:italic;font-size:clamp(20px,3vw,26px);color:var(--cyan)}
+.escape-close{text-align:center;margin-top:8px;font-family:'Inter Tight',system-ui,sans-serif;font-style:normal;font-size:clamp(20px,3vw,26px);color:var(--cyan);font-weight:700}
 
 /* ============ WHO IT'S FOR ============ */
 .for-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px}
@@ -233,7 +233,7 @@ p strong{color:var(--text);font-weight:600}
 .proof-circle .initials{width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 50% 35%,#1c2a28,#0a0f0e);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:28px;font-weight:600;color:var(--cyan)}
 .proof-name{font-family:var(--serif);font-size:21px;font-weight:600;margin-bottom:4px}
 .proof-role{font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:18px}
-.proof-quote{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--text-dim);line-height:1.55;margin-bottom:14px;flex:1}
+.proof-quote{font-family:'Inter Tight',system-ui,sans-serif;font-style:normal;font-size:15px;color:var(--text-dim);line-height:1.55;margin-bottom:14px;flex:1;font-weight:700}
 .proof-quote strong{color:var(--text);font-style:normal}
 .proof-result{display:inline-block;background:var(--cyan-soft);border:1px solid var(--border-strong);border-radius:6px;padding:7px 14px;font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:.5px;margin-bottom:14px}
 .proof-link{font-family:var(--mono);font-size:12px;color:var(--cyan);text-decoration:none;letter-spacing:.5px;border-bottom:1px solid var(--border-strong);padding-bottom:2px;transition:border-color .2s}
@@ -358,7 +358,7 @@ p strong{color:var(--text);font-weight:600}
 .exit-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:24px;color:var(--text-muted);cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center}
 .exit-close:hover{color:var(--cyan)}
 .exit-interrupt{font-family:var(--serif);font-size:clamp(28px,4.5vw,42px);font-weight:600;line-height:1.15;color:var(--text);margin-bottom:10px}
-.exit-interrupt .hit{color:var(--cyan);font-style:italic}
+.exit-interrupt .hit{color:var(--cyan);font-style:normal}
 .exit-sub{font-family:var(--mono);font-size:13px;color:var(--text-muted);letter-spacing:.5px;margin-bottom:36px}
 @media(max-width:480px){.exit-card{padding:40px 24px}.exit-interrupt{font-size:26px}}
 
@@ -393,7 +393,7 @@ p strong{color:var(--text);font-weight:600}
 
 /* ============ MECHANISM sub-headlines ============ */
 .mech-subhead{font-family:var(--serif);font-size:clamp(19px,2.8vw,26px);font-weight:600;color:var(--text);text-align:center;margin:32px 0 20px}
-.mech-subhead .cyan{font-style:italic}
+.mech-subhead .cyan{font-style:normal}
 .mech-subhead-below{font-family:var(--mono);font-size:13px;color:var(--text-dim);text-align:center;margin-top:20px;letter-spacing:.5px}
 
 /* ============ BUILD PROCESS — emoji icons ============ */
@@ -414,7 +414,7 @@ p strong{color:var(--text);font-weight:600}
 .founder-strip-photo{width:72px;height:72px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid var(--border-strong)}
 .founder-strip-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .founder-strip-body{flex:1}
-.founder-strip-quote{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2vw,17px);color:var(--text-dim);line-height:1.6;margin-bottom:12px}
+.founder-strip-quote{font-family:'Inter Tight',system-ui,sans-serif;font-style:normal;font-size:clamp(15px,2vw,17px);color:var(--text-dim);line-height:1.6;margin-bottom:12px;font-weight:700}
 .founder-strip-quote strong{color:var(--text);font-style:normal}
 .founder-strip-name{font-family:var(--mono);font-size:12px;color:var(--cyan);letter-spacing:.5px}
 .founder-strip-name span{color:var(--text-muted)}

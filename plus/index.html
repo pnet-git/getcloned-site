@@ -110,7 +110,7 @@ html::before {
 }
 
 .logo-text em {
-  font-style: italic;
+  font-style:normal;
   font-weight: 400;
   color: var(--gold);
 }
@@ -244,7 +244,7 @@ html::before {
   max-width: 900px;
 }
 .hero-headline em {
-  font-style: italic;
+  font-style:normal;
   font-weight: 400;
   color: var(--gold-bright);
 }
@@ -321,7 +321,7 @@ html::before {
   margin-bottom: 28px;
   max-width: 760px;
 }
-.section-title em { font-style: italic; font-weight: 400; color: var(--gold-bright); }
+.section-title em { font-style:normal; font-weight: 400; color: var(--gold-bright); }
 
 .section-lead {
   font-size: 19px;
@@ -331,7 +331,7 @@ html::before {
   margin-bottom: 16px;
 }
 .section-lead strong { color: var(--text); font-weight: 500; }
-.section-lead em { font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 1.06em; }
+.section-lead em { font-family:'Inter Tight',system-ui,sans-serif; font-style:normal; color: var(--gold); font-size: 1.06em;font-weight:700}
 
 /* ═══════════ WHAT IT DOES — feature band ═══════════ */
 .does {
@@ -471,13 +471,12 @@ html::before {
 .loop-note {
   text-align: center;
   margin-top: 40px;
-  font-family: var(--serif);
-  font-style: italic;
+  font-family:'Inter Tight',system-ui,sans-serif;
+  font-style:normal;
   font-size: 22px;
   color: var(--text);
-  letter-spacing: -0.01em;
-}
-.loop-note em { color: var(--gold-bright); font-style: italic; }
+  letter-spacing: -0.01em;font-weight:700}
+.loop-note em { color: var(--gold-bright); font-style:normal; }
 
 /* ═══════════ WHY US ═══════════ */
 .why {
@@ -495,13 +494,12 @@ html::before {
 }
 .why-item { padding: 28px 0; border-top: 1px solid var(--border-strong); }
 .why-num {
-  font-family: var(--serif);
-  font-style: italic;
+  font-family:'Inter Tight',system-ui,sans-serif;
+  font-style:normal;
   font-size: 40px;
   color: var(--gold);
   line-height: 1;
-  margin-bottom: 16px;
-}
+  margin-bottom: 16px;font-weight:700}
 .why-label {
   font-size: 15px;
   line-height: 1.55;
@@ -510,10 +508,10 @@ html::before {
 .why-label strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 4px; font-size: 16px; }
 
 .why-line {
-  font-family: var(--serif);
+  font-family:'Inter Tight',system-ui,sans-serif;
   font-size: clamp(24px, 3.2vw, 38px);
-  font-weight: 400;
-  font-style: italic;
+  font-weight:700;
+  font-style:normal;
   line-height: 1.25;
   color: var(--text);
   text-align: center;
@@ -701,13 +699,12 @@ html::before {
 .qual-cal-step.active { display: block; }
 .qual-cal-head {
   text-align: center;
-  font-family: var(--serif);
-  font-style: italic;
+  font-family:'Inter Tight',system-ui,sans-serif;
+  font-style:normal;
   font-size: 20px;
   color: var(--text);
-  margin-bottom: 20px;
-}
-.qual-cal-head em { color: var(--gold); font-style: italic; }
+  margin-bottom: 20px;font-weight:700}
+.qual-cal-head em { color: var(--gold); font-style:normal; }
 #qualCalEmbed { min-width: 320px; width: 100%; min-height: 640px; border-radius: 12px; }
 
 @media (max-width: 600px) {
@@ -739,13 +736,12 @@ html::before {
   border-radius: 50%; box-shadow: 0 0 14px var(--gold-glow);
 }
 .footer-tagline {
-  font-family: var(--serif);
-  font-style: italic;
+  font-family:'Inter Tight',system-ui,sans-serif;
+  font-style:normal;
   font-size: 19px;
   color: var(--text-dim);
   line-height: 1.5;
-  margin-bottom: 28px;
-}
+  margin-bottom: 28px;font-weight:700}
 .footer-tagline em { color: var(--gold); }
 .footer-divider {
   width: 60px; height: 1px;
@@ -794,6 +790,7 @@ html::before {
   .section { padding: 72px 20px; }
 }
 </style>
+<style>em{font-style:normal}</style>
 </head>
 <body>
 <div class="wrap">

@@ -69,7 +69,7 @@ html::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 .back-link:hover{color:var(--cyan);}
 .page-eyebrow{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;}
 h1{font-family:var(--serif);font-size:clamp(32px,5vw,50px);font-weight:700;letter-spacing:-0.03em;color:var(--text);margin-bottom:20px;line-height:1.15;}
-h1 em{font-style:italic;font-weight:400;color:var(--cyan);}
+h1 em{font-style:normal;font-weight:400;color:var(--cyan);}
 .meta{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border);}
 .cover-img{width:100%;border-radius:10px;margin:0 0 40px;display:block;}
 .tldr{background:rgba(0,240,200,0.05);border:1px solid rgba(0,240,200,0.15);border-radius:10px;padding:24px 28px;margin-bottom:36px;}
@@ -83,10 +83,10 @@ h1 em{font-style:italic;font-weight:400;color:var(--cyan);}
 .cta-inline{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cyan);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;border-bottom:1px solid rgba(0,240,200,0.3);padding-bottom:2px;margin-bottom:40px;}
 .content{font-size:16px;color:var(--text-dim);line-height:1.85;}
 .content h2{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--text);margin:52px 0 20px;line-height:1.2;}
-.content h2 em{font-style:italic;font-weight:400;color:var(--cyan);}
+.content h2 em{font-style:normal;font-weight:400;color:var(--cyan);}
 .content p{margin-bottom:20px;}
 .content strong{color:var(--text);font-weight:600;}
-.content em{color:var(--cyan);font-style:italic;}
+.content em{color:var(--cyan);font-style:normal;}
 .before-after{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:28px;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
 .ba-col-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:16px;}
 .ba-col-label.before{color:var(--text-muted);}
@@ -120,6 +120,7 @@ h1 em{font-style:italic;font-weight:400;color:var(--cyan);}
 .footer-meta{font-family:var(--mono);font-size:11px;color:var(--text-muted);text-transform:uppercase;}
 @media(max-width:600px){.main{padding:48px 20px 80px;}.navbar{padding:16px 20px;}.before-after{grid-template-columns:1fr;}.cta-box{padding:28px 20px;}}
 </style>
+<style>em{font-style:normal}</style>
 </head>
 <body>
 <nav class="navbar">

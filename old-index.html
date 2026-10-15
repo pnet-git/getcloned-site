@@ -192,7 +192,7 @@ nav {
   display: inline-block;
   animation: glitch-subtle 6s 2s infinite;
   color: var(--cyan);
-  font-style: italic;
+  font-style:normal;
 }
 
 .hero-headline .cursor {
@@ -315,7 +315,7 @@ nav {
   line-height: 1.08;
   margin-bottom: 24px;
 }
-.section-title em { color: var(--cyan); font-style: italic; }
+.section-title em { color: var(--cyan); font-style:normal; }
 
 .section-sub {
   font-size: 18px;
@@ -370,12 +370,11 @@ nav {
   border: 1px solid var(--line);
   border-left: 2px solid var(--cyan);
   padding: 32px 40px;
-  font-family: var(--serif);
+  font-family:'Inter Tight',system-ui,sans-serif;
   font-size: 20px;
-  font-style: italic;
+  font-style:normal;
   line-height: 1.6;
-  color: var(--ink);
-}
+  color: var(--ink);font-weight:700}
 .story-moral em { color: var(--cyan); }
 
 /* ─── SECTION 3: PAIN ─── */
@@ -507,7 +506,7 @@ nav {
 .desired-narrative strong { color: var(--ink); font-weight: 400; }
 .desired-narrative .highlight {
   color: var(--cyan);
-  font-style: italic;
+  font-style:normal;
 }
 
 .desired-stats {
@@ -625,7 +624,7 @@ nav {
   line-height: 1.6;
   color: var(--ink);
 }
-.engine-callout-text em { color: var(--cyan); font-style: italic; }
+.engine-callout-text em { color: var(--cyan); font-style:normal; }
 
 /* ─── SECTION 7: PROOF ─── */
 .proof-grid {
@@ -685,13 +684,12 @@ nav {
 }
 
 .proof-quote {
-  font-family: var(--serif);
-  font-style: italic;
+  font-family:'Inter Tight',system-ui,sans-serif;
+  font-style:normal;
   font-size: 17px;
   color: var(--ink);
   line-height: 1.6;
-  margin-bottom: 16px;
-}
+  margin-bottom: 16px;font-weight:700}
 .proof-attr {
   font-family: var(--mono);
   font-size: 11px;
@@ -716,7 +714,7 @@ nav {
   color: var(--ink-dim);
 }
 .truth-bomb strong { color: var(--ink); }
-.truth-bomb em { color: var(--cyan); font-style: italic; }
+.truth-bomb em { color: var(--cyan); font-style:normal; }
 
 /* ─── SECTION 8: REVENUE MATH ─── */
 .math-table {
@@ -812,15 +810,14 @@ nav {
 }
 
 .authority-quote {
-  font-family: var(--serif);
-  font-style: italic;
+  font-family:'Inter Tight',system-ui,sans-serif;
+  font-style:normal;
   font-size: 22px;
   line-height: 1.55;
   color: var(--ink);
   margin-bottom: 40px;
   padding-bottom: 40px;
-  border-bottom: 1px solid var(--line);
-}
+  border-bottom: 1px solid var(--line);font-weight:700}
 .authority-quote em { color: var(--cyan); }
 
 .authority-creds { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
@@ -981,15 +978,14 @@ nav {
   text-align: center;
 }
 .truth-interrupt-text {
-  font-family: var(--serif);
-  font-style: italic;
+  font-family:'Inter Tight',system-ui,sans-serif;
+  font-style:normal;
   font-size: clamp(22px, 3.5vw, 38px);
   color: var(--ink-dim);
   max-width: 800px;
   margin: 0 auto;
-  line-height: 1.4;
-}
-.truth-interrupt-text em { color: var(--cyan); font-style: italic; }
+  line-height: 1.4;font-weight:700}
+.truth-interrupt-text em { color: var(--cyan); font-style:normal; }
 
 /* ─── FINAL CTA ─── */
 .final-cta {
@@ -1028,7 +1024,7 @@ nav {
   line-height: 1.08;
   margin-bottom: 24px;
 }
-.final-cta-headline em { color: var(--cyan); font-style: italic; }
+.final-cta-headline em { color: var(--cyan); font-style:normal; }
 
 .final-cta-sub {
   font-size: 18px;
@@ -1115,6 +1111,7 @@ footer {
   footer { flex-direction: column; gap: 24px; text-align: center; }
 }
 </style>
+<style>em{font-style:normal}</style>
 </head>
 <body>
 

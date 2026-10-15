@@ -22,7 +22,7 @@ html::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 .main{max-width:900px;margin:0 auto;padding:80px 32px 120px;}
 .page-eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;}
 h1{font-family:var(--serif);font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-0.03em;color:var(--text);margin-bottom:16px;line-height:1.05;}
-h1 em{font-style:italic;font-weight:400;color:var(--cyan);}
+h1 em{font-style:normal;font-weight:400;color:var(--cyan);}
 .page-sub{font-family:var(--sans);font-size:17px;color:var(--text-dim);line-height:1.6;margin-bottom:64px;max-width:580px;}
 .blog-list{display:grid;gap:32px;}
 .blog-item{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:40px;text-decoration:none;display:block;transition:all 0.2s;position:relative;overflow:hidden;}
@@ -40,6 +40,7 @@ h1 em{font-style:italic;font-weight:400;color:var(--cyan);}
 .footer-meta{font-family:var(--mono);font-size:11px;color:var(--text-muted);text-transform:uppercase;}
 @media(max-width:600px){.main{padding:50px 20px 80px;}.blog-item{padding:28px;}}
 </style>
+<style>em{font-style:normal}</style>
 </head>
 <body>
 <nav class="navbar">

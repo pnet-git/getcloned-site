@@ -166,7 +166,7 @@ nav {
   display: inline-block;
   animation: glitch-subtle 6s 2s infinite;
   color: var(--cyan);
-  font-style: italic;
+  font-style:normal;
 }
 
 .hero-headline .cursor {
@@ -258,16 +258,15 @@ nav {
 }
 
 .truth-interrupt-text {
-  font-family: var(--serif);
-  font-style: italic;
+  font-family:'Inter Tight',system-ui,sans-serif;
+  font-style:normal;
   font-size: clamp(22px, 3.5vw, 42px);
   color: var(--ink-dim);
   max-width: 900px;
   margin: 0 auto;
-  line-height: 1.4;
-}
+  line-height: 1.4;font-weight:700}
 
-.truth-interrupt-text em { color: var(--cyan); font-style: italic; }
+.truth-interrupt-text em { color: var(--cyan); font-style:normal; }
 
 .final-cta {
   padding: 100px 48px;
@@ -304,7 +303,7 @@ nav {
   color: var(--ink);
 }
 
-.final-cta-headline em { color: var(--cyan); font-style: italic; }
+.final-cta-headline em { color: var(--cyan); font-style:normal; }
 
 .final-cta-sub {
   font-size: 18px;
@@ -389,6 +388,7 @@ footer {
   footer { flex-direction: column; gap: 24px; text-align: center; }
 }
 </style>
+<style>em{font-style:normal}</style>
 </head>
 <body>
 
