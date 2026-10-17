@@ -1888,20 +1888,20 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:tran
 <!-- SHARED PART: a different set of work behind this section. 13 Sep 2026. -->
 <div class="vwall" aria-hidden="true">
   <div class="vcol u"><div class="vtrack">
-    <video data-src="https://phantasylabs.com/media/reels/wall/arfeen-born-to-play-small.mp4" data-poster="https://phantasylabs.com/media/reels/arfeen-born-to-play-small.jpg" data-autoplay muted loop playsinline preload="none"></video>
-    <video data-src="https://phantasylabs.com/media/reels/wall/drmadhu-reel-2.mp4" data-poster="https://phantasylabs.com/media/reels/drmadhu-reel-2.jpg" data-autoplay muted loop playsinline preload="none"></video>
+    <video data-src="https://phantasylabs.com/media/reels/wall/arfeen-born-to-play-small.mp4" data-poster="https://phantasylabs.com/media/reels/wall/arfeen-born-to-play-small.jpg" muted loop playsinline data-autoplay preload="none"></video>
+    <video data-src="https://phantasylabs.com/media/reels/wall/drmadhu-reel-2.mp4" data-poster="https://phantasylabs.com/media/reels/wall/drmadhu-reel-2.jpg" muted loop playsinline data-autoplay preload="none"></video>
   </div></div>
   <div class="vcol u"><div class="vtrack">
-    <video data-src="https://phantasylabs.com/media/reels/wall/akassh-klarna-ai-tech.mp4" data-poster="https://phantasylabs.com/media/reels/akassh-klarna-ai-tech.jpg" data-autoplay muted loop playsinline preload="none"></video>
-    <video data-src="https://phantasylabs.com/media/reels/wall/arfeen-argument-won.mp4" data-poster="https://phantasylabs.com/media/reels/arfeen-argument-won.jpg" data-autoplay muted loop playsinline preload="none"></video>
+    <video data-src="https://phantasylabs.com/media/reels/wall/akassh-klarna-ai-tech.mp4" data-poster="https://phantasylabs.com/media/reels/wall/akassh-klarna-ai-tech.jpg" muted loop playsinline data-autoplay preload="none"></video>
+    <video data-src="https://phantasylabs.com/media/reels/wall/arfeen-argument-won.mp4" data-poster="https://phantasylabs.com/media/reels/wall/arfeen-argument-won.jpg" muted loop playsinline data-autoplay preload="none"></video>
   </div></div>
   <div class="vcol u"><div class="vtrack">
-    <video data-src="https://phantasylabs.com/media/reels/wall/drmadhu-stomachissue-medical.mp4" data-poster="https://phantasylabs.com/media/reels/drmadhu-stomachissue-medical.jpg" data-autoplay muted loop playsinline preload="none"></video>
-    <video data-src="https://phantasylabs.com/media/reels/wall/shubhi-251k.mp4" data-poster="https://phantasylabs.com/media/reels/shubhi-251k.jpg" data-autoplay muted loop playsinline preload="none"></video>
+    <video data-src="https://phantasylabs.com/media/reels/wall/drmadhu-stomachissue-medical.mp4" data-poster="https://phantasylabs.com/media/reels/wall/drmadhu-stomachissue-medical.jpg" muted loop playsinline data-autoplay preload="none"></video>
+    <video data-src="https://phantasylabs.com/media/reels/wall/shubhi-251k.mp4" data-poster="https://phantasylabs.com/media/reels/wall/shubhi-251k.jpg" muted loop playsinline data-autoplay preload="none"></video>
   </div></div>
   <div class="vcol u"><div class="vtrack">
-    <video data-src="https://phantasylabs.com/media/reels/wall/peepoye-fifa-globalevents.mp4" data-poster="https://phantasylabs.com/media/reels/peepoye-fifa-globalevents.jpg" data-autoplay muted loop playsinline preload="none"></video>
-    <video data-src="https://phantasylabs.com/media/reels/wall/abhayrikhi-realestate.mp4" data-poster="https://phantasylabs.com/media/reels/abhayrikhi-realestate.jpg" data-autoplay muted loop playsinline preload="none"></video>
+    <video data-src="https://phantasylabs.com/media/reels/wall/peepoye-fifa-globalevents.mp4" data-poster="https://phantasylabs.com/media/reels/wall/peepoye-fifa-globalevents.jpg" muted loop playsinline data-autoplay preload="none"></video>
+    <video data-src="https://phantasylabs.com/media/reels/wall/abhayrikhi-realestate.mp4" data-poster="https://phantasylabs.com/media/reels/wall/abhayrikhi-realestate.jpg" muted loop playsinline data-autoplay preload="none"></video>
   </div></div>
 </div>
 
@@ -2322,9 +2322,10 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:tran
 })();
 </script>
 <script>
-/* Videos below the first screen start only when scrolled near. build.py lazy_media() moves
-   their src and poster to data- attributes. Audit, 30 Sep 2026. */
-(function(){
+/* Videos marked preload="none" start only when scrolled near. build.py lazy_media() moves
+   their src and poster to data- attributes. Audit, 30 Sep 2026. Since 17 Oct 2026 this waits
+   for the page load event, so the hero walls no longer slow the first screen on phones. */
+addEventListener('load',function(){
   var vs=document.querySelectorAll('video[data-src],video[data-poster]');
   if(!vs.length) return;
   function wake(v){
@@ -2335,7 +2336,7 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--line-bright);transform:tran
   if(!('IntersectionObserver' in window)){ vs.forEach(wake); return; }
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ wake(e.target); io.unobserve(e.target); } }); },{rootMargin:'600px 0px'});
   vs.forEach(function(v){ io.observe(v); });
-})();
+});
 </script>
 
 <a class="wa-float" href="https://wa.me/919625779149?text=Hi%20Akash%2C%20I%20saw%20GetCloned%20and%20I%20want%20to%20know%20more." target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
